@@ -12,9 +12,9 @@ urls:
       layout: post
     - text: 关于
       url: /about/
-      icon: fa-comments
+      icon: fa-commentsw
     - text: 分类
-      url: /cate/
+      url: /category/
       icon: fa-desktop
       
 social:
