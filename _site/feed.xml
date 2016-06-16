@@ -5,8 +5,8 @@
     <description>mixfate博客-技术乐园</description>
     <link>http://www.mixfate.com/</link>
     <atom:link href="http://www.mixfate.com/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Thu, 16 Jun 2016 15:15:32 +0800</pubDate>
-    <lastBuildDate>Thu, 16 Jun 2016 15:15:32 +0800</lastBuildDate>
+    <pubDate>Thu, 16 Jun 2016 15:27:37 +0800</pubDate>
+    <lastBuildDate>Thu, 16 Jun 2016 15:27:37 +0800</lastBuildDate>
     <generator>Jekyll v3.1.6</generator>
     
       <item>
@@ -168,7 +168,7 @@ end tell
 
 &lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;n&quot;&gt;keytool&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;genkey&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;alias&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;tomcat&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;keyalg&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;RSA&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;keysize&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1024&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;validity&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;365&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;keystore&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;F:&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\c&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;ert&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\t&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;omcat.keystore&quot;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
-&lt;p&gt;&lt;img src=&quot;/assets/909f4008-4cac-36c2-b5af-dda49f34b7e1.png&quot; alt=&quot;tomcat配置ssl单向认证&quot; /&gt;;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/909f4008-4cac-36c2-b5af-dda49f34b7e1.png&quot; alt=&quot;tomcat配置ssl单向认证&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;密码为123456，www.newbie.com为随意取的，仅用作测试，使用本地host将此域名转发。&lt;/p&gt;
 
