@@ -183,18 +183,24 @@
 
 <p>执行完成后将看到f:\cert\目录中生成了证书库文件tomcat.keystore。</p>
 
-<p>2、打开tomcat（本例使用apache-tomcat-7.0.55）中的配置文件/conf/server.xml，为避免录入端口修改默认值，修改如下： 
-```markdown</p>
-<Connector port="8080" protocol="HTTP/1.1" connectionTimeout="20000" redirectPort="8443" />
+<p>2、打开tomcat（本例使用apache-tomcat-7.0.55）中的配置文件/conf/server.xml，为避免录入端口修改默认值，修改如下：</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>修改为 
-```markdown
-&lt;Connector port="80" protocol="HTTP/1.1"
+<div class="language-markdown highlighter-rouge"><pre class="highlight"><code>&lt;Connector port="8080" protocol="HTTP/1.1"
+               connectionTimeout="20000"
+               redirectPort="8443" /&gt;
+</code></pre>
+</div>
+
+<p>修改为</p>
+
+<div class="language-markdown highlighter-rouge"><pre class="highlight"><code>&lt;Connector port="80" protocol="HTTP/1.1"
                connectionTimeout="20000"
                redirectPort="443" /&gt;
 </code></pre>
 </div>
+
 <hr />
+
 <div class="language-markdown highlighter-rouge"><pre class="highlight"><code>&lt;!--
     &lt;Connector port="8443" protocol="org.apache.coyote.http11.Http11Protocol"
                maxThreads="150" SSLEnabled="true" scheme="https" secure="true"
@@ -203,48 +209,63 @@
 
 </code></pre>
 </div>
-<p>修改为（第一步生成的库文件及密码）
-```markdown</p>
-<Connector port="443" protocol="org.apache.coyote.http11.Http11Protocol" maxThreads="150" SSLEnabled="true" scheme="https" secure="true" clientAuth="false" sslProtocol="TLS" keystoreFile="F:\cert\tomcat.keystore" keystorePass="123456" />
 
-<div class="highlighter-rouge"><pre class="highlight"><code>----------------------------------- 
-```markdown
-&lt;Connector port="8009" protocol="AJP/1.3" redirectPort="8443" /&gt;
+<p>修改为（第一步生成的库文件及密码）</p>
+
+<div class="language-markdown highlighter-rouge"><pre class="highlight"><code>&lt;Connector port="443" protocol="org.apache.coyote.http11.Http11Protocol"
+               maxThreads="150" SSLEnabled="true" scheme="https" secure="true"
+               clientAuth="false" sslProtocol="TLS" 
+               keystoreFile="F:<span class="se">\c</span>ert<span class="se">\t</span>omcat.keystore" keystorePass="123456" /&gt;
+</code></pre>
+</div>
+
+<hr />
+
+<div class="language-markdown highlighter-rouge"><pre class="highlight"><code><span class="nt">&lt;Connector</span> <span class="na">port=</span><span class="s">"8009"</span> <span class="na">protocol=</span><span class="s">"AJP/1.3"</span> <span class="na">redirectPort=</span><span class="s">"8443"</span> <span class="nt">/&gt;</span>
 
 </code></pre>
 </div>
-<p>修改为 
-```markdown</p>
-<Connector port="8009" protocol="AJP/1.3" redirectPort="443" />
 
-<div class="highlighter-rouge"><pre class="highlight"><code>到此，server.xml配置完成。 
+<p>修改为</p>
 
-3、为方便测试配置本地host(127.0.0.1 www.newbie.com)，启动tomcat，发现http://www.newbie.com/可访问，https://www.newbie.com/提示证书阻止，不过可继续浏览打开，若用户要直接访问可直接安装此证书到“受信任的根证书颁发机构”。 
+<div class="language-markdown highlighter-rouge"><pre class="highlight"><code><span class="nt">&lt;Connector</span> <span class="na">port=</span><span class="s">"8009"</span> <span class="na">protocol=</span><span class="s">"AJP/1.3"</span> <span class="na">redirectPort=</span><span class="s">"443"</span> <span class="nt">/&gt;</span>
 
-4、屏蔽http请求，将http请求自动转发到https上，打开tomcat配置文件/conf/web.xml在&lt;/web-app&gt;前添加如下代码，重启tomcat，可发现http请求自动转到https上了。 
-```markdown
-&lt;security-constraint&gt; 
-	       &lt;web-resource-collection &gt; 
-	              &lt;web-resource-name &gt;SSL&lt;/web-resource-name&gt; 
-	              &lt;url-pattern&gt;/*&lt;/url-pattern&gt; 
-	       &lt;/web-resource-collection&gt;
+</code></pre>
+</div>
+
+<p>到此，server.xml配置完成。</p>
+
+<p>3、为方便测试配置本地host(127.0.0.1 www.newbie.com)，启动tomcat，发现http://www.newbie.com/可访问，https://www.newbie.com/提示证书阻止，不过可继续浏览打开，若用户要直接访问可直接安装此证书到“受信任的根证书颁发机构”。</p>
+
+<p>4、屏蔽http请求，将http请求自动转发到https上，打开tomcat配置文件/conf/web.xml在&lt;/web-app&gt;前添加如下代码，重启tomcat，可发现http请求自动转到https上了。</p>
+
+<div class="language-markdown highlighter-rouge"><pre class="highlight"><code><span class="nt">&lt;security-constraint&gt;</span> 
+	       <span class="nt">&lt;web-resource-collection</span> <span class="nt">&gt;</span> 
+	              <span class="nt">&lt;web-resource-name</span> <span class="nt">&gt;</span>SSL<span class="nt">&lt;/web-resource-name&gt;</span> 
+	              <span class="nt">&lt;url-pattern&gt;</span>/<span class="err">*</span><span class="nt">&lt;/url-pattern&gt;</span> 
+	       <span class="nt">&lt;/web-resource-collection&gt;</span>
 	                             
-	       &lt;user-data-constraint&gt; 
-	              &lt;transport-guarantee&gt;CONFIDENTIAL&lt;/transport-guarantee&gt; 
-	       &lt;/user-data-constraint&gt; 
-		&lt;/security-constraint&gt;
+	       <span class="nt">&lt;user-data-constraint&gt;</span> 
+	              <span class="nt">&lt;transport-guarantee&gt;</span>CONFIDENTIAL<span class="nt">&lt;/transport-guarantee&gt;</span> 
+	       <span class="nt">&lt;/user-data-constraint&gt;</span> 
+		<span class="nt">&lt;/security-constraint&gt;</span>
 </code></pre>
 </div>
+
 <p>5、（题外）若java客户端使用httpclient请求，需将证书导入jdk中。 
-使用以下命令导出cer证书
-<code class="highlighter-rouge">markdown
-keytool -export -alias tomcat -keystore "F:\cert\tomcat.keystore" -storepass 123456 -rfc -file "F:\cert\tomcat.cer"
-</code> 
-再将导出的证书导入需访问站点的客户端jdk中，命令 
-<code class="highlighter-rouge">markdown
-keytool -import -v -trustcacerts -alias tomcat -file "F:\cert\tomcat.cer" -keystore "D:\jdk1.7.0_67_x64\jre\lib\security\cacerts"
-</code> 
-jdk证书库默认密码应为changeit，确认导入即可，此时httpclient客户端可使用https访问。大功造成！</p>
+使用以下命令导出cer证书</p>
+
+<div class="language-markdown highlighter-rouge"><pre class="highlight"><code>keytool -export -alias tomcat -keystore "F:<span class="se">\c</span>ert<span class="se">\t</span>omcat.keystore" -storepass 123456 -rfc -file "F:<span class="se">\c</span>ert<span class="se">\t</span>omcat.cer"
+</code></pre>
+</div>
+
+<p>再将导出的证书导入需访问站点的客户端jdk中，命令</p>
+
+<div class="language-markdown highlighter-rouge"><pre class="highlight"><code>keytool -import -v -trustcacerts -alias tomcat -file "F:<span class="se">\c</span>ert<span class="se">\t</span>omcat.cer" -keystore "D:<span class="se">\j</span>dk1.7.0_67_x64<span class="se">\j</span>re<span class="se">\l</span>ib<span class="se">\s</span>ecurity<span class="se">\c</span>acerts"
+</code></pre>
+</div>
+
+<p>jdk证书库默认密码应为changeit，确认导入即可，此时httpclient客户端可使用https访问。大功造成！</p>
 </div>
     <hr />
     <div class="share-page">

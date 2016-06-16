@@ -5,8 +5,8 @@
     <description>mixfate博客-技术乐园</description>
     <link>http://www.mixfate.com/</link>
     <atom:link href="http://www.mixfate.com/sitemap.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Thu, 16 Jun 2016 14:31:42 +0800</pubDate>
-    <lastBuildDate>Thu, 16 Jun 2016 14:31:42 +0800</lastBuildDate>
+    <pubDate>Thu, 16 Jun 2016 14:40:12 +0800</pubDate>
+    <lastBuildDate>Thu, 16 Jun 2016 14:40:12 +0800</lastBuildDate>
     <generator>Jekyll v3.1.6</generator>
     
       <item>
@@ -172,18 +172,24 @@ end tell
 
 &lt;p&gt;执行完成后将看到f:\cert\目录中生成了证书库文件tomcat.keystore。&lt;/p&gt;
 
-&lt;p&gt;2、打开tomcat（本例使用apache-tomcat-7.0.55）中的配置文件/conf/server.xml，为避免录入端口修改默认值，修改如下： 
-```markdown&lt;/p&gt;
-&lt;Connector port=&quot;8080&quot; protocol=&quot;HTTP/1.1&quot; connectionTimeout=&quot;20000&quot; redirectPort=&quot;8443&quot; /&gt;
+&lt;p&gt;2、打开tomcat（本例使用apache-tomcat-7.0.55）中的配置文件/conf/server.xml，为避免录入端口修改默认值，修改如下：&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;修改为 
-```markdown
-&amp;lt;Connector port=&quot;80&quot; protocol=&quot;HTTP/1.1&quot;
+&lt;div class=&quot;language-markdown highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;lt;Connector port=&quot;8080&quot; protocol=&quot;HTTP/1.1&quot;
+               connectionTimeout=&quot;20000&quot;
+               redirectPort=&quot;8443&quot; /&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;修改为&lt;/p&gt;
+
+&lt;div class=&quot;language-markdown highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;lt;Connector port=&quot;80&quot; protocol=&quot;HTTP/1.1&quot;
                connectionTimeout=&quot;20000&quot;
                redirectPort=&quot;443&quot; /&amp;gt;
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
+
 &lt;hr /&gt;
+
 &lt;div class=&quot;language-markdown highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;lt;!--
     &amp;lt;Connector port=&quot;8443&quot; protocol=&quot;org.apache.coyote.http11.Http11Protocol&quot;
                maxThreads=&quot;150&quot; SSLEnabled=&quot;true&quot; scheme=&quot;https&quot; secure=&quot;true&quot;
@@ -192,48 +198,63 @@ end tell
 
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
-&lt;p&gt;修改为（第一步生成的库文件及密码）
-```markdown&lt;/p&gt;
-&lt;Connector port=&quot;443&quot; protocol=&quot;org.apache.coyote.http11.Http11Protocol&quot; maxThreads=&quot;150&quot; SSLEnabled=&quot;true&quot; scheme=&quot;https&quot; secure=&quot;true&quot; clientAuth=&quot;false&quot; sslProtocol=&quot;TLS&quot; keystoreFile=&quot;F:\cert\tomcat.keystore&quot; keystorePass=&quot;123456&quot; /&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;----------------------------------- 
-```markdown
-&amp;lt;Connector port=&quot;8009&quot; protocol=&quot;AJP/1.3&quot; redirectPort=&quot;8443&quot; /&amp;gt;
+&lt;p&gt;修改为（第一步生成的库文件及密码）&lt;/p&gt;
+
+&lt;div class=&quot;language-markdown highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;lt;Connector port=&quot;443&quot; protocol=&quot;org.apache.coyote.http11.Http11Protocol&quot;
+               maxThreads=&quot;150&quot; SSLEnabled=&quot;true&quot; scheme=&quot;https&quot; secure=&quot;true&quot;
+               clientAuth=&quot;false&quot; sslProtocol=&quot;TLS&quot; 
+               keystoreFile=&quot;F:&lt;span class=&quot;se&quot;&gt;\c&lt;/span&gt;ert&lt;span class=&quot;se&quot;&gt;\t&lt;/span&gt;omcat.keystore&quot; keystorePass=&quot;123456&quot; /&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;hr /&gt;
+
+&lt;div class=&quot;language-markdown highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;Connector&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;port=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;8009&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;protocol=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;AJP/1.3&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;redirectPort=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;8443&quot;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
 
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
-&lt;p&gt;修改为 
-```markdown&lt;/p&gt;
-&lt;Connector port=&quot;8009&quot; protocol=&quot;AJP/1.3&quot; redirectPort=&quot;443&quot; /&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;到此，server.xml配置完成。 
+&lt;p&gt;修改为&lt;/p&gt;
 
-3、为方便测试配置本地host(127.0.0.1 www.newbie.com)，启动tomcat，发现http://www.newbie.com/可访问，https://www.newbie.com/提示证书阻止，不过可继续浏览打开，若用户要直接访问可直接安装此证书到“受信任的根证书颁发机构”。 
+&lt;div class=&quot;language-markdown highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;Connector&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;port=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;8009&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;protocol=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;AJP/1.3&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;redirectPort=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;443&quot;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;
 
-4、屏蔽http请求，将http请求自动转发到https上，打开tomcat配置文件/conf/web.xml在&amp;lt;/web-app&amp;gt;前添加如下代码，重启tomcat，可发现http请求自动转到https上了。 
-```markdown
-&amp;lt;security-constraint&amp;gt; 
-	       &amp;lt;web-resource-collection &amp;gt; 
-	              &amp;lt;web-resource-name &amp;gt;SSL&amp;lt;/web-resource-name&amp;gt; 
-	              &amp;lt;url-pattern&amp;gt;/*&amp;lt;/url-pattern&amp;gt; 
-	       &amp;lt;/web-resource-collection&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;到此，server.xml配置完成。&lt;/p&gt;
+
+&lt;p&gt;3、为方便测试配置本地host(127.0.0.1 www.newbie.com)，启动tomcat，发现http://www.newbie.com/可访问，https://www.newbie.com/提示证书阻止，不过可继续浏览打开，若用户要直接访问可直接安装此证书到“受信任的根证书颁发机构”。&lt;/p&gt;
+
+&lt;p&gt;4、屏蔽http请求，将http请求自动转发到https上，打开tomcat配置文件/conf/web.xml在&amp;lt;/web-app&amp;gt;前添加如下代码，重启tomcat，可发现http请求自动转到https上了。&lt;/p&gt;
+
+&lt;div class=&quot;language-markdown highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;security-constraint&amp;gt;&lt;/span&gt; 
+	       &lt;span class=&quot;nt&quot;&gt;&amp;lt;web-resource-collection&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt; 
+	              &lt;span class=&quot;nt&quot;&gt;&amp;lt;web-resource-name&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;SSL&lt;span class=&quot;nt&quot;&gt;&amp;lt;/web-resource-name&amp;gt;&lt;/span&gt; 
+	              &lt;span class=&quot;nt&quot;&gt;&amp;lt;url-pattern&amp;gt;&lt;/span&gt;/&lt;span class=&quot;err&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;/url-pattern&amp;gt;&lt;/span&gt; 
+	       &lt;span class=&quot;nt&quot;&gt;&amp;lt;/web-resource-collection&amp;gt;&lt;/span&gt;
 	                             
-	       &amp;lt;user-data-constraint&amp;gt; 
-	              &amp;lt;transport-guarantee&amp;gt;CONFIDENTIAL&amp;lt;/transport-guarantee&amp;gt; 
-	       &amp;lt;/user-data-constraint&amp;gt; 
-		&amp;lt;/security-constraint&amp;gt;
+	       &lt;span class=&quot;nt&quot;&gt;&amp;lt;user-data-constraint&amp;gt;&lt;/span&gt; 
+	              &lt;span class=&quot;nt&quot;&gt;&amp;lt;transport-guarantee&amp;gt;&lt;/span&gt;CONFIDENTIAL&lt;span class=&quot;nt&quot;&gt;&amp;lt;/transport-guarantee&amp;gt;&lt;/span&gt; 
+	       &lt;span class=&quot;nt&quot;&gt;&amp;lt;/user-data-constraint&amp;gt;&lt;/span&gt; 
+		&lt;span class=&quot;nt&quot;&gt;&amp;lt;/security-constraint&amp;gt;&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
+
 &lt;p&gt;5、（题外）若java客户端使用httpclient请求，需将证书导入jdk中。 
-使用以下命令导出cer证书
-&lt;code class=&quot;highlighter-rouge&quot;&gt;markdown
-keytool -export -alias tomcat -keystore &quot;F:\cert\tomcat.keystore&quot; -storepass 123456 -rfc -file &quot;F:\cert\tomcat.cer&quot;
-&lt;/code&gt; 
-再将导出的证书导入需访问站点的客户端jdk中，命令 
-&lt;code class=&quot;highlighter-rouge&quot;&gt;markdown
-keytool -import -v -trustcacerts -alias tomcat -file &quot;F:\cert\tomcat.cer&quot; -keystore &quot;D:\jdk1.7.0_67_x64\jre\lib\security\cacerts&quot;
-&lt;/code&gt; 
-jdk证书库默认密码应为changeit，确认导入即可，此时httpclient客户端可使用https访问。大功造成！&lt;/p&gt;
+使用以下命令导出cer证书&lt;/p&gt;
+
+&lt;div class=&quot;language-markdown highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;keytool -export -alias tomcat -keystore &quot;F:&lt;span class=&quot;se&quot;&gt;\c&lt;/span&gt;ert&lt;span class=&quot;se&quot;&gt;\t&lt;/span&gt;omcat.keystore&quot; -storepass 123456 -rfc -file &quot;F:&lt;span class=&quot;se&quot;&gt;\c&lt;/span&gt;ert&lt;span class=&quot;se&quot;&gt;\t&lt;/span&gt;omcat.cer&quot;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;再将导出的证书导入需访问站点的客户端jdk中，命令&lt;/p&gt;
+
+&lt;div class=&quot;language-markdown highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;keytool -import -v -trustcacerts -alias tomcat -file &quot;F:&lt;span class=&quot;se&quot;&gt;\c&lt;/span&gt;ert&lt;span class=&quot;se&quot;&gt;\t&lt;/span&gt;omcat.cer&quot; -keystore &quot;D:&lt;span class=&quot;se&quot;&gt;\j&lt;/span&gt;dk1.7.0_67_x64&lt;span class=&quot;se&quot;&gt;\j&lt;/span&gt;re&lt;span class=&quot;se&quot;&gt;\l&lt;/span&gt;ib&lt;span class=&quot;se&quot;&gt;\s&lt;/span&gt;ecurity&lt;span class=&quot;se&quot;&gt;\c&lt;/span&gt;acerts&quot;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;jdk证书库默认密码应为changeit，确认导入即可，此时httpclient客户端可使用https访问。大功造成！&lt;/p&gt;
 </description>
         <pubDate>Tue, 16 Jun 2015 21:50:39 +0800</pubDate>
         <link>http://www.mixfate.com/others/2015/06/16/1.html</link>
