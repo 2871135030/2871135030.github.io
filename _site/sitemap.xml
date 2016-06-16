@@ -5,8 +5,8 @@
     <description>mixfate博客-技术乐园</description>
     <link>http://www.mixfate.com/</link>
     <atom:link href="http://www.mixfate.com/sitemap.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Thu, 16 Jun 2016 14:19:01 +0800</pubDate>
-    <lastBuildDate>Thu, 16 Jun 2016 14:19:01 +0800</lastBuildDate>
+    <pubDate>Thu, 16 Jun 2016 14:31:42 +0800</pubDate>
+    <lastBuildDate>Thu, 16 Jun 2016 14:31:42 +0800</lastBuildDate>
     <generator>Jekyll v3.1.6</generator>
     
       <item>
@@ -166,25 +166,74 @@ end tell
 
 &lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;n&quot;&gt;keytool&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;genkey&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;alias&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;tomcat&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;keyalg&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;RSA&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;keysize&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1024&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;validity&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;365&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;keystore&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;F:&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\c&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;ert&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\t&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;omcat.keystore&quot;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
-&lt;h2 id=&quot;image-example-1&quot;&gt;Image example 1&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/909f4008-4cac-36c2-b5af-dda49f34b7e1.png&quot; alt=&quot;tomcat配置ssl单向认证&quot; /&gt;;&lt;/p&gt;
 
-&lt;p&gt;Here, I will embedd image from local assets which goes into &lt;code class=&quot;highlighter-rouge&quot;&gt;assets&lt;/code&gt; directory in project’s &lt;code class=&quot;highlighter-rouge&quot;&gt;root&lt;/code&gt; directory. Choose a specific image, related to particular post. I chose to name the image &lt;code class=&quot;highlighter-rouge&quot;&gt;test-page-image-1.jpg&lt;/code&gt;, which I will embedd as:&lt;/p&gt;
+&lt;p&gt;密码为123456，www.newbie.com为随意取的，仅用作测试，使用本地host将此域名转发。&lt;/p&gt;
 
-&lt;div class=&quot;language-markdown highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;p&quot;&gt;![&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;my alternate text&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;](&lt;/span&gt;&lt;span class=&quot;sx&quot;&gt;/assets/test-page-image-1.jpg&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;;
+&lt;p&gt;执行完成后将看到f:\cert\目录中生成了证书库文件tomcat.keystore。&lt;/p&gt;
+
+&lt;p&gt;2、打开tomcat（本例使用apache-tomcat-7.0.55）中的配置文件/conf/server.xml，为避免录入端口修改默认值，修改如下： 
+```markdown&lt;/p&gt;
+&lt;Connector port=&quot;8080&quot; protocol=&quot;HTTP/1.1&quot; connectionTimeout=&quot;20000&quot; redirectPort=&quot;8443&quot; /&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;修改为 
+```markdown
+&amp;lt;Connector port=&quot;80&quot; protocol=&quot;HTTP/1.1&quot;
+               connectionTimeout=&quot;20000&quot;
+               redirectPort=&quot;443&quot; /&amp;gt;
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
+&lt;hr /&gt;
+&lt;div class=&quot;language-markdown highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;lt;!--
+    &amp;lt;Connector port=&quot;8443&quot; protocol=&quot;org.apache.coyote.http11.Http11Protocol&quot;
+               maxThreads=&quot;150&quot; SSLEnabled=&quot;true&quot; scheme=&quot;https&quot; secure=&quot;true&quot;
+               clientAuth=&quot;false&quot; sslProtocol=&quot;TLS&quot; /&amp;gt;
+    --&amp;gt;
 
-&lt;p&gt;&lt;img src=&quot;/assets/test-page-image-1.jpg&quot; alt=&quot;my alternate text&quot; /&gt;;&lt;/p&gt;
-
-&lt;p&gt;Ofcourse, you can load images from web as well. Just point to image direct URL. For ex, here is one placeholder image:&lt;/p&gt;
-
-&lt;div class=&quot;language-markdown highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;p&quot;&gt;![&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;my alternate text&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;](&lt;/span&gt;&lt;span class=&quot;sx&quot;&gt;http://lorempixel.com/400/200&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;;
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
+&lt;p&gt;修改为（第一步生成的库文件及密码）
+```markdown&lt;/p&gt;
+&lt;Connector port=&quot;443&quot; protocol=&quot;org.apache.coyote.http11.Http11Protocol&quot; maxThreads=&quot;150&quot; SSLEnabled=&quot;true&quot; scheme=&quot;https&quot; secure=&quot;true&quot; clientAuth=&quot;false&quot; sslProtocol=&quot;TLS&quot; keystoreFile=&quot;F:\cert\tomcat.keystore&quot; keystorePass=&quot;123456&quot; /&gt;
 
-&lt;p&gt;&lt;img src=&quot;http://lorempixel.com/400/200&quot; alt=&quot;my alternate text&quot; /&gt;;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;----------------------------------- 
+```markdown
+&amp;lt;Connector port=&quot;8009&quot; protocol=&quot;AJP/1.3&quot; redirectPort=&quot;8443&quot; /&amp;gt;
 
-&lt;p&gt;One cool thing about this is the fact that images adapt themselves to the screen size of device. Try to resize your browser window and check for yourself, Have fun.&lt;/p&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;修改为 
+```markdown&lt;/p&gt;
+&lt;Connector port=&quot;8009&quot; protocol=&quot;AJP/1.3&quot; redirectPort=&quot;443&quot; /&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;到此，server.xml配置完成。 
+
+3、为方便测试配置本地host(127.0.0.1 www.newbie.com)，启动tomcat，发现http://www.newbie.com/可访问，https://www.newbie.com/提示证书阻止，不过可继续浏览打开，若用户要直接访问可直接安装此证书到“受信任的根证书颁发机构”。 
+
+4、屏蔽http请求，将http请求自动转发到https上，打开tomcat配置文件/conf/web.xml在&amp;lt;/web-app&amp;gt;前添加如下代码，重启tomcat，可发现http请求自动转到https上了。 
+```markdown
+&amp;lt;security-constraint&amp;gt; 
+	       &amp;lt;web-resource-collection &amp;gt; 
+	              &amp;lt;web-resource-name &amp;gt;SSL&amp;lt;/web-resource-name&amp;gt; 
+	              &amp;lt;url-pattern&amp;gt;/*&amp;lt;/url-pattern&amp;gt; 
+	       &amp;lt;/web-resource-collection&amp;gt;
+	                             
+	       &amp;lt;user-data-constraint&amp;gt; 
+	              &amp;lt;transport-guarantee&amp;gt;CONFIDENTIAL&amp;lt;/transport-guarantee&amp;gt; 
+	       &amp;lt;/user-data-constraint&amp;gt; 
+		&amp;lt;/security-constraint&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;5、（题外）若java客户端使用httpclient请求，需将证书导入jdk中。 
+使用以下命令导出cer证书
+&lt;code class=&quot;highlighter-rouge&quot;&gt;markdown
+keytool -export -alias tomcat -keystore &quot;F:\cert\tomcat.keystore&quot; -storepass 123456 -rfc -file &quot;F:\cert\tomcat.cer&quot;
+&lt;/code&gt; 
+再将导出的证书导入需访问站点的客户端jdk中，命令 
+&lt;code class=&quot;highlighter-rouge&quot;&gt;markdown
+keytool -import -v -trustcacerts -alias tomcat -file &quot;F:\cert\tomcat.cer&quot; -keystore &quot;D:\jdk1.7.0_67_x64\jre\lib\security\cacerts&quot;
+&lt;/code&gt; 
+jdk证书库默认密码应为changeit，确认导入即可，此时httpclient客户端可使用https访问。大功造成！&lt;/p&gt;
 </description>
         <pubDate>Tue, 16 Jun 2015 21:50:39 +0800</pubDate>
         <link>http://www.mixfate.com/others/2015/06/16/1.html</link>
