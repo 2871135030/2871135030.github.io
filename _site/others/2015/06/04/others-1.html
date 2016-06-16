@@ -6,15 +6,15 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <link rel="shortcut icon" href="/static/img/favicon.ico" />
-        <title>tomcat配置ssl双向认证 - 技术乐园</title>
+        <title>心灵鸡汤 经典语录 - 技术乐园</title>
         <meta name="author" content="mixfate博客" />
-        <meta name="description" content="tomcat配置ssl双向认证" />
-        <meta name="keywords" content="tomcat配置ssl双向认证, 技术乐园, others" />
+        <meta name="description" content="心灵鸡汤 经典语录" />
+        <meta name="keywords" content="心灵鸡汤 经典语录, 技术乐园, others" />
 
         <meta content="0" property="fb:app_id">
         <meta content="技术乐园" property="og:site_name">
         
-          <meta content="tomcat配置ssl双向认证" property="og:title">
+          <meta content="心灵鸡汤 经典语录" property="og:title">
         
         
           <meta content="article" property="og:type">
@@ -23,10 +23,10 @@
           <meta content="mixfate博客-技术乐园" property="og:description">
         
         
-          <meta content="http://www.mixfate.com/others/2016/04/02/1.html" property="og:url">
+          <meta content="http://www.mixfate.com/others/2015/06/04/others-1.html" property="og:url">
         
         
-          <meta content="2016-04-02T22:51:39+08:00" property="article:published_time">
+          <meta content="2015-06-04T21:50:39+08:00" property="article:published_time">
           <meta content="http://www.mixfate.com/about/" property="article:author">
         
         
@@ -44,10 +44,10 @@
         <meta name="twitter:site" content="@\#">
         <meta name="twitter:creator" content="@\#">
         
-          <meta name="twitter:title" content="tomcat配置ssl双向认证">
+          <meta name="twitter:title" content="心灵鸡汤 经典语录">
         
         
-          <meta name="twitter:url" content="http://www.mixfate.com/others/2016/04/02/1.html">
+          <meta name="twitter:url" content="http://www.mixfate.com/others/2015/06/04/others-1.html">
         
         
           <meta name="twitter:description" content="mixfate博客-技术乐园">
@@ -122,10 +122,10 @@
         </div>
       </div>
       <div class="col-md-9 col-sm-8 col-xs-12">
-      <h2 class="blog-title-pro">tomcat配置ssl双向认证</h2>
+      <h2 class="blog-title-pro">心灵鸡汤 经典语录</h2>
       <p class="info">
       
-      <span class="time">2016/04/02</span>
+      <span class="time">2015/06/04</span>
       
       
     <span class="categories">
@@ -148,19 +148,19 @@
 	
 	
 	
-	<li class="col-lg-12 col-md-12 col-sm-4 col-xs-12 current-menu-item 1.html"><a href="/"><i class="fa fa-home"></i> 首页</a></li>
+	<li class="col-lg-12 col-md-12 col-sm-4 col-xs-12 current-menu-item others-1.html"><a href="/"><i class="fa fa-home"></i> 首页</a></li>
 
 	
 	
 	
 	
-	<li class="col-lg-12 col-md-12 col-sm-4 col-xs-12  1.html"><a href="/about/"><i class="fa fa-comments"></i> 关于</a></li>
+	<li class="col-lg-12 col-md-12 col-sm-4 col-xs-12  others-1.html"><a href="/about/"><i class="fa fa-comments"></i> 关于</a></li>
 
 	
 	
 	
 	
-	<li class="col-lg-12 col-md-12 col-sm-4 col-xs-12  1.html"><a href="/projects/"><i class="fa fa-desktop"></i> 项目</a></li>
+	<li class="col-lg-12 col-md-12 col-sm-4 col-xs-12  others-1.html"><a href="/projects/"><i class="fa fa-desktop"></i> 项目</a></li>
 
 </ul>
     </div>
@@ -171,58 +171,7 @@
             <div class="col-md-9 col-xs-12 full">
                 <div class="post-content well">
 <article class="content">
-    <div class="post" style="font-size: 14px;"><h2 id="tomcatssl">tomcat配置ssl双向认证</h2>
-
-<p>接上篇tomcat ssl单向认证http://www.mixfate.com，本文在单向认证的基础上完成双向认证配置。</p>
-
-<p>1、使用以下命令生成客户端证书，并将此证书安装到客户端（此证书请安装到个人目录下）；</p>
-
-<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">keytool</span> <span class="o">-</span><span class="n">genkey</span> <span class="o">-</span><span class="n">v</span> <span class="o">-</span><span class="k">alias</span> <span class="n">client1</span> <span class="o">-</span><span class="n">keyalg</span> <span class="no">RSA</span> <span class="o">-</span><span class="n">storetype</span> <span class="no">PKCS12</span> <span class="o">-</span><span class="n">keysize</span> <span class="mi">1024</span> <span class="o">-</span><span class="n">validity</span> <span class="mi">365</span> <span class="o">-</span><span class="n">keystore</span> <span class="s2">"F:</span><span class="se">\c</span><span class="s2">ert</span><span class="se">\c</span><span class="s2">lient1.p12"</span></code></pre></figure>
-
-<p>在此密码录入为123456 
-<img src="/assets/dfeeded7-8f45-3579-9195-e0e697ea8adb.png" alt="tomcat配置ssl双向认证" /></p>
-
-<p>2、从客户端p12证书导出cer证书；</p>
-
-<div class="language-markdown highlighter-rouge"><pre class="highlight"><code>keytool -export -alias client1 -storetype PKCS12 -keystore "F:<span class="se">\c</span>ert<span class="se">\c</span>lient1.p12" -storepass 123456 -rfc -file "F:<span class="se">\c</span>ert<span class="se">\c</span>lient1.cer"
-</code></pre>
-</div>
-
-<p>3、让服务端信任客户端证书，复制原单向认证文件为tomcat_double.keystore，将client1.cer导入到服务器证书库中；</p>
-
-<div class="language-markdown highlighter-rouge"><pre class="highlight"><code>keytool -import -alias client1 -v -file "F:<span class="se">\c</span>ert<span class="se">\c</span>lient1.cer" -keystore "F:<span class="se">\c</span>ert<span class="se">\t</span>omcat_double.keystore"
-</code></pre>
-</div>
-
-<p><img src="/assets/4ba4cb5a-7abe-3656-887f-0d473eeb3196.png" alt="tomcat配置ssl双向认证" />
-可通过如下命令检查证书情况</p>
-
-<div class="language-markdown highlighter-rouge"><pre class="highlight"><code>keytool -list -keystore "F:<span class="se">\c</span>ert<span class="se">\t</span>omcat_double.keystore"
-</code></pre>
-</div>
-
-<p>4、更改配置文件server.xml，将单向认证改为双向认证；</p>
-
-<div class="language-markdown highlighter-rouge"><pre class="highlight"><code>&lt;Connector port="443" protocol="org.apache.coyote.http11.Http11Protocol"
-               maxThreads="150" SSLEnabled="true" scheme="https" secure="true"
-               clientAuth="false" sslProtocol="TLS" 
-               keystoreFile="F:<span class="se">\c</span>ert<span class="se">\t</span>omcat.keystore" keystorePass="123456" /&gt;
-</code></pre>
-</div>
-
-<p>修改为</p>
-
-<div class="language-markdown highlighter-rouge"><pre class="highlight"><code>&lt;Connector port="443" protocol="org.apache.coyote.http11.Http11Protocol"
-               maxThreads="150" SSLEnabled="true" scheme="https" secure="true"
-               clientAuth="true" sslProtocol="TLS" 
-               keystoreFile="F:<span class="se">\c</span>ert<span class="se">\t</span>omcat_double.keystore" keystorePass="123456"
-               truststoreFile="F:<span class="se">\c</span>ert<span class="se">\t</span>omcat_double.keystore" truststorePass="123456" /&gt;
-
-</code></pre>
-</div>
-
-<p>5、配置完成后，重启tomcat，访问便可看到提示需要证书； 
-<img src="/assets/1dca5259-fd58-3b93-bccc-6bc71ea5ce9e.png" alt="tomcat配置ssl双向认证" /></p>
+    <div class="post" style="font-size: 14px;"><p>低调的人，一定是随和的人。他不会装腔作势，摆出一副盛气凌人的臭架子，令人敬而远之。一个有智慧的人，总是笑容满面，一个愚蠢的人，总是寒气逼人；智慧的人，总是记住别人的名字，愚蠢的人，总是希望名字被别人记住。</p>
 </div>
     <hr />
     <div class="share-page">
@@ -235,7 +184,7 @@
 <script src="https://apis.google.com/js/platform.js" async defer></script>
 
 <!-- Facebook -->
-<div class="fb-share-button" data-href="http://www.mixfate.com/others/2016/04/02/1.html" data-layout="button_count" style="position: relative; top: -8px; left: 3px;"></div>
+<div class="fb-share-button" data-href="http://www.mixfate.com/others/2015/06/04/others-1.html" data-layout="button_count" style="position: relative; top: -8px; left: 3px;"></div>
 </div>
 <div id="fb-root"></div>
 <script>(function(d, s, id) {
@@ -267,19 +216,12 @@
     
         
             
-                
-                <div class="panel-body">
-                <h4>Related Posts</h4>
-                <ul>
-                
-                <li class="relatedPost">
-                    <a href="http://www.mixfate.com/others/2016/04/01/1.html">tomcat配置ssl单向认证</a>
-                    
-                        <small>(Categories: <a href="/category/others">others</a>)</small>
-                    
-                </li>
-                
-                
+        
+    
+
+    
+    
+        
             
         
     
@@ -288,16 +230,6 @@
     
         
             
-                
-                <li class="relatedPost">
-                    <a href="http://www.mixfate.com/others/2016/03/04/example-content.html">Example content for posts</a>
-                    
-                        <small>(Categories: <a href="/category/others">others</a>)</small>
-                    
-                </li>
-                
-                
-            
         
     
 
@@ -305,30 +237,15 @@
     
         
             
-                
-                <li class="relatedPost">
-                    <a href="http://www.mixfate.com/others/2015/06/04/test-page.html">Test Page</a>
-                    
-                        <small>(Categories: <a href="/category/others">others</a>)</small>
-                    
-                </li>
-                
-                
-            
         
     
 
-
-    </ul>
-    </div>
 
 
 <div class="PageNavigation">
   
-    <a class="prev pull-left" href="/others/2016/04/01/1.html">&laquo; tomcat配置ssl单向认证</a>
   
-  
-    <a class="next pull-right" href="/jekyll/2016/06/04/welcome-to-jekyll.html">Welcome to Jekyll! &raquo;</a>
+    <a class="next pull-right" href="/java/2016/03/04/example-content.html">Example content for posts &raquo;</a>
   
 </div>
 
@@ -339,8 +256,8 @@
         /* <![CDATA[ */
 
         var disqus_shortname = "mixfate";
-        var disqus_identifier = "http://www.mixfate.com_tomcat配置ssl双向认证";
-        var disqus_title = "tomcat配置ssl双向认证";
+        var disqus_identifier = "http://www.mixfate.com_心灵鸡汤 经典语录";
+        var disqus_title = "心灵鸡汤 经典语录";
 
         /* * * DON'T EDIT BELOW THIS LINE * * */
         (function() {

@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="shortcut icon" href="/static/img/favicon.ico" />
+        <title>使用maven为不同环境打包，应用不同配置文件 - 技术乐园</title>
+        <meta name="author" content="mixfate博客" />
+        <meta name="description" content="使用maven为不同环境打包，应用不同配置文件" />
+        <meta name="keywords" content="使用maven为不同环境打包，应用不同配置文件, 技术乐园, maven" />
+
+        <meta content="0" property="fb:app_id">
+        <meta content="技术乐园" property="og:site_name">
+        
+          <meta content="使用maven为不同环境打包，应用不同配置文件" property="og:title">
+        
+        
+          <meta content="article" property="og:type">
+        
+        
+          <meta content="mixfate博客-技术乐园" property="og:description">
+        
+        
+          <meta content="http://www.mixfate.com/maven/2016/04/02/maven-filter.html" property="og:url">
+        
+        
+          <meta content="2016-04-02T00:51:39+08:00" property="article:published_time">
+          <meta content="http://www.mixfate.com/about/" property="article:author">
+        
+        
+          <meta content="http://www.mixfate.com/static/img/logo-high-resolution.png" property="og:image">
+        
+        
+          
+          <meta content="maven" property="article:section">
+          
+        
+        
+          
+        
+        <meta name="twitter:card" content="summary">
+        <meta name="twitter:site" content="@\#">
+        <meta name="twitter:creator" content="@\#">
+        
+          <meta name="twitter:title" content="使用maven为不同环境打包，应用不同配置文件">
+        
+        
+          <meta name="twitter:url" content="http://www.mixfate.com/maven/2016/04/02/maven-filter.html">
+        
+        
+          <meta name="twitter:description" content="mixfate博客-技术乐园">
+        
+        
+
+        <link rel="alternate" type="application/rss+xml" title="RSS" href="/feed.xml">
+        <!-- Custom Fonts -->
+        <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:300,400,500,700" type="text/css">
+
+        <!-- FontAwesome icons -->
+        <link rel="stylesheet" href="https://use.fontawesome.com/74dfc6cf47.css">
+
+        <!-- Core BootStrap CSS -->
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+        <!-- Material Design CSS -->
+        <link rel="stylesheet" href="http://www.mixfate.com/static/css/bootstrap-material-design.min.css">
+
+        <!-- syntax highlighting CSS -->
+        <link rel="stylesheet" href="http://www.mixfate.com/static/css/syntax.css">
+
+        <!-- Custom CSS -->        
+        <link rel="stylesheet" href="http://www.mixfate.com/static/css/thickbox.css">
+        <link rel="stylesheet" href="http://www.mixfate.com/static/css/main.css">
+        <link rel="stylesheet" href="http://www.mixfate.com/static/css/projects.css">
+        <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UB-72862926-2', 'auto');
+  ga('send', 'pageview');
+
+</script>
+    </head>
+
+    <body class="home overflow-hidden">
+    <!--[if lt IE 7]>
+    <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade
+        your browser</a> to improve your experience.</p>
+    <![endif]-->
+    <div class="header-panel shadow-z-2">
+    <div class="container">
+    <div class="row">
+            <div class="col-md-3 col-sm-4 col-xs-12">
+      <div class="row-picture">
+        <img id="about" class="logo-img" src="http://www.mixfate.com/static/img/avatar.png" height="75px" width="75px">
+      </div>
+      <div class="row-details">
+      <h4 class="list-group-item-heading">mixfate博客</h4>
+      <p class="list-group-item-text">技术乐园</p>
+      <div class="social-icons">
+	
+        <a class="icon" target="_blank" href="#"><i class="fa fa-facebook"></i></a>
+    
+        <a class="icon" target="_blank" href="#"><i class="fa fa-skype"></i></a>
+    
+        <a class="icon" target="_blank" href="#"><i class="fa fa-twitter"></i></a>
+    
+        <a class="icon" target="_blank" href="#"><i class="fa fa-linkedin"></i></a>
+    
+        <a class="icon" target="_blank" href="#"><i class="fa fa-stack-exchange"></i></a>
+    
+</div>
+      </div>
+        <div class="navbar-header pull-right">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+              <span class="sr-only">Toggle navigation</span>
+              <i class="fa fa-2x fa-bars"></i>
+            </button>
+        </div>
+      </div>
+      <div class="col-md-9 col-sm-8 col-xs-12">
+      <h2 class="blog-title-pro">使用maven为不同环境打包，应用不同配置文件</h2>
+      <p class="info">
+      
+      <span class="time">2016/04/02</span>
+      
+      
+    <span class="categories">
+        &raquo; <a href="/category/maven">maven</a>
+    </span>
+    
+      </p>
+      </div>
+      </div>
+      </div>
+    </div>
+    <div class="container main outer">
+        <div class="row">
+            <div class="col-md-3 col-xs-12">
+                    <nav class="menu">
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+    <ul class="list-separator nav navbar-nav well well-primary post">
+
+	
+	
+	
+	
+	<li class="col-lg-12 col-md-12 col-sm-4 col-xs-12 current-menu-item maven-filter.html"><a href="/"><i class="fa fa-home"></i> 首页</a></li>
+
+	
+	
+	
+	
+	<li class="col-lg-12 col-md-12 col-sm-4 col-xs-12  maven-filter.html"><a href="/about/"><i class="fa fa-comments"></i> 关于</a></li>
+
+	
+	
+	
+	
+	<li class="col-lg-12 col-md-12 col-sm-4 col-xs-12  maven-filter.html"><a href="/projects/"><i class="fa fa-desktop"></i> 项目</a></li>
+
+</ul>
+    </div>
+    </nav>
+
+            </div> <!-- end /.col-md-3 -->
+
+            <div class="col-md-9 col-xs-12 full">
+                <div class="post-content well">
+<article class="content">
+    <div class="post" style="font-size: 14px;"><h2 id="maven">使用maven为不同环境打包，应用不同配置文件</h2>
+
+<p>使用maven构建工具时，经常需要为不同的环境打不同的war包，如本地环境、开发环境等，各环境的配置不尽相同，下面介绍此功能</p>
+
+<p>1、创建maven项目，首先在src/main/resources分别创建两个环境文件夹local与dev，此两个目录中分别放本地配置与开发环境配置，如log4j.properties，本地为INFO，dev为DEBUG用于区别；</p>
+
+<p>2、编写pom.xml，指定各环境配置</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="o">&lt;</span><span class="n">project</span> <span class="n">xmlns</span><span class="o">=</span><span class="s2">"http://maven.apache.org/POM/4.0.0"</span> <span class="n">xmlns</span><span class="ss">:xsi</span><span class="o">=</span><span class="s2">"http://www.w3.org/2001/XMLSchema-instance"</span>
+	<span class="n">xsi</span><span class="ss">:schemaLocation</span><span class="o">=</span><span class="s2">"http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"</span><span class="o">&gt;</span>
+	<span class="o">&lt;</span><span class="n">modelVersion</span><span class="o">&gt;</span><span class="mi">4</span><span class="o">.</span><span class="mi">0</span><span class="o">.</span><span class="mi">0</span><span class="o">&lt;</span><span class="sr">/modelVersion&gt;
+	&lt;groupId&gt;com.qerooy&lt;/</span><span class="n">groupId</span><span class="o">&gt;</span>
+	<span class="o">&lt;</span><span class="n">artifactId</span><span class="o">&gt;</span><span class="n">mvnprofile</span><span class="o">&lt;</span><span class="sr">/artifactId&gt;
+	&lt;version&gt;0.0.1-SNAPSHOT&lt;/</span><span class="n">version</span><span class="o">&gt;</span>
+	<span class="o">&lt;</span><span class="n">packaging</span><span class="o">&gt;</span><span class="n">war</span><span class="o">&lt;</span><span class="sr">/packaging&gt;
+	
+	&lt;profiles&gt;
+		&lt;profile&gt;
+			&lt;id&gt;local&lt;/i</span><span class="n">d</span><span class="o">&gt;&lt;!--</span> <span class="err">本地环境</span> <span class="o">--&gt;</span>
+			<span class="o">&lt;</span><span class="n">activation</span><span class="o">&gt;</span>
+				<span class="o">&lt;</span><span class="n">activeByDefault</span><span class="o">&gt;</span><span class="kp">true</span><span class="o">&lt;</span><span class="sr">/activeByDefault&gt;&lt;!-- 默认使用该环境配置 --&gt;
+			&lt;/</span><span class="n">activation</span><span class="o">&gt;</span>
+			<span class="o">&lt;</span><span class="n">properties</span><span class="o">&gt;</span>
+				<span class="o">&lt;</span><span class="n">runtime</span><span class="p">.</span><span class="nf">env</span><span class="o">&gt;</span><span class="n">src</span><span class="o">/</span><span class="n">main</span><span class="o">/</span><span class="n">resources</span><span class="o">/</span><span class="n">local</span><span class="o">&lt;</span><span class="sr">/runtime.env&gt;
+			&lt;/</span><span class="n">properties</span><span class="o">&gt;</span>
+		<span class="o">&lt;</span><span class="sr">/profile&gt;
+		
+		&lt;profile&gt;
+			&lt;id&gt;dev&lt;/i</span><span class="n">d</span><span class="o">&gt;&lt;!--</span> <span class="err">开发环境</span> <span class="o">--&gt;</span>
+			<span class="o">&lt;</span><span class="n">properties</span><span class="o">&gt;</span>
+				<span class="o">&lt;</span><span class="n">runtime</span><span class="p">.</span><span class="nf">env</span><span class="o">&gt;</span><span class="n">src</span><span class="o">/</span><span class="n">main</span><span class="o">/</span><span class="n">resources</span><span class="o">/</span><span class="n">dev</span><span class="o">&lt;</span><span class="sr">/runtime.env&gt;
+			&lt;/</span><span class="n">properties</span><span class="o">&gt;</span>
+		<span class="o">&lt;</span><span class="sr">/profile&gt;
+		
+	&lt;/</span><span class="n">profiles</span><span class="o">&gt;</span>
+	
+	<span class="o">&lt;</span><span class="n">build</span><span class="o">&gt;</span>
+		<span class="o">&lt;</span><span class="n">finalName</span><span class="o">&gt;</span><span class="n">profile</span><span class="o">&lt;</span><span class="sr">/finalName&gt;
+		&lt;plugins&gt;
+			&lt;plugin&gt;
+				&lt;groupId&gt;org.apache.maven.plugins&lt;/</span><span class="n">groupId</span><span class="o">&gt;</span>
+				<span class="o">&lt;</span><span class="n">artifactId</span><span class="o">&gt;</span><span class="n">maven</span><span class="o">-</span><span class="n">war</span><span class="o">-</span><span class="n">plugin</span><span class="o">&lt;</span><span class="sr">/artifactId&gt;
+				&lt;version&gt;2.1.1&lt;/</span><span class="n">version</span><span class="o">&gt;</span>
+				<span class="o">&lt;</span><span class="n">configuration</span><span class="o">&gt;</span>
+					<span class="o">&lt;</span><span class="n">webResources</span><span class="o">&gt;</span>
+						<span class="o">&lt;</span><span class="n">resource</span><span class="o">&gt;</span>
+							<span class="o">&lt;</span><span class="n">directory</span><span class="o">&gt;</span><span class="err">$</span><span class="p">{</span><span class="n">runtime</span><span class="p">.</span><span class="nf">env</span><span class="p">}</span><span class="o">&lt;</span><span class="sr">/directory&gt;
+							&lt;targetPath&gt;WEB-INF/</span><span class="n">classes</span><span class="o">&lt;</span><span class="sr">/targetPath&gt;
+						&lt;/</span><span class="n">resource</span><span class="o">&gt;</span>
+					<span class="o">&lt;</span><span class="sr">/webResources&gt;
+					&lt;packagingExcludes&gt;&lt;!-- 排除多余配置文件 --&gt;
+						WEB-INF/</span><span class="n">classes</span><span class="o">/</span><span class="n">local</span><span class="o">/**</span><span class="p">,</span>
+						<span class="no">WEB</span><span class="o">-</span><span class="no">INF</span><span class="o">/</span><span class="n">classes</span><span class="o">/</span><span class="n">dev</span><span class="o">/**</span>
+					<span class="o">&lt;</span><span class="sr">/packagingExcludes&gt;
+				&lt;/</span><span class="n">configuration</span><span class="o">&gt;</span>
+			<span class="o">&lt;</span><span class="sr">/plugin&gt;
+		&lt;/</span><span class="n">plugins</span><span class="o">&gt;</span>
+		
+	<span class="o">&lt;</span><span class="sr">/build&gt;
+	
+&lt;/</span><span class="n">project</span><span class="o">&gt;</span></code></pre></figure>
+
+<p>3、如需打本地环境（local）包运行 mvn package便可，打开发环境（dev）包则执行 mvn package -P dev即可。</p>
+</div>
+    <hr />
+    <div class="share-page">
+    Share this on &rarr;
+ <a href="https://twitter.com/share" class="twitter-share-button" data-via="\#">Tweet</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+
+<!-- Google + -->
+<div class="g-plus" data-action="share" data-annotation="bubble"></div>
+<script src="https://apis.google.com/js/platform.js" async defer></script>
+
+<!-- Facebook -->
+<div class="fb-share-button" data-href="http://www.mixfate.com/maven/2016/04/02/maven-filter.html" data-layout="button_count" style="position: relative; top: -8px; left: 3px;"></div>
+</div>
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.6&appId=0";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+</article>
+<hr />
+
+
+    
+    
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+    
+
+
+
+<div class="PageNavigation">
+  
+    <a class="prev pull-left" href="/tomcat/2016/04/01/tomcat-ssl-2.html">&laquo; tomcat配置ssl双向认证</a>
+  
+  
+</div>
+
+
+<div class="disqus-comments">
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        /* <![CDATA[ */
+
+        var disqus_shortname = "mixfate";
+        var disqus_identifier = "http://www.mixfate.com_使用maven为不同环境打包，应用不同配置文件";
+        var disqus_title = "使用maven为不同环境打包，应用不同配置文件";
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    /* ]]> */
+    </script>
+</div>
+</div>
+				
+				<!-- google adsense begin -->
+				<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+				<!-- size_728x90 -->
+				<ins class="adsbygoogle"
+					 style="display:inline-block;width:728px;height:90px"
+					 data-ad-client="ca-pub-4309621458849374"
+					 data-ad-slot="8507601840"></ins>
+				<script>
+				(adsbygoogle = window.adsbygoogle || []).push({});
+				</script>
+				<!-- google adsense end -->
+				
+                <div class="row">
+                  <div class="col-md-12 col-xs-12 footer">
+                <footer>
+                    © Copyright
+                     
+                    - Powered by Mixfate.
+                    
+                </footer>
+            </div>
+                </div>
+            </div> <!-- end /.col-md-9 -->
+        </div> <!-- end /.row -->
+
+    </div> <!-- end /.container -->
+
+        <!-- Bootstrap core JavaScript
+        ================================================== -->
+        <!-- Placed at the end of the document so the pages load faster -->
+        
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+        <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+        <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+        <script src="http://www.mixfate.com/static/js/thickbox-compressed.js"></script>
+        <script src="http://www.mixfate.com/static/js/material.min.js"></script>
+        <script src="http://www.mixfate.com/static/js/main.js"></script>
+        <script src="http://www.mixfate.com/static/js/projects.js"></script>
+    </body>
+</html>
