@@ -6,15 +6,15 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <link rel="shortcut icon" href="/static/img/favicon.ico" />
-        <title>Example content for posts - 技术乐园</title>
+        <title>tomcat配置ssl双向认证 - 技术乐园</title>
         <meta name="author" content="mixfate博客" />
-        <meta name="description" content="Example content for posts" />
-        <meta name="keywords" content="Example content for posts, 技术乐园, others" />
+        <meta name="description" content="tomcat配置ssl双向认证" />
+        <meta name="keywords" content="tomcat配置ssl双向认证, 技术乐园, others" />
 
         <meta content="0" property="fb:app_id">
         <meta content="技术乐园" property="og:site_name">
         
-          <meta content="Example content for posts" property="og:title">
+          <meta content="tomcat配置ssl双向认证" property="og:title">
         
         
           <meta content="article" property="og:type">
@@ -23,10 +23,10 @@
           <meta content="mixfate博客-技术乐园" property="og:description">
         
         
-          <meta content="http://www.mixfate.com/others/2016/06/04/example-content.html" property="og:url">
+          <meta content="http://www.mixfate.com/others/2016/04/02/1.html" property="og:url">
         
         
-          <meta content="2016-06-04T00:00:00+08:00" property="article:published_time">
+          <meta content="2016-04-02T22:51:39+08:00" property="article:published_time">
           <meta content="http://www.mixfate.com/about/" property="article:author">
         
         
@@ -44,10 +44,10 @@
         <meta name="twitter:site" content="@\#">
         <meta name="twitter:creator" content="@\#">
         
-          <meta name="twitter:title" content="Example content for posts">
+          <meta name="twitter:title" content="tomcat配置ssl双向认证">
         
         
-          <meta name="twitter:url" content="http://www.mixfate.com/others/2016/06/04/example-content.html">
+          <meta name="twitter:url" content="http://www.mixfate.com/others/2016/04/02/1.html">
         
         
           <meta name="twitter:description" content="mixfate博客-技术乐园">
@@ -122,10 +122,10 @@
         </div>
       </div>
       <div class="col-md-9 col-sm-8 col-xs-12">
-      <h2 class="blog-title-pro">Example content for posts</h2>
+      <h2 class="blog-title-pro">tomcat配置ssl双向认证</h2>
       <p class="info">
       
-      <span class="time">04 Jun 2016</span>
+      <span class="time">02 Apr 2016</span>
       
       
     <span class="categories">
@@ -148,19 +148,19 @@
 	
 	
 	
-	<li class="col-lg-12 col-md-12 col-sm-4 col-xs-12 current-menu-item example-content.html"><a href="/"><i class="fa fa-home"></i> 首页</a></li>
+	<li class="col-lg-12 col-md-12 col-sm-4 col-xs-12 current-menu-item 1.html"><a href="/"><i class="fa fa-home"></i> 首页</a></li>
 
 	
 	
 	
 	
-	<li class="col-lg-12 col-md-12 col-sm-4 col-xs-12  example-content.html"><a href="/about/"><i class="fa fa-comments"></i> 关于</a></li>
+	<li class="col-lg-12 col-md-12 col-sm-4 col-xs-12  1.html"><a href="/about/"><i class="fa fa-comments"></i> 关于</a></li>
 
 	
 	
 	
 	
-	<li class="col-lg-12 col-md-12 col-sm-4 col-xs-12  example-content.html"><a href="/projects/"><i class="fa fa-desktop"></i> 项目</a></li>
+	<li class="col-lg-12 col-md-12 col-sm-4 col-xs-12  1.html"><a href="/projects/"><i class="fa fa-desktop"></i> 项目</a></li>
 
 </ul>
     </div>
@@ -171,117 +171,58 @@
             <div class="col-md-9 col-xs-12 full">
                 <div class="post-content well">
 <article class="content">
-    <div class="post" style="font-size: 14px;"><p><small>This demo page has been used from <a href="http://jasonm23.github.io/markdown-css-themes/" target="_blank">http://jasonm23.github.io/markdown-css-themes/</a>.</small></p>
+    <div class="post" style="font-size: 14px;"><h2 id="tomcatssl">tomcat配置ssl双向认证</h2>
 
-<h1>A First Level Header</h1>
+<p>接上篇tomcat ssl单向认证http://www.mixfate.com，本文在单向认证的基础上完成双向认证配置。</p>
 
-<h2>A Second Level Header</h2>
+<p>1、使用以下命令生成客户端证书，并将此证书安装到客户端（此证书请安装到个人目录下）；</p>
 
-<h3>A Third Level Header</h3>
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">keytool</span> <span class="o">-</span><span class="n">genkey</span> <span class="o">-</span><span class="n">v</span> <span class="o">-</span><span class="k">alias</span> <span class="n">client1</span> <span class="o">-</span><span class="n">keyalg</span> <span class="no">RSA</span> <span class="o">-</span><span class="n">storetype</span> <span class="no">PKCS12</span> <span class="o">-</span><span class="n">keysize</span> <span class="mi">1024</span> <span class="o">-</span><span class="n">validity</span> <span class="mi">365</span> <span class="o">-</span><span class="n">keystore</span> <span class="s2">"F:</span><span class="se">\c</span><span class="s2">ert</span><span class="se">\c</span><span class="s2">lient1.p12"</span></code></pre></figure>
 
-<h4>A Fourth Level Header</h4>
+<p>在此密码录入为123456 
+<img src="/assets/dfeeded7-8f45-3579-9195-e0e697ea8adb.png" alt="tomcat配置ssl双向认证" /></p>
 
-<h5>A Fifth Level Header</h5>
+<p>2、从客户端p12证书导出cer证书；</p>
 
-<h6>A Sixed Level Header</h6>
-
-<p>Now is the time for all good men to come to
-the aid of their country. This is just a
-regular paragraph.</p>
-
-<p>The quick brown fox jumped over the lazy
-dog&rsquo;s back.</p>
-
-<hr />
-
-<h3>Header 3</h3>
-
-<blockquote><p>This is a blockquote with two paragraphs. Lorem ipsum dolor sit amet,
-consectetuer adipiscing elit. Aliquam hendrerit mi posuere lectus.
-Vestibulum enim wisi, viverra nec, fringilla in, laoreet vitae, risus.</p>
-
-<p>Donec sit amet nisl. Aliquam semper ipsum sit amet velit. Suspendisse
-id sem consectetuer libero luctus adipiscing.</p>
-
-<h2>This is an H2 in a blockquote</h2>
-
-<p>This is the first level of quoting.</p>
-
-<blockquote><p>This is nested blockquote.</p></blockquote>
-
-<p>Back to the first level.</p></blockquote>
-
-<p>Some of these words <em>are emphasized</em>.
-Some of these words <em>are emphasized also</em>.</p>
-
-<p>Use two asterisks for <strong>strong emphasis</strong>.
-Or, if you prefer, <strong>use two underscores instead</strong>.</p>
-
-<ul>
-<li>Candy.</li>
-<li>Gum.</li>
-<li>Booze.</li>
-<li>Red</li>
-<li>Green</li>
-<li><p>Blue</p></li>
-<li><p>A list item.</p></li>
-</ul>
-
-<p>With multiple paragraphs.</p>
-
-<ul>
-<li><p>Another item in the list.</p></li>
-<li><p>This is a list item with two paragraphs. Lorem ipsum dolor
-sit amet, consectetuer adipiscing elit. Aliquam hendrerit
-mi posuere lectus.</p></li>
-</ul>
-
-<p>Vestibulum enim wisi, viverra nec, fringilla in, laoreet
-vitae, risus. Donec sit amet nisl. Aliquam semper ipsum
-sit amet velit.*   Suspendisse id sem consectetuer libero luctus adipiscing.</p>
-
-<ul>
-<li>This is a list item with two paragraphs.</li>
-</ul>
-
-<p>This is the second paragraph in the list item. You&rsquo;re
-only required to indent the first line. Lorem ipsum dolor
-sit amet, consectetuer adipiscing elit.</p>
-
-<ul>
-<li><p>Another item in the same list.</p></li>
-<li><p>A list item with a bit of <code>code</code> inline.</p></li>
-<li><p>A list item with a blockquote:</p>
-
-<blockquote><p>This is a blockquote
-inside a list item.</p></blockquote></li>
-</ul>
-
-<p>Here is an example of a pre code block</p>
-
-<pre><code>tell application "Foo"
-    beep
-end tell
+<div class="language-markdown highlighter-rouge"><pre class="highlight"><code>keytool -export -alias client1 -storetype PKCS12 -keystore "F:<span class="se">\c</span>ert<span class="se">\c</span>lient1.p12" -storepass 123456 -rfc -file "F:<span class="se">\c</span>ert<span class="se">\c</span>lient1.cer"
 </code></pre>
+</div>
 
-<p>This is an <a href="#">example link</a>.</p>
+<p>3、让服务端信任客户端证书，复制原单向认证文件为tomcat_double.keystore，将client1.cer导入到服务器证书库中；</p>
 
-<p>I start my morning with a cup of coffee and
-<a href="http://www.nytimes.com/">The New York Times</a>.</p>
+<div class="language-markdown highlighter-rouge"><pre class="highlight"><code>keytool -import -alias client1 -v -file "F:<span class="se">\c</span>ert<span class="se">\c</span>lient1.cer" -keystore "F:<span class="se">\c</span>ert<span class="se">\t</span>omcat_double.keystore"
+</code></pre>
+</div>
 
-<h3 id="code-snippet">Code snippet</h3>
+<p><img src="/assets/4ba4cb5a-7abe-3656-887f-0d473eeb3196.png" alt="tomcat配置ssl双向认证" />
+可通过如下命令检查证书情况</p>
 
-<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span><span class="s">'__main__'</span><span class="p">:</span>
-    <span class="n">img_thread</span> <span class="o">=</span> <span class="n">threading</span><span class="o">.</span><span class="n">Thread</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">downloadWallpaper</span><span class="p">)</span>
-    <span class="n">img_thread</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
-    <span class="n">st</span> <span class="o">=</span> <span class="s">'</span><span class="se">\r</span><span class="s">Downloading Image'</span>
-    <span class="n">current</span> <span class="o">=</span> <span class="mi">1</span>
-    <span class="k">while</span> <span class="n">img_thread</span><span class="o">.</span><span class="n">is_alive</span><span class="p">():</span>
-        <span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">st</span><span class="o">+</span><span class="s">'.'</span><span class="o">*</span><span class="p">((</span><span class="n">current</span><span class="p">)</span><span class="o">%</span><span class="mi">5</span><span class="p">))</span>
-        <span class="n">current</span><span class="o">=</span><span class="n">current</span><span class="o">+</span><span class="mi">1</span>
-        <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.3</span><span class="p">)</span>
-    <span class="n">img_thread</span><span class="o">.</span><span class="n">join</span><span class="p">()</span>
-    <span class="k">print</span><span class="p">(</span><span class="s">'</span><span class="se">\n</span><span class="s">Image of the day downloaded.'</span><span class="p">)</span></code></pre></figure>
+<div class="language-markdown highlighter-rouge"><pre class="highlight"><code>keytool -list -keystore "F:<span class="se">\c</span>ert<span class="se">\t</span>omcat_double.keystore"
+</code></pre>
+</div>
+
+<p>4、更改配置文件server.xml，将单向认证改为双向认证；</p>
+
+<div class="language-markdown highlighter-rouge"><pre class="highlight"><code>&lt;Connector port="443" protocol="org.apache.coyote.http11.Http11Protocol"
+               maxThreads="150" SSLEnabled="true" scheme="https" secure="true"
+               clientAuth="false" sslProtocol="TLS" 
+               keystoreFile="F:<span class="se">\c</span>ert<span class="se">\t</span>omcat.keystore" keystorePass="123456" /&gt;
+</code></pre>
+</div>
+
+<p>修改为</p>
+
+<div class="language-markdown highlighter-rouge"><pre class="highlight"><code>&lt;Connector port="443" protocol="org.apache.coyote.http11.Http11Protocol"
+               maxThreads="150" SSLEnabled="true" scheme="https" secure="true"
+               clientAuth="true" sslProtocol="TLS" 
+               keystoreFile="F:<span class="se">\c</span>ert<span class="se">\t</span>omcat_double.keystore" keystorePass="123456"
+               truststoreFile="F:<span class="se">\c</span>ert<span class="se">\t</span>omcat_double.keystore" truststorePass="123456" /&gt;
+
+</code></pre>
+</div>
+
+<p>5、配置完成后，重启tomcat，访问便可看到提示需要证书； 
+<img src="/assets/1dca5259-fd58-3b93-bccc-6bc71ea5ce9e.png" alt="tomcat配置ssl双向认证" /></p>
 </div>
     <hr />
     <div class="share-page">
@@ -294,7 +235,7 @@ end tell
 <script src="https://apis.google.com/js/platform.js" async defer></script>
 
 <!-- Facebook -->
-<div class="fb-share-button" data-href="http://www.mixfate.com/others/2016/06/04/example-content.html" data-layout="button_count" style="position: relative; top: -8px; left: 3px;"></div>
+<div class="fb-share-button" data-href="http://www.mixfate.com/others/2016/04/02/1.html" data-layout="button_count" style="position: relative; top: -8px; left: 3px;"></div>
 </div>
 <div id="fb-root"></div>
 <script>(function(d, s, id) {
@@ -332,7 +273,24 @@ end tell
                 <ul>
                 
                 <li class="relatedPost">
-                    <a href="http://www.mixfate.com/others/2015/06/16/1.html">tomcat配置ssl单向认证</a>
+                    <a href="http://www.mixfate.com/others/2016/04/01/1.html">tomcat配置ssl单向认证</a>
+                    
+                        <small>(Categories: <a href="/category/others">others</a>)</small>
+                    
+                </li>
+                
+                
+            
+        
+    
+
+    
+    
+        
+            
+                
+                <li class="relatedPost">
+                    <a href="http://www.mixfate.com/others/2016/03/04/example-content.html">Example content for posts</a>
                     
                         <small>(Categories: <a href="/category/others">others</a>)</small>
                     
@@ -367,7 +325,7 @@ end tell
 
 <div class="PageNavigation">
   
-    <a class="prev pull-left" href="/others/2015/06/16/1.html">&laquo; tomcat配置ssl单向认证</a>
+    <a class="prev pull-left" href="/others/2016/04/01/1.html">&laquo; tomcat配置ssl单向认证</a>
   
   
     <a class="next pull-right" href="/jekyll/2016/06/04/welcome-to-jekyll.html">Welcome to Jekyll! &raquo;</a>
@@ -381,8 +339,8 @@ end tell
         /* <![CDATA[ */
 
         var disqus_shortname = "mixfate";
-        var disqus_identifier = "http://www.mixfate.com_Example content for posts";
-        var disqus_title = "Example content for posts";
+        var disqus_identifier = "http://www.mixfate.com_tomcat配置ssl双向认证";
+        var disqus_title = "tomcat配置ssl双向认证";
 
         /* * * DON'T EDIT BELOW THIS LINE * * */
         (function() {
