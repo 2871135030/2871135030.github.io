@@ -4,8 +4,11 @@ layout: default
 <div class="post-content well">
 <article class="content">
     <div class="post" style="font-size: 14px;">{{ content }}</div>
+	
+	<!--
     <hr />
-    {% include share-page.html %}
+    { % include share-page.html % }
+	-->
 </article>
 <hr />
 {% assign hasSimilar = '' %}
@@ -16,7 +19,7 @@ layout: default
             {% if postHasSimilar == false and hasSimilar.size < 6 and post != page and tag == thisTag %}
                 {% if hasSimilar.size == 0 %}
                 <div class="panel-body">
-                <h4>Related Posts</h4>
+                <h4>相关博客</h4>
                 <ul>
                 {% endif %}
                 <li class="relatedPost">
