@@ -2,9 +2,9 @@ title: 技术乐园
 description: mixfate博客-技术乐园
 author: mixfate博客
 logo: http://www.mixfate.com/static/img/avatar.png
-github: https://github.com/ashutosh2k12
+github: https://github.com/
 about: 技术乐园
-disqus_shortname: aboutashu
+disqus_shortname: mixfate
 google_analytics: UA-72862926-1
 urls:
     - text: 首页
@@ -14,18 +14,9 @@ urls:
     - text: 关于
       url: /about/
       icon: fa-comments
-    - text: Projects
+    - text: 项目
       url: /projects/
       icon: fa-desktop
-    - text: Resume
-      url: '#'
-      icon: fa-graduation-cap
-    - text: Github
-      url: https://github.com/ashutosh2k12
-      icon: fa-github
-    - text: XML Feed
-      url: /feed.xml
-      icon: fa-feed
       
 social:
     - icon: fa-facebook
