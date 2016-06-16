@@ -12,7 +12,7 @@ urls:
       icon: fa-home
       layout: post
     - text: 分类
-      url: /category/java/
+      url: /category/java
       icon: fa-desktop
     - text: 关于
       url: /about/
