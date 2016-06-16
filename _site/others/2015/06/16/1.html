@@ -6,15 +6,15 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <link rel="shortcut icon" href="/static/img/favicon.ico" />
-        <title>Test Page - 技术乐园</title>
+        <title>tomcat配置ssl单向认证 - 技术乐园</title>
         <meta name="author" content="mixfate博客" />
-        <meta name="description" content="Test Page" />
-        <meta name="keywords" content="Test Page, 技术乐园, others" />
+        <meta name="description" content="tomcat配置ssl单向认证" />
+        <meta name="keywords" content="tomcat配置ssl单向认证, 技术乐园, others" />
 
         <meta content="0" property="fb:app_id">
         <meta content="技术乐园" property="og:site_name">
         
-          <meta content="Test Page" property="og:title">
+          <meta content="tomcat配置ssl单向认证" property="og:title">
         
         
           <meta content="article" property="og:type">
@@ -23,10 +23,10 @@
           <meta content="mixfate博客-技术乐园" property="og:description">
         
         
-          <meta content="http://www.mixfate.com/others/2015/06/04/test-page.html" property="og:url">
+          <meta content="http://www.mixfate.com/others/2015/06/16/1.html" property="og:url">
         
         
-          <meta content="2015-06-04T21:50:39+08:00" property="article:published_time">
+          <meta content="2015-06-16T21:50:39+08:00" property="article:published_time">
           <meta content="http://www.mixfate.com/about/" property="article:author">
         
         
@@ -44,10 +44,10 @@
         <meta name="twitter:site" content="@\#">
         <meta name="twitter:creator" content="@\#">
         
-          <meta name="twitter:title" content="Test Page">
+          <meta name="twitter:title" content="tomcat配置ssl单向认证">
         
         
-          <meta name="twitter:url" content="http://www.mixfate.com/others/2015/06/04/test-page.html">
+          <meta name="twitter:url" content="http://www.mixfate.com/others/2015/06/16/1.html">
         
         
           <meta name="twitter:description" content="mixfate博客-技术乐园">
@@ -122,10 +122,10 @@
         </div>
       </div>
       <div class="col-md-9 col-sm-8 col-xs-12">
-      <h2 class="blog-title-pro">Test Page</h2>
+      <h2 class="blog-title-pro">tomcat配置ssl单向认证</h2>
       <p class="info">
       
-      <span class="time">04 Jun 2015</span>
+      <span class="time">16 Jun 2015</span>
       
       
     <span class="categories">
@@ -148,19 +148,19 @@
 	
 	
 	
-	<li class="col-lg-12 col-md-12 col-sm-4 col-xs-12 current-menu-item test-page.html"><a href="/"><i class="fa fa-home"></i> 首页</a></li>
+	<li class="col-lg-12 col-md-12 col-sm-4 col-xs-12 current-menu-item 1.html"><a href="/"><i class="fa fa-home"></i> 首页</a></li>
 
 	
 	
 	
 	
-	<li class="col-lg-12 col-md-12 col-sm-4 col-xs-12  test-page.html"><a href="/about/"><i class="fa fa-comments"></i> 关于</a></li>
+	<li class="col-lg-12 col-md-12 col-sm-4 col-xs-12  1.html"><a href="/about/"><i class="fa fa-comments"></i> 关于</a></li>
 
 	
 	
 	
 	
-	<li class="col-lg-12 col-md-12 col-sm-4 col-xs-12  test-page.html"><a href="/projects/"><i class="fa fa-desktop"></i> 项目</a></li>
+	<li class="col-lg-12 col-md-12 col-sm-4 col-xs-12  1.html"><a href="/projects/"><i class="fa fa-desktop"></i> 项目</a></li>
 
 </ul>
     </div>
@@ -171,7 +171,11 @@
             <div class="col-md-9 col-xs-12 full">
                 <div class="post-content well">
 <article class="content">
-    <div class="post"><p>This is a test blog page where we can explore how to embedd images in the blog.</p>
+    <div class="post"><p>单向认证：客户端向服务器发送消息，服务器接到消息后，用服务器端的密钥库中的私钥对数据进行加密，然后把加密后的数据和服务器端的公钥一起发送到 客户端，客户端用服务器发送来的公钥对数据解密，然后在用传到客户端的服务器公钥对数据加密传给服务器端，服务器用私钥对数据进行解密，这就完成了客户端 和服务器之间通信的安全问题，但是单向认证没有验证客户端的合法性。</p>
+
+<p>1、使用jdk（本例使用1.7.0_67）工具生成证书库文件；</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">keytool</span> <span class="o">-</span><span class="n">genkey</span> <span class="o">-</span><span class="k">alias</span> <span class="n">tomcat</span> <span class="o">-</span><span class="n">keyalg</span> <span class="no">RSA</span> <span class="o">-</span><span class="n">keysize</span> <span class="mi">1024</span> <span class="o">-</span><span class="n">validity</span> <span class="mi">365</span> <span class="o">-</span><span class="n">keystore</span> <span class="s2">"F:</span><span class="se">\c</span><span class="s2">ert</span><span class="se">\t</span><span class="s2">omcat.keystore"</span></code></pre></figure>
 
 <h2 id="image-example-1">Image example 1</h2>
 
@@ -204,7 +208,7 @@
 <script src="https://apis.google.com/js/platform.js" async defer></script>
 
 <!-- Facebook -->
-<div class="fb-share-button" data-href="http://www.mixfate.com/others/2015/06/04/test-page.html" data-layout="button_count" style="position: relative; top: -8px; left: 3px;"></div>
+<div class="fb-share-button" data-href="http://www.mixfate.com/others/2015/06/16/1.html" data-layout="button_count" style="position: relative; top: -8px; left: 3px;"></div>
 </div>
 <div id="fb-root"></div>
 <script>(function(d, s, id) {
@@ -250,22 +254,22 @@
     
         
             
-                
-                <li class="relatedPost">
-                    <a href="http://www.mixfate.com/others/2015/06/16/1.html">tomcat配置ssl单向认证</a>
-                    
-                        <small>(Categories: <a href="/category/others">others</a>)</small>
-                    
-                </li>
-                
-                
-            
         
     
 
     
     
         
+            
+                
+                <li class="relatedPost">
+                    <a href="http://www.mixfate.com/others/2015/06/04/test-page.html">Test Page</a>
+                    
+                        <small>(Categories: <a href="/category/others">others</a>)</small>
+                    
+                </li>
+                
+                
             
         
     
@@ -277,8 +281,10 @@
 
 <div class="PageNavigation">
   
+    <a class="prev pull-left" href="/others/2015/06/04/test-page.html">&laquo; Test Page</a>
   
-    <a class="next pull-right" href="/others/2015/06/16/1.html">tomcat配置ssl单向认证 &raquo;</a>
+  
+    <a class="next pull-right" href="/others/2016/06/04/example-content.html">Example content for posts &raquo;</a>
   
 </div>
 
@@ -289,8 +295,8 @@
         /* <![CDATA[ */
 
         var disqus_shortname = "mixfate";
-        var disqus_identifier = "http://www.mixfate.com_Test Page";
-        var disqus_title = "Test Page";
+        var disqus_identifier = "http://www.mixfate.com_tomcat配置ssl单向认证";
+        var disqus_title = "tomcat配置ssl单向认证";
 
         /* * * DON'T EDIT BELOW THIS LINE * * */
         (function() {
