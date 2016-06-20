@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 使用spring-test测试springmvc
-date:   2016-04-04 13:11:36
+date:   2016-04-05 09:05:12
 categories: java
 ---
 
