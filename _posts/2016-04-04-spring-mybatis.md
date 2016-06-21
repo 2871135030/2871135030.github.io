@@ -321,6 +321,8 @@ public interface UserService {
 }
 
 {% endhighlight %}
+
+{% highlight ruby %}
 package com.qerooy.service.impl;
 
 import java.util.List;
@@ -351,6 +353,8 @@ public class UserServiceImpl implements UserService {
 	}
 
 }
+{% endhighlight %}
+
 
 {% highlight ruby %}
 package com.qerooy;

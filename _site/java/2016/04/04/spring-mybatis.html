@@ -476,38 +476,36 @@
 	
 <span class="p">}</span></code></pre></figure>
 
-<p>package com.qerooy.service.impl;</p>
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">package</span> <span class="n">com</span><span class="p">.</span><span class="nf">qerooy</span><span class="p">.</span><span class="nf">service</span><span class="p">.</span><span class="nf">impl</span><span class="p">;</span>
 
-<p>import java.util.List;</p>
+<span class="n">import</span> <span class="n">java</span><span class="p">.</span><span class="nf">util</span><span class="o">.</span><span class="no">List</span><span class="p">;</span>
 
-<p>import org.apache.ibatis.session.RowBounds;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;</p>
+<span class="n">import</span> <span class="n">org</span><span class="p">.</span><span class="nf">apache</span><span class="p">.</span><span class="nf">ibatis</span><span class="p">.</span><span class="nf">session</span><span class="o">.</span><span class="no">RowBounds</span><span class="p">;</span>
+<span class="n">import</span> <span class="n">org</span><span class="p">.</span><span class="nf">springframework</span><span class="p">.</span><span class="nf">beans</span><span class="p">.</span><span class="nf">factory</span><span class="p">.</span><span class="nf">annotation</span><span class="o">.</span><span class="no">Autowired</span><span class="p">;</span>
+<span class="n">import</span> <span class="n">org</span><span class="p">.</span><span class="nf">springframework</span><span class="p">.</span><span class="nf">stereotype</span><span class="o">.</span><span class="no">Service</span><span class="p">;</span>
 
-<p>import com.qerooy.mapper.UserMapper;
-import com.qerooy.model.User;
-import com.qerooy.model.UserExample;
-import com.qerooy.service.UserService;</p>
+<span class="n">import</span> <span class="n">com</span><span class="p">.</span><span class="nf">qerooy</span><span class="p">.</span><span class="nf">mapper</span><span class="o">.</span><span class="no">UserMapper</span><span class="p">;</span>
+<span class="n">import</span> <span class="n">com</span><span class="p">.</span><span class="nf">qerooy</span><span class="p">.</span><span class="nf">model</span><span class="o">.</span><span class="no">User</span><span class="p">;</span>
+<span class="n">import</span> <span class="n">com</span><span class="p">.</span><span class="nf">qerooy</span><span class="p">.</span><span class="nf">model</span><span class="o">.</span><span class="no">UserExample</span><span class="p">;</span>
+<span class="n">import</span> <span class="n">com</span><span class="p">.</span><span class="nf">qerooy</span><span class="p">.</span><span class="nf">service</span><span class="o">.</span><span class="no">UserService</span><span class="p">;</span>
 
-<p>@Service
-public class UserServiceImpl implements UserService {</p>
+<span class="vi">@Service</span>
+<span class="kp">public</span> <span class="k">class</span> <span class="nc">UserServiceImpl</span> <span class="n">implements</span> <span class="no">UserService</span> <span class="p">{</span>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>@Autowired
-UserMapper userMapper;
+	<span class="vi">@Autowired</span>
+	<span class="no">UserMapper</span> <span class="n">userMapper</span><span class="p">;</span>
+	
+	<span class="vi">@Override</span>
+	<span class="kp">public</span> <span class="no">User</span> <span class="n">findById</span><span class="p">(</span><span class="no">Integer</span> <span class="nb">id</span><span class="p">)</span> <span class="p">{</span>
+		<span class="k">return</span> <span class="n">userMapper</span><span class="p">.</span><span class="nf">selectByPrimaryKey</span><span class="p">(</span><span class="nb">id</span><span class="p">);</span>
+	<span class="p">}</span>
+	
+	<span class="vi">@Override</span>
+	<span class="kp">public</span> <span class="no">List</span><span class="o">&lt;</span><span class="no">User</span><span class="o">&gt;</span> <span class="n">findByPage</span><span class="p">(</span><span class="no">UserExample</span> <span class="n">example</span><span class="p">,</span><span class="no">RowBounds</span> <span class="n">rowBounds</span><span class="p">){</span>
+		<span class="k">return</span> <span class="n">userMapper</span><span class="p">.</span><span class="nf">selectByExampleWithRowbounds</span><span class="p">(</span><span class="n">example</span><span class="p">,</span><span class="n">rowBounds</span><span class="p">);</span>
+	<span class="p">}</span>
 
-@Override
-public User findById(Integer id) {
-	return userMapper.selectByPrimaryKey(id);
-}
-
-@Override
-public List&lt;User&gt; findByPage(UserExample example,RowBounds rowBounds){
-	return userMapper.selectByExampleWithRowbounds(example,rowBounds);
-}
-</code></pre>
-</div>
-
-<p>}</p>
+<span class="p">}</span></code></pre></figure>
 
 <figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">package</span> <span class="n">com</span><span class="p">.</span><span class="nf">qerooy</span><span class="p">;</span>
 
