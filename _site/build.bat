@@ -1,2 +1,0 @@
-call jekyll build
-pause
