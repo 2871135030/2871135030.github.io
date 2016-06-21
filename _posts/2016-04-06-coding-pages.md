@@ -2,7 +2,7 @@
 layout: post
 title: Coding pages + Github pages 搭建自己的博客
 date:   2016-04-06 10:13:56
-categories: other
+categories: others
 ---
 
 ## Coding pages + Github pages 搭建自己的博客
