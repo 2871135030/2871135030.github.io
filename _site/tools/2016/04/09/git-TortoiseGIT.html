@@ -6,15 +6,15 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <link rel="shortcut icon" href="/static/img/favicon.ico" />
-        <title>tomcat配置ssl双向认证 - 技术乐园</title>
+        <title>TortoiseGIT记住用户名密码简单方法 - 技术乐园</title>
         <meta name="author" content="mixfate博客" />
         <meta name="description" content="mixfate博客-技术乐园" />
-        <meta name="keywords" content="tomcat配置ssl双向认证, 技术乐园, tomcat" />
+        <meta name="keywords" content="TortoiseGIT记住用户名密码简单方法, 技术乐园, tools" />
 
         <meta content="0" property="fb:app_id">
         <meta content="技术乐园" property="og:site_name">
         
-          <meta content="tomcat配置ssl双向认证" property="og:title">
+          <meta content="TortoiseGIT记住用户名密码简单方法" property="og:title">
         
         
           <meta content="article" property="og:type">
@@ -23,10 +23,10 @@
           <meta content="mixfate博客-技术乐园" property="og:description">
         
         
-          <meta content="http://www.mixfate.com/tomcat/2016/04/01/tomcat-ssl-2.html" property="og:url">
+          <meta content="http://www.mixfate.com/tools/2016/04/09/git-TortoiseGIT.html" property="og:url">
         
         
-          <meta content="2016-04-01T22:51:39+08:00" property="article:published_time">
+          <meta content="2016-04-09T21:31:11+08:00" property="article:published_time">
           <meta content="http://www.mixfate.com/about/" property="article:author">
         
         
@@ -34,7 +34,7 @@
         
         
           
-          <meta content="tomcat" property="article:section">
+          <meta content="tools" property="article:section">
           
         
         
@@ -44,10 +44,10 @@
         <meta name="twitter:site" content="@\#">
         <meta name="twitter:creator" content="@\#">
         
-          <meta name="twitter:title" content="tomcat配置ssl双向认证">
+          <meta name="twitter:title" content="TortoiseGIT记住用户名密码简单方法">
         
         
-          <meta name="twitter:url" content="http://www.mixfate.com/tomcat/2016/04/01/tomcat-ssl-2.html">
+          <meta name="twitter:url" content="http://www.mixfate.com/tools/2016/04/09/git-TortoiseGIT.html">
         
         
           <meta name="twitter:description" content="mixfate博客-技术乐园">
@@ -122,14 +122,14 @@
         </div>
       </div>
       <div class="col-md-9 col-sm-8 col-xs-12">
-      <h2 class="blog-title-pro">tomcat配置ssl双向认证</h2>
+      <h2 class="blog-title-pro">TortoiseGIT记住用户名密码简单方法</h2>
       <p class="info">
       
-      <span class="time">2016/04/01</span>
+      <span class="time">2016/04/09</span>
       
       
     <span class="categories">
-        &raquo; <a href="/category/tomcat">tomcat</a>
+        &raquo; <a href="/category/tools">tools</a>
     </span>
     
       </p>
@@ -148,19 +148,19 @@
 	
 	
 	
-	<li class="col-lg-12 col-md-12 col-sm-4 col-xs-12 current-menu-item tomcat-ssl-2.html"><a href="/"><i class="fa fa-home"></i> 首页</a></li>
+	<li class="col-lg-12 col-md-12 col-sm-4 col-xs-12 current-menu-item git-TortoiseGIT.html"><a href="/"><i class="fa fa-home"></i> 首页</a></li>
 
 	
 	
 	
 	
-	<li class="col-lg-12 col-md-12 col-sm-4 col-xs-12  tomcat-ssl-2.html"><a href="/category/java"><i class="fa fa-desktop"></i> 分类</a></li>
+	<li class="col-lg-12 col-md-12 col-sm-4 col-xs-12  git-TortoiseGIT.html"><a href="/category/java"><i class="fa fa-desktop"></i> 分类</a></li>
 
 	
 	
 	
 	
-	<li class="col-lg-12 col-md-12 col-sm-4 col-xs-12  tomcat-ssl-2.html"><a href="/about/"><i class="fa fa-comments"></i> 关于</a></li>
+	<li class="col-lg-12 col-md-12 col-sm-4 col-xs-12  git-TortoiseGIT.html"><a href="/about/"><i class="fa fa-comments"></i> 关于</a></li>
 
 </ul>
     </div>
@@ -171,58 +171,15 @@
             <div class="col-md-9 col-xs-12 full">
                 <div class="post-content well">
 <article class="content">
-    <div class="post" style="font-size: 12px;"><h2 id="tomcatssl">tomcat配置ssl双向认证</h2>
+    <div class="post" style="font-size: 12px;"><h2 id="tortoisegit">TortoiseGIT记住用户名密码简单方法</h2>
 
-<p>接上篇tomcat ssl单向认证http://www.mixfate.com，本文在单向认证的基础上完成双向认证配置。</p>
+<p>我们在使用TortoiseGIT时，每次将代码push到GIT服务器上时都需用户名密码，浪费不少时间，需要记住用户名密码只需找到当前用户目录(C:\Users\administrator)下的文件.gitconfig
+增加如下配置项即可(请注意空格)</p>
 
-<p>1、使用以下命令生成客户端证书，并将此证书安装到客户端（此证书请安装到个人目录下）；</p>
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="p">[</span><span class="n">credential</span><span class="p">]</span>
+	<span class="n">helper</span> <span class="o">=</span> <span class="n">store</span></code></pre></figure>
 
-<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">keytool</span> <span class="o">-</span><span class="n">genkey</span> <span class="o">-</span><span class="n">v</span> <span class="o">-</span><span class="k">alias</span> <span class="n">client1</span> <span class="o">-</span><span class="n">keyalg</span> <span class="no">RSA</span> <span class="o">-</span><span class="n">storetype</span> <span class="no">PKCS12</span> <span class="o">-</span><span class="n">keysize</span> <span class="mi">1024</span> <span class="o">-</span><span class="n">validity</span> <span class="mi">365</span> <span class="o">-</span><span class="n">keystore</span> <span class="s2">"F:</span><span class="se">\c</span><span class="s2">ert</span><span class="se">\c</span><span class="s2">lient1.p12"</span></code></pre></figure>
-
-<p>在此密码录入为123456 
-<img src="/assets/dfeeded7-8f45-3579-9195-e0e697ea8adb.png" alt="tomcat配置ssl双向认证" /></p>
-
-<p>2、从客户端p12证书导出cer证书；</p>
-
-<div class="language-markdown highlighter-rouge"><pre class="highlight"><code>keytool -export -alias client1 -storetype PKCS12 -keystore "F:<span class="se">\c</span>ert<span class="se">\c</span>lient1.p12" -storepass 123456 -rfc -file "F:<span class="se">\c</span>ert<span class="se">\c</span>lient1.cer"
-</code></pre>
-</div>
-
-<p>3、让服务端信任客户端证书，复制原单向认证文件为tomcat_double.keystore，将client1.cer导入到服务器证书库中；</p>
-
-<div class="language-markdown highlighter-rouge"><pre class="highlight"><code>keytool -import -alias client1 -v -file "F:<span class="se">\c</span>ert<span class="se">\c</span>lient1.cer" -keystore "F:<span class="se">\c</span>ert<span class="se">\t</span>omcat_double.keystore"
-</code></pre>
-</div>
-
-<p><img src="/assets/4ba4cb5a-7abe-3656-887f-0d473eeb3196.png" alt="tomcat配置ssl双向认证" />
-可通过如下命令检查证书情况</p>
-
-<div class="language-markdown highlighter-rouge"><pre class="highlight"><code>keytool -list -keystore "F:<span class="se">\c</span>ert<span class="se">\t</span>omcat_double.keystore"
-</code></pre>
-</div>
-
-<p>4、更改配置文件server.xml，将单向认证改为双向认证；</p>
-
-<div class="language-markdown highlighter-rouge"><pre class="highlight"><code>&lt;Connector port="443" protocol="org.apache.coyote.http11.Http11Protocol"
-               maxThreads="150" SSLEnabled="true" scheme="https" secure="true"
-               clientAuth="false" sslProtocol="TLS" 
-               keystoreFile="F:<span class="se">\c</span>ert<span class="se">\t</span>omcat.keystore" keystorePass="123456" /&gt;
-</code></pre>
-</div>
-
-<p>修改为</p>
-
-<div class="language-markdown highlighter-rouge"><pre class="highlight"><code>&lt;Connector port="443" protocol="org.apache.coyote.http11.Http11Protocol"
-               maxThreads="150" SSLEnabled="true" scheme="https" secure="true"
-               clientAuth="true" sslProtocol="TLS" 
-               keystoreFile="F:<span class="se">\c</span>ert<span class="se">\t</span>omcat_double.keystore" keystorePass="123456"
-               truststoreFile="F:<span class="se">\c</span>ert<span class="se">\t</span>omcat_double.keystore" truststorePass="123456" /&gt;
-
-</code></pre>
-</div>
-
-<p>5、配置完成后，重启tomcat，访问便可看到提示需要证书； 
-<img src="/assets/1dca5259-fd58-3b93-bccc-6bc71ea5ce9e.png" alt="tomcat配置ssl双向认证" /></p>
+<p>配置完成后，首次push操作录入用户名密码，此后push操作均无需密码了，结束。</p>
 </div>
 	
 	<!--
@@ -272,54 +229,64 @@
     
         
             
-        
-    
-
-    
-    
-        
-            
-        
-    
-
-    
-    
-        
-            
-        
-    
-
-    
-    
-        
-            
-        
-    
-
-    
-    
-        
-            
-        
-    
-
-    
-    
-        
-            
                 
                 <div class="panel-body">
                 <h5>相关博客</h5>
                 <ul>
                 
                 <li class="relatedPost" style="font-size: 12px;">
-                    <a href="http://www.mixfate.com/tomcat/2016/04/01/tomcat-ssl-1.html">tomcat配置ssl单向认证</a>
+                    <a href="http://www.mixfate.com/tools/2016/04/04/mybatis.html">Mybatis使用,Mybatis Generator</a>
                     
-                        <small>(所属分类: <a href="/category/tomcat">tomcat</a>)</small>
+                        <small>(所属分类: <a href="/category/tools">tools</a>)</small>
                     
                 </li>
                 
                 
+            
+        
+    
+
+    
+    
+        
+            
+                
+                <li class="relatedPost" style="font-size: 12px;">
+                    <a href="http://www.mixfate.com/tools/2016/04/03/jekyll-github-pages.html">Windows环境jekyll使用</a>
+                    
+                        <small>(所属分类: <a href="/category/tools">tools</a>)</small>
+                    
+                </li>
+                
+                
+            
+        
+    
+
+    
+    
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+    
+
+    
+    
+        
             
         
     
@@ -338,10 +305,8 @@
 
 <div class="PageNavigation" style="font-size: 12px;">
   
-    <a class="prev pull-left" href="/tomcat/2016/04/01/tomcat-ssl-1.html">&laquo; tomcat配置ssl单向认证</a>
+    <a class="prev pull-left" href="/others/2016/04/09/others.html">&laquo; 小不忍则乱大谋，退一步海阔天空</a>
   
-  
-    <a class="next pull-right" href="/maven/2016/04/02/maven-filter.html">使用maven为不同环境打包，应用不同配置文件 &raquo;</a>
   
 </div>
 <div>&nbsp;</div>
@@ -353,8 +318,8 @@
 
         /*
 		var disqus_shortname = "mixfate";
-        var disqus_identifier = "http://www.mixfate.com_tomcat配置ssl双向认证";
-        var disqus_title = "tomcat配置ssl双向认证";
+        var disqus_identifier = "http://www.mixfate.com_TortoiseGIT记住用户名密码简单方法";
+        var disqus_title = "TortoiseGIT记住用户名密码简单方法";
 		*/
 
         /* * * DON'T EDIT BELOW THIS LINE * * */
