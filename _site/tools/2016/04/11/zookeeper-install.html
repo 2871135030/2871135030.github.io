@@ -6,15 +6,15 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <link rel="shortcut icon" href="/static/img/favicon.ico" />
-        <title>Windows环境jekyll使用 - 技术乐园</title>
+        <title>zookeeper安装使用 - 技术乐园</title>
         <meta name="author" content="mixfate博客" />
         <meta name="description" content="mixfate博客-技术乐园" />
-        <meta name="keywords" content="Windows环境jekyll使用, 技术乐园, tools" />
+        <meta name="keywords" content="zookeeper安装使用, 技术乐园, tools" />
 
         <meta content="0" property="fb:app_id">
         <meta content="技术乐园" property="og:site_name">
         
-          <meta content="Windows环境jekyll使用" property="og:title">
+          <meta content="zookeeper安装使用" property="og:title">
         
         
           <meta content="article" property="og:type">
@@ -23,10 +23,10 @@
           <meta content="mixfate博客-技术乐园" property="og:description">
         
         
-          <meta content="http://www.mixfate.com/tools/2016/04/03/jekyll-github-pages.html" property="og:url">
+          <meta content="http://www.mixfate.com/tools/2016/04/11/zookeeper-install.html" property="og:url">
         
         
-          <meta content="2016-04-03T07:51:39+08:00" property="article:published_time">
+          <meta content="2016-04-11T13:32:57+08:00" property="article:published_time">
           <meta content="http://www.mixfate.com/about/" property="article:author">
         
         
@@ -44,10 +44,10 @@
         <meta name="twitter:site" content="@\#">
         <meta name="twitter:creator" content="@\#">
         
-          <meta name="twitter:title" content="Windows环境jekyll使用">
+          <meta name="twitter:title" content="zookeeper安装使用">
         
         
-          <meta name="twitter:url" content="http://www.mixfate.com/tools/2016/04/03/jekyll-github-pages.html">
+          <meta name="twitter:url" content="http://www.mixfate.com/tools/2016/04/11/zookeeper-install.html">
         
         
           <meta name="twitter:description" content="mixfate博客-技术乐园">
@@ -122,10 +122,10 @@
         </div>
       </div>
       <div class="col-md-9 col-sm-8 col-xs-12">
-      <h2 class="blog-title-pro">Windows环境jekyll使用</h2>
+      <h2 class="blog-title-pro">zookeeper安装使用</h2>
       <p class="info">
       
-      <span class="time">2016/04/03</span>
+      <span class="time">2016/04/11</span>
       
       
     <span class="categories">
@@ -148,19 +148,19 @@
 	
 	
 	
-	<li class="col-lg-12 col-md-12 col-sm-4 col-xs-12 current-menu-item jekyll-github-pages.html"><a href="/"><i class="fa fa-home"></i> 首页</a></li>
+	<li class="col-lg-12 col-md-12 col-sm-4 col-xs-12 current-menu-item zookeeper-install.html"><a href="/"><i class="fa fa-home"></i> 首页</a></li>
 
 	
 	
 	
 	
-	<li class="col-lg-12 col-md-12 col-sm-4 col-xs-12  jekyll-github-pages.html"><a href="/category/java"><i class="fa fa-desktop"></i> 分类</a></li>
+	<li class="col-lg-12 col-md-12 col-sm-4 col-xs-12  zookeeper-install.html"><a href="/category/java"><i class="fa fa-desktop"></i> 分类</a></li>
 
 	
 	
 	
 	
-	<li class="col-lg-12 col-md-12 col-sm-4 col-xs-12  jekyll-github-pages.html"><a href="/about/"><i class="fa fa-comments"></i> 关于</a></li>
+	<li class="col-lg-12 col-md-12 col-sm-4 col-xs-12  zookeeper-install.html"><a href="/about/"><i class="fa fa-comments"></i> 关于</a></li>
 
 </ul>
     </div>
@@ -171,59 +171,30 @@
             <div class="col-md-9 col-xs-12 full">
                 <div class="post-content well">
 <article class="content">
-    <div class="post" style="font-size: 12px;"><h2 id="windowsjekyll">Windows环境jekyll使用</h2>
+    <div class="post" style="font-size: 12px;"><h2 id="zookeeper">ZooKeeper安装使用</h2>
 
-<p>需准备的软件如下：
-<img src="/assets/20160617230019.png" alt="jekyll" /></p>
+<p>下载 zookeeper-3.4.8.tar.gz 包</p>
 
-<p>1、安装rubyinstaller-2.0.0-p648-x64，假如目录为 D:\jekyll\Ruby200-x64，设置到环境变量中，设置完成后ruby -v检查安装是否成功；</p>
+<p>tar -xzvf zookeeper-3.4.8.tar.gz</p>
 
-<p>2、安装DevKit-tdm-32-4.5.2-20110712-1620-sfx到D:\jekyll\devkit，</p>
+<p>进入zookeeper目录下的conf子目录, cp -rf zoo_sample.cfg  zoo.cfg 复制一份配置文件</p>
 
-<p>cd D:\jekyll\devkit</p>
+<p>vi zoo.cfg完成配置(其它默认便可)</p>
 
-<p>ruby dk.rb init 完成初始化配置</p>
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">dataDir</span><span class="o">=</span><span class="sr">/data/</span><span class="n">zookeeper</span>
+<span class="n">dataLogDir</span><span class="o">=</span><span class="sr">/data/</span><span class="n">zookeeper</span><span class="o">/</span><span class="n">log</span></code></pre></figure>
 
-<p>在配置文件config.yml最后一行添加 - D:/jekyll/Ruby200-x64
-执行如下命令完成安装</p>
+<p>单机模式已配置好，启动命令为</p>
 
-<p>ruby dk.rb review</p>
+<p>bin/zkServer.sh start</p>
 
-<p>ruby dk.rb install</p>
+<p>Server启动之后, 就可以启动client连接server了, 执行脚本</p>
 
-<p>3、检查gem是否正常 gem -v</p>
+<p>bin/zkCli.sh -server localhost:2181  便可连接成功</p>
 
-<p>4、安装jekyll执行命令gem install jekyll</p>
+<p>ls / 命令可查看相关节点</p>
 
-<p>若出现以下错误
-ERROR:  Could not find a valid gem ‘jekyll’ (&gt;= 0), here is why:
-          Unable to download data from https://rubygems.org/ - Errno::ECONNRESET: An existing connection was forcibly closed 
-by the remote host. - SSL_connect (https://rubygems.org/latest_specs.4.8.gz)
-解决方案:
-gem sources -r https://rubygems.org
-gem sources -a http://rubygems.org
-意思是将https替换成http，再gem install jekyll完成安装，安装完成后修改回原样
-gem sources -r http://rubygems.org
-gem sources -a https://rubygems.org</p>
-
-<p>漫长的等待安装成功后将出现 14 gems installed 安装成功
-使用命令 jekyll -v可查看版本</p>
-
-<p>5、使用命令
-jekyll new blog 完成新建</p>
-
-<p>cd blog</p>
-
-<p>jekyll build 编译</p>
-
-<p>jekyll serve 启动服务 http://localhost:4000/可查看结果</p>
-
-<p>若使用了插件(_config.yml中配置)则需先安装插件后才能正常编译，如安装如下插件(漫长的等待安装过程)</p>
-
-<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">gem</span> <span class="n">install</span> <span class="n">jekyll</span><span class="o">-</span><span class="n">paginate</span> 
-<span class="n">gem</span> <span class="n">install</span> <span class="n">jekyll</span><span class="o">-</span><span class="n">gist</span></code></pre></figure>
-
-<p>结束，开始使用jekyll编写自己的博客吧！</p>
+<p>结束。</p>
 </div>
 	
 	<!--
@@ -238,20 +209,6 @@ jekyll new blog 完成新建</p>
     
         
             
-                
-                <div class="panel-body">
-                <h5>相关博客</h5>
-                <ul>
-                
-                <li class="relatedPost" style="font-size: 12px;">
-                    <a href="http://www.mixfate.com/tools/2016/04/11/zookeeper-install.html">zookeeper安装使用</a>
-                    
-                        <small>(所属分类: <a href="/category/tools">tools</a>)</small>
-                    
-                </li>
-                
-                
-            
         
     
 
@@ -259,6 +216,10 @@ jekyll new blog 完成新建</p>
     
         
             
+                
+                <div class="panel-body">
+                <h5>相关博客</h5>
+                <ul>
                 
                 <li class="relatedPost" style="font-size: 12px;">
                     <a href="http://www.mixfate.com/tools/2016/04/09/git-TortoiseGIT.html">TortoiseGIT记住用户名密码简单方法</a>
@@ -321,6 +282,16 @@ jekyll new blog 完成新建</p>
     
         
             
+                
+                <li class="relatedPost" style="font-size: 12px;">
+                    <a href="http://www.mixfate.com/tools/2016/04/03/jekyll-github-pages.html">Windows环境jekyll使用</a>
+                    
+                        <small>(所属分类: <a href="/category/tools">tools</a>)</small>
+                    
+                </li>
+                
+                
+            
         
     
 
@@ -366,10 +337,8 @@ jekyll new blog 完成新建</p>
 
 <div class="PageNavigation" style="font-size: 12px;">
   
-    <a class="prev pull-left" href="/java/2016/04/02/spring4-quartz2.html">&laquo; spring4+quartz2基本配置及应用</a>
+    <a class="prev pull-left" href="/tools/2016/04/09/git-TortoiseGIT.html">&laquo; TortoiseGIT记住用户名密码简单方法</a>
   
-  
-    <a class="next pull-right" href="/tools/2016/04/04/mybatis.html">Mybatis使用,Mybatis Generator &raquo;</a>
   
 </div>
 <div>&nbsp;</div>
@@ -381,8 +350,8 @@ jekyll new blog 完成新建</p>
 
         /*
 		var disqus_shortname = "mixfate";
-        var disqus_identifier = "http://www.mixfate.com_Windows环境jekyll使用";
-        var disqus_title = "Windows环境jekyll使用";
+        var disqus_identifier = "http://www.mixfate.com_zookeeper安装使用";
+        var disqus_title = "zookeeper安装使用";
 		*/
 
         /* * * DON'T EDIT BELOW THIS LINE * * */
