@@ -6,15 +6,15 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <link rel="shortcut icon" href="/static/img/favicon.ico" />
-        <title>zookeeper安装使用 - 技术乐园</title>
+        <title>redis安装使用 - 技术乐园</title>
         <meta name="author" content="mixfate博客" />
         <meta name="description" content="mixfate博客-技术乐园" />
-        <meta name="keywords" content="zookeeper安装使用, 技术乐园, tools" />
+        <meta name="keywords" content="redis安装使用, 技术乐园, tools" />
 
         <meta content="0" property="fb:app_id">
         <meta content="技术乐园" property="og:site_name">
         
-          <meta content="zookeeper安装使用" property="og:title">
+          <meta content="redis安装使用" property="og:title">
         
         
           <meta content="article" property="og:type">
@@ -23,10 +23,10 @@
           <meta content="mixfate博客-技术乐园" property="og:description">
         
         
-          <meta content="http://www.mixfate.com/tools/2016/04/11/zookeeper-install.html" property="og:url">
+          <meta content="http://www.mixfate.com/tools/2016/04/12/redis-install.html" property="og:url">
         
         
-          <meta content="2016-04-11T13:32:57+08:00" property="article:published_time">
+          <meta content="2016-04-12T23:32:57+08:00" property="article:published_time">
           <meta content="http://www.mixfate.com/about/" property="article:author">
         
         
@@ -44,10 +44,10 @@
         <meta name="twitter:site" content="@\#">
         <meta name="twitter:creator" content="@\#">
         
-          <meta name="twitter:title" content="zookeeper安装使用">
+          <meta name="twitter:title" content="redis安装使用">
         
         
-          <meta name="twitter:url" content="http://www.mixfate.com/tools/2016/04/11/zookeeper-install.html">
+          <meta name="twitter:url" content="http://www.mixfate.com/tools/2016/04/12/redis-install.html">
         
         
           <meta name="twitter:description" content="mixfate博客-技术乐园">
@@ -122,10 +122,10 @@
         </div>
       </div>
       <div class="col-md-9 col-sm-8 col-xs-12">
-      <h2 class="blog-title-pro">zookeeper安装使用</h2>
+      <h2 class="blog-title-pro">redis安装使用</h2>
       <p class="info">
       
-      <span class="time">2016/04/11</span>
+      <span class="time">2016/04/12</span>
       
       
     <span class="categories">
@@ -148,19 +148,19 @@
 	
 	
 	
-	<li class="col-lg-12 col-md-12 col-sm-4 col-xs-12 current-menu-item zookeeper-install.html"><a href="/"><i class="fa fa-home"></i> 首页</a></li>
+	<li class="col-lg-12 col-md-12 col-sm-4 col-xs-12 current-menu-item redis-install.html"><a href="/"><i class="fa fa-home"></i> 首页</a></li>
 
 	
 	
 	
 	
-	<li class="col-lg-12 col-md-12 col-sm-4 col-xs-12  zookeeper-install.html"><a href="/category/java"><i class="fa fa-desktop"></i> 分类</a></li>
+	<li class="col-lg-12 col-md-12 col-sm-4 col-xs-12  redis-install.html"><a href="/category/java"><i class="fa fa-desktop"></i> 分类</a></li>
 
 	
 	
 	
 	
-	<li class="col-lg-12 col-md-12 col-sm-4 col-xs-12  zookeeper-install.html"><a href="/about/"><i class="fa fa-comments"></i> 关于</a></li>
+	<li class="col-lg-12 col-md-12 col-sm-4 col-xs-12  redis-install.html"><a href="/about/"><i class="fa fa-comments"></i> 关于</a></li>
 
 </ul>
     </div>
@@ -171,28 +171,31 @@
             <div class="col-md-9 col-xs-12 full">
                 <div class="post-content well">
 <article class="content">
-    <div class="post" style="font-size: 12px;"><h2 id="zookeeper">ZooKeeper安装使用</h2>
+    <div class="post" style="font-size: 12px;"><h2 id="redis">Redis安装使用</h2>
 
-<p>下载 zookeeper-3.4.8.tar.gz 包</p>
+<p>下载redis-2.8.19.tar.gz</p>
 
-<p>tar -xzvf zookeeper-3.4.8.tar.gz</p>
+<p>tar -xzvf redis-2.8.19.tar.gz</p>
 
-<p>进入zookeeper目录下的conf子目录, cp -rf zoo_sample.cfg  zoo.cfg 复制一份配置文件</p>
+<p>进入目录 /software/redis-2.8.19</p>
 
-<p>vi zoo.cfg完成配置(其它默认便可)</p>
+<p>make 完成安装</p>
 
-<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">dataDir</span><span class="o">=</span><span class="sr">/data/</span><span class="n">zookeeper</span>
-<span class="n">dataLogDir</span><span class="o">=</span><span class="sr">/data/</span><span class="n">zookeeper</span><span class="o">/</span><span class="n">log</span></code></pre></figure>
+<p>若出现错误gcc：命令未找到，先执行 yum -y install gcc</p>
 
-<p>单机模式已配置好，启动命令为</p>
+<p>若出现错误：jemalloc/jemalloc.h：没有那个文件或目录，执行 make MALLOC=libc 完成安装</p>
 
-<p>bin/zkServer.sh start</p>
+<p>安装成功后完成配置</p>
 
-<p>Server启动之后, 就可以启动client连接server了, 执行脚本</p>
-
-<p>bin/zkCli.sh -server localhost:2181  便可连接成功</p>
-
-<p>ls / 命令可查看相关节点</p>
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">vi</span> <span class="sr">/software/</span><span class="n">redis</span><span class="o">-</span><span class="mi">2</span><span class="o">.</span><span class="mi">8</span><span class="o">.</span><span class="mi">19</span><span class="o">/</span><span class="n">redis</span><span class="p">.</span><span class="nf">conf</span> <span class="err">为</span><span class="n">redis</span><span class="err">设置密码</span> <span class="err">项</span> <span class="n">requirepass</span> <span class="n">redis2016</span>
+<span class="n">mkdir</span> <span class="sr">/usr/</span><span class="n">redis</span>
+<span class="n">cp</span> <span class="n">redis</span><span class="o">-</span><span class="n">server</span> <span class="sr">/usr/</span><span class="n">redis</span>
+<span class="n">cp</span> <span class="n">redis</span><span class="o">-</span><span class="n">benchmark</span> <span class="sr">/usr/</span><span class="n">redis</span>
+<span class="n">cp</span> <span class="n">redis</span><span class="o">-</span><span class="n">cli</span> <span class="sr">/usr/</span><span class="n">redis</span>
+<span class="n">cp</span> <span class="p">.</span><span class="nf">.</span><span class="o">/</span><span class="n">redis</span><span class="p">.</span><span class="nf">conf</span> <span class="sr">/usr/</span><span class="n">redis</span>
+<span class="n">cd</span> <span class="sr">/usr/</span><span class="n">redis</span>
+<span class="n">ps</span> <span class="o">-</span><span class="n">ef</span> <span class="o">|</span> <span class="n">grep</span> <span class="s1">'redis-server'</span> <span class="o">|</span> <span class="n">grep</span> <span class="o">-</span><span class="n">v</span> <span class="n">grep</span><span class="o">|</span> <span class="n">awk</span> <span class="s1">'{print $2}'</span><span class="o">|</span> <span class="n">xargs</span> <span class="n">kill</span> <span class="o">-</span><span class="mi">9</span>
+<span class="p">.</span><span class="nf">/</span><span class="n">redis</span><span class="o">-</span><span class="n">server</span> <span class="o">&amp;</span> <span class="err">后台运行</span></code></pre></figure>
 
 <p>结束。</p>
 </div>
@@ -209,26 +212,26 @@
     
         
             
-                
-                <div class="panel-body">
-                <h5>相关博客</h5>
-                <ul>
-                
-                <li class="relatedPost" style="font-size: 12px;">
-                    <a href="http://www.mixfate.com/tools/2016/04/12/redis-install.html">redis安装使用</a>
-                    
-                        <small>(所属分类: <a href="/category/tools">tools</a>)</small>
-                    
-                </li>
-                
-                
-            
         
     
 
     
     
         
+            
+                
+                <div class="panel-body">
+                <h5>相关博客</h5>
+                <ul>
+                
+                <li class="relatedPost" style="font-size: 12px;">
+                    <a href="http://www.mixfate.com/tools/2016/04/11/zookeeper-install.html">zookeeper安装使用</a>
+                    
+                        <small>(所属分类: <a href="/category/tools">tools</a>)</small>
+                    
+                </li>
+                
+                
             
         
     
@@ -354,10 +357,8 @@
 
 <div class="PageNavigation" style="font-size: 12px;">
   
-    <a class="prev pull-left" href="/tools/2016/04/09/git-TortoiseGIT.html">&laquo; TortoiseGIT记住用户名密码简单方法</a>
+    <a class="prev pull-left" href="/tools/2016/04/11/zookeeper-install.html">&laquo; zookeeper安装使用</a>
   
-  
-    <a class="next pull-right" href="/tools/2016/04/12/redis-install.html">redis安装使用 &raquo;</a>
   
 </div>
 <div>&nbsp;</div>
@@ -369,8 +370,8 @@
 
         /*
 		var disqus_shortname = "mixfate";
-        var disqus_identifier = "http://www.mixfate.com_zookeeper安装使用";
-        var disqus_title = "zookeeper安装使用";
+        var disqus_identifier = "http://www.mixfate.com_redis安装使用";
+        var disqus_title = "redis安装使用";
 		*/
 
         /* * * DON'T EDIT BELOW THIS LINE * * */
