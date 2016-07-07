@@ -1,0 +1,925 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="shortcut icon" href="/static/img/favicon.ico" />
+        <title>Spring + Activemq基本使用 - 技术乐园</title>
+        <meta name="author" content="mixfate博客" />
+        <meta name="description" content="mixfate博客-技术乐园" />
+        <meta name="keywords" content="Spring + Activemq基本使用, 技术乐园, java" />
+
+        <meta content="0" property="fb:app_id">
+        <meta content="技术乐园" property="og:site_name">
+        
+          <meta content="Spring + Activemq基本使用" property="og:title">
+        
+        
+          <meta content="article" property="og:type">
+        
+        
+          <meta content="mixfate博客-技术乐园" property="og:description">
+        
+        
+          <meta content="http://www.mixfate.com/java/2016/04/17/spring-activemq.html" property="og:url">
+        
+        
+          <meta content="2016-04-17T03:11:57+08:00" property="article:published_time">
+          <meta content="http://www.mixfate.com/about/" property="article:author">
+        
+        
+          <meta content="http://www.mixfate.com/static/img/logo-high-resolution.png" property="og:image">
+        
+        
+          
+          <meta content="java" property="article:section">
+          
+        
+        
+          
+        
+        <meta name="twitter:card" content="summary">
+        <meta name="twitter:site" content="@\#">
+        <meta name="twitter:creator" content="@\#">
+        
+          <meta name="twitter:title" content="Spring + Activemq基本使用">
+        
+        
+          <meta name="twitter:url" content="http://www.mixfate.com/java/2016/04/17/spring-activemq.html">
+        
+        
+          <meta name="twitter:description" content="mixfate博客-技术乐园">
+        
+        
+
+        <link rel="alternate" type="application/rss+xml" title="RSS" href="/feed.xml">
+        <!-- Custom Fonts -->
+        <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:300,400,500,700" type="text/css">
+
+        <!-- FontAwesome icons -->
+        <link rel="stylesheet" href="https://use.fontawesome.com/74dfc6cf47.css">
+
+        <!-- Core BootStrap CSS -->
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+        <!-- Material Design CSS -->
+        <link rel="stylesheet" href="http://www.mixfate.com/static/css/bootstrap-material-design.min.css">
+
+        <!-- syntax highlighting CSS -->
+        <link rel="stylesheet" href="http://www.mixfate.com/static/css/syntax.css">
+
+        <!-- Custom CSS -->        
+        <link rel="stylesheet" href="http://www.mixfate.com/static/css/thickbox.css">
+        <link rel="stylesheet" href="http://www.mixfate.com/static/css/main.css">
+        <link rel="stylesheet" href="http://www.mixfate.com/static/css/projects.css">
+        <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UB-72862926-2', 'auto');
+  ga('send', 'pageview');
+
+</script>
+    </head>
+
+    <body class="home overflow-hidden">
+    <!--[if lt IE 7]>
+    <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade
+        your browser</a> to improve your experience.</p>
+    <![endif]-->
+    <div class="header-panel shadow-z-2">
+    <div class="container">
+    <div class="row">
+            <div class="col-md-3 col-sm-4 col-xs-12">
+      <div class="row-picture">
+        <img id="about" class="logo-img" src="http://www.mixfate.com/static/img/avatar.png" height="75px" width="75px">
+      </div>
+      <div class="row-details">
+      <h4 class="list-group-item-heading">mixfate博客</h4>
+      <p class="list-group-item-text">技术乐园</p>
+      <div class="social-icons">
+	
+        <a class="icon" target="_blank" href="#"><i class="fa fa-facebook"></i></a>
+    
+        <a class="icon" target="_blank" href="#"><i class="fa fa-skype"></i></a>
+    
+        <a class="icon" target="_blank" href="#"><i class="fa fa-twitter"></i></a>
+    
+        <a class="icon" target="_blank" href="#"><i class="fa fa-linkedin"></i></a>
+    
+        <a class="icon" target="_blank" href="#"><i class="fa fa-stack-exchange"></i></a>
+    
+</div>
+      </div>
+        <div class="navbar-header pull-right">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+              <span class="sr-only">Toggle navigation</span>
+              <i class="fa fa-2x fa-bars"></i>
+            </button>
+        </div>
+      </div>
+      <div class="col-md-9 col-sm-8 col-xs-12">
+      <h2 class="blog-title-pro">Spring + Activemq基本使用</h2>
+      <p class="info">
+      
+      <span class="time">2016/04/17</span>
+      
+      
+    <span class="categories">
+        &raquo; <a href="/category/java">java</a>
+    </span>
+    
+      </p>
+      </div>
+      </div>
+      </div>
+    </div>
+    <div class="container main outer">
+        <div class="row">
+            <div class="col-md-3 col-xs-12">
+                    <nav class="menu">
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+    <ul class="list-separator nav navbar-nav well well-primary post">
+
+	
+	
+	
+	
+	<li class="col-lg-12 col-md-12 col-sm-4 col-xs-12 current-menu-item spring-activemq.html"><a href="/"><i class="fa fa-home"></i> 首页</a></li>
+
+	
+	
+	
+	
+	<li class="col-lg-12 col-md-12 col-sm-4 col-xs-12  spring-activemq.html"><a href="/category/java"><i class="fa fa-desktop"></i> 分类</a></li>
+
+	
+	
+	
+	
+	<li class="col-lg-12 col-md-12 col-sm-4 col-xs-12  spring-activemq.html"><a href="/about/"><i class="fa fa-comments"></i> 关于</a></li>
+
+</ul>
+    </div>
+    </nav>
+
+				
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- size_300x250 -->
+<ins class="adsbygoogle"
+     style="display:inline-block;width:280px;height:250px"
+     data-ad-client="ca-pub-4309621458849374"
+     data-ad-slot="8169524649"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+            </div> <!-- end /.col-md-3 -->
+
+            <div class="col-md-9 col-xs-12 full">
+                <div class="post-content well">
+<article class="content">
+    <div class="post" style="font-size: 12px;"><h2 id="spring--activemq">Spring + Activemq基本使用</h2>
+
+<p>1、安装，Apache activemq的安装比较简单，下载压缩包apache-activemq-5.12.1-bin.tar.gz到目录/software</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">cd</span> <span class="sr">/software
+tar -xzvf apache-activemq-5.12.1-bin.tar.gz
+cd /so</span><span class="n">ftware</span><span class="o">/</span><span class="n">apache</span><span class="o">-</span><span class="n">activemq</span><span class="o">-</span><span class="mi">5</span><span class="o">.</span><span class="mi">12</span><span class="o">.</span><span class="mi">1</span><span class="o">/</span><span class="n">bin</span>
+<span class="p">.</span><span class="nf">/</span><span class="n">activemq</span> <span class="n">start</span></code></pre></figure>
+
+<p>启动完成后，进入控制台 http://192.167.48.128:8161/admin/  会提示录入用户名及密码，用户名及密码均为admin，即可查看队列信息</p>
+
+<p>2、编写一个消息发送端，在此演示发送一个字符串及一个对象，对象需序列化。
+编写pom.xml</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="o">&lt;</span><span class="n">project</span> <span class="n">xmlns</span><span class="o">=</span><span class="s2">"http://maven.apache.org/POM/4.0.0"</span> <span class="n">xmlns</span><span class="ss">:xsi</span><span class="o">=</span><span class="s2">"http://www.w3.org/2001/XMLSchema-instance"</span>
+	<span class="n">xsi</span><span class="ss">:schemaLocation</span><span class="o">=</span><span class="s2">"http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"</span><span class="o">&gt;</span>
+	<span class="o">&lt;</span><span class="n">modelVersion</span><span class="o">&gt;</span><span class="mi">4</span><span class="o">.</span><span class="mi">0</span><span class="o">.</span><span class="mi">0</span><span class="o">&lt;</span><span class="sr">/modelVersion&gt;
+	&lt;groupId&gt;com.hode&lt;/</span><span class="n">groupId</span><span class="o">&gt;</span>
+	<span class="o">&lt;</span><span class="n">artifactId</span><span class="o">&gt;</span><span class="n">mqsend</span><span class="o">&lt;</span><span class="sr">/artifactId&gt;
+	&lt;version&gt;0.0.1-SNAPSHOT&lt;/</span><span class="n">version</span><span class="o">&gt;</span>
+	<span class="o">&lt;</span><span class="n">packaging</span><span class="o">&gt;</span><span class="n">war</span><span class="o">&lt;</span><span class="sr">/packaging&gt;
+	
+	&lt;properties&gt;
+		&lt;spring.version&gt;4.0.2.RELEASE&lt;/s</span><span class="n">pring</span><span class="p">.</span><span class="nf">version</span><span class="o">&gt;</span>
+		<span class="o">&lt;</span><span class="n">log4j</span><span class="p">.</span><span class="nf">version</span><span class="o">&gt;</span><span class="mi">1</span><span class="o">.</span><span class="mi">2</span><span class="o">.</span><span class="mi">17</span><span class="o">&lt;</span><span class="sr">/log4j.version&gt;
+		&lt;junit.version&gt;4.11&lt;/</span><span class="n">junit</span><span class="p">.</span><span class="nf">version</span><span class="o">&gt;</span>
+		<span class="o">&lt;</span><span class="n">commons</span><span class="o">-</span><span class="n">lang</span><span class="p">.</span><span class="nf">version</span><span class="o">&gt;</span><span class="mi">2</span><span class="o">.</span><span class="mi">5</span><span class="o">&lt;</span><span class="sr">/commons-lang.version&gt;
+		&lt;commons-beanutils.version&gt;1.9.2&lt;/</span><span class="n">commons</span><span class="o">-</span><span class="n">beanutils</span><span class="p">.</span><span class="nf">version</span><span class="o">&gt;</span>
+	<span class="o">&lt;</span><span class="sr">/properties&gt;
+	
+	&lt;dependencies&gt;
+		&lt;dependency&gt;
+			&lt;groupId&gt;org.springframework&lt;/</span><span class="n">groupId</span><span class="o">&gt;</span>
+			<span class="o">&lt;</span><span class="n">artifactId</span><span class="o">&gt;</span><span class="n">spring</span><span class="o">-</span><span class="n">core</span><span class="o">&lt;</span><span class="sr">/artifactId&gt;
+			&lt;version&gt;${spring.version}&lt;/</span><span class="n">version</span><span class="o">&gt;</span>
+		<span class="o">&lt;</span><span class="sr">/dependency&gt;
+
+		&lt;dependency&gt;
+			&lt;groupId&gt;org.springframework&lt;/</span><span class="n">groupId</span><span class="o">&gt;</span>
+			<span class="o">&lt;</span><span class="n">artifactId</span><span class="o">&gt;</span><span class="n">spring</span><span class="o">-</span><span class="n">context</span><span class="o">&lt;</span><span class="sr">/artifactId&gt;
+			&lt;version&gt;${spring.version}&lt;/</span><span class="n">version</span><span class="o">&gt;</span>
+		<span class="o">&lt;</span><span class="sr">/dependency&gt;
+
+		&lt;dependency&gt;
+			&lt;groupId&gt;org.springframework&lt;/</span><span class="n">groupId</span><span class="o">&gt;</span>
+			<span class="o">&lt;</span><span class="n">artifactId</span><span class="o">&gt;</span><span class="n">spring</span><span class="o">-</span><span class="n">context</span><span class="o">-</span><span class="n">support</span><span class="o">&lt;</span><span class="sr">/artifactId&gt;
+			&lt;version&gt;${spring.version}&lt;/</span><span class="n">version</span><span class="o">&gt;</span>
+		<span class="o">&lt;</span><span class="sr">/dependency&gt;
+
+		&lt;dependency&gt;
+			&lt;groupId&gt;org.springframework&lt;/</span><span class="n">groupId</span><span class="o">&gt;</span>
+			<span class="o">&lt;</span><span class="n">artifactId</span><span class="o">&gt;</span><span class="n">spring</span><span class="o">-</span><span class="n">jms</span><span class="o">&lt;</span><span class="sr">/artifactId&gt;
+			&lt;version&gt;${spring.version}&lt;/</span><span class="n">version</span><span class="o">&gt;</span>
+		<span class="o">&lt;</span><span class="sr">/dependency&gt;
+	
+		&lt;dependency&gt;
+			&lt;groupId&gt;log4j&lt;/</span><span class="n">groupId</span><span class="o">&gt;</span>
+			<span class="o">&lt;</span><span class="n">artifactId</span><span class="o">&gt;</span><span class="n">log4j</span><span class="o">&lt;</span><span class="sr">/artifactId&gt;
+			&lt;version&gt;${log4j.version}&lt;/</span><span class="n">version</span><span class="o">&gt;</span>
+		<span class="o">&lt;</span><span class="sr">/dependency&gt;
+
+		&lt;dependency&gt;
+			&lt;groupId&gt;commons-beanutils&lt;/</span><span class="n">groupId</span><span class="o">&gt;</span>
+			<span class="o">&lt;</span><span class="n">artifactId</span><span class="o">&gt;</span><span class="n">commons</span><span class="o">-</span><span class="n">beanutils</span><span class="o">&lt;</span><span class="sr">/artifactId&gt;
+			&lt;version&gt;${commons-beanutils.version}&lt;/</span><span class="n">version</span><span class="o">&gt;</span>
+		<span class="o">&lt;</span><span class="sr">/dependency&gt;
+		
+		&lt;dependency&gt;
+			&lt;groupId&gt;commons-lang&lt;/</span><span class="n">groupId</span><span class="o">&gt;</span>
+			<span class="o">&lt;</span><span class="n">artifactId</span><span class="o">&gt;</span><span class="n">commons</span><span class="o">-</span><span class="n">lang</span><span class="o">&lt;</span><span class="sr">/artifactId&gt;
+			&lt;version&gt;${commons-lang.version}&lt;/</span><span class="n">version</span><span class="o">&gt;</span>
+			<span class="o">&lt;</span><span class="n">type</span><span class="o">&gt;</span><span class="n">jar</span><span class="o">&lt;</span><span class="sr">/type&gt;
+			&lt;scope&gt;compile&lt;/s</span><span class="n">cope</span><span class="o">&gt;</span>
+		<span class="o">&lt;</span><span class="sr">/dependency&gt;
+		
+		&lt;dependency&gt;
+			&lt;groupId&gt;org.slf4j&lt;/</span><span class="n">groupId</span><span class="o">&gt;</span>
+			<span class="o">&lt;</span><span class="n">artifactId</span><span class="o">&gt;</span><span class="n">slf4j</span><span class="o">-</span><span class="n">log4j12</span><span class="o">&lt;</span><span class="sr">/artifactId&gt;
+			&lt;version&gt;1.7.12&lt;/</span><span class="n">version</span><span class="o">&gt;</span>
+		<span class="o">&lt;</span><span class="sr">/dependency&gt;
+		
+		&lt;dependency&gt;
+			&lt;groupId&gt;junit&lt;/</span><span class="n">groupId</span><span class="o">&gt;</span>
+			<span class="o">&lt;</span><span class="n">artifactId</span><span class="o">&gt;</span><span class="n">junit</span><span class="o">&lt;</span><span class="sr">/artifactId&gt;
+			&lt;version&gt;${junit.version}&lt;/</span><span class="n">version</span><span class="o">&gt;</span>
+			<span class="o">&lt;</span><span class="n">scope</span><span class="o">&gt;</span><span class="nb">test</span><span class="o">&lt;</span><span class="sr">/scope&gt;
+		&lt;/</span><span class="n">dependency</span><span class="o">&gt;</span>
+
+		<span class="o">&lt;</span><span class="n">dependency</span><span class="o">&gt;</span>
+			<span class="o">&lt;</span><span class="n">groupId</span><span class="o">&gt;</span><span class="n">org</span><span class="p">.</span><span class="nf">springframework</span><span class="o">&lt;</span><span class="sr">/groupId&gt;
+			&lt;artifactId&gt;spring-test&lt;/</span><span class="n">artifactId</span><span class="o">&gt;</span>
+			<span class="o">&lt;</span><span class="n">version</span><span class="o">&gt;</span><span class="err">$</span><span class="p">{</span><span class="n">spring</span><span class="p">.</span><span class="nf">version</span><span class="p">}</span><span class="o">&lt;</span><span class="sr">/version&gt;
+			&lt;scope&gt;test&lt;/s</span><span class="n">cope</span><span class="o">&gt;</span>
+		<span class="o">&lt;</span><span class="sr">/dependency&gt;
+		
+		&lt;dependency&gt;
+			&lt;groupId&gt;org.apache.activemq&lt;/</span><span class="n">groupId</span><span class="o">&gt;</span>
+			<span class="o">&lt;</span><span class="n">artifactId</span><span class="o">&gt;</span><span class="n">activemq</span><span class="o">-</span><span class="n">core</span><span class="o">&lt;</span><span class="sr">/artifactId&gt;
+			&lt;version&gt;5.7.0&lt;/</span><span class="n">version</span><span class="o">&gt;</span>
+		<span class="o">&lt;</span><span class="sr">/dependency&gt;
+		
+		&lt;dependency&gt;
+			&lt;groupId&gt;org.apache.activemq&lt;/</span><span class="n">groupId</span><span class="o">&gt;</span>
+			<span class="o">&lt;</span><span class="n">artifactId</span><span class="o">&gt;</span><span class="n">activemq</span><span class="o">-</span><span class="n">pool</span><span class="o">&lt;</span><span class="sr">/artifactId&gt;
+			&lt;version&gt;5.7.0&lt;/</span><span class="n">version</span><span class="o">&gt;</span>
+		<span class="o">&lt;</span><span class="sr">/dependency&gt;
+		
+	&lt;/</span><span class="n">dependencies</span><span class="o">&gt;</span>
+	
+	<span class="o">&lt;</span><span class="n">build</span><span class="o">&gt;</span>
+		
+		<span class="o">&lt;</span><span class="n">pluginManagement</span><span class="o">&gt;</span>
+		<span class="o">&lt;</span><span class="n">plugins</span><span class="o">&gt;</span>
+			<span class="o">&lt;</span><span class="n">plugin</span><span class="o">&gt;</span>
+				<span class="o">&lt;</span><span class="n">groupId</span><span class="o">&gt;</span><span class="n">org</span><span class="p">.</span><span class="nf">apache</span><span class="p">.</span><span class="nf">maven</span><span class="p">.</span><span class="nf">plugins</span><span class="o">&lt;</span><span class="sr">/groupId&gt;
+				&lt;artifactId&gt;maven-resources-plugin&lt;/</span><span class="n">artifactId</span><span class="o">&gt;</span>
+				<span class="o">&lt;</span><span class="n">version</span><span class="o">&gt;</span><span class="mi">2</span><span class="o">.</span><span class="mi">6</span><span class="o">&lt;</span><span class="sr">/version&gt;
+				&lt;configuration&gt;
+					&lt;encoding&gt;UTF-8&lt;/en</span><span class="n">coding</span><span class="o">&gt;</span>
+				<span class="o">&lt;</span><span class="sr">/configuration&gt;
+			&lt;/</span><span class="n">plugin</span><span class="o">&gt;</span>
+			
+			<span class="o">&lt;</span><span class="n">plugin</span><span class="o">&gt;</span>
+				<span class="o">&lt;</span><span class="n">groupId</span><span class="o">&gt;</span><span class="n">org</span><span class="p">.</span><span class="nf">apache</span><span class="p">.</span><span class="nf">maven</span><span class="p">.</span><span class="nf">plugins</span><span class="o">&lt;</span><span class="sr">/groupId&gt;
+				&lt;artifactId&gt;maven-compiler-plugin&lt;/</span><span class="n">artifactId</span><span class="o">&gt;</span>
+				<span class="o">&lt;</span><span class="n">version</span><span class="o">&gt;</span><span class="mi">3</span><span class="o">.</span><span class="mi">1</span><span class="o">&lt;</span><span class="sr">/version&gt;
+				&lt;configuration&gt;
+					&lt;source&gt;1.7&lt;/sou</span><span class="n">rce</span><span class="o">&gt;</span>
+					<span class="o">&lt;</span><span class="n">target</span><span class="o">&gt;</span><span class="mi">1</span><span class="o">.</span><span class="mi">7</span><span class="o">&lt;</span><span class="sr">/target&gt;
+					&lt;encoding&gt;UTF-8&lt;/en</span><span class="n">coding</span><span class="o">&gt;</span>
+				<span class="o">&lt;</span><span class="sr">/configuration&gt;
+			&lt;/</span><span class="n">plugin</span><span class="o">&gt;</span>
+			
+		<span class="o">&lt;</span><span class="sr">/plugins&gt;
+		&lt;/</span><span class="n">pluginManagement</span><span class="o">&gt;</span>
+	<span class="o">&lt;</span><span class="sr">/build&gt;
+	
+&lt;/</span><span class="n">project</span><span class="o">&gt;</span></code></pre></figure>
+
+<p>编写一个对象，用于模拟mq发送接收</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">package</span> <span class="n">com</span><span class="p">.</span><span class="nf">hode</span><span class="p">.</span><span class="nf">model</span><span class="p">;</span>
+
+<span class="n">import</span> <span class="n">java</span><span class="p">.</span><span class="nf">io</span><span class="o">.</span><span class="no">Serializable</span><span class="p">;</span>
+
+<span class="kp">public</span> <span class="k">class</span> <span class="nc">Message</span> <span class="n">implements</span> <span class="no">Serializable</span><span class="p">{</span>
+
+	<span class="kp">private</span> <span class="n">static</span> <span class="n">final</span> <span class="n">long</span> <span class="n">serialVersionUID</span> <span class="o">=</span> <span class="o">-</span><span class="mi">5454767231530853722</span><span class="no">L</span><span class="p">;</span>
+
+<span class="p">}</span>
+
+<span class="n">package</span> <span class="n">com</span><span class="p">.</span><span class="nf">hode</span><span class="p">.</span><span class="nf">model</span><span class="p">;</span>
+
+<span class="n">import</span> <span class="n">java</span><span class="p">.</span><span class="nf">util</span><span class="o">.</span><span class="no">Date</span><span class="p">;</span>
+
+<span class="kp">public</span> <span class="k">class</span> <span class="nc">UserMessage</span> <span class="n">extends</span> <span class="no">Message</span> <span class="p">{</span>
+
+	<span class="kp">private</span> <span class="n">static</span> <span class="n">final</span> <span class="n">long</span> <span class="n">serialVersionUID</span> <span class="o">=</span> <span class="mi">5614702318469487173</span><span class="no">L</span><span class="p">;</span>
+
+	
+	<span class="kp">private</span> <span class="n">int</span> <span class="nb">id</span><span class="p">;</span>
+	
+	<span class="kp">private</span> <span class="no">String</span> <span class="nb">name</span><span class="p">;</span>
+	
+	<span class="kp">private</span> <span class="n">double</span> <span class="n">salary</span><span class="p">;</span>
+	
+	<span class="kp">private</span> <span class="no">Date</span> <span class="n">birthday</span><span class="p">;</span>
+	
+	<span class="kp">private</span> <span class="n">int</span> <span class="n">age</span><span class="p">;</span>
+
+	<span class="kp">public</span> <span class="n">int</span> <span class="n">getId</span><span class="p">()</span> <span class="p">{</span>
+		<span class="k">return</span> <span class="nb">id</span><span class="p">;</span>
+	<span class="p">}</span>
+
+	<span class="kp">public</span> <span class="n">void</span> <span class="n">setId</span><span class="p">(</span><span class="n">int</span> <span class="nb">id</span><span class="p">)</span> <span class="p">{</span>
+		<span class="n">this</span><span class="p">.</span><span class="nf">id</span> <span class="o">=</span> <span class="nb">id</span><span class="p">;</span>
+	<span class="p">}</span>
+
+	<span class="kp">public</span> <span class="no">String</span> <span class="n">getName</span><span class="p">()</span> <span class="p">{</span>
+		<span class="k">return</span> <span class="nb">name</span><span class="p">;</span>
+	<span class="p">}</span>
+
+	<span class="kp">public</span> <span class="n">void</span> <span class="n">setName</span><span class="p">(</span><span class="no">String</span> <span class="nb">name</span><span class="p">)</span> <span class="p">{</span>
+		<span class="n">this</span><span class="p">.</span><span class="nf">name</span> <span class="o">=</span> <span class="nb">name</span><span class="p">;</span>
+	<span class="p">}</span>
+
+	<span class="kp">public</span> <span class="n">double</span> <span class="n">getSalary</span><span class="p">()</span> <span class="p">{</span>
+		<span class="k">return</span> <span class="n">salary</span><span class="p">;</span>
+	<span class="p">}</span>
+
+	<span class="kp">public</span> <span class="n">void</span> <span class="n">setSalary</span><span class="p">(</span><span class="n">double</span> <span class="n">salary</span><span class="p">)</span> <span class="p">{</span>
+		<span class="n">this</span><span class="p">.</span><span class="nf">salary</span> <span class="o">=</span> <span class="n">salary</span><span class="p">;</span>
+	<span class="p">}</span>
+
+	<span class="kp">public</span> <span class="no">Date</span> <span class="n">getBirthday</span><span class="p">()</span> <span class="p">{</span>
+		<span class="k">return</span> <span class="n">birthday</span><span class="p">;</span>
+	<span class="p">}</span>
+
+	<span class="kp">public</span> <span class="n">void</span> <span class="n">setBirthday</span><span class="p">(</span><span class="no">Date</span> <span class="n">birthday</span><span class="p">)</span> <span class="p">{</span>
+		<span class="n">this</span><span class="p">.</span><span class="nf">birthday</span> <span class="o">=</span> <span class="n">birthday</span><span class="p">;</span>
+	<span class="p">}</span>
+
+	<span class="kp">public</span> <span class="n">int</span> <span class="n">getAge</span><span class="p">()</span> <span class="p">{</span>
+		<span class="k">return</span> <span class="n">age</span><span class="p">;</span>
+	<span class="p">}</span>
+
+	<span class="kp">public</span> <span class="n">void</span> <span class="n">setAge</span><span class="p">(</span><span class="n">int</span> <span class="n">age</span><span class="p">)</span> <span class="p">{</span>
+		<span class="n">this</span><span class="p">.</span><span class="nf">age</span> <span class="o">=</span> <span class="n">age</span><span class="p">;</span>
+	<span class="p">}</span>
+
+	<span class="vi">@Override</span>
+	<span class="kp">public</span> <span class="no">String</span> <span class="n">toString</span><span class="p">()</span> <span class="p">{</span>
+		<span class="k">return</span> <span class="s2">"UserMessage [id="</span> <span class="o">+</span> <span class="nb">id</span> <span class="o">+</span> <span class="s2">", name="</span> <span class="o">+</span> <span class="nb">name</span> <span class="o">+</span> <span class="s2">", salary="</span>
+				<span class="o">+</span> <span class="n">salary</span> <span class="o">+</span> <span class="s2">", birthday="</span> <span class="o">+</span> <span class="n">birthday</span> <span class="o">+</span> <span class="s2">", age="</span> <span class="o">+</span> <span class="n">age</span> <span class="o">+</span> <span class="s2">"]"</span><span class="p">;</span>
+	<span class="p">}</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>编写一个消息发送类</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">package</span> <span class="n">com</span><span class="p">.</span><span class="nf">hode</span><span class="p">;</span>
+
+<span class="n">import</span> <span class="n">javax</span><span class="p">.</span><span class="nf">jms</span><span class="o">.</span><span class="no">JMSException</span><span class="p">;</span>
+<span class="n">import</span> <span class="n">javax</span><span class="p">.</span><span class="nf">jms</span><span class="o">.</span><span class="no">Message</span><span class="p">;</span>
+<span class="n">import</span> <span class="n">javax</span><span class="p">.</span><span class="nf">jms</span><span class="o">.</span><span class="no">ObjectMessage</span><span class="p">;</span>
+<span class="n">import</span> <span class="n">javax</span><span class="p">.</span><span class="nf">jms</span><span class="o">.</span><span class="no">Session</span><span class="p">;</span>
+<span class="n">import</span> <span class="n">javax</span><span class="p">.</span><span class="nf">jms</span><span class="o">.</span><span class="no">TextMessage</span><span class="p">;</span>
+
+<span class="n">import</span> <span class="n">org</span><span class="p">.</span><span class="nf">apache</span><span class="p">.</span><span class="nf">log4j</span><span class="o">.</span><span class="no">Logger</span><span class="p">;</span>
+<span class="n">import</span> <span class="n">org</span><span class="p">.</span><span class="nf">springframework</span><span class="p">.</span><span class="nf">jms</span><span class="p">.</span><span class="nf">core</span><span class="o">.</span><span class="no">JmsTemplate</span><span class="p">;</span>
+<span class="n">import</span> <span class="n">org</span><span class="p">.</span><span class="nf">springframework</span><span class="p">.</span><span class="nf">jms</span><span class="p">.</span><span class="nf">core</span><span class="o">.</span><span class="no">MessageCreator</span><span class="p">;</span>
+
+<span class="kp">public</span> <span class="k">class</span> <span class="nc">MessageSender</span> <span class="p">{</span>
+	<span class="kp">private</span> <span class="n">static</span> <span class="n">final</span> <span class="no">Logger</span> <span class="n">log</span> <span class="o">=</span> <span class="no">Logger</span><span class="p">.</span><span class="nf">getLogger</span><span class="p">(</span><span class="no">MessageSender</span><span class="p">.</span><span class="nf">class</span><span class="p">);</span>
+	<span class="kp">private</span> <span class="no">JmsTemplate</span> <span class="n">jmsTemplate</span><span class="p">;</span>
+
+	<span class="kp">public</span> <span class="n">void</span> <span class="n">setJmsTemplate</span><span class="p">(</span><span class="no">JmsTemplate</span> <span class="n">jmsTemplate</span><span class="p">)</span> <span class="p">{</span>
+		<span class="n">this</span><span class="p">.</span><span class="nf">jmsTemplate</span> <span class="o">=</span> <span class="n">jmsTemplate</span><span class="p">;</span>
+	<span class="p">}</span>
+
+	<span class="kp">public</span> <span class="n">void</span> <span class="n">sendMessage</span><span class="p">(</span><span class="n">final</span> <span class="no">String</span> <span class="n">message</span><span class="p">)</span> <span class="p">{</span>
+		<span class="n">log</span><span class="p">.</span><span class="nf">info</span><span class="p">(</span><span class="s2">"Send message: "</span> <span class="o">+</span> <span class="n">message</span><span class="p">);</span>
+		<span class="n">jmsTemplate</span><span class="p">.</span><span class="nf">send</span><span class="p">(</span><span class="kp">new</span> <span class="no">MessageCreator</span><span class="p">()</span> <span class="p">{</span>
+			<span class="kp">public</span> <span class="no">Message</span> <span class="n">createMessage</span><span class="p">(</span><span class="no">Session</span> <span class="n">session</span><span class="p">)</span> <span class="n">throws</span> <span class="no">JMSException</span> <span class="p">{</span>
+				<span class="no">TextMessage</span> <span class="n">textMessage</span> <span class="o">=</span> <span class="n">session</span><span class="p">.</span><span class="nf">createTextMessage</span><span class="p">(</span><span class="n">message</span><span class="p">);</span>
+				<span class="k">return</span> <span class="n">textMessage</span><span class="p">;</span>
+			<span class="p">}</span>
+
+		<span class="p">});</span>
+	<span class="p">}</span>
+	
+	<span class="kp">public</span> <span class="n">void</span> <span class="n">sendObjectMessage</span><span class="p">(</span><span class="n">final</span> <span class="n">com</span><span class="p">.</span><span class="nf">hode</span><span class="p">.</span><span class="nf">model</span><span class="o">.</span><span class="no">Message</span> <span class="n">message</span><span class="p">)</span> <span class="p">{</span>
+		<span class="n">jmsTemplate</span><span class="p">.</span><span class="nf">send</span><span class="p">(</span><span class="kp">new</span> <span class="no">MessageCreator</span><span class="p">()</span> <span class="p">{</span>
+			<span class="kp">public</span> <span class="no">Message</span> <span class="n">createMessage</span><span class="p">(</span><span class="no">Session</span> <span class="n">session</span><span class="p">)</span> <span class="n">throws</span> <span class="no">JMSException</span> <span class="p">{</span>
+				<span class="no">ObjectMessage</span> <span class="n">objectMessage</span> <span class="o">=</span> <span class="n">session</span><span class="p">.</span><span class="nf">createObjectMessage</span><span class="p">(</span><span class="n">message</span><span class="p">);</span>
+				<span class="k">return</span> <span class="n">objectMessage</span><span class="p">;</span>
+			<span class="p">}</span>
+
+		<span class="p">});</span>
+	<span class="p">}</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>编写spring配置文件applicationContext-mq.xml</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="o">&lt;</span><span class="p">?</span><span class="n">xml</span> <span class="n">version</span><span class="o">=</span><span class="s2">"1.0"</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">"UTF-8"</span><span class="sc">?&gt;</span>
+<span class="o">&lt;</span><span class="n">beans</span> <span class="n">xmlns</span><span class="o">=</span><span class="s2">"http://www.springframework.org/schema/beans"</span>
+	<span class="n">xmlns</span><span class="ss">:xsi</span><span class="o">=</span><span class="s2">"http://www.w3.org/2001/XMLSchema-instance"</span> <span class="n">xmlns</span><span class="ss">:context</span><span class="o">=</span><span class="s2">"http://www.springframework.org/schema/context"</span> 
+	<span class="n">xsi</span><span class="ss">:schemaLocation</span><span class="o">=</span><span class="s2">"http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd "</span><span class="o">&gt;</span>
+	
+	<span class="o">&lt;</span><span class="n">context</span><span class="ss">:component</span><span class="o">-</span><span class="nb">scan</span> <span class="n">base</span><span class="o">-</span><span class="n">package</span><span class="o">=</span><span class="s2">"com"</span> <span class="o">/&gt;</span>
+	
+	<span class="o">&lt;</span><span class="n">bean</span> <span class="nb">id</span><span class="o">=</span><span class="s2">"connectionFactory"</span> <span class="k">class</span><span class="o">=</span><span class="s2">"org.apache.activemq.pool.PooledConnectionFactory"</span> <span class="n">destroy</span><span class="o">-</span><span class="nb">method</span><span class="o">=</span><span class="s2">"stop"</span><span class="o">&gt;</span>
+		<span class="o">&lt;</span><span class="n">property</span> <span class="nb">name</span><span class="o">=</span><span class="s2">"connectionFactory"</span><span class="o">&gt;</span>
+			<span class="o">&lt;</span><span class="n">bean</span> <span class="k">class</span><span class="o">=</span><span class="s2">"org.apache.activemq.ActiveMQConnectionFactory"</span><span class="o">&gt;</span>
+				<span class="o">&lt;</span><span class="n">property</span> <span class="nb">name</span><span class="o">=</span><span class="s2">"brokerURL"</span><span class="o">&gt;</span>
+					<span class="o">&lt;</span><span class="n">value</span><span class="o">&gt;</span><span class="n">tcp</span><span class="ss">:/</span><span class="o">/</span><span class="mi">192</span><span class="o">.</span><span class="mi">167</span><span class="o">.</span><span class="mi">48</span><span class="o">.</span><span class="mi">128</span><span class="p">:</span><span class="mi">61616</span><span class="p">?</span><span class="n">jms</span><span class="p">.</span><span class="nf">redeliveryPolicy</span><span class="p">.</span><span class="nf">maximumRedeliveries</span><span class="o">=</span><span class="mi">3</span><span class="o">&lt;</span><span class="sr">/value&gt;
+				&lt;/</span><span class="n">property</span><span class="o">&gt;</span>
+			<span class="o">&lt;</span><span class="sr">/bean&gt;
+		&lt;/</span><span class="n">property</span><span class="o">&gt;</span>
+		<span class="o">&lt;</span><span class="n">property</span> <span class="nb">name</span><span class="o">=</span><span class="s2">"maxConnections"</span> <span class="n">value</span><span class="o">=</span><span class="s2">"100"</span><span class="o">&gt;&lt;</span><span class="sr">/property&gt;
+	&lt;/</span><span class="n">bean</span><span class="o">&gt;</span>
+	
+	<span class="o">&lt;</span><span class="n">bean</span> <span class="nb">id</span><span class="o">=</span><span class="s2">"messageQueue"</span> <span class="k">class</span><span class="o">=</span><span class="s2">"org.apache.activemq.command.ActiveMQQueue"</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="n">constructor</span><span class="o">-</span><span class="n">arg</span> <span class="n">index</span><span class="o">=</span><span class="s2">"0"</span> <span class="n">value</span><span class="o">=</span><span class="s2">"UserQueue"</span> <span class="o">/&gt;</span>
+    <span class="o">&lt;</span><span class="sr">/bean&gt;
+    
+	&lt;bean id="jmsTemplate" class="org.springframework.jms.core.JmsTemplate"&gt;
+		&lt;property name="connectionFactory" ref="connectionFactory"&gt;&lt;/</span><span class="n">property</span><span class="o">&gt;</span>
+		<span class="o">&lt;</span><span class="n">property</span> <span class="nb">name</span><span class="o">=</span><span class="s2">"defaultDestination"</span> <span class="n">ref</span><span class="o">=</span><span class="s2">"messageQueue"</span><span class="o">&gt;&lt;</span><span class="sr">/property&gt;
+	&lt;/</span><span class="n">bean</span><span class="o">&gt;</span>
+	
+	<span class="o">&lt;</span><span class="n">bean</span> <span class="nb">id</span><span class="o">=</span><span class="s2">"messageSender"</span> <span class="k">class</span><span class="o">=</span><span class="s2">"com.hode.MessageSender"</span><span class="o">&gt;</span>
+		<span class="o">&lt;</span><span class="n">property</span> <span class="nb">name</span><span class="o">=</span><span class="s2">"jmsTemplate"</span> <span class="n">ref</span><span class="o">=</span><span class="s2">"jmsTemplate"</span><span class="o">&gt;&lt;</span><span class="sr">/property&gt;
+	&lt;/</span><span class="n">bean</span><span class="o">&gt;</span>
+	
+<span class="o">&lt;</span><span class="sr">/beans&gt;</span></code></pre></figure>
+
+<p>编写log4j.properties文件</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">log4j</span><span class="p">.</span><span class="nf">rootLogger</span><span class="o">=</span><span class="no">INFO</span><span class="p">,</span><span class="no">Console</span>
+<span class="n">log4j</span><span class="p">.</span><span class="nf">appender</span><span class="o">.</span><span class="no">Console</span><span class="o">=</span><span class="n">org</span><span class="p">.</span><span class="nf">apache</span><span class="p">.</span><span class="nf">log4j</span><span class="o">.</span><span class="no">ConsoleAppender</span>
+<span class="n">log4j</span><span class="p">.</span><span class="nf">appender</span><span class="o">.</span><span class="no">Console</span><span class="p">.</span><span class="nf">layout</span><span class="o">=</span><span class="n">org</span><span class="p">.</span><span class="nf">apache</span><span class="p">.</span><span class="nf">log4j</span><span class="o">.</span><span class="no">PatternLayout</span>
+<span class="n">log4j</span><span class="p">.</span><span class="nf">appender</span><span class="o">.</span><span class="no">Console</span><span class="p">.</span><span class="nf">layout</span><span class="o">.</span><span class="no">ConversionPattern</span><span class="o">=</span><span class="sx">%-4r [%t] %d{yyyyMMdd HHmmss,SSS} %-</span><span class="mi">5</span><span class="nb">p</span> <span class="o">%</span><span class="n">c</span> <span class="o">%</span><span class="n">x</span> <span class="o">-</span> <span class="o">%</span><span class="n">m</span><span class="o">%</span><span class="n">n</span>
+
+<span class="n">log4j</span><span class="p">.</span><span class="nf">logger</span><span class="p">.</span><span class="nf">com</span><span class="p">.</span><span class="nf">hode</span><span class="o">=</span><span class="no">DEBUG</span></code></pre></figure>
+
+<p>最后编写一个测试用例</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">package</span> <span class="n">com</span><span class="p">.</span><span class="nf">hode</span><span class="p">;</span>
+
+<span class="n">import</span> <span class="n">java</span><span class="p">.</span><span class="nf">util</span><span class="o">.</span><span class="no">Date</span><span class="p">;</span>
+
+<span class="n">import</span> <span class="n">org</span><span class="p">.</span><span class="nf">junit</span><span class="o">.</span><span class="no">Test</span><span class="p">;</span>
+<span class="n">import</span> <span class="n">org</span><span class="p">.</span><span class="nf">junit</span><span class="p">.</span><span class="nf">runner</span><span class="o">.</span><span class="no">RunWith</span><span class="p">;</span>
+<span class="n">import</span> <span class="n">org</span><span class="p">.</span><span class="nf">springframework</span><span class="p">.</span><span class="nf">beans</span><span class="p">.</span><span class="nf">factory</span><span class="p">.</span><span class="nf">annotation</span><span class="o">.</span><span class="no">Autowired</span><span class="p">;</span>
+<span class="n">import</span> <span class="n">org</span><span class="p">.</span><span class="nf">springframework</span><span class="p">.</span><span class="nf">test</span><span class="p">.</span><span class="nf">context</span><span class="o">.</span><span class="no">ContextConfiguration</span><span class="p">;</span>
+<span class="n">import</span> <span class="n">org</span><span class="p">.</span><span class="nf">springframework</span><span class="p">.</span><span class="nf">test</span><span class="p">.</span><span class="nf">context</span><span class="p">.</span><span class="nf">junit4</span><span class="o">.</span><span class="no">SpringJUnit4ClassRunner</span><span class="p">;</span>
+
+<span class="n">import</span> <span class="n">com</span><span class="p">.</span><span class="nf">hode</span><span class="p">.</span><span class="nf">model</span><span class="o">.</span><span class="no">UserMessage</span><span class="p">;</span>
+
+<span class="vi">@RunWith</span><span class="p">(</span><span class="no">SpringJUnit4ClassRunner</span><span class="p">.</span><span class="nf">class</span><span class="p">)</span>
+<span class="vi">@ContextConfiguration</span><span class="p">({</span><span class="s2">"classpath*:applicationContext-mq.xml"</span><span class="p">})</span>
+<span class="kp">public</span> <span class="k">class</span> <span class="nc">SenderTest</span> <span class="p">{</span>
+
+	<span class="vi">@Autowired</span>
+	<span class="no">MessageSender</span> <span class="n">messageSender</span><span class="p">;</span>
+	
+	<span class="vi">@Test</span>
+	<span class="kp">public</span> <span class="n">void</span> <span class="nb">test</span><span class="p">()</span> <span class="p">{</span>
+		<span class="n">messageSender</span><span class="p">.</span><span class="nf">sendMessage</span><span class="p">(</span><span class="s2">"test"</span><span class="p">);</span> <span class="sr">//</span><span class="err">发送字符串</span>
+		
+		<span class="no">UserMessage</span> <span class="n">user</span> <span class="o">=</span> <span class="kp">new</span> <span class="no">UserMessage</span><span class="p">();</span>
+		<span class="n">user</span><span class="p">.</span><span class="nf">setAge</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+		<span class="n">user</span><span class="p">.</span><span class="nf">setBirthday</span><span class="p">(</span><span class="kp">new</span> <span class="no">Date</span><span class="p">());</span>
+		<span class="n">user</span><span class="p">.</span><span class="nf">setId</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span>
+		<span class="n">user</span><span class="p">.</span><span class="nf">setName</span><span class="p">(</span><span class="s2">"hode"</span><span class="p">);</span>
+		<span class="n">user</span><span class="p">.</span><span class="nf">setSalary</span><span class="p">(</span><span class="mi">30000</span><span class="p">);</span>	
+		<span class="n">messageSender</span><span class="p">.</span><span class="nf">sendObjectMessage</span><span class="p">(</span><span class="n">user</span><span class="p">);</span> <span class="sr">//</span><span class="err">发送对象</span><span class="p">(</span><span class="err">对象需序列化</span><span class="p">)</span>
+	<span class="p">}</span>
+
+<span class="p">}</span></code></pre></figure>
+
+<p>运行发送测试用例，将发送一些消息到mq队列</p>
+
+<p>3、编写消息接收程序(其中部分文件与发送程序一样)
+编写pom.xml</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="o">&lt;</span><span class="n">project</span> <span class="n">xmlns</span><span class="o">=</span><span class="s2">"http://maven.apache.org/POM/4.0.0"</span> <span class="n">xmlns</span><span class="ss">:xsi</span><span class="o">=</span><span class="s2">"http://www.w3.org/2001/XMLSchema-instance"</span>
+	<span class="n">xsi</span><span class="ss">:schemaLocation</span><span class="o">=</span><span class="s2">"http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"</span><span class="o">&gt;</span>
+	<span class="o">&lt;</span><span class="n">modelVersion</span><span class="o">&gt;</span><span class="mi">4</span><span class="o">.</span><span class="mi">0</span><span class="o">.</span><span class="mi">0</span><span class="o">&lt;</span><span class="sr">/modelVersion&gt;
+	&lt;groupId&gt;com.hode&lt;/</span><span class="n">groupId</span><span class="o">&gt;</span>
+	<span class="o">&lt;</span><span class="n">artifactId</span><span class="o">&gt;</span><span class="n">mqreceive</span><span class="o">&lt;</span><span class="sr">/artifactId&gt;
+	&lt;version&gt;0.0.1-SNAPSHOT&lt;/</span><span class="n">version</span><span class="o">&gt;</span>
+	<span class="o">&lt;</span><span class="n">packaging</span><span class="o">&gt;</span><span class="n">war</span><span class="o">&lt;</span><span class="sr">/packaging&gt;
+	
+	&lt;!-- 与发送端一样 --&gt;
+&lt;/</span><span class="n">project</span><span class="o">&gt;</span></code></pre></figure>
+
+<p>编写接收监听程序(其中使用的Message,UserMessage与发送端一样，此处省略)</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">package</span> <span class="n">com</span><span class="p">.</span><span class="nf">hode</span><span class="p">.</span><span class="nf">listener</span><span class="p">;</span>
+
+<span class="n">import</span> <span class="n">javax</span><span class="p">.</span><span class="nf">jms</span><span class="o">.</span><span class="no">JMSException</span><span class="p">;</span>
+<span class="n">import</span> <span class="n">javax</span><span class="p">.</span><span class="nf">jms</span><span class="o">.</span><span class="no">Message</span><span class="p">;</span>
+<span class="n">import</span> <span class="n">javax</span><span class="p">.</span><span class="nf">jms</span><span class="o">.</span><span class="no">MessageListener</span><span class="p">;</span>
+<span class="n">import</span> <span class="n">javax</span><span class="p">.</span><span class="nf">jms</span><span class="o">.</span><span class="no">ObjectMessage</span><span class="p">;</span>
+<span class="n">import</span> <span class="n">javax</span><span class="p">.</span><span class="nf">jms</span><span class="o">.</span><span class="no">TextMessage</span><span class="p">;</span>
+
+<span class="n">import</span> <span class="n">org</span><span class="p">.</span><span class="nf">apache</span><span class="p">.</span><span class="nf">log4j</span><span class="o">.</span><span class="no">Logger</span><span class="p">;</span>
+
+<span class="n">import</span> <span class="n">com</span><span class="p">.</span><span class="nf">hode</span><span class="p">.</span><span class="nf">model</span><span class="o">.</span><span class="no">UserMessage</span><span class="p">;</span>
+
+<span class="kp">public</span> <span class="k">class</span> <span class="nc">ReceiveMessageListener</span> <span class="n">implements</span>  <span class="no">MessageListener</span><span class="p">{</span>
+
+	<span class="kp">private</span> <span class="n">static</span> <span class="n">final</span> <span class="no">Logger</span> <span class="n">log</span> <span class="o">=</span> <span class="no">Logger</span><span class="p">.</span><span class="nf">getLogger</span><span class="p">(</span><span class="no">ReceiveMessageListener</span><span class="p">.</span><span class="nf">class</span><span class="p">);</span>
+
+	<span class="vi">@Override</span>
+	<span class="kp">public</span> <span class="n">void</span> <span class="n">onMessage</span><span class="p">(</span><span class="no">Message</span> <span class="n">message</span><span class="p">)</span> <span class="p">{</span>
+		<span class="k">if</span> <span class="p">(</span><span class="n">message</span> <span class="n">instanceof</span> <span class="no">TextMessage</span><span class="p">)</span> <span class="p">{</span>
+			<span class="no">TextMessage</span> <span class="n">text</span> <span class="o">=</span> <span class="p">(</span><span class="no">TextMessage</span><span class="p">)</span> <span class="n">message</span><span class="p">;</span>
+			<span class="n">try</span> <span class="p">{</span>
+				<span class="n">log</span><span class="p">.</span><span class="nf">info</span><span class="p">(</span><span class="s2">"Received text message:"</span> <span class="o">+</span> <span class="n">text</span><span class="p">.</span><span class="nf">getText</span><span class="p">());</span>
+			<span class="p">}</span> <span class="kp">catch</span> <span class="p">(</span><span class="no">JMSException</span> <span class="n">e</span><span class="p">)</span> <span class="p">{</span>
+				<span class="n">e</span><span class="p">.</span><span class="nf">printStackTrace</span><span class="p">();</span>
+			<span class="p">}</span>
+		<span class="p">}</span><span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">message</span> <span class="n">instanceof</span> <span class="no">ObjectMessage</span><span class="p">){</span>
+			<span class="no">ObjectMessage</span> <span class="n">om</span> <span class="o">=</span> <span class="p">(</span><span class="no">ObjectMessage</span><span class="p">)</span><span class="n">message</span><span class="p">;</span>
+			<span class="no">UserMessage</span> <span class="n">um</span><span class="p">;</span>
+			<span class="n">try</span> <span class="p">{</span>
+				<span class="n">um</span> <span class="o">=</span> <span class="p">(</span><span class="no">UserMessage</span><span class="p">)</span><span class="n">om</span><span class="p">.</span><span class="nf">getObject</span><span class="p">();</span>
+				<span class="n">log</span><span class="p">.</span><span class="nf">info</span><span class="p">(</span><span class="s2">"Received Object message:"</span> <span class="o">+</span> <span class="n">um</span><span class="p">);</span>
+			<span class="p">}</span> <span class="kp">catch</span> <span class="p">(</span><span class="no">JMSException</span> <span class="n">e</span><span class="p">)</span> <span class="p">{</span>
+				<span class="n">e</span><span class="p">.</span><span class="nf">printStackTrace</span><span class="p">();</span>
+			<span class="p">}</span>
+		<span class="p">}</span><span class="k">else</span><span class="p">{</span>
+			<span class="n">log</span><span class="p">.</span><span class="nf">warn</span><span class="p">(</span><span class="s2">"nothing proper message"</span><span class="p">);</span>
+		<span class="p">}</span>
+	<span class="p">}</span>
+	
+<span class="p">}</span></code></pre></figure>
+
+<p>编写一个服务启动程序</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">package</span> <span class="n">com</span><span class="p">.</span><span class="nf">hode</span><span class="p">;</span>
+
+<span class="n">import</span> <span class="n">org</span><span class="p">.</span><span class="nf">springframework</span><span class="p">.</span><span class="nf">context</span><span class="p">.</span><span class="nf">support</span><span class="o">.</span><span class="no">ClassPathXmlApplicationContext</span><span class="p">;</span>
+
+<span class="sr">/**
+ * 服务
+ */</span>
+<span class="kp">public</span> <span class="k">class</span> <span class="nc">AppServer</span> <span class="p">{</span>
+
+	<span class="vi">@SuppressWarnings</span><span class="p">(</span><span class="s2">"resource"</span><span class="p">)</span>
+	<span class="kp">public</span> <span class="n">static</span> <span class="n">void</span> <span class="n">main</span><span class="p">(</span><span class="no">String</span><span class="p">[]</span> <span class="n">args</span><span class="p">)</span> <span class="n">throws</span> <span class="no">Exception</span><span class="p">{</span>
+		<span class="no">ClassPathXmlApplicationContext</span> <span class="n">context</span> <span class="o">=</span> <span class="kp">new</span> <span class="no">ClassPathXmlApplicationContext</span><span class="p">(</span><span class="s2">"classpath:applicationContext-mq.xml"</span><span class="p">);</span>
+		<span class="n">context</span><span class="p">.</span><span class="nf">registerShutdownHook</span><span class="p">();</span>
+	<span class="p">}</span>
+
+<span class="p">}</span></code></pre></figure>
+
+<p>编写spring配置文件applicationContext-mq.xml(log4j.properties文件与发送端一样)</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="o">&lt;</span><span class="p">?</span><span class="n">xml</span> <span class="n">version</span><span class="o">=</span><span class="s2">"1.0"</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">"UTF-8"</span><span class="sc">?&gt;</span>
+<span class="o">&lt;</span><span class="n">beans</span> <span class="n">xmlns</span><span class="o">=</span><span class="s2">"http://www.springframework.org/schema/beans"</span> <span class="n">xmlns</span><span class="ss">:xsi</span><span class="o">=</span><span class="s2">"http://www.w3.org/2001/XMLSchema-instance"</span>
+	<span class="n">xmlns</span><span class="ss">:context</span><span class="o">=</span><span class="s2">"http://www.springframework.org/schema/context"</span>
+	<span class="n">xsi</span><span class="ss">:schemaLocation</span><span class="o">=</span><span class="s2">"http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd "</span><span class="o">&gt;</span>
+	
+	<span class="o">&lt;</span><span class="n">context</span><span class="ss">:component</span><span class="o">-</span><span class="nb">scan</span> <span class="n">base</span><span class="o">-</span><span class="n">package</span><span class="o">=</span><span class="s2">"com"</span> <span class="o">/&gt;</span>
+	
+	<span class="o">&lt;</span><span class="n">bean</span> <span class="nb">id</span><span class="o">=</span><span class="s2">"listenerContainer"</span>
+		<span class="k">class</span><span class="o">=</span><span class="s2">"org.springframework.jms.listener.DefaultMessageListenerContainer"</span><span class="o">&gt;</span>
+		<span class="o">&lt;</span><span class="n">property</span> <span class="nb">name</span><span class="o">=</span><span class="s2">"connectionFactory"</span> <span class="n">ref</span><span class="o">=</span><span class="s2">"connectionFactory"</span><span class="o">&gt;&lt;</span><span class="sr">/property&gt;
+		&lt;property name="destination" ref="messageQueue"&gt;&lt;/</span><span class="n">property</span><span class="o">&gt;</span>
+		<span class="o">&lt;</span><span class="n">property</span> <span class="nb">name</span><span class="o">=</span><span class="s2">"messageListener"</span> <span class="n">ref</span><span class="o">=</span><span class="s2">"receiveMessageListener"</span><span class="o">&gt;&lt;</span><span class="sr">/property&gt;
+		&lt;property name="sessionTransacted" value="true"/</span><span class="o">&gt;</span>
+	<span class="o">&lt;</span><span class="sr">/bean&gt;
+	
+	&lt;bean id="connectionFactory" class="org.apache.activemq.pool.PooledConnectionFactory"
+		destroy-method="stop"&gt;
+		&lt;property name="connectionFactory"&gt;
+			&lt;bean class="org.apache.activemq.ActiveMQConnectionFactory"&gt;
+				&lt;property name="brokerURL"&gt;
+					&lt;value&gt;tcp:/</span><span class="o">/</span><span class="mi">192</span><span class="o">.</span><span class="mi">167</span><span class="o">.</span><span class="mi">48</span><span class="o">.</span><span class="mi">128</span><span class="p">:</span><span class="mi">61616</span><span class="o">&lt;</span><span class="sr">/value&gt;
+				&lt;/</span><span class="n">property</span><span class="o">&gt;</span>
+			<span class="o">&lt;</span><span class="sr">/bean&gt;
+		&lt;/</span><span class="n">property</span><span class="o">&gt;</span>
+		<span class="o">&lt;</span><span class="n">property</span> <span class="nb">name</span><span class="o">=</span><span class="s2">"maxConnections"</span> <span class="n">value</span><span class="o">=</span><span class="s2">"100"</span><span class="o">&gt;&lt;</span><span class="sr">/property&gt;
+	&lt;/</span><span class="n">bean</span><span class="o">&gt;</span>
+	
+	<span class="o">&lt;</span><span class="n">bean</span> <span class="nb">id</span><span class="o">=</span><span class="s2">"messageQueue"</span> <span class="k">class</span><span class="o">=</span><span class="s2">"org.apache.activemq.command.ActiveMQQueue"</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="n">constructor</span><span class="o">-</span><span class="n">arg</span> <span class="n">index</span><span class="o">=</span><span class="s2">"0"</span> <span class="n">value</span><span class="o">=</span><span class="s2">"UserQueue"</span> <span class="o">/&gt;</span>
+    <span class="o">&lt;</span><span class="sr">/bean&gt;
+    
+	&lt;bean id="receiveMessageListener" class="com.hode.listener.ReceiveMessageListener"&gt;&lt;/</span><span class="n">bean</span><span class="o">&gt;</span>
+	
+<span class="o">&lt;</span><span class="sr">/beans&gt;</span></code></pre></figure>
+
+<p>运行程序后将监听mq队列里的消息，可执行发送端测试用例查看消息接收情况。</p>
+
+<p>结束。</p>
+</div>
+	
+	<!--
+    <hr />
+    { % include share-page.html % }
+	-->
+</article>
+<hr />
+
+
+    
+    
+        
+            
+        
+    
+
+    
+    
+        
+            
+                
+                <div class="panel-body">
+                <h5>相关博客</h5>
+                <ul>
+                
+                <li class="relatedPost" style="font-size: 12px;">
+                    <a href="http://www.mixfate.com/java/2016/04/14/linux-java-install.html">汇总一些linux安装java应用环境相关操作命令</a>
+                    
+                        <small>(所属分类: <a href="/category/java">java</a>)</small>
+                    
+                </li>
+                
+                
+            
+        
+    
+
+    
+    
+        
+            
+                
+                <li class="relatedPost" style="font-size: 12px;">
+                    <a href="http://www.mixfate.com/java/2016/04/14/spring-jedis-distributed-lock.html">Spring4+jedis实现分布式锁</a>
+                    
+                        <small>(所属分类: <a href="/category/java">java</a>)</small>
+                    
+                </li>
+                
+                
+            
+        
+    
+
+    
+    
+        
+            
+                
+                <li class="relatedPost" style="font-size: 12px;">
+                    <a href="http://www.mixfate.com/java/2016/04/13/spring-jedis.html">Spring4+jedis基本操作</a>
+                    
+                        <small>(所属分类: <a href="/category/java">java</a>)</small>
+                    
+                </li>
+                
+                
+            
+        
+    
+
+    
+    
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+    
+
+    
+    
+        
+            
+                
+                <li class="relatedPost" style="font-size: 12px;">
+                    <a href="http://www.mixfate.com/java/2016/04/05/springmvc-test.html">使用spring-test测试springmvc</a>
+                    
+                        <small>(所属分类: <a href="/category/java">java</a>)</small>
+                    
+                </li>
+                
+                
+            
+        
+    
+
+    
+    
+        
+            
+                
+                <li class="relatedPost" style="font-size: 12px;">
+                    <a href="http://www.mixfate.com/java/2016/04/04/spring-mybatis.html">spring+mybaits配置</a>
+                    
+                        <small>(所属分类: <a href="/category/java">java</a>)</small>
+                    
+                </li>
+                
+                
+            
+        
+    
+
+    
+    
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+    
+
+    
+    
+        
+            
+                
+                <li class="relatedPost" style="font-size: 12px;">
+                    <a href="http://www.mixfate.com/java/2016/04/02/spring4-quartz2.html">spring4+quartz2基本配置及应用</a>
+                    
+                        <small>(所属分类: <a href="/category/java">java</a>)</small>
+                    
+                </li>
+                
+                
+            
+        
+    
+
+    
+    
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+    
+
+
+    </ul>
+    </div>
+
+
+<div class="PageNavigation" style="font-size: 12px;">
+  
+    <a class="prev pull-left" href="/java/2016/04/14/linux-java-install.html">&laquo; 汇总一些linux安装java应用环境相关操作命令</a>
+  
+  
+</div>
+<div>&nbsp;</div>
+<!--
+<div class="disqus-comments">
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        /* <![CDATA[ */
+
+        /*
+		var disqus_shortname = "mixfate";
+        var disqus_identifier = "http://www.mixfate.com_Spring + Activemq基本使用";
+        var disqus_title = "Spring + Activemq基本使用";
+		*/
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+		/*
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+		*/
+    /* ]]> */
+    </script>
+</div>
+-->
+</div>
+				
+				<!-- google adsense begin -->
+				
+				<!-- size_728x90 -->
+				<ins class="adsbygoogle"
+					 style="display:inline-block;width:728px;height:90px"
+					 data-ad-client="ca-pub-4309621458849374"
+					 data-ad-slot="8507601840"></ins>
+				<script>
+				(adsbygoogle = window.adsbygoogle || []).push({});
+				</script>
+				<!-- google adsense end -->
+				
+                <div class="row">
+                  <div class="col-md-12 col-xs-12 footer">
+                <footer>
+                    © Copyright
+                     
+                    - Powered by Mixfate.
+					<script language="javascript" type="text/javascript" src="http://js.users.51.la/18893327.js"></script>
+					<noscript><a href="http://www.51.la/?18893327" target="_blank"><img alt="&#x6211;&#x8981;&#x5566;&#x514D;&#x8D39;&#x7EDF;&#x8BA1;" src="http://img.users.51.la/18893327.asp" style="border:none" /></a></noscript>
+                    
+                </footer>
+            </div>
+                </div>
+            </div> <!-- end /.col-md-9 -->
+        </div> <!-- end /.row -->
+
+    </div> <!-- end /.container -->
+
+        <!-- Bootstrap core JavaScript
+        ================================================== -->
+        <!-- Placed at the end of the document so the pages load faster -->
+        
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+        <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+        <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+        <script src="http://www.mixfate.com/static/js/thickbox-compressed.js"></script>
+        <script src="http://www.mixfate.com/static/js/material.min.js"></script>
+        <script src="http://www.mixfate.com/static/js/main.js"></script>
+        <script src="http://www.mixfate.com/static/js/projects.js"></script>
+    </body>
+</html>
