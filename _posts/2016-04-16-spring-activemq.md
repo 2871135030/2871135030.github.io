@@ -476,7 +476,7 @@ public class AppServer {
 </beans>
 {% endhighlight %}
 
-运行程序后将监听mq队列里的消息，可执行发送端测试用例查看消息接收情况。
+运行AppServer主程序后将监听mq队列里的消息，可执行发送端测试用例查看消息接收情况。
 
 
 结束。
