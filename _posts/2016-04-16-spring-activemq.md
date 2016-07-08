@@ -287,7 +287,7 @@ public class MessageSender {
 		<property name="connectionFactory">
 			<bean class="org.apache.activemq.ActiveMQConnectionFactory">
 				<property name="brokerURL">
-					<value>tcp://192.167.48.128:61616?jms.redeliveryPolicy.maximumRedeliveries=3</value>
+					<value>tcp://192.167.48.128:61616</value>
 				</property>
 			</bean>
 		</property>
