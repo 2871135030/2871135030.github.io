@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="shortcut icon" href="/static/img/favicon.ico" />
+        <title>Zookeeper集群环境安装 - 技术乐园</title>
+        <meta name="author" content="mixfate博客" />
+        <meta name="description" content="mixfate博客-技术乐园" />
+        <meta name="keywords" content="Zookeeper集群环境安装, 技术乐园, java" />
+
+        <meta content="0" property="fb:app_id">
+        <meta content="技术乐园" property="og:site_name">
+        
+          <meta content="Zookeeper集群环境安装" property="og:title">
+        
+        
+          <meta content="article" property="og:type">
+        
+        
+          <meta content="mixfate博客-技术乐园" property="og:description">
+        
+        
+          <meta content="http://www.mixfate.com/java/2016/04/20/zookeeper-cluster.html" property="og:url">
+        
+        
+          <meta content="2016-04-20T21:03:13+08:00" property="article:published_time">
+          <meta content="http://www.mixfate.com/about/" property="article:author">
+        
+        
+          <meta content="http://www.mixfate.com/static/img/logo-high-resolution.png" property="og:image">
+        
+        
+          
+          <meta content="java" property="article:section">
+          
+        
+        
+          
+        
+        <meta name="twitter:card" content="summary">
+        <meta name="twitter:site" content="@\#">
+        <meta name="twitter:creator" content="@\#">
+        
+          <meta name="twitter:title" content="Zookeeper集群环境安装">
+        
+        
+          <meta name="twitter:url" content="http://www.mixfate.com/java/2016/04/20/zookeeper-cluster.html">
+        
+        
+          <meta name="twitter:description" content="mixfate博客-技术乐园">
+        
+        
+
+        <link rel="alternate" type="application/rss+xml" title="RSS" href="/feed.xml">
+        <!-- Custom Fonts -->
+        <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:300,400,500,700" type="text/css">
+
+        <!-- FontAwesome icons -->
+        <link rel="stylesheet" href="https://use.fontawesome.com/74dfc6cf47.css">
+
+        <!-- Core BootStrap CSS -->
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+        <!-- Material Design CSS -->
+        <link rel="stylesheet" href="http://www.mixfate.com/static/css/bootstrap-material-design.min.css">
+
+        <!-- syntax highlighting CSS -->
+        <link rel="stylesheet" href="http://www.mixfate.com/static/css/syntax.css">
+
+        <!-- Custom CSS -->        
+        <link rel="stylesheet" href="http://www.mixfate.com/static/css/thickbox.css">
+        <link rel="stylesheet" href="http://www.mixfate.com/static/css/main.css">
+        <link rel="stylesheet" href="http://www.mixfate.com/static/css/projects.css">
+        <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UB-72862926-2', 'auto');
+  ga('send', 'pageview');
+
+</script>
+    </head>
+
+    <body class="home overflow-hidden">
+    <!--[if lt IE 7]>
+    <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade
+        your browser</a> to improve your experience.</p>
+    <![endif]-->
+    <div class="header-panel shadow-z-2">
+    <div class="container">
+    <div class="row">
+            <div class="col-md-3 col-sm-4 col-xs-12">
+      <div class="row-picture">
+        <img id="about" class="logo-img" src="http://www.mixfate.com/static/img/avatar.png" height="75px" width="75px">
+      </div>
+      <div class="row-details">
+      <h4 class="list-group-item-heading">mixfate博客</h4>
+      <p class="list-group-item-text">技术乐园</p>
+      <div class="social-icons">
+	
+        <a class="icon" target="_blank" href="#"><i class="fa fa-facebook"></i></a>
+    
+        <a class="icon" target="_blank" href="#"><i class="fa fa-skype"></i></a>
+    
+        <a class="icon" target="_blank" href="#"><i class="fa fa-twitter"></i></a>
+    
+        <a class="icon" target="_blank" href="#"><i class="fa fa-linkedin"></i></a>
+    
+        <a class="icon" target="_blank" href="#"><i class="fa fa-stack-exchange"></i></a>
+    
+</div>
+      </div>
+        <div class="navbar-header pull-right">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+              <span class="sr-only">Toggle navigation</span>
+              <i class="fa fa-2x fa-bars"></i>
+            </button>
+        </div>
+      </div>
+      <div class="col-md-9 col-sm-8 col-xs-12">
+      <h2 class="blog-title-pro">Zookeeper集群环境安装</h2>
+      <p class="info">
+      
+      <span class="time">2016/04/20</span>
+      
+      
+    <span class="categories">
+        &raquo; <a href="/category/java">java</a>
+    </span>
+    
+      </p>
+      </div>
+      </div>
+      </div>
+    </div>
+    <div class="container main outer">
+        <div class="row">
+            <div class="col-md-3 col-xs-12">
+                    <nav class="menu">
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+    <ul class="list-separator nav navbar-nav well well-primary post">
+
+	
+	
+	
+	
+	<li class="col-lg-12 col-md-12 col-sm-4 col-xs-12 current-menu-item zookeeper-cluster.html"><a href="/"><i class="fa fa-home"></i> 首页</a></li>
+
+	
+	
+	
+	
+	<li class="col-lg-12 col-md-12 col-sm-4 col-xs-12  zookeeper-cluster.html"><a href="/category/java"><i class="fa fa-desktop"></i> 分类</a></li>
+
+	
+	
+	
+	
+	<li class="col-lg-12 col-md-12 col-sm-4 col-xs-12  zookeeper-cluster.html"><a href="/about/"><i class="fa fa-comments"></i> 关于</a></li>
+
+</ul>
+    </div>
+    </nav>
+
+				
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- size_300x250 -->
+<ins class="adsbygoogle"
+     style="display:inline-block;width:280px;height:250px"
+     data-ad-client="ca-pub-4309621458849374"
+     data-ad-slot="8169524649"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+            </div> <!-- end /.col-md-3 -->
+
+            <div class="col-md-9 col-xs-12 full">
+                <div class="post-content well">
+<article class="content">
+    <div class="post" style="font-size: 12px;"><h2 id="zookeeper">Zookeeper集群环境安装</h2>
+
+<p>ZooKeeper是一个分布式开源框架，提供了协调分布式应用的基本服务，它向外部应用暴露一组通用服务——分布式同步（Distributed Synchronization）、命名服务（Naming Service）、集群维护（Group Maintenance）等，简化分布式应用协调及其管理的难度，提供高性能的分布式服务。ZooKeeper本身可以以Standalone模式安装运行，不过它的长处在于通过分布式ZooKeeper集群（一个Leader，多个Follower），基于一定的策略来保证ZooKeeper集群的稳定性和可用性，从而实现分布式应用的可靠性。</p>
+
+<p>单机安装Zookeeper已在文中<a href="http://www.mixfate.com/tools/2016/04/11/zookeeper-install.html">ZooKeeper安装使用</a>介绍过，在实际应用中我们将zookeeper集群部署，构建高可用的服务，避免单点故障。</p>
+
+<p>1、在目录/software/zookeeper-cluster/中解压三份zookeeper安装包（zookeeper-3.4.8.tar.gz包），分别为zookeeper-3.4.8-node1、zookeeper-3.4.8-node2、zookeeper-3.4.8-node3，
+集群中所有的结点作为一个整体对分布式应用提供服务，本文中在同一台机器上安装3个
+分别编辑note1、note2、note3节点的配置文件，文件目录conf/zoo.cfg</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">tickTime</span><span class="o">=</span><span class="mi">2000</span>
+<span class="n">initLimit</span><span class="o">=</span><span class="mi">10</span>
+<span class="n">syncLimit</span><span class="o">=</span><span class="mi">5</span>
+<span class="n">dataDir</span><span class="o">=</span><span class="sr">/software/</span><span class="n">zookeeper</span><span class="o">-</span><span class="n">cluster</span><span class="o">/</span><span class="n">zookeeper</span><span class="o">-</span><span class="mi">3</span><span class="o">.</span><span class="mi">4</span><span class="o">.</span><span class="mi">8</span><span class="o">-</span><span class="n">node1</span><span class="o">/</span><span class="n">data</span>
+<span class="n">clientPort</span><span class="o">=</span><span class="mi">2181</span>
+<span class="n">server</span><span class="o">.</span><span class="mi">1</span><span class="o">=</span><span class="n">localhost</span><span class="p">:</span><span class="mi">2887</span><span class="p">:</span><span class="mi">3887</span>
+<span class="n">server</span><span class="o">.</span><span class="mi">2</span><span class="o">=</span><span class="n">localhost</span><span class="p">:</span><span class="mi">2888</span><span class="p">:</span><span class="mi">3888</span>
+<span class="n">server</span><span class="o">.</span><span class="mi">3</span><span class="o">=</span><span class="n">localhost</span><span class="p">:</span><span class="mi">2889</span><span class="p">:</span><span class="mi">3889</span></code></pre></figure>
+
+<font color="red">注意：dataDir、clientPort两个参数三个节点不同</font>
+<p>dataDir顾名思义就是Zookeeper保存数据的目录,默认情况下Zookeeper将写数据的日志文件也保存在这个目录里，三个节点各自保存在节点的data目录内；</p>
+
+<p>clientPort这个端口就是客户端连接Zookeeper服务器的端口,Zookeeper会监听这个端口接受客户端的访问请求；</p>
+
+<p>server.1=localhost:2887:3887
+server.2=localhost:2888:3888
+server.3=localhost:2889:3889</p>
+
+<p>server.A=B：C：D</p>
+
+<p>A是一个数字,表示这个是第几号服务器,B是这个服务器的ip地址</p>
+
+<p>C第一个端口用来集群成员的信息交换,表示的是这个服务器与集群中的Leader服务器交换信息的端口</p>
+
+<p>D是在leader挂掉时专门用来进行选举leader所用</p>
+
+<p>2、创建ServerID标识</p>
+
+<p>集群模式下还要配置一个文件myid,这个文件在dataDir目录下,这个文件里面就有一个数据就是A的值,在上面配置文件中zoo.cfg中配置的dataDir路径中创建myid文件(不要后缀)，文件内容对应server.A中的A值，
+即三个节点中的myid内容分别为1,2,3，cat查看</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="p">[</span><span class="n">root</span><span class="vi">@localhost</span> <span class="n">zookeeper</span><span class="o">-</span><span class="n">cluster</span><span class="p">]</span><span class="c1"># cat /software/zookeeper-cluster/zookeeper-3.4.8-node1/data/myid</span>
+<span class="mi">1</span>
+<span class="p">[</span><span class="n">root</span><span class="vi">@localhost</span> <span class="n">zookeeper</span><span class="o">-</span><span class="n">cluster</span><span class="p">]</span><span class="c1"># cat /software/zookeeper-cluster/zookeeper-3.4.8-node2/data/myid</span>
+<span class="mi">2</span>
+<span class="p">[</span><span class="n">root</span><span class="vi">@localhost</span> <span class="n">zookeeper</span><span class="o">-</span><span class="n">cluster</span><span class="p">]</span><span class="c1"># cat /software/zookeeper-cluster/zookeeper-3.4.8-node3/data/myid</span>
+<span class="mi">3</span></code></pre></figure>
+
+<p>3、启动和停止
+启动命令如下</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">cd</span> <span class="sr">/software/</span><span class="n">zookeeper</span><span class="o">-</span><span class="n">cluster</span><span class="o">/</span>
+
+<span class="p">.</span><span class="nf">/</span><span class="n">zookeeper</span><span class="o">-</span><span class="mi">3</span><span class="o">.</span><span class="mi">4</span><span class="o">.</span><span class="mi">8</span><span class="o">-</span><span class="n">node1</span><span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">zkServer</span><span class="p">.</span><span class="nf">sh</span> <span class="n">start</span>
+<span class="p">.</span><span class="nf">/</span><span class="n">zookeeper</span><span class="o">-</span><span class="mi">3</span><span class="o">.</span><span class="mi">4</span><span class="o">.</span><span class="mi">8</span><span class="o">-</span><span class="n">node2</span><span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">zkServer</span><span class="p">.</span><span class="nf">sh</span> <span class="n">start</span>
+<span class="p">.</span><span class="nf">/</span><span class="n">zookeeper</span><span class="o">-</span><span class="mi">3</span><span class="o">.</span><span class="mi">4</span><span class="o">.</span><span class="mi">8</span><span class="o">-</span><span class="n">node3</span><span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">zkServer</span><span class="p">.</span><span class="nf">sh</span> <span class="n">start</span></code></pre></figure>
+
+<p>启动完成后，可以使用以下命令查看各节点情况</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">echo</span> <span class="err">查看启动情况</span>
+<span class="n">echo</span> <span class="n">stat</span><span class="o">|</span><span class="n">nc</span> <span class="n">localhost</span> <span class="mi">2181</span>
+<span class="n">echo</span> <span class="n">stat</span><span class="o">|</span><span class="n">nc</span> <span class="n">localhost</span> <span class="mi">2182</span>
+<span class="n">echo</span> <span class="n">stat</span><span class="o">|</span><span class="n">nc</span> <span class="n">localhost</span> <span class="mi">2183</span></code></pre></figure>
+
+<p>示例结果如下（可以看到节点1、2为follower，节点3为leader）</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="p">[</span><span class="n">root</span><span class="vi">@localhost</span> <span class="n">zookeeper</span><span class="o">-</span><span class="n">cluster</span><span class="p">]</span><span class="c1"># echo 查看启动情况</span>
+<span class="err">查看启动情况</span>
+<span class="p">[</span><span class="n">root</span><span class="vi">@localhost</span> <span class="n">zookeeper</span><span class="o">-</span><span class="n">cluster</span><span class="p">]</span><span class="c1"># echo stat|nc localhost 2181</span>
+<span class="no">Zookeeper</span> <span class="ss">version: </span><span class="mi">3</span><span class="o">.</span><span class="mi">4</span><span class="o">.</span><span class="mi">8</span><span class="o">--</span><span class="mi">1</span><span class="p">,</span> <span class="n">built</span> <span class="n">on</span> <span class="mo">02</span><span class="o">/</span><span class="mo">06</span><span class="o">/</span><span class="mi">2016</span> <span class="mo">03</span><span class="p">:</span><span class="mi">18</span> <span class="no">GMT</span>
+<span class="no">Clients</span><span class="p">:</span>
+ <span class="sr">/0:0:0:0:0:0:0:1:59347[0](queued=0,recved=1,sent=0)
+
+Latency min/</span><span class="n">avg</span><span class="o">/</span><span class="ss">max: </span><span class="mi">0</span><span class="o">/</span><span class="mi">0</span><span class="o">/</span><span class="mi">0</span>
+<span class="no">Received</span><span class="p">:</span> <span class="mi">2</span>
+<span class="no">Sent</span><span class="p">:</span> <span class="mi">1</span>
+<span class="no">Connections</span><span class="p">:</span> <span class="mi">1</span>
+<span class="no">Outstanding</span><span class="p">:</span> <span class="mi">0</span>
+<span class="no">Zxid</span><span class="p">:</span> <span class="mh">0x2200000032</span>
+<span class="no">Mode</span><span class="p">:</span> <span class="n">follower</span>
+<span class="no">Node</span> <span class="ss">count: </span><span class="mi">1653</span>
+<span class="n">echo</span> <span class="n">stat</span><span class="o">|</span><span class="n">nc</span> <span class="n">localhost</span> <span class="mi">2182</span>
+<span class="p">[</span><span class="n">root</span><span class="vi">@localhost</span> <span class="n">zookeeper</span><span class="o">-</span><span class="n">cluster</span><span class="p">]</span><span class="c1"># echo stat|nc localhost 2182</span>
+<span class="n">echo</span> <span class="n">stat</span><span class="o">|</span><span class="n">nc</span> <span class="n">localhost</span> <span class="mi">2183</span>
+<span class="no">Zookeeper</span> <span class="ss">version: </span><span class="mi">3</span><span class="o">.</span><span class="mi">4</span><span class="o">.</span><span class="mi">8</span><span class="o">--</span><span class="mi">1</span><span class="p">,</span> <span class="n">built</span> <span class="n">on</span> <span class="mo">02</span><span class="o">/</span><span class="mo">06</span><span class="o">/</span><span class="mi">2016</span> <span class="mo">03</span><span class="p">:</span><span class="mi">18</span> <span class="no">GMT</span>
+<span class="no">Clients</span><span class="p">:</span>
+ <span class="sr">/0:0:0:0:0:0:0:1:51783[0](queued=0,recved=1,sent=0)
+
+Latency min/</span><span class="n">avg</span><span class="o">/</span><span class="ss">max: </span><span class="mi">0</span><span class="o">/</span><span class="mi">0</span><span class="o">/</span><span class="mi">0</span>
+<span class="no">Received</span><span class="p">:</span> <span class="mi">2</span>
+<span class="no">Sent</span><span class="p">:</span> <span class="mi">1</span>
+<span class="no">Connections</span><span class="p">:</span> <span class="mi">1</span>
+<span class="no">Outstanding</span><span class="p">:</span> <span class="mi">0</span>
+<span class="no">Zxid</span><span class="p">:</span> <span class="mh">0x2200000032</span>
+<span class="no">Mode</span><span class="p">:</span> <span class="n">follower</span>
+<span class="no">Node</span> <span class="ss">count: </span><span class="mi">1653</span>
+<span class="p">[</span><span class="n">root</span><span class="vi">@localhost</span> <span class="n">zookeeper</span><span class="o">-</span><span class="n">cluster</span><span class="p">]</span><span class="c1"># echo stat|nc localhost 2183</span>
+<span class="no">Zookeeper</span> <span class="ss">version: </span><span class="mi">3</span><span class="o">.</span><span class="mi">4</span><span class="o">.</span><span class="mi">8</span><span class="o">--</span><span class="mi">1</span><span class="p">,</span> <span class="n">built</span> <span class="n">on</span> <span class="mo">02</span><span class="o">/</span><span class="mo">06</span><span class="o">/</span><span class="mi">2016</span> <span class="mo">03</span><span class="p">:</span><span class="mi">18</span> <span class="no">GMT</span>
+<span class="no">Clients</span><span class="p">:</span>
+ <span class="sr">/0:0:0:0:0:0:0:1:45005[0](queued=0,recved=1,sent=0)
+
+Latency min/</span><span class="n">avg</span><span class="o">/</span><span class="ss">max: </span><span class="mi">0</span><span class="o">/</span><span class="mi">0</span><span class="o">/</span><span class="mi">0</span>
+<span class="no">Received</span><span class="p">:</span> <span class="mi">2</span>
+<span class="no">Sent</span><span class="p">:</span> <span class="mi">1</span>
+<span class="no">Connections</span><span class="p">:</span> <span class="mi">1</span>
+<span class="no">Outstanding</span><span class="p">:</span> <span class="mi">0</span>
+<span class="no">Zxid</span><span class="p">:</span> <span class="mh">0x2600000000</span>
+<span class="no">Mode</span><span class="p">:</span> <span class="n">leader</span>
+<span class="no">Node</span> <span class="ss">count: </span><span class="mi">1653</span></code></pre></figure>
+
+<p>若需要关闭，可以使用stop命令停止</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">cd</span> <span class="sr">/software/</span><span class="n">zookeeper</span><span class="o">-</span><span class="n">cluster</span><span class="o">/</span>
+<span class="p">.</span><span class="nf">/</span><span class="n">zookeeper</span><span class="o">-</span><span class="mi">3</span><span class="o">.</span><span class="mi">4</span><span class="o">.</span><span class="mi">8</span><span class="o">-</span><span class="n">node1</span><span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">zkServer</span><span class="p">.</span><span class="nf">sh</span> <span class="n">stop</span>
+<span class="p">.</span><span class="nf">/</span><span class="n">zookeeper</span><span class="o">-</span><span class="mi">3</span><span class="o">.</span><span class="mi">4</span><span class="o">.</span><span class="mi">8</span><span class="o">-</span><span class="n">node2</span><span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">zkServer</span><span class="p">.</span><span class="nf">sh</span> <span class="n">stop</span>
+<span class="p">.</span><span class="nf">/</span><span class="n">zookeeper</span><span class="o">-</span><span class="mi">3</span><span class="o">.</span><span class="mi">4</span><span class="o">.</span><span class="mi">8</span><span class="o">-</span><span class="n">node3</span><span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">zkServer</span><span class="p">.</span><span class="nf">sh</span> <span class="n">stop</span></code></pre></figure>
+
+<p>结束。</p>
+</div>
+	
+	<!--
+    <hr />
+    { % include share-page.html % }
+	-->
+</article>
+<hr />
+
+
+    
+    
+        
+            
+        
+    
+
+    
+    
+        
+            
+                
+                <div class="panel-body">
+                <h5>相关博客</h5>
+                <ul>
+                
+                <li class="relatedPost" style="font-size: 12px;">
+                    <a href="http://www.mixfate.com/java/2016/04/19/spring-dubbo.html">Dubbo全Spring配置方式</a>
+                    
+                        <small>(所属分类: <a href="/category/java">java</a>)</small>
+                    
+                </li>
+                
+                
+            
+        
+    
+
+    
+    
+        
+            
+        
+    
+
+    
+    
+        
+            
+                
+                <li class="relatedPost" style="font-size: 12px;">
+                    <a href="http://www.mixfate.com/java/2016/04/18/spring-restful.html">Springmvc构建restful webservice应用</a>
+                    
+                        <small>(所属分类: <a href="/category/java">java</a>)</small>
+                    
+                </li>
+                
+                
+            
+        
+    
+
+    
+    
+        
+            
+                
+                <li class="relatedPost" style="font-size: 12px;">
+                    <a href="http://www.mixfate.com/java/2016/04/17/spring-activemq.html">Spring + Activemq基本使用</a>
+                    
+                        <small>(所属分类: <a href="/category/java">java</a>)</small>
+                    
+                </li>
+                
+                
+            
+        
+    
+
+    
+    
+        
+            
+                
+                <li class="relatedPost" style="font-size: 12px;">
+                    <a href="http://www.mixfate.com/java/2016/04/14/linux-java-install.html">汇总一些linux安装java应用环境相关操作命令</a>
+                    
+                        <small>(所属分类: <a href="/category/java">java</a>)</small>
+                    
+                </li>
+                
+                
+            
+        
+    
+
+    
+    
+        
+            
+                
+                <li class="relatedPost" style="font-size: 12px;">
+                    <a href="http://www.mixfate.com/java/2016/04/14/spring-jedis-distributed-lock.html">Spring4+jedis实现分布式锁</a>
+                    
+                        <small>(所属分类: <a href="/category/java">java</a>)</small>
+                    
+                </li>
+                
+                
+            
+        
+    
+
+    
+    
+        
+            
+                
+                <li class="relatedPost" style="font-size: 12px;">
+                    <a href="http://www.mixfate.com/java/2016/04/13/spring-jedis.html">Spring4+jedis基本操作</a>
+                    
+                        <small>(所属分类: <a href="/category/java">java</a>)</small>
+                    
+                </li>
+                
+                
+            
+        
+    
+
+    
+    
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+    
+
+
+    </ul>
+    </div>
+
+
+<div class="PageNavigation" style="font-size: 12px;">
+  
+    <a class="prev pull-left" href="/java/2016/04/19/spring-dubbo.html">&laquo; Dubbo全Spring配置方式</a>
+  
+  
+</div>
+<div>&nbsp;</div>
+<!--
+<div class="disqus-comments">
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        /* <![CDATA[ */
+
+        /*
+		var disqus_shortname = "mixfate";
+        var disqus_identifier = "http://www.mixfate.com_Zookeeper集群环境安装";
+        var disqus_title = "Zookeeper集群环境安装";
+		*/
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+		/*
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+		*/
+    /* ]]> */
+    </script>
+</div>
+-->
+</div>
+				
+				<!-- google adsense begin -->
+				
+				<!-- size_728x90 -->
+				<ins class="adsbygoogle"
+					 style="display:inline-block;width:728px;height:90px"
+					 data-ad-client="ca-pub-4309621458849374"
+					 data-ad-slot="8507601840"></ins>
+				<script>
+				(adsbygoogle = window.adsbygoogle || []).push({});
+				</script>
+				<!-- google adsense end -->
+				
+                <div class="row">
+                  <div class="col-md-12 col-xs-12 footer">
+                <footer>
+                    © Copyright
+                     
+                    - Powered by Mixfate.
+					<script language="javascript" type="text/javascript" src="http://js.users.51.la/18893327.js"></script>
+					<noscript><a href="http://www.51.la/?18893327" target="_blank"><img alt="&#x6211;&#x8981;&#x5566;&#x514D;&#x8D39;&#x7EDF;&#x8BA1;" src="http://img.users.51.la/18893327.asp" style="border:none" /></a></noscript>
+                    
+                </footer>
+            </div>
+                </div>
+            </div> <!-- end /.col-md-9 -->
+        </div> <!-- end /.row -->
+
+    </div> <!-- end /.container -->
+
+        <!-- Bootstrap core JavaScript
+        ================================================== -->
+        <!-- Placed at the end of the document so the pages load faster -->
+        
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+        <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+        <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+        <script src="http://www.mixfate.com/static/js/thickbox-compressed.js"></script>
+        <script src="http://www.mixfate.com/static/js/material.min.js"></script>
+        <script src="http://www.mixfate.com/static/js/main.js"></script>
+        <script src="http://www.mixfate.com/static/js/projects.js"></script>
+    </body>
+</html>
