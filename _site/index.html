@@ -172,6 +172,19 @@
           <i class="fa fa-sticky-note"></i>
         </div>
         <div class="row-content">
+          <div class="least-content">2016-04-21 21:23</div>
+          <h4 class="list-group-item-heading" style="font-size: 14px;"><a href="/java/2016/04/21/dubbo.html">Dubbo管理控制台(dubbo-admin)</a></h4>
+
+          <p class="list-group-item-text" style="font-size: 12px;">Dubbo的管理控制台(Dubbo Admin) dubbo spring配置使用文章介绍过使用dubbo构建简单服务， 创建了服务提供者及消费者，dubbo提供了管理后台管理服务提供者与消费者 可在http://dubbo.io/Download-zh.htm(不保证此地址一直可用)直接下载 dubbo-admin-2.5.3.war 放到tomcat目录中并启动，在此就不多作介绍tomcat的部署了， 也可以将dubbo源码下载到本地，自行打war包放到tomcat中部署，本文介绍根据源码部署dubbo-admin 1、通过git下载dubbo源码(确认已安装git客户端)，命令 git clone https://github.com/alibaba/dubbo dubbo 2、源码下载完成后，可直接在dubbo根目录install，命令 mvn install -Dmaven.test.skip 正确完成install后，在目录/dubbo/dubbo-admin/target/中已打好包dubbo-admin-2.5.4-SNAPSHOT.war（本文以最新git版本库中获取代码为例） 将此war包放置到tomcat目录中，启动tomcat即可。...</p>
+        </div>
+      </div>
+      <div class="list-group-separator"></div>
+      
+      <div class="list-group-item">
+        <div class="row-action-primary">
+          <i class="fa fa-sticky-note"></i>
+        </div>
+        <div class="row-content">
           <div class="least-content">2016-04-20 21:03</div>
           <h4 class="list-group-item-heading" style="font-size: 14px;"><a href="/java/2016/04/20/zookeeper-cluster.html">Zookeeper集群环境安装</a></h4>
 
@@ -467,19 +480,6 @@
           <h4 class="list-group-item-heading" style="font-size: 14px;"><a href="/maven/2016/04/02/maven-filter.html">使用maven为不同环境打包，应用不同配置文件</a></h4>
 
           <p class="list-group-item-text" style="font-size: 12px;">使用maven为不同环境打包，应用不同配置文件 使用maven构建工具时，经常需要为不同的环境打不同的war包，如本地环境、开发环境等，各环境的配置不尽相同，下面介绍此功能 1、创建maven项目，首先在src/main/resources分别创建两个环境文件夹local与dev，此两个目录中分别放本地配置与开发环境配置，如log4j.properties，本地为INFO，dev为DEBUG用于区别； 2、编写pom.xml，指定各环境配置 &lt;project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"&gt; &lt;modelVersion&gt;4.0.0&lt;/modelVersion&gt; &lt;groupId&gt;com.qerooy&lt;/groupId&gt; &lt;artifactId&gt;mvnprofile&lt;/artifactId&gt; &lt;version&gt;0.0.1-SNAPSHOT&lt;/version&gt; &lt;packaging&gt;war&lt;/packaging&gt; &lt;profiles&gt; &lt;profile&gt; &lt;id&gt;local&lt;/id&gt;&lt;!-- 本地环境 --&gt; &lt;activation&gt;...</p>
-        </div>
-      </div>
-      <div class="list-group-separator"></div>
-      
-      <div class="list-group-item">
-        <div class="row-action-primary">
-          <i class="fa fa-sticky-note"></i>
-        </div>
-        <div class="row-content">
-          <div class="least-content">2016-04-01 22:51</div>
-          <h4 class="list-group-item-heading" style="font-size: 14px;"><a href="/tomcat/2016/04/01/tomcat-ssl-2.html">tomcat配置ssl双向认证</a></h4>
-
-          <p class="list-group-item-text" style="font-size: 12px;">tomcat配置ssl双向认证 接上篇tomcat ssl单向认证http://www.mixfate.com，本文在单向认证的基础上完成双向认证配置。 1、使用以下命令生成客户端证书，并将此证书安装到客户端（此证书请安装到个人目录下）； keytool -genkey -v -alias client1 -keyalg RSA -storetype PKCS12 -keysize 1024 -validity 365 -keystore "F:\cert\client1.p12" 在此密码录入为123456...</p>
         </div>
       </div>
       <div class="list-group-separator"></div>

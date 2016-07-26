@@ -6,15 +6,15 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <link rel="shortcut icon" href="/static/img/favicon.ico" />
-        <title>tomcat配置ssl双向认证 - 技术乐园</title>
+        <title>Dubbo管理控制台(dubbo-admin) - 技术乐园</title>
         <meta name="author" content="mixfate博客" />
         <meta name="description" content="mixfate博客-技术乐园" />
-        <meta name="keywords" content="tomcat配置ssl双向认证, 技术乐园, tomcat" />
+        <meta name="keywords" content="Dubbo管理控制台(dubbo-admin), 技术乐园, java" />
 
         <meta content="0" property="fb:app_id">
         <meta content="技术乐园" property="og:site_name">
         
-          <meta content="tomcat配置ssl双向认证" property="og:title">
+          <meta content="Dubbo管理控制台(dubbo-admin)" property="og:title">
         
         
           <meta content="article" property="og:type">
@@ -23,10 +23,10 @@
           <meta content="mixfate博客-技术乐园" property="og:description">
         
         
-          <meta content="http://www.mixfate.com/tomcat/2016/04/01/tomcat-ssl-2.html" property="og:url">
+          <meta content="http://www.mixfate.com/java/2016/04/21/dubbo.html" property="og:url">
         
         
-          <meta content="2016-04-01T22:51:39+08:00" property="article:published_time">
+          <meta content="2016-04-21T21:23:46+08:00" property="article:published_time">
           <meta content="http://www.mixfate.com/about/" property="article:author">
         
         
@@ -34,7 +34,7 @@
         
         
           
-          <meta content="tomcat" property="article:section">
+          <meta content="java" property="article:section">
           
         
         
@@ -44,10 +44,10 @@
         <meta name="twitter:site" content="@\#">
         <meta name="twitter:creator" content="@\#">
         
-          <meta name="twitter:title" content="tomcat配置ssl双向认证">
+          <meta name="twitter:title" content="Dubbo管理控制台(dubbo-admin)">
         
         
-          <meta name="twitter:url" content="http://www.mixfate.com/tomcat/2016/04/01/tomcat-ssl-2.html">
+          <meta name="twitter:url" content="http://www.mixfate.com/java/2016/04/21/dubbo.html">
         
         
           <meta name="twitter:description" content="mixfate博客-技术乐园">
@@ -122,14 +122,14 @@
         </div>
       </div>
       <div class="col-md-9 col-sm-8 col-xs-12">
-      <h2 class="blog-title-pro">tomcat配置ssl双向认证</h2>
+      <h2 class="blog-title-pro">Dubbo管理控制台(dubbo-admin)</h2>
       <p class="info">
       
-      <span class="time">2016/04/01</span>
+      <span class="time">2016/04/21</span>
       
       
     <span class="categories">
-        &raquo; <a href="/category/tomcat">tomcat</a>
+        &raquo; <a href="/category/java">java</a>
     </span>
     
       </p>
@@ -148,19 +148,19 @@
 	
 	
 	
-	<li class="col-lg-12 col-md-12 col-sm-4 col-xs-12 current-menu-item tomcat-ssl-2.html"><a href="/"><i class="fa fa-home"></i> 首页</a></li>
+	<li class="col-lg-12 col-md-12 col-sm-4 col-xs-12 current-menu-item dubbo.html"><a href="/"><i class="fa fa-home"></i> 首页</a></li>
 
 	
 	
 	
 	
-	<li class="col-lg-12 col-md-12 col-sm-4 col-xs-12  tomcat-ssl-2.html"><a href="/category/java"><i class="fa fa-desktop"></i> 分类</a></li>
+	<li class="col-lg-12 col-md-12 col-sm-4 col-xs-12  dubbo.html"><a href="/category/java"><i class="fa fa-desktop"></i> 分类</a></li>
 
 	
 	
 	
 	
-	<li class="col-lg-12 col-md-12 col-sm-4 col-xs-12  tomcat-ssl-2.html"><a href="/about/"><i class="fa fa-comments"></i> 关于</a></li>
+	<li class="col-lg-12 col-md-12 col-sm-4 col-xs-12  dubbo.html"><a href="/about/"><i class="fa fa-comments"></i> 关于</a></li>
 
 </ul>
     </div>
@@ -181,58 +181,40 @@
             <div class="col-md-9 col-xs-12 full">
                 <div class="post-content well">
 <article class="content">
-    <div class="post" style="font-size: 12px;"><h2 id="tomcatssl">tomcat配置ssl双向认证</h2>
+    <div class="post" style="font-size: 12px;"><h2 id="dubbodubbo-admin">Dubbo的管理控制台(Dubbo Admin)</h2>
 
-<p>接上篇tomcat ssl单向认证http://www.mixfate.com，本文在单向认证的基础上完成双向认证配置。</p>
+<p><a href="/java/2016/04/19/spring-dubbo.html">dubbo spring配置使用</a>文章介绍过使用dubbo构建简单服务，
+创建了服务提供者及消费者，dubbo提供了管理后台管理服务提供者与消费者</p>
 
-<p>1、使用以下命令生成客户端证书，并将此证书安装到客户端（此证书请安装到个人目录下）；</p>
+<p>可在<a href="http://dubbo.io/Download-zh.htm">http://dubbo.io/Download-zh.htm(不保证此地址一直可用)</a>直接下载 dubbo-admin-2.5.3.war 放到tomcat目录中并启动，在此就不多作介绍tomcat的部署了，
+也可以将dubbo源码下载到本地，自行打war包放到tomcat中部署，本文介绍根据源码部署dubbo-admin</p>
 
-<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">keytool</span> <span class="o">-</span><span class="n">genkey</span> <span class="o">-</span><span class="n">v</span> <span class="o">-</span><span class="k">alias</span> <span class="n">client1</span> <span class="o">-</span><span class="n">keyalg</span> <span class="no">RSA</span> <span class="o">-</span><span class="n">storetype</span> <span class="no">PKCS12</span> <span class="o">-</span><span class="n">keysize</span> <span class="mi">1024</span> <span class="o">-</span><span class="n">validity</span> <span class="mi">365</span> <span class="o">-</span><span class="n">keystore</span> <span class="s2">"F:</span><span class="se">\c</span><span class="s2">ert</span><span class="se">\c</span><span class="s2">lient1.p12"</span></code></pre></figure>
+<p>1、通过git下载dubbo源码(确认已安装git客户端)，命令</p>
 
-<p>在此密码录入为123456 
-<img src="/assets/dfeeded7-8f45-3579-9195-e0e697ea8adb.png" alt="tomcat配置ssl双向认证" /></p>
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">git</span> <span class="nb">clone</span> <span class="n">https</span><span class="ss">:/</span><span class="o">/</span><span class="n">github</span><span class="p">.</span><span class="nf">com</span><span class="o">/</span><span class="n">alibaba</span><span class="o">/</span><span class="n">dubbo</span> <span class="n">dubbo</span></code></pre></figure>
 
-<p>2、从客户端p12证书导出cer证书；</p>
+<p>2、源码下载完成后，可直接在dubbo根目录install，命令</p>
 
-<div class="language-markdown highlighter-rouge"><pre class="highlight"><code>keytool -export -alias client1 -storetype PKCS12 -keystore "F:<span class="se">\c</span>ert<span class="se">\c</span>lient1.p12" -storepass 123456 -rfc -file "F:<span class="se">\c</span>ert<span class="se">\c</span>lient1.cer"
-</code></pre>
-</div>
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">mvn</span> <span class="n">install</span> <span class="o">-</span><span class="no">Dmaven</span><span class="p">.</span><span class="nf">test</span><span class="p">.</span><span class="nf">skip</span></code></pre></figure>
 
-<p>3、让服务端信任客户端证书，复制原单向认证文件为tomcat_double.keystore，将client1.cer导入到服务器证书库中；</p>
+<p>正确完成install后，在目录/dubbo/dubbo-admin/target/中已打好包dubbo-admin-2.5.4-SNAPSHOT.war（本文以最新git版本库中获取代码为例）
+将此war包放置到tomcat目录中，启动tomcat即可。</p>
 
-<div class="language-markdown highlighter-rouge"><pre class="highlight"><code>keytool -import -alias client1 -v -file "F:<span class="se">\c</span>ert<span class="se">\c</span>lient1.cer" -keystore "F:<span class="se">\c</span>ert<span class="se">\t</span>omcat_double.keystore"
-</code></pre>
-</div>
+<font color="red">注：有关dubbo-admin的配置在解压war包后的WEB-INF中，可查看dubbo.properties配置信息</font>
 
-<p><img src="/assets/4ba4cb5a-7abe-3656-887f-0d473eeb3196.png" alt="tomcat配置ssl双向认证" />
-可通过如下命令检查证书情况</p>
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">dubbo</span><span class="p">.</span><span class="nf">registry</span><span class="p">.</span><span class="nf">address</span><span class="o">=</span><span class="n">zookeeper</span><span class="ss">:/</span><span class="o">/</span><span class="mi">127</span><span class="o">.</span><span class="mi">0</span><span class="o">.</span><span class="mi">0</span><span class="o">.</span><span class="mi">1</span><span class="p">:</span><span class="mi">2181</span>
+<span class="n">dubbo</span><span class="p">.</span><span class="nf">admin</span><span class="p">.</span><span class="nf">root</span><span class="p">.</span><span class="nf">password</span><span class="o">=</span><span class="n">root</span>
+<span class="n">dubbo</span><span class="p">.</span><span class="nf">admin</span><span class="p">.</span><span class="nf">guest</span><span class="p">.</span><span class="nf">password</span><span class="o">=</span><span class="n">guest</span></code></pre></figure>
 
-<div class="language-markdown highlighter-rouge"><pre class="highlight"><code>keytool -list -keystore "F:<span class="se">\c</span>ert<span class="se">\t</span>omcat_double.keystore"
-</code></pre>
-</div>
+<p>配置文件参数说明：</p>
 
-<p>4、更改配置文件server.xml，将单向认证改为双向认证；</p>
+<p>zookeeper地址，<a href="/java/2016/04/20/zookeeper-cluster.html">若zookeeper为集群</a>，则指定其中一个节点便可</p>
 
-<div class="language-markdown highlighter-rouge"><pre class="highlight"><code>&lt;Connector port="443" protocol="org.apache.coyote.http11.Http11Protocol"
-               maxThreads="150" SSLEnabled="true" scheme="https" secure="true"
-               clientAuth="false" sslProtocol="TLS" 
-               keystoreFile="F:<span class="se">\c</span>ert<span class="se">\t</span>omcat.keystore" keystorePass="123456" /&gt;
-</code></pre>
-</div>
+<p>管理控制台用户名密码：2组分别为用户名root密码root，用户名guest密码guest。注意不是admin</p>
 
-<p>修改为</p>
+<p>tomcat启动成功后即可进入管理控制台。</p>
 
-<div class="language-markdown highlighter-rouge"><pre class="highlight"><code>&lt;Connector port="443" protocol="org.apache.coyote.http11.Http11Protocol"
-               maxThreads="150" SSLEnabled="true" scheme="https" secure="true"
-               clientAuth="true" sslProtocol="TLS" 
-               keystoreFile="F:<span class="se">\c</span>ert<span class="se">\t</span>omcat_double.keystore" keystorePass="123456"
-               truststoreFile="F:<span class="se">\c</span>ert<span class="se">\t</span>omcat_double.keystore" truststorePass="123456" /&gt;
-
-</code></pre>
-</div>
-
-<p>5、配置完成后，重启tomcat，访问便可看到提示需要证书； 
-<img src="/assets/1dca5259-fd58-3b93-bccc-6bc71ea5ce9e.png" alt="tomcat配置ssl双向认证" /></p>
+<p>结束。</p>
 </div>
 	
 	<!--
@@ -254,159 +236,209 @@
     
         
             
-        
-    
-
-    
-    
-        
-            
-        
-    
-
-    
-    
-        
-            
-        
-    
-
-    
-    
-        
-            
-        
-    
-
-    
-    
-        
-            
-        
-    
-
-    
-    
-        
-            
-        
-    
-
-    
-    
-        
-            
-        
-    
-
-    
-    
-        
-            
-        
-    
-
-    
-    
-        
-            
-        
-    
-
-    
-    
-        
-            
-        
-    
-
-    
-    
-        
-            
-        
-    
-
-    
-    
-        
-            
-        
-    
-
-    
-    
-        
-            
-        
-    
-
-    
-    
-        
-            
-        
-    
-
-    
-    
-        
-            
-        
-    
-
-    
-    
-        
-            
-        
-    
-
-    
-    
-        
-            
-        
-    
-
-    
-    
-        
-            
-        
-    
-
-    
-    
-        
-            
-        
-    
-
-    
-    
-        
-            
-        
-    
-
-    
-    
-        
-            
                 
                 <div class="panel-body">
                 <h5>相关博客</h5>
                 <ul>
                 
                 <li class="relatedPost" style="font-size: 12px;">
-                    <a href="http://www.mixfate.com/tomcat/2016/04/01/tomcat-ssl-1.html">tomcat配置ssl单向认证</a>
+                    <a href="http://www.mixfate.com/java/2016/04/20/zookeeper-cluster.html">Zookeeper集群环境安装</a>
                     
-                        <small>(所属分类: <a href="/category/tomcat">tomcat</a>)</small>
+                        <small>(所属分类: <a href="/category/java">java</a>)</small>
                     
                 </li>
                 
                 
+            
+        
+    
+
+    
+    
+        
+            
+                
+                <li class="relatedPost" style="font-size: 12px;">
+                    <a href="http://www.mixfate.com/java/2016/04/19/spring-dubbo.html">Dubbo全Spring配置方式</a>
+                    
+                        <small>(所属分类: <a href="/category/java">java</a>)</small>
+                    
+                </li>
+                
+                
+            
+        
+    
+
+    
+    
+        
+            
+        
+    
+
+    
+    
+        
+            
+                
+                <li class="relatedPost" style="font-size: 12px;">
+                    <a href="http://www.mixfate.com/java/2016/04/18/spring-restful.html">Springmvc构建restful webservice应用</a>
+                    
+                        <small>(所属分类: <a href="/category/java">java</a>)</small>
+                    
+                </li>
+                
+                
+            
+        
+    
+
+    
+    
+        
+            
+                
+                <li class="relatedPost" style="font-size: 12px;">
+                    <a href="http://www.mixfate.com/java/2016/04/17/spring-activemq.html">Spring + Activemq基本使用</a>
+                    
+                        <small>(所属分类: <a href="/category/java">java</a>)</small>
+                    
+                </li>
+                
+                
+            
+        
+    
+
+    
+    
+        
+            
+                
+                <li class="relatedPost" style="font-size: 12px;">
+                    <a href="http://www.mixfate.com/java/2016/04/14/linux-java-install.html">汇总一些linux安装java应用环境相关操作命令</a>
+                    
+                        <small>(所属分类: <a href="/category/java">java</a>)</small>
+                    
+                </li>
+                
+                
+            
+        
+    
+
+    
+    
+        
+            
+                
+                <li class="relatedPost" style="font-size: 12px;">
+                    <a href="http://www.mixfate.com/java/2016/04/14/spring-jedis-distributed-lock.html">Spring4+jedis实现分布式锁</a>
+                    
+                        <small>(所属分类: <a href="/category/java">java</a>)</small>
+                    
+                </li>
+                
+                
+            
+        
+    
+
+    
+    
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+    
+
+    
+    
+        
             
         
     
@@ -425,10 +457,8 @@
 
 <div class="PageNavigation" style="font-size: 12px;">
   
-    <a class="prev pull-left" href="/tomcat/2016/04/01/tomcat-ssl-1.html">&laquo; tomcat配置ssl单向认证</a>
+    <a class="prev pull-left" href="/java/2016/04/20/zookeeper-cluster.html">&laquo; Zookeeper集群环境安装</a>
   
-  
-    <a class="next pull-right" href="/maven/2016/04/02/maven-filter.html">使用maven为不同环境打包，应用不同配置文件 &raquo;</a>
   
 </div>
 <div>&nbsp;</div>
@@ -440,8 +470,8 @@
 
         /*
 		var disqus_shortname = "mixfate";
-        var disqus_identifier = "http://www.mixfate.com_tomcat配置ssl双向认证";
-        var disqus_title = "tomcat配置ssl双向认证";
+        var disqus_identifier = "http://www.mixfate.com_Dubbo管理控制台(dubbo-admin)";
+        var disqus_title = "Dubbo管理控制台(dubbo-admin)";
 		*/
 
         /* * * DON'T EDIT BELOW THIS LINE * * */

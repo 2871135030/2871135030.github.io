@@ -231,6 +231,27 @@
             
             
             
+            <div class="least-content">2016-04-21 21:23</div>
+            <h4 class="list-group-item-heading" style="font-size: 14px;"><a href="/java/2016/04/21/dubbo.html">Dubbo管理控制台(dubbo-admin)</a></h4>
+            <p class="list-group-item-text">Dubbo的管理控制台(Dubbo Admin) dubbo spring配置使用文章介绍过使用dubbo构建简单服务， 创建了服务提供者及消费者，dubbo提供了管理后台管理服务提供者与消费者 可在http://dubbo.io/Download-zh.htm(不保证此地址一直可用)直接下载 dubbo-admin-2.5.3.war 放到tomcat目录中并启动，在此就不多作介绍tomcat的部署了， 也可以将dubbo源码下载到本地，自行打war包放到tomcat中部署，本文介绍根据源码部署dubbo-admin 1、通过git下载dubbo源码(确认已安装git客户端)，命令 git clone https://github.com/alibaba/dubbo dubbo 2、源码下载完成后，可直接在dubbo根目录install，命令 mvn install -Dmaven.test.skip 正确完成install后，在目录/dubbo/dubbo-admin/target/中已打好包dubbo-admin-2.5.4-SNAPSHOT.war（本文以最新git版本库中获取代码为例） 将此war包放置到tomcat目录中，启动tomcat即可。...</p>
+            
+            </div>
+        </div>
+        <div class="list-group-separator"></div>
+        
+        <div class="list-group-item">
+            <div class="row-action-primary">
+              <i class="fa fa-sticky-note"></i>
+            </div>
+            <div class="row-content" style="font-size: 12px;">
+            
+            
+            
+            
+                
+                
+                
+            
             <div class="least-content">2016-04-20 21:03</div>
             <h4 class="list-group-item-heading" style="font-size: 14px;"><a href="/java/2016/04/20/zookeeper-cluster.html">Zookeeper集群环境安装</a></h4>
             <p class="list-group-item-text">Zookeeper集群环境安装 ZooKeeper是一个分布式开源框架，提供了协调分布式应用的基本服务，它向外部应用暴露一组通用服务——分布式同步（Distributed Synchronization）、命名服务（Naming Service）、集群维护（Group Maintenance）等，简化分布式应用协调及其管理的难度，提供高性能的分布式服务。ZooKeeper本身可以以Standalone模式安装运行，不过它的长处在于通过分布式ZooKeeper集群（一个Leader，多个Follower），基于一定的策略来保证ZooKeeper集群的稳定性和可用性，从而实现分布式应用的可靠性。 单机安装Zookeeper已在文中ZooKeeper安装使用介绍过，在实际应用中我们将zookeeper集群部署，构建高可用的服务，避免单点故障。 1、在目录/software/zookeeper-cluster/中解压三份zookeeper安装包（zookeeper-3.4.8.tar.gz包），分别为zookeeper-3.4.8-node1、zookeeper-3.4.8-node2、zookeeper-3.4.8-node3， 集群中所有的结点作为一个整体对分布式应用提供服务，本文中在同一台机器上安装3个 分别编辑note1、note2、note3节点的配置文件，文件目录conf/zoo.cfg tickTime=2000 initLimit=10 syncLimit=5 dataDir=/software/zookeeper-cluster/zookeeper-3.4.8-node1/data clientPort=2181 server.1=localhost:2887:3887 server.2=localhost:2888:3888 server.3=localhost:2889:3889 注意：dataDir、clientPort两个参数三个节点不同 dataDir顾名思义就是Zookeeper保存数据的目录,默认情况下Zookeeper将写数据的日志文件也保存在这个目录里，三个节点各自保存在节点的data目录内； clientPort这个端口就是客户端连接Zookeeper服务器的端口,Zookeeper会监听这个端口接受客户端的访问请求；...</p>
