@@ -6,15 +6,15 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <link rel="shortcut icon" href="/static/img/favicon.ico" />
-        <title>Dubbo全Spring配置方式 - 技术乐园</title>
+        <title>Spring+Dubbo annotation配置 - 技术乐园</title>
         <meta name="author" content="mixfate博客" />
         <meta name="description" content="mixfate博客-技术乐园" />
-        <meta name="keywords" content="Dubbo全Spring配置方式, 技术乐园, java, dubbo" />
+        <meta name="keywords" content="Spring+Dubbo annotation配置, 技术乐园, java, dubbo" />
 
         <meta content="0" property="fb:app_id">
         <meta content="技术乐园" property="og:site_name">
         
-          <meta content="Dubbo全Spring配置方式" property="og:title">
+          <meta content="Spring+Dubbo annotation配置" property="og:title">
         
         
           <meta content="article" property="og:type">
@@ -23,10 +23,10 @@
           <meta content="mixfate博客-技术乐园" property="og:description">
         
         
-          <meta content="http://www.mixfate.com/java/dubbo/2016/04/19/spring-dubbo.html" property="og:url">
+          <meta content="http://www.mixfate.com/java/dubbo/2016/04/22/spring-dubbo-annotation.html" property="og:url">
         
         
-          <meta content="2016-04-19T21:03:13+08:00" property="article:published_time">
+          <meta content="2016-04-22T21:23:46+08:00" property="article:published_time">
           <meta content="http://www.mixfate.com/about/" property="article:author">
         
         
@@ -44,10 +44,10 @@
         <meta name="twitter:site" content="@\#">
         <meta name="twitter:creator" content="@\#">
         
-          <meta name="twitter:title" content="Dubbo全Spring配置方式">
+          <meta name="twitter:title" content="Spring+Dubbo annotation配置">
         
         
-          <meta name="twitter:url" content="http://www.mixfate.com/java/dubbo/2016/04/19/spring-dubbo.html">
+          <meta name="twitter:url" content="http://www.mixfate.com/java/dubbo/2016/04/22/spring-dubbo-annotation.html">
         
         
           <meta name="twitter:description" content="mixfate博客-技术乐园">
@@ -122,10 +122,10 @@
         </div>
       </div>
       <div class="col-md-9 col-sm-8 col-xs-12">
-      <h2 class="blog-title-pro">Dubbo全Spring配置方式</h2>
+      <h2 class="blog-title-pro">Spring+Dubbo annotation配置</h2>
       <p class="info">
       
-      <span class="time">2016/04/19</span>
+      <span class="time">2016/04/22</span>
       
       
     <span class="categories">
@@ -148,19 +148,19 @@
 	
 	
 	
-	<li class="col-lg-12 col-md-12 col-sm-4 col-xs-12 current-menu-item spring-dubbo.html"><a href="/"><i class="fa fa-home"></i> 首页</a></li>
+	<li class="col-lg-12 col-md-12 col-sm-4 col-xs-12 current-menu-item spring-dubbo-annotation.html"><a href="/"><i class="fa fa-home"></i> 首页</a></li>
 
 	
 	
 	
 	
-	<li class="col-lg-12 col-md-12 col-sm-4 col-xs-12  spring-dubbo.html"><a href="/category/java"><i class="fa fa-desktop"></i> 分类</a></li>
+	<li class="col-lg-12 col-md-12 col-sm-4 col-xs-12  spring-dubbo-annotation.html"><a href="/category/java"><i class="fa fa-desktop"></i> 分类</a></li>
 
 	
 	
 	
 	
-	<li class="col-lg-12 col-md-12 col-sm-4 col-xs-12  spring-dubbo.html"><a href="/about/"><i class="fa fa-comments"></i> 关于</a></li>
+	<li class="col-lg-12 col-md-12 col-sm-4 col-xs-12  spring-dubbo-annotation.html"><a href="/about/"><i class="fa fa-comments"></i> 关于</a></li>
 
 </ul>
     </div>
@@ -181,139 +181,31 @@
             <div class="col-md-9 col-xs-12 full">
                 <div class="post-content well">
 <article class="content">
-    <div class="post" style="font-size: 12px;"><h2 id="dubbospring">Dubbo的Spring配置方式</h2>
+    <div class="post" style="font-size: 12px;"><h2 id="springdubbo-annotation">Spring+Dubbo annotation配置</h2>
 
-<p>DUBBO是一个分布式服务框架，致力于提供高性能和透明化的RPC远程服务调用方案，是阿里巴巴SOA服务化治理方案的核心框架。</p>
-
-<p>1、编写pom.xml，其中包括spring、dubbo基础包，pom.xml内容如下</p>
-
-<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="o">&lt;</span><span class="n">project</span> <span class="n">xmlns</span><span class="o">=</span><span class="s2">"http://maven.apache.org/POM/4.0.0"</span> <span class="n">xmlns</span><span class="ss">:xsi</span><span class="o">=</span><span class="s2">"http://www.w3.org/2001/XMLSchema-instance"</span>
-	<span class="n">xsi</span><span class="ss">:schemaLocation</span><span class="o">=</span><span class="s2">"http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"</span><span class="o">&gt;</span>
-	<span class="o">&lt;</span><span class="n">modelVersion</span><span class="o">&gt;</span><span class="mi">4</span><span class="o">.</span><span class="mi">0</span><span class="o">.</span><span class="mi">0</span><span class="o">&lt;</span><span class="sr">/modelVersion&gt;
-	&lt;groupId&gt;com.hode&lt;/</span><span class="n">groupId</span><span class="o">&gt;</span>
-	<span class="o">&lt;</span><span class="n">artifactId</span><span class="o">&gt;</span><span class="n">dubbo</span><span class="o">&lt;</span><span class="sr">/artifactId&gt;
-	&lt;version&gt;0.0.1-SNAPSHOT&lt;/</span><span class="n">version</span><span class="o">&gt;</span>
-
-	<span class="o">&lt;</span><span class="n">properties</span><span class="o">&gt;</span>
-		<span class="o">&lt;</span><span class="n">spring</span><span class="p">.</span><span class="nf">version</span><span class="o">&gt;</span><span class="mi">4</span><span class="o">.</span><span class="mi">0</span><span class="o">.</span><span class="mi">2</span><span class="o">.</span><span class="no">RELEASE</span><span class="o">&lt;</span><span class="sr">/spring.version&gt;
-		&lt;log4j.version&gt;1.2.17&lt;/</span><span class="n">log4j</span><span class="p">.</span><span class="nf">version</span><span class="o">&gt;</span>
-	<span class="o">&lt;</span><span class="sr">/properties&gt;
-	
-	&lt;dependencies&gt;
-		
-		&lt;dependency&gt;
-			&lt;groupId&gt;org.springframework&lt;/</span><span class="n">groupId</span><span class="o">&gt;</span>
-			<span class="o">&lt;</span><span class="n">artifactId</span><span class="o">&gt;</span><span class="n">spring</span><span class="o">-</span><span class="n">core</span><span class="o">&lt;</span><span class="sr">/artifactId&gt;
-			&lt;version&gt;${spring.version}&lt;/</span><span class="n">version</span><span class="o">&gt;</span>
-		<span class="o">&lt;</span><span class="sr">/dependency&gt;
-		&lt;dependency&gt;
-			&lt;groupId&gt;org.springframework&lt;/</span><span class="n">groupId</span><span class="o">&gt;</span>
-			<span class="o">&lt;</span><span class="n">artifactId</span><span class="o">&gt;</span><span class="n">spring</span><span class="o">-</span><span class="n">context</span><span class="o">&lt;</span><span class="sr">/artifactId&gt;
-			&lt;version&gt;${spring.version}&lt;/</span><span class="n">version</span><span class="o">&gt;</span>
-		<span class="o">&lt;</span><span class="sr">/dependency&gt;
-		&lt;dependency&gt;
-			&lt;groupId&gt;org.springframework&lt;/</span><span class="n">groupId</span><span class="o">&gt;</span>
-			<span class="o">&lt;</span><span class="n">artifactId</span><span class="o">&gt;</span><span class="n">spring</span><span class="o">-</span><span class="n">context</span><span class="o">-</span><span class="n">support</span><span class="o">&lt;</span><span class="sr">/artifactId&gt;
-			&lt;version&gt;${spring.version}&lt;/</span><span class="n">version</span><span class="o">&gt;</span>
-		<span class="o">&lt;</span><span class="sr">/dependency&gt;
-		&lt;dependency&gt;
-			&lt;groupId&gt;org.springframework&lt;/</span><span class="n">groupId</span><span class="o">&gt;</span>
-			<span class="o">&lt;</span><span class="n">artifactId</span><span class="o">&gt;</span><span class="n">spring</span><span class="o">-</span><span class="n">tx</span><span class="o">&lt;</span><span class="sr">/artifactId&gt;
-			&lt;version&gt;${spring.version}&lt;/</span><span class="n">version</span><span class="o">&gt;</span>
-		<span class="o">&lt;</span><span class="sr">/dependency&gt;
-		&lt;dependency&gt;
-			&lt;groupId&gt;org.springframework&lt;/</span><span class="n">groupId</span><span class="o">&gt;</span>
-			<span class="o">&lt;</span><span class="n">artifactId</span><span class="o">&gt;</span><span class="n">spring</span><span class="o">-</span><span class="n">web</span><span class="o">&lt;</span><span class="sr">/artifactId&gt;
-			&lt;version&gt;${spring.version}&lt;/</span><span class="n">version</span><span class="o">&gt;</span>
-		<span class="o">&lt;</span><span class="sr">/dependency&gt;
-		&lt;dependency&gt;
-			&lt;groupId&gt;org.springframework&lt;/</span><span class="n">groupId</span><span class="o">&gt;</span>
-			<span class="o">&lt;</span><span class="n">artifactId</span><span class="o">&gt;</span><span class="n">spring</span><span class="o">-</span><span class="n">webmvc</span><span class="o">&lt;</span><span class="sr">/artifactId&gt;
-			&lt;version&gt;${spring.version}&lt;/</span><span class="n">version</span><span class="o">&gt;</span>
-		<span class="o">&lt;</span><span class="sr">/dependency&gt;
-		
-		&lt;dependency&gt;
-			&lt;groupId&gt;log4j&lt;/</span><span class="n">groupId</span><span class="o">&gt;</span>
-			<span class="o">&lt;</span><span class="n">artifactId</span><span class="o">&gt;</span><span class="n">log4j</span><span class="o">&lt;</span><span class="sr">/artifactId&gt;
-			&lt;version&gt;${log4j.version}&lt;/</span><span class="n">version</span><span class="o">&gt;</span>
-		<span class="o">&lt;</span><span class="sr">/dependency&gt;
-		
-		&lt;dependency&gt;
-			&lt;groupId&gt;org.slf4j&lt;/</span><span class="n">groupId</span><span class="o">&gt;</span>
-			<span class="o">&lt;</span><span class="n">artifactId</span><span class="o">&gt;</span><span class="n">slf4j</span><span class="o">-</span><span class="n">log4j12</span><span class="o">&lt;</span><span class="sr">/artifactId&gt;
-			&lt;version&gt;1.6.1&lt;/</span><span class="n">version</span><span class="o">&gt;</span>
-		<span class="o">&lt;</span><span class="sr">/dependency&gt;
-		&lt;dependency&gt;
-			&lt;groupId&gt;org.slf4j&lt;/</span><span class="n">groupId</span><span class="o">&gt;</span>
-			<span class="o">&lt;</span><span class="n">artifactId</span><span class="o">&gt;</span><span class="n">slf4j</span><span class="o">-</span><span class="n">api</span><span class="o">&lt;</span><span class="sr">/artifactId&gt;
-			&lt;version&gt;1.6.1&lt;/</span><span class="n">version</span><span class="o">&gt;</span>
-		<span class="o">&lt;</span><span class="sr">/dependency&gt;
-		
-		&lt;!--  dubbo start --&gt;
-		&lt;dependency&gt; 
-		    &lt;groupId&gt;com.alibaba&lt;/</span><span class="n">groupId</span><span class="o">&gt;</span> 
-		    <span class="o">&lt;</span><span class="n">artifactId</span><span class="o">&gt;</span><span class="n">dubbo</span><span class="o">&lt;</span><span class="sr">/artifactId&gt; 
-		    &lt;version&gt;2.5.3&lt;/</span><span class="n">version</span><span class="o">&gt;</span> 
-		    <span class="o">&lt;</span><span class="n">exclusions</span><span class="o">&gt;</span> 
-		        <span class="o">&lt;</span><span class="n">exclusion</span><span class="o">&gt;</span> 
-		            <span class="o">&lt;</span><span class="n">groupId</span><span class="o">&gt;</span><span class="n">org</span><span class="p">.</span><span class="nf">springframework</span><span class="o">&lt;</span><span class="sr">/groupId&gt; 
-		            &lt;artifactId&gt;spring&lt;/</span><span class="n">artifactId</span><span class="o">&gt;</span> 
-		        <span class="o">&lt;</span><span class="sr">/exclusion&gt; 
-		    &lt;/ex</span><span class="n">clusions</span><span class="o">&gt;</span> 
-		<span class="o">&lt;</span><span class="sr">/dependency&gt;
-		
-		&lt;!--  dubbo end  --&gt;
-		
-		&lt;!-- zookeeper start --&gt; 
-		&lt;dependency&gt;
-			&lt;groupId&gt;org.apache.zookeeper&lt;/</span><span class="n">groupId</span><span class="o">&gt;</span>
-			<span class="o">&lt;</span><span class="n">artifactId</span><span class="o">&gt;</span><span class="n">zookeeper</span><span class="o">&lt;</span><span class="sr">/artifactId&gt;
-			&lt;version&gt;3.5.0-alpha&lt;/</span><span class="n">version</span><span class="o">&gt;</span>
-		<span class="o">&lt;</span><span class="sr">/dependency&gt;
-		
-		&lt;dependency&gt;
-		    &lt;groupId&gt;com.101tec&lt;/</span><span class="n">groupId</span><span class="o">&gt;</span>
-		    <span class="o">&lt;</span><span class="n">artifactId</span><span class="o">&gt;</span><span class="n">zkclient</span><span class="o">&lt;</span><span class="sr">/artifactId&gt;
-		    &lt;version&gt;0.8&lt;/</span><span class="n">version</span><span class="o">&gt;</span>
-		<span class="o">&lt;</span><span class="sr">/dependency&gt;
-		&lt;!-- zookeeper end --&gt;
-		
-	&lt;/</span><span class="n">dependencies</span><span class="o">&gt;</span>
-
-	<span class="o">&lt;</span><span class="n">build</span><span class="o">&gt;</span>
-		<span class="o">&lt;</span><span class="n">plugins</span><span class="o">&gt;</span>
-			<span class="o">&lt;</span><span class="n">plugin</span><span class="o">&gt;</span>
-				<span class="o">&lt;</span><span class="n">groupId</span><span class="o">&gt;</span><span class="n">org</span><span class="p">.</span><span class="nf">apache</span><span class="p">.</span><span class="nf">maven</span><span class="p">.</span><span class="nf">plugins</span><span class="o">&lt;</span><span class="sr">/groupId&gt;
-				&lt;artifactId&gt;maven-compiler-plugin&lt;/</span><span class="n">artifactId</span><span class="o">&gt;</span>
-				<span class="o">&lt;</span><span class="n">version</span><span class="o">&gt;</span><span class="mi">3</span><span class="o">.</span><span class="mi">1</span><span class="o">&lt;</span><span class="sr">/version&gt;
-				&lt;configuration&gt;
-					&lt;source&gt;1.8&lt;/sou</span><span class="n">rce</span><span class="o">&gt;</span>
-					<span class="o">&lt;</span><span class="n">target</span><span class="o">&gt;</span><span class="mi">1</span><span class="o">.</span><span class="mi">8</span><span class="o">&lt;</span><span class="sr">/target&gt;
-					&lt;encoding&gt;UTF-8&lt;/en</span><span class="n">coding</span><span class="o">&gt;</span>
-				<span class="o">&lt;</span><span class="sr">/configuration&gt;
-			&lt;/</span><span class="n">plugin</span><span class="o">&gt;</span>
-		<span class="o">&lt;</span><span class="sr">/plugins&gt;
-	&lt;/</span><span class="n">build</span><span class="o">&gt;</span>
-<span class="o">&lt;</span><span class="sr">/project&gt;</span></code></pre></figure>
+<p>本文继<a href="/java/dubbo/2016/04/19/spring-dubbo.html">dubbo spring配置使用</a>，上文中使用的xml，dubbo提供了注解方式使代码更加简洁
+1、编写pom.xml，其中包括spring、dubbo基础包，pom.xml内容请参考上文（在此省略）</p>
 
 <p>2、编写一个简单的服务
-DemoService.java</p>
+FooService.java</p>
 
 <figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">package</span> <span class="n">com</span><span class="p">.</span><span class="nf">hode</span><span class="p">.</span><span class="nf">dubbo</span><span class="p">.</span><span class="nf">provider</span><span class="p">;</span>
 
-<span class="kp">public</span> <span class="n">interface</span> <span class="no">DemoService</span> <span class="p">{</span>
+<span class="kp">public</span> <span class="n">interface</span> <span class="no">FooService</span> <span class="p">{</span>
 
 	<span class="kp">public</span> <span class="no">String</span> <span class="n">sayHello</span><span class="p">(</span><span class="no">String</span> <span class="nb">name</span><span class="p">);</span>
 	
 <span class="p">}</span></code></pre></figure>
 
-<p>DemoServiceImpl.java</p>
+<p>FooServiceImpl.java，注意需使用alibaba的Service注解</p>
 
 <figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">package</span> <span class="n">com</span><span class="p">.</span><span class="nf">hode</span><span class="p">.</span><span class="nf">dubbo</span><span class="p">.</span><span class="nf">provider</span><span class="p">.</span><span class="nf">impl</span><span class="p">;</span>
 
-<span class="n">import</span> <span class="n">com</span><span class="p">.</span><span class="nf">hode</span><span class="p">.</span><span class="nf">dubbo</span><span class="p">.</span><span class="nf">provider</span><span class="o">.</span><span class="no">DemoService</span><span class="p">;</span>
+<span class="n">import</span> <span class="n">com</span><span class="p">.</span><span class="nf">alibaba</span><span class="p">.</span><span class="nf">dubbo</span><span class="p">.</span><span class="nf">config</span><span class="p">.</span><span class="nf">annotation</span><span class="o">.</span><span class="no">Service</span><span class="p">;</span>
+<span class="n">import</span> <span class="n">com</span><span class="p">.</span><span class="nf">hode</span><span class="p">.</span><span class="nf">dubbo</span><span class="p">.</span><span class="nf">provider</span><span class="o">.</span><span class="no">FooService</span><span class="p">;</span>
 
-<span class="kp">public</span> <span class="k">class</span> <span class="nc">DemoServiceImpl</span> <span class="n">implements</span> <span class="no">DemoService</span> <span class="p">{</span>
+<span class="vi">@Service</span><span class="p">(</span><span class="n">version</span><span class="o">=</span><span class="s2">"1.0.0"</span><span class="p">)</span>
+<span class="kp">public</span> <span class="k">class</span> <span class="nc">FooServiceImpl</span> <span class="n">implements</span> <span class="no">FooService</span> <span class="p">{</span>
 
 	<span class="vi">@Override</span>
 	<span class="kp">public</span> <span class="no">String</span> <span class="n">sayHello</span><span class="p">(</span><span class="no">String</span> <span class="nb">name</span><span class="p">)</span> <span class="p">{</span>
@@ -321,6 +213,31 @@ DemoService.java</p>
 		<span class="k">return</span> <span class="s2">"name is "</span><span class="o">+</span><span class="nb">name</span><span class="p">;</span>
 	<span class="p">}</span>
 
+<span class="p">}</span></code></pre></figure>
+
+<p>FooServiceClient.java，此为客户端调用类，注意需使用alibaba的Service注解</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">package</span> <span class="n">com</span><span class="p">.</span><span class="nf">hode</span><span class="p">.</span><span class="nf">dubbo</span><span class="p">.</span><span class="nf">consumer</span><span class="p">;</span>
+
+<span class="n">import</span> <span class="n">org</span><span class="p">.</span><span class="nf">springframework</span><span class="p">.</span><span class="nf">stereotype</span><span class="o">.</span><span class="no">Component</span><span class="p">;</span>
+
+<span class="n">import</span> <span class="n">com</span><span class="p">.</span><span class="nf">alibaba</span><span class="p">.</span><span class="nf">dubbo</span><span class="p">.</span><span class="nf">config</span><span class="p">.</span><span class="nf">annotation</span><span class="o">.</span><span class="no">Reference</span><span class="p">;</span>
+<span class="n">import</span> <span class="n">com</span><span class="p">.</span><span class="nf">hode</span><span class="p">.</span><span class="nf">dubbo</span><span class="p">.</span><span class="nf">provider</span><span class="o">.</span><span class="no">FooService</span><span class="p">;</span>
+
+<span class="vi">@Component</span>
+<span class="kp">public</span> <span class="k">class</span> <span class="nc">FooServiceClient</span> <span class="p">{</span>
+
+	<span class="vi">@Reference</span><span class="p">(</span><span class="n">version</span><span class="o">=</span><span class="s2">"1.0.0"</span><span class="p">)</span>
+	<span class="kp">private</span> <span class="no">FooService</span> <span class="n">fooService</span><span class="p">;</span>
+
+	<span class="kp">public</span> <span class="no">FooService</span> <span class="n">getFooService</span><span class="p">()</span> <span class="p">{</span>
+		<span class="k">return</span> <span class="n">fooService</span><span class="p">;</span>
+	<span class="p">}</span>
+
+	<span class="kp">public</span> <span class="n">void</span> <span class="n">setFooService</span><span class="p">(</span><span class="no">FooService</span> <span class="n">fooService</span><span class="p">)</span> <span class="p">{</span>
+		<span class="n">this</span><span class="p">.</span><span class="nf">fooService</span> <span class="o">=</span> <span class="n">fooService</span><span class="p">;</span>
+	<span class="p">}</span>
+	
 <span class="p">}</span></code></pre></figure>
 
 <p>3、编写spring配置文件(其中包括了服务提供方和服务消费方)及日志文件，本例为了演示方便不需要启动任何中心节点，只要广播地址一样，就可以互相发现，当然若要使用zookeeper将地址替换即可，各文件内容如下：
@@ -335,27 +252,15 @@ applicationContext-provider.xml</p>
         http://code.alibabatech.com/schema/dubbo/dubbo.xsd
         "</span><span class="o">&gt;</span>
 	
-	<span class="o">&lt;!--</span> <span class="err">提供方应用信息，用于计算依赖关系</span> <span class="o">--&gt;</span>
-	<span class="o">&lt;</span><span class="n">dubbo</span><span class="ss">:application</span> <span class="nb">name</span><span class="o">=</span><span class="s2">"hello-world-app"</span> <span class="o">/&gt;</span>
+	<span class="o">&lt;!--</span> <span class="err">公共信息，也可以用</span><span class="n">dubbo</span><span class="p">.</span><span class="nf">properties</span><span class="err">配置</span> <span class="o">--&gt;</span>
+	<span class="o">&lt;</span><span class="n">dubbo</span><span class="ss">:application</span> <span class="nb">name</span><span class="o">=</span><span class="s2">"annotation-provider"</span> <span class="o">/&gt;</span>
 	
-	
-	<span class="o">&lt;!--</span> <span class="err">使用</span><span class="n">multicast</span><span class="err">广播注册中心暴露服务地址</span> <span class="o">--&gt;</span>
 	<span class="o">&lt;</span><span class="n">dubbo</span><span class="ss">:registry</span> <span class="n">address</span><span class="o">=</span><span class="s2">"multicast://224.5.6.7:1234"</span> <span class="o">/&gt;</span>
 	
 	
-	<span class="o">&lt;!--</span> <span class="err">使用</span><span class="n">zookeeper</span><span class="err">注册中心暴露服务地址</span> 
-	<span class="o">&lt;</span><span class="n">dubbo</span><span class="ss">:registry</span> <span class="n">address</span><span class="o">=</span><span class="s2">"zookeeper://192.167.48.128:2181"</span> <span class="o">/&gt;</span>
-	<span class="o">--&gt;</span>
-	
-	<span class="o">&lt;!--</span> <span class="err">用</span><span class="n">dubbo</span><span class="err">协议在</span><span class="mi">20880</span><span class="err">端口暴露服务</span> <span class="o">--&gt;</span>
-	<span class="o">&lt;</span><span class="n">dubbo</span><span class="ss">:protocol</span> <span class="nb">name</span><span class="o">=</span><span class="s2">"dubbo"</span> <span class="n">port</span><span class="o">=</span><span class="s2">"20880"</span> <span class="o">/&gt;</span>
-	
-	<span class="o">&lt;!--</span> <span class="err">声明需要暴露的服务接口</span> <span class="o">--&gt;</span>
-	<span class="o">&lt;</span><span class="n">dubbo</span><span class="ss">:service</span> <span class="n">interface</span><span class="o">=</span><span class="s2">"com.hode.dubbo.provider.DemoService"</span> <span class="n">ref</span><span class="o">=</span><span class="s2">"demoService"</span> <span class="o">/&gt;</span>
-	
-	<span class="o">&lt;!--</span> <span class="err">具体的实现</span><span class="n">bean</span> <span class="o">--&gt;</span>
-	<span class="o">&lt;</span><span class="n">bean</span> <span class="nb">id</span><span class="o">=</span><span class="s2">"demoService"</span> <span class="k">class</span><span class="o">=</span><span class="s2">"com.hode.dubbo.provider.impl.DemoServiceImpl"</span> <span class="o">/&gt;</span>
-	
+	<span class="o">&lt;!--</span> <span class="err">扫描注解包路径，多个包用逗号分隔，不填</span><span class="n">package</span><span class="err">表示扫描</span><span class="no">ApplicationContext</span><span class="err">中所有的类</span> <span class="o">--&gt;</span>
+	<span class="o">&lt;</span><span class="n">dubbo</span><span class="ss">:annotation</span> <span class="n">package</span><span class="o">=</span><span class="s2">"com.hode.dubbo.provider"</span> <span class="o">/&gt;</span>
+		
 	
 <span class="o">&lt;</span><span class="sr">/beans&gt;</span></code></pre></figure>
 
@@ -368,19 +273,13 @@ applicationContext-provider.xml</p>
     <span class="n">xsi</span><span class="ss">:schemaLocation</span><span class="o">=</span><span class="s2">"http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 	http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd"</span><span class="o">&gt;</span>
  
-    <span class="o">&lt;!--</span> <span class="err">消费方应用名，用于计算依赖关系，不是匹配条件，不要与提供方一样</span> <span class="o">--&gt;</span>
-    <span class="o">&lt;</span><span class="n">dubbo</span><span class="ss">:application</span> <span class="nb">name</span><span class="o">=</span><span class="s2">"consumer-of-helloworld-app"</span>  <span class="o">/&gt;</span>
- 
-    <span class="o">&lt;!--</span> <span class="err">使用</span><span class="n">multicast</span><span class="err">广播注册中心暴露发现服务地址</span> <span class="o">--&gt;</span>
-    <span class="o">&lt;</span><span class="n">dubbo</span><span class="ss">:registry</span> <span class="n">address</span><span class="o">=</span><span class="s2">"multicast://224.5.6.7:1234"</span> <span class="o">/&gt;</span>
-    
-    
-	<span class="o">&lt;!--</span> <span class="err">使用</span><span class="n">zookeeper</span><span class="err">注册中心暴露服务地址</span> 
-	<span class="o">&lt;</span><span class="n">dubbo</span><span class="ss">:registry</span> <span class="n">address</span><span class="o">=</span><span class="s2">"zookeeper://192.167.48.128:2181"</span> <span class="o">/&gt;--&gt;</span>
- 
-    <span class="o">&lt;!--</span> <span class="err">生成远程服务代理，可以和本地</span><span class="n">bean</span><span class="err">一样使用</span><span class="n">demoService</span> <span class="o">--&gt;</span>
-    <span class="o">&lt;</span><span class="n">dubbo</span><span class="ss">:reference</span> <span class="nb">id</span><span class="o">=</span><span class="s2">"demoService"</span> <span class="n">interface</span><span class="o">=</span><span class="s2">"com.hode.dubbo.provider.DemoService"</span> <span class="o">/&gt;</span>
- 
+	
+	<span class="o">&lt;</span><span class="n">dubbo</span><span class="ss">:application</span> <span class="nb">name</span><span class="o">=</span><span class="s2">"annotation-consumer"</span> <span class="o">/&gt;</span>
+	
+	<span class="o">&lt;</span><span class="n">dubbo</span><span class="ss">:registry</span> <span class="n">address</span><span class="o">=</span><span class="s2">"multicast://224.5.6.7:1234"</span> <span class="o">/&gt;</span>
+	
+	<span class="o">&lt;</span><span class="n">dubbo</span><span class="ss">:annotation</span> <span class="n">package</span><span class="o">=</span><span class="s2">"com.hode.dubbo.consumer"</span> <span class="o">/&gt;</span>
+	 
 <span class="o">&lt;</span><span class="sr">/beans&gt;</span></code></pre></figure>
 
 <p>log4j.properties</p>
@@ -395,7 +294,7 @@ applicationContext-provider.xml</p>
 <p>4、编写服务提供方代码，并运行，等待服务消费方调用
 Provider.java</p>
 
-<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">package</span> <span class="n">com</span><span class="p">.</span><span class="nf">hode</span><span class="p">;</span>
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">package</span> <span class="n">com</span><span class="p">.</span><span class="nf">hode</span><span class="p">.</span><span class="nf">dubbo</span><span class="p">;</span>
 
 <span class="n">import</span> <span class="n">org</span><span class="p">.</span><span class="nf">springframework</span><span class="p">.</span><span class="nf">context</span><span class="p">.</span><span class="nf">support</span><span class="o">.</span><span class="no">AbstractApplicationContext</span><span class="p">;</span>
 <span class="n">import</span> <span class="n">org</span><span class="p">.</span><span class="nf">springframework</span><span class="p">.</span><span class="nf">context</span><span class="p">.</span><span class="nf">support</span><span class="o">.</span><span class="no">ClassPathXmlApplicationContext</span><span class="p">;</span>
@@ -415,19 +314,22 @@ Provider.java</p>
 <p>5、再编写一个服务消费方，并运行，查看服务调用的情况
 Consumer.java</p>
 
-<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">package</span> <span class="n">com</span><span class="p">.</span><span class="nf">hode</span><span class="p">;</span>
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">package</span> <span class="n">com</span><span class="p">.</span><span class="nf">hode</span><span class="p">.</span><span class="nf">dubbo</span><span class="p">;</span>
 
 <span class="n">import</span> <span class="n">org</span><span class="p">.</span><span class="nf">springframework</span><span class="p">.</span><span class="nf">context</span><span class="p">.</span><span class="nf">support</span><span class="o">.</span><span class="no">AbstractApplicationContext</span><span class="p">;</span>
 <span class="n">import</span> <span class="n">org</span><span class="p">.</span><span class="nf">springframework</span><span class="p">.</span><span class="nf">context</span><span class="p">.</span><span class="nf">support</span><span class="o">.</span><span class="no">ClassPathXmlApplicationContext</span><span class="p">;</span>
 
-<span class="n">import</span> <span class="n">com</span><span class="p">.</span><span class="nf">hode</span><span class="p">.</span><span class="nf">dubbo</span><span class="p">.</span><span class="nf">provider</span><span class="o">.</span><span class="no">DemoService</span><span class="p">;</span>
+<span class="n">import</span> <span class="n">com</span><span class="p">.</span><span class="nf">hode</span><span class="p">.</span><span class="nf">dubbo</span><span class="p">.</span><span class="nf">consumer</span><span class="o">.</span><span class="no">FooServiceClient</span><span class="p">;</span>
+<span class="n">import</span> <span class="n">com</span><span class="p">.</span><span class="nf">hode</span><span class="p">.</span><span class="nf">dubbo</span><span class="p">.</span><span class="nf">provider</span><span class="o">.</span><span class="no">FooService</span><span class="p">;</span>
 
 <span class="kp">public</span> <span class="k">class</span> <span class="nc">Consumer</span> <span class="p">{</span>
 
 	<span class="kp">public</span> <span class="n">static</span> <span class="n">void</span> <span class="n">main</span><span class="p">(</span><span class="no">String</span><span class="p">[]</span> <span class="n">args</span><span class="p">)</span> <span class="n">throws</span> <span class="no">Exception</span><span class="p">{</span>
 		<span class="no">AbstractApplicationContext</span> <span class="n">context</span> <span class="o">=</span> <span class="kp">new</span> <span class="no">ClassPathXmlApplicationContext</span><span class="p">(</span><span class="kp">new</span> <span class="no">String</span><span class="p">[]{</span><span class="s2">"applicationContext-consumer.xml"</span><span class="p">});</span>
 		
-		<span class="no">DemoService</span> <span class="n">service</span> <span class="o">=</span> <span class="n">context</span><span class="p">.</span><span class="nf">getBean</span><span class="p">(</span><span class="no">DemoService</span><span class="p">.</span><span class="nf">class</span><span class="p">);</span>
+		<span class="no">FooServiceClient</span> <span class="n">client</span> <span class="o">=</span> <span class="n">context</span><span class="p">.</span><span class="nf">getBean</span><span class="p">(</span><span class="no">FooServiceClient</span><span class="p">.</span><span class="nf">class</span><span class="p">);</span>
+		
+		<span class="no">FooService</span> <span class="n">service</span> <span class="o">=</span> <span class="n">client</span><span class="p">.</span><span class="nf">getFooService</span><span class="p">();</span>
 		
 		<span class="no">String</span> <span class="n">result</span> <span class="o">=</span> <span class="n">service</span><span class="p">.</span><span class="nf">sayHello</span><span class="p">(</span><span class="s2">"hode"</span><span class="p">);</span>
 		
@@ -451,20 +353,6 @@ Consumer.java</p>
     
         
             
-                
-                <div class="panel-body">
-                <h5>相关博客</h5>
-                <ul>
-                
-                <li class="relatedPost" style="font-size: 12px;">
-                    <a href="http://www.mixfate.com/java/dubbo/2016/04/22/spring-dubbo-annotation.html">Spring+Dubbo annotation配置</a>
-                    
-                        <small>(所属分类: <a href="/category/java">java</a>, <a href="/category/dubbo">dubbo</a>)</small>
-                    
-                </li>
-                
-                
-            
         
             
         
@@ -480,6 +368,10 @@ Consumer.java</p>
     
         
             
+                
+                <div class="panel-body">
+                <h5>相关博客</h5>
+                <ul>
                 
                 <li class="relatedPost" style="font-size: 12px;">
                     <a href="http://www.mixfate.com/java/dubbo/2016/04/21/dubbo.html">Dubbo管理控制台(dubbo-admin)</a>
@@ -529,6 +421,16 @@ Consumer.java</p>
     
     
         
+            
+                
+                <li class="relatedPost" style="font-size: 12px;">
+                    <a href="http://www.mixfate.com/java/dubbo/2016/04/19/spring-dubbo.html">Dubbo全Spring配置方式</a>
+                    
+                        <small>(所属分类: <a href="/category/java">java</a>, <a href="/category/dubbo">dubbo</a>)</small>
+                    
+                </li>
+                
+                
             
         
             
@@ -818,10 +720,8 @@ Consumer.java</p>
 
 <div class="PageNavigation" style="font-size: 12px;">
   
-    <a class="prev pull-left" href="/others/2016/04/18/others.html">&laquo; 幽默故事，欢笑中的人生领悟</a>
+    <a class="prev pull-left" href="/java/dubbo/2016/04/21/dubbo.html">&laquo; Dubbo管理控制台(dubbo-admin)</a>
   
-  
-    <a class="next pull-right" href="/java/zookeeper/2016/04/20/zookeeper-cluster.html">Zookeeper集群环境安装 &raquo;</a>
   
 </div>
 <div>&nbsp;</div>
@@ -833,8 +733,8 @@ Consumer.java</p>
 
         /*
 		var disqus_shortname = "mixfate";
-        var disqus_identifier = "http://www.mixfate.com_Dubbo全Spring配置方式";
-        var disqus_title = "Dubbo全Spring配置方式";
+        var disqus_identifier = "http://www.mixfate.com_Spring+Dubbo annotation配置";
+        var disqus_title = "Spring+Dubbo annotation配置";
 		*/
 
         /* * * DON'T EDIT BELOW THIS LINE * * */
