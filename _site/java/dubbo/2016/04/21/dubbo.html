@@ -6,15 +6,15 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <link rel="shortcut icon" href="/static/img/favicon.ico" />
-        <title>zookeeper安装使用 - 技术乐园</title>
+        <title>Dubbo管理控制台(dubbo-admin) - 技术乐园</title>
         <meta name="author" content="mixfate博客" />
         <meta name="description" content="mixfate博客-技术乐园" />
-        <meta name="keywords" content="zookeeper安装使用, 技术乐园, tools" />
+        <meta name="keywords" content="Dubbo管理控制台(dubbo-admin), 技术乐园, java, dubbo" />
 
         <meta content="0" property="fb:app_id">
         <meta content="技术乐园" property="og:site_name">
         
-          <meta content="zookeeper安装使用" property="og:title">
+          <meta content="Dubbo管理控制台(dubbo-admin)" property="og:title">
         
         
           <meta content="article" property="og:type">
@@ -23,10 +23,10 @@
           <meta content="mixfate博客-技术乐园" property="og:description">
         
         
-          <meta content="http://www.mixfate.com/tools/2016/04/11/zookeeper-install.html" property="og:url">
+          <meta content="http://www.mixfate.com/java/dubbo/2016/04/21/dubbo.html" property="og:url">
         
         
-          <meta content="2016-04-11T13:32:57+08:00" property="article:published_time">
+          <meta content="2016-04-21T21:23:46+08:00" property="article:published_time">
           <meta content="http://www.mixfate.com/about/" property="article:author">
         
         
@@ -34,7 +34,7 @@
         
         
           
-          <meta content="tools" property="article:section">
+          <meta content="java" property="article:section">
           
         
         
@@ -44,10 +44,10 @@
         <meta name="twitter:site" content="@\#">
         <meta name="twitter:creator" content="@\#">
         
-          <meta name="twitter:title" content="zookeeper安装使用">
+          <meta name="twitter:title" content="Dubbo管理控制台(dubbo-admin)">
         
         
-          <meta name="twitter:url" content="http://www.mixfate.com/tools/2016/04/11/zookeeper-install.html">
+          <meta name="twitter:url" content="http://www.mixfate.com/java/dubbo/2016/04/21/dubbo.html">
         
         
           <meta name="twitter:description" content="mixfate博客-技术乐园">
@@ -122,14 +122,14 @@
         </div>
       </div>
       <div class="col-md-9 col-sm-8 col-xs-12">
-      <h2 class="blog-title-pro">zookeeper安装使用</h2>
+      <h2 class="blog-title-pro">Dubbo管理控制台(dubbo-admin)</h2>
       <p class="info">
       
-      <span class="time">2016/04/11</span>
+      <span class="time">2016/04/21</span>
       
       
     <span class="categories">
-        &raquo; <a href="/category/tools">tools</a>
+        &raquo; <a href="/category/java">java</a>, <a href="/category/dubbo">dubbo</a>
     </span>
     
       </p>
@@ -148,19 +148,19 @@
 	
 	
 	
-	<li class="col-lg-12 col-md-12 col-sm-4 col-xs-12 current-menu-item zookeeper-install.html"><a href="/"><i class="fa fa-home"></i> 首页</a></li>
+	<li class="col-lg-12 col-md-12 col-sm-4 col-xs-12 current-menu-item dubbo.html"><a href="/"><i class="fa fa-home"></i> 首页</a></li>
 
 	
 	
 	
 	
-	<li class="col-lg-12 col-md-12 col-sm-4 col-xs-12  zookeeper-install.html"><a href="/category/java"><i class="fa fa-desktop"></i> 分类</a></li>
+	<li class="col-lg-12 col-md-12 col-sm-4 col-xs-12  dubbo.html"><a href="/category/java"><i class="fa fa-desktop"></i> 分类</a></li>
 
 	
 	
 	
 	
-	<li class="col-lg-12 col-md-12 col-sm-4 col-xs-12  zookeeper-install.html"><a href="/about/"><i class="fa fa-comments"></i> 关于</a></li>
+	<li class="col-lg-12 col-md-12 col-sm-4 col-xs-12  dubbo.html"><a href="/about/"><i class="fa fa-comments"></i> 关于</a></li>
 
 </ul>
     </div>
@@ -181,28 +181,38 @@
             <div class="col-md-9 col-xs-12 full">
                 <div class="post-content well">
 <article class="content">
-    <div class="post" style="font-size: 12px;"><h2 id="zookeeper">ZooKeeper安装使用</h2>
+    <div class="post" style="font-size: 12px;"><h2 id="dubbodubbo-admin">Dubbo的管理控制台(Dubbo Admin)</h2>
 
-<p>下载 zookeeper-3.4.8.tar.gz 包</p>
+<p><a href="/java/2016/04/19/spring-dubbo.html">dubbo spring配置使用</a>文章介绍过使用dubbo构建简单服务，
+创建了服务提供者及消费者，dubbo提供了管理后台管理服务提供者与消费者</p>
 
-<p>tar -xzvf zookeeper-3.4.8.tar.gz</p>
+<p>可在<a href="http://dubbo.io/Download-zh.htm">http://dubbo.io/Download-zh.htm(不保证此地址一直可用)</a>直接下载 dubbo-admin-2.5.3.war 放到tomcat目录中并启动，在此就不多作介绍tomcat的部署了，
+也可以将dubbo源码下载到本地，自行打war包放到tomcat中部署，本文介绍根据源码部署dubbo-admin</p>
 
-<p>进入zookeeper目录下的conf子目录, cp -rf zoo_sample.cfg  zoo.cfg 复制一份配置文件</p>
+<p>1、通过git下载dubbo源码(确认已安装git客户端)，命令</p>
 
-<p>vi zoo.cfg完成配置(其它默认便可)</p>
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">git</span> <span class="nb">clone</span> <span class="n">https</span><span class="ss">:/</span><span class="o">/</span><span class="n">github</span><span class="p">.</span><span class="nf">com</span><span class="o">/</span><span class="n">alibaba</span><span class="o">/</span><span class="n">dubbo</span> <span class="n">dubbo</span></code></pre></figure>
 
-<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">dataDir</span><span class="o">=</span><span class="sr">/data/</span><span class="n">zookeeper</span>
-<span class="n">dataLogDir</span><span class="o">=</span><span class="sr">/data/</span><span class="n">zookeeper</span><span class="o">/</span><span class="n">log</span></code></pre></figure>
+<p>2、源码下载完成后，可直接在dubbo根目录install，命令</p>
 
-<p>单机模式已配置好，启动命令为</p>
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">mvn</span> <span class="n">install</span> <span class="o">-</span><span class="no">Dmaven</span><span class="p">.</span><span class="nf">test</span><span class="p">.</span><span class="nf">skip</span></code></pre></figure>
 
-<p>bin/zkServer.sh start</p>
+<p>正确完成install后，在目录/dubbo/dubbo-admin/target/中已打好包dubbo-admin-2.5.4-SNAPSHOT.war（本文以最新git版本库中获取代码为例）
+将此war包放置到tomcat目录中，启动tomcat即可。</p>
 
-<p>Server启动之后, 就可以启动client连接server了, 执行脚本</p>
+<font color="red">注：有关dubbo-admin的配置在解压war包后的WEB-INF中，可查看dubbo.properties配置信息</font>
 
-<p>bin/zkCli.sh -server localhost:2181  便可连接成功</p>
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">dubbo</span><span class="p">.</span><span class="nf">registry</span><span class="p">.</span><span class="nf">address</span><span class="o">=</span><span class="n">zookeeper</span><span class="ss">:/</span><span class="o">/</span><span class="mi">127</span><span class="o">.</span><span class="mi">0</span><span class="o">.</span><span class="mi">0</span><span class="o">.</span><span class="mi">1</span><span class="p">:</span><span class="mi">2181</span>
+<span class="n">dubbo</span><span class="p">.</span><span class="nf">admin</span><span class="p">.</span><span class="nf">root</span><span class="p">.</span><span class="nf">password</span><span class="o">=</span><span class="n">root</span>
+<span class="n">dubbo</span><span class="p">.</span><span class="nf">admin</span><span class="p">.</span><span class="nf">guest</span><span class="p">.</span><span class="nf">password</span><span class="o">=</span><span class="n">guest</span></code></pre></figure>
 
-<p>ls / 命令可查看相关节点</p>
+<p>配置文件参数说明：</p>
+
+<p>zookeeper地址，<a href="/java/2016/04/20/zookeeper-cluster.html">若zookeeper为集群</a>，则指定其中一个节点便可</p>
+
+<p>管理控制台用户名密码：2组分别为用户名root密码root，用户名guest密码guest。注意不是admin</p>
+
+<p>tomcat启动成功后即可进入管理控制台。</p>
 
 <p>结束。</p>
 </div>
@@ -220,67 +230,11 @@
         
             
         
-    
-        
-            
-        
-    
-
-    
-    
-        
-            
-        
-    
-
-    
-    
-        
             
         
     
         
             
-        
-    
-
-    
-    
-        
-            
-        
-    
-
-    
-    
-        
-            
-        
-    
-
-    
-    
-        
-            
-        
-    
-
-    
-    
-        
-            
-        
-    
-
-    
-    
-        
-            
-        
-    
-
-    
-    
         
             
         
@@ -296,19 +250,14 @@
                 <ul>
                 
                 <li class="relatedPost" style="font-size: 12px;">
-                    <a href="http://www.mixfate.com/tools/2016/04/12/redis-install.html">redis安装使用</a>
+                    <a href="http://www.mixfate.com/java/2016/04/20/zookeeper-cluster.html">Zookeeper集群环境安装</a>
                     
-                        <small>(所属分类: <a href="/category/tools">tools</a>)</small>
+                        <small>(所属分类: <a href="/category/java">java</a>)</small>
                     
                 </li>
                 
                 
             
-        
-    
-
-    
-    
         
             
         
@@ -320,19 +269,20 @@
             
                 
                 <li class="relatedPost" style="font-size: 12px;">
-                    <a href="http://www.mixfate.com/tools/2016/04/09/git-TortoiseGIT.html">TortoiseGIT记住用户名密码简单方法</a>
+                    <a href="http://www.mixfate.com/java/dubbo/2016/04/19/spring-dubbo.html">Dubbo全Spring配置方式</a>
                     
-                        <small>(所属分类: <a href="/category/tools">tools</a>)</small>
+                        <small>(所属分类: <a href="/category/java">java</a>, <a href="/category/dubbo">dubbo</a>)</small>
                     
                 </li>
                 
                 
             
         
+            
+        
     
-
-    
-    
+        
+            
         
             
         
@@ -342,18 +292,6 @@
     
         
             
-        
-    
-
-    
-    
-        
-            
-        
-    
-
-    
-    
         
             
         
@@ -365,13 +303,15 @@
             
                 
                 <li class="relatedPost" style="font-size: 12px;">
-                    <a href="http://www.mixfate.com/tools/2016/04/04/mybatis.html">Mybatis使用,Mybatis Generator</a>
+                    <a href="http://www.mixfate.com/java/2016/04/18/spring-restful.html">Springmvc构建restful webservice应用</a>
                     
-                        <small>(所属分类: <a href="/category/tools">tools</a>)</small>
+                        <small>(所属分类: <a href="/category/java">java</a>)</small>
                     
                 </li>
                 
                 
+            
+        
             
         
     
@@ -382,19 +322,52 @@
             
                 
                 <li class="relatedPost" style="font-size: 12px;">
-                    <a href="http://www.mixfate.com/tools/2016/04/03/jekyll-github-pages.html">Windows环境jekyll使用</a>
+                    <a href="http://www.mixfate.com/java/2016/04/17/spring-activemq.html">Spring + Activemq基本使用</a>
                     
-                        <small>(所属分类: <a href="/category/tools">tools</a>)</small>
+                        <small>(所属分类: <a href="/category/java">java</a>)</small>
                     
                 </li>
                 
                 
             
         
+            
+        
     
 
     
     
+        
+            
+                
+                <li class="relatedPost" style="font-size: 12px;">
+                    <a href="http://www.mixfate.com/java/2016/04/14/linux-java-install.html">汇总一些linux安装java应用环境相关操作命令</a>
+                    
+                        <small>(所属分类: <a href="/category/java">java</a>)</small>
+                    
+                </li>
+                
+                
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+                
+                <li class="relatedPost" style="font-size: 12px;">
+                    <a href="http://www.mixfate.com/java/2016/04/14/spring-jedis-distributed-lock.html">Spring4+jedis实现分布式锁</a>
+                    
+                        <small>(所属分类: <a href="/category/java">java</a>)</small>
+                    
+                </li>
+                
+                
+            
         
             
         
@@ -405,10 +378,14 @@
         
             
         
+            
+        
     
 
     
     
+        
+            
         
             
         
@@ -419,10 +396,113 @@
         
             
         
+            
+        
     
 
     
     
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
         
             
         
@@ -435,10 +515,8 @@
 
 <div class="PageNavigation" style="font-size: 12px;">
   
-    <a class="prev pull-left" href="/tools/2016/04/09/git-TortoiseGIT.html">&laquo; TortoiseGIT记住用户名密码简单方法</a>
+    <a class="prev pull-left" href="/java/2016/04/20/zookeeper-cluster.html">&laquo; Zookeeper集群环境安装</a>
   
-  
-    <a class="next pull-right" href="/tools/2016/04/12/redis-install.html">redis安装使用 &raquo;</a>
   
 </div>
 <div>&nbsp;</div>
@@ -450,8 +528,8 @@
 
         /*
 		var disqus_shortname = "mixfate";
-        var disqus_identifier = "http://www.mixfate.com_zookeeper安装使用";
-        var disqus_title = "zookeeper安装使用";
+        var disqus_identifier = "http://www.mixfate.com_Dubbo管理控制台(dubbo-admin)";
+        var disqus_title = "Dubbo管理控制台(dubbo-admin)";
 		*/
 
         /* * * DON'T EDIT BELOW THIS LINE * * */
