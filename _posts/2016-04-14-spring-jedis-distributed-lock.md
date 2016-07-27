@@ -2,7 +2,7 @@
 layout: post
 title: Spring4+jedis实现分布式锁
 date:   2016-04-14 15:32:57
-categories: java
+categories: [java,spring,redis]
 ---
 
 ## Spring4+jedis实现分布式锁

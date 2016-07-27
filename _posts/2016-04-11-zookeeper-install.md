@@ -2,7 +2,7 @@
 layout: post
 title: zookeeper安装使用
 date:   2016-04-11 05:32:57
-categories: tools
+categories: [tools,zookeeper]
 ---
 
 ## ZooKeeper安装使用

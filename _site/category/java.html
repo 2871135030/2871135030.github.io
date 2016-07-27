@@ -211,7 +211,28 @@
         
         
             
+                <a href="/category/spring" class="btn btn-sm btn-default btn-raised">spring</a>
+            
+        
+    
+        
+        
+            
                 <a href="/category/tools" class="btn btn-sm btn-default btn-raised">tools</a>
+            
+        
+    
+        
+        
+            
+                <a href="/category/zookeeper" class="btn btn-sm btn-default btn-raised">zookeeper</a>
+            
+        
+    
+        
+        
+            
+                <a href="/category/redis" class="btn btn-sm btn-default btn-raised">redis</a>
             
         
     
@@ -260,7 +281,7 @@
                 
             
             <div class="least-content">2016-04-20 21:03</div>
-            <h4 class="list-group-item-heading" style="font-size: 14px;"><a href="/java/2016/04/20/zookeeper-cluster.html">Zookeeper集群环境安装</a></h4>
+            <h4 class="list-group-item-heading" style="font-size: 14px;"><a href="/java/zookeeper/2016/04/20/zookeeper-cluster.html">Zookeeper集群环境安装</a></h4>
             <p class="list-group-item-text">Zookeeper集群环境安装 ZooKeeper是一个分布式开源框架，提供了协调分布式应用的基本服务，它向外部应用暴露一组通用服务——分布式同步（Distributed Synchronization）、命名服务（Naming Service）、集群维护（Group Maintenance）等，简化分布式应用协调及其管理的难度，提供高性能的分布式服务。ZooKeeper本身可以以Standalone模式安装运行，不过它的长处在于通过分布式ZooKeeper集群（一个Leader，多个Follower），基于一定的策略来保证ZooKeeper集群的稳定性和可用性，从而实现分布式应用的可靠性。 单机安装Zookeeper已在文中ZooKeeper安装使用介绍过，在实际应用中我们将zookeeper集群部署，构建高可用的服务，避免单点故障。 1、在目录/software/zookeeper-cluster/中解压三份zookeeper安装包（zookeeper-3.4.8.tar.gz包），分别为zookeeper-3.4.8-node1、zookeeper-3.4.8-node2、zookeeper-3.4.8-node3， 集群中所有的结点作为一个整体对分布式应用提供服务，本文中在同一台机器上安装3个 分别编辑note1、note2、note3节点的配置文件，文件目录conf/zoo.cfg tickTime=2000 initLimit=10 syncLimit=5 dataDir=/software/zookeeper-cluster/zookeeper-3.4.8-node1/data clientPort=2181 server.1=localhost:2887:3887 server.2=localhost:2888:3888 server.3=localhost:2889:3889 注意：dataDir、clientPort两个参数三个节点不同 dataDir顾名思义就是Zookeeper保存数据的目录,默认情况下Zookeeper将写数据的日志文件也保存在这个目录里，三个节点各自保存在节点的data目录内； clientPort这个端口就是客户端连接Zookeeper服务器的端口,Zookeeper会监听这个端口接受客户端的访问请求；...</p>
             
             </div>
@@ -302,7 +323,7 @@
                 
             
             <div class="least-content">2016-04-18 07:13</div>
-            <h4 class="list-group-item-heading" style="font-size: 14px;"><a href="/java/2016/04/18/spring-restful.html">Springmvc构建restful webservice应用</a></h4>
+            <h4 class="list-group-item-heading" style="font-size: 14px;"><a href="/java/spring/2016/04/18/spring-restful.html">Springmvc构建restful webservice应用</a></h4>
             <p class="list-group-item-text">Spring4 mvc构建restful webservice应用 本文演示使用spring mvc开发一个简单的restful webservice服务，本例使用Jetty作为调试测试，通过使用RestTemplate完成服务调用。 1、编写pom.xml，其中包括spring、json解析所需的包，pom.xml内容如下 &lt;project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"&gt; &lt;modelVersion&gt;4.0.0&lt;/modelVersion&gt; &lt;groupId&gt;com.hode&lt;/groupId&gt; &lt;artifactId&gt;spring-rest&lt;/artifactId&gt; &lt;version&gt;0.0.1-SNAPSHOT&lt;/version&gt; &lt;packaging&gt;war&lt;/packaging&gt; &lt;properties&gt; &lt;spring.version&gt;4.0.2.RELEASE&lt;/spring.version&gt; &lt;log4j.version&gt;1.2.17&lt;/log4j.version&gt;...</p>
             
             </div>
@@ -323,7 +344,7 @@
                 
             
             <div class="least-content">2016-04-17 03:11</div>
-            <h4 class="list-group-item-heading" style="font-size: 14px;"><a href="/java/2016/04/17/spring-activemq.html">Spring + Activemq基本使用</a></h4>
+            <h4 class="list-group-item-heading" style="font-size: 14px;"><a href="/java/spring/2016/04/17/spring-activemq.html">Spring + Activemq基本使用</a></h4>
             <p class="list-group-item-text">Spring + Activemq基本使用 1、安装，Apache activemq的安装比较简单，下载压缩包apache-activemq-5.12.1-bin.tar.gz到目录/software cd /software tar -xzvf apache-activemq-5.12.1-bin.tar.gz cd /software/apache-activemq-5.12.1/bin ./activemq start 启动完成后，进入控制台 http://192.167.48.128:8161/admin/ 会提示录入用户名及密码，用户名及密码均为admin，即可查看队列信息 2、编写一个消息发送端，在此演示发送一个字符串及一个对象，对象需序列化。 编写pom.xml &lt;project...</p>
             
             </div>
@@ -365,7 +386,7 @@
                 
             
             <div class="least-content">2016-04-14 23:32</div>
-            <h4 class="list-group-item-heading" style="font-size: 14px;"><a href="/java/2016/04/14/spring-jedis-distributed-lock.html">Spring4+jedis实现分布式锁</a></h4>
+            <h4 class="list-group-item-heading" style="font-size: 14px;"><a href="/java/spring/redis/2016/04/14/spring-jedis-distributed-lock.html">Spring4+jedis实现分布式锁</a></h4>
             <p class="list-group-item-text">Spring4+jedis实现分布式锁 本文实现接Spring4+jedis基本操作 1、编写一个简单的锁控制类，此处简单实现，暂忽略异常处理，释放资源异常等等。 package com.hode; import org.springframework.dao.DataAccessException; import org.springframework.data.redis.connection.RedisConnection; import org.springframework.data.redis.core.RedisCallback; import org.springframework.data.redis.core.RedisTemplate; public class RedisLock { private final static...</p>
             
             </div>
@@ -386,7 +407,7 @@
                 
             
             <div class="least-content">2016-04-13 23:32</div>
-            <h4 class="list-group-item-heading" style="font-size: 14px;"><a href="/java/2016/04/13/spring-jedis.html">Spring4+jedis基本操作</a></h4>
+            <h4 class="list-group-item-heading" style="font-size: 14px;"><a href="/java/spring/redis/2016/04/13/spring-jedis.html">Spring4+jedis基本操作</a></h4>
             <p class="list-group-item-text">Spring4+jedis基本操作 首先安装好redis,并启动 1、编写pom.xml文件，添加jedis、spring等配置，pom文件如下 &lt;project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"&gt; &lt;modelVersion&gt;4.0.0&lt;/modelVersion&gt; &lt;groupId&gt;com.hode&lt;/groupId&gt; &lt;artifactId&gt;spring-jedis&lt;/artifactId&gt; &lt;version&gt;0.0.1-SNAPSHOT&lt;/version&gt; &lt;properties&gt; &lt;spring.version&gt;4.0.2.RELEASE&lt;/spring.version&gt; &lt;/properties&gt; &lt;dependencies&gt; &lt;dependency&gt; &lt;groupId&gt;org.springframework.data&lt;/groupId&gt; &lt;artifactId&gt;spring-data-redis&lt;/artifactId&gt; &lt;version&gt;1.6.1.RELEASE&lt;/version&gt;...</p>
             
             </div>
@@ -428,7 +449,7 @@
                 
             
             <div class="least-content">2016-04-04 21:11</div>
-            <h4 class="list-group-item-heading" style="font-size: 14px;"><a href="/java/2016/04/04/spring-mybatis.html">spring+mybaits配置</a></h4>
+            <h4 class="list-group-item-heading" style="font-size: 14px;"><a href="/java/spring/2016/04/04/spring-mybatis.html">spring+mybaits配置</a></h4>
             <p class="list-group-item-text">spring+mybaits配置 本文介绍spring+mybatis配置，数据库使用mysql，mybatis代码使用mybatis-generator生成 1、创建maven项目，加入spring、mybatis、mysql、proxool依赖，并加入mybatis-generator插件，pom.xml如下 &lt;project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"&gt; &lt;modelVersion&gt;4.0.0&lt;/modelVersion&gt; &lt;groupId&gt;com.qerooy&lt;/groupId&gt; &lt;artifactId&gt;spring-mybatis&lt;/artifactId&gt; &lt;version&gt;0.0.1-SNAPSHOT&lt;/version&gt; &lt;properties&gt; &lt;spring.version&gt;4.0.2.RELEASE&lt;/spring.version&gt; &lt;mybatis.version&gt;3.2.2&lt;/mybatis.version&gt; &lt;mybatis-spring.version&gt;1.2.0&lt;/mybatis-spring.version&gt; &lt;log4j.version&gt;1.2.17&lt;/log4j.version&gt; &lt;mysql.version&gt;5.1.29&lt;/mysql.version&gt; &lt;proxool.version&gt;0.9.1&lt;/proxool.version&gt; &lt;/properties&gt;...</p>
             
             </div>
@@ -449,7 +470,7 @@
                 
             
             <div class="least-content">2016-04-02 06:51</div>
-            <h4 class="list-group-item-heading" style="font-size: 14px;"><a href="/java/2016/04/02/spring4-quartz2.html">spring4+quartz2基本配置及应用</a></h4>
+            <h4 class="list-group-item-heading" style="font-size: 14px;"><a href="/java/spring/2016/04/02/spring4-quartz2.html">spring4+quartz2基本配置及应用</a></h4>
             <p class="list-group-item-text">spring4+quartz2基本配置及应用 1、新建maven工程，添加spring4.0及quartz2.2依赖，pom.xml文件内容如下 &lt;project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"&gt; &lt;modelVersion&gt;4.0.0&lt;/modelVersion&gt; &lt;groupId&gt;com.qerooy&lt;/groupId&gt; &lt;artifactId&gt;spring-quartz&lt;/artifactId&gt; &lt;version&gt;0.0.1-SNAPSHOT&lt;/version&gt; &lt;packaging&gt;war&lt;/packaging&gt; &lt;properties&gt; &lt;spring.version&gt;4.0.2.RELEASE&lt;/spring.version&gt; &lt;log4j.version&gt;1.2.17&lt;/log4j.version&gt; &lt;quartz.version&gt;2.2.1&lt;/quartz.version&gt; &lt;/properties&gt; &lt;dependencies&gt; &lt;dependency&gt; &lt;groupId&gt;org.springframework&lt;/groupId&gt;...</p>
             
             </div>

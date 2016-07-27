@@ -2,7 +2,7 @@
 layout: post
 title: redis安装使用
 date:   2016-04-12 15:32:57
-categories: tools
+categories: [tools,redis]
 ---
 
 ## Redis安装使用

@@ -2,7 +2,7 @@
 layout: post
 title: Spring + Activemq基本使用
 date:   2016-04-16 19:11:57
-categories: java
+categories: [java,spring]
 ---
 
 ## Spring + Activemq基本使用

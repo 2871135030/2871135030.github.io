@@ -2,7 +2,7 @@
 layout: post
 title: Springmvc构建restful webservice应用
 date:   2016-04-17 23:13:34
-categories: java
+categories: [java,spring]
 ---
 
 ## Spring4 mvc构建restful webservice应用

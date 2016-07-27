@@ -2,7 +2,7 @@
 layout: post
 title: spring+mybaits配置
 date:   2016-04-04 13:11:36
-categories: java
+categories: [java,spring]
 ---
 
 ## spring+mybaits配置

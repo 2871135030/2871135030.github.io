@@ -2,7 +2,7 @@
 layout: post
 title: Spring4+jedis基本操作
 date:   2016-04-13 15:32:57
-categories: java
+categories: [java,spring,redis]
 ---
 
 ## Spring4+jedis基本操作
