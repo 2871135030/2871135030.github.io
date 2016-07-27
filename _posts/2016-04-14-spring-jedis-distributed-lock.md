@@ -7,7 +7,7 @@ categories: [java,spring,redis]
 
 ## Spring4+jedis实现分布式锁
 
-本文实现接<a href="http://www.mixfate.com/java/2016/04/13/spring-jedis.html">Spring4+jedis基本操作</a>
+本文实现接<a href="/java/spring/redis/2016/04/13/spring-jedis.html">Spring4+jedis基本操作</a>
 
 1、编写一个简单的锁控制类，此处简单实现，暂忽略异常处理，释放资源异常等等。
 

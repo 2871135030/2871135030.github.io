@@ -185,7 +185,7 @@
 
 <p>ZooKeeper是一个分布式开源框架，提供了协调分布式应用的基本服务，它向外部应用暴露一组通用服务——分布式同步（Distributed Synchronization）、命名服务（Naming Service）、集群维护（Group Maintenance）等，简化分布式应用协调及其管理的难度，提供高性能的分布式服务。ZooKeeper本身可以以Standalone模式安装运行，不过它的长处在于通过分布式ZooKeeper集群（一个Leader，多个Follower），基于一定的策略来保证ZooKeeper集群的稳定性和可用性，从而实现分布式应用的可靠性。</p>
 
-<p>单机安装Zookeeper已在文中<a href="http://www.mixfate.com/tools/2016/04/11/zookeeper-install.html">ZooKeeper安装使用</a>介绍过，在实际应用中我们将zookeeper集群部署，构建高可用的服务，避免单点故障。</p>
+<p>单机安装Zookeeper已在文中<a href="/tools/zookeeper/2016/04/11/zookeeper-install.html">ZooKeeper安装使用</a>介绍过，在实际应用中我们将zookeeper集群部署，构建高可用的服务，避免单点故障。</p>
 
 <p>1、在目录/software/zookeeper-cluster/中解压三份zookeeper安装包（zookeeper-3.4.8.tar.gz包），分别为zookeeper-3.4.8-node1、zookeeper-3.4.8-node2、zookeeper-3.4.8-node3，
 集群中所有的结点作为一个整体对分布式应用提供服务，本文中在同一台机器上安装3个
