@@ -20,15 +20,15 @@ urls:
       
 social:
     - icon: fa-facebook
-      link: '#'
+      link: ''
     - icon: fa-skype
-      link: '#'
+      link: ''
     - icon: fa-twitter
-      link: '#'
+      link: ''
     - icon: fa-linkedin
-      link: '#'
+      link: ''
     - icon: fa-stack-exchange
-      link: '#'
+      link: ''
 
 share:
   twitter_username: \#
