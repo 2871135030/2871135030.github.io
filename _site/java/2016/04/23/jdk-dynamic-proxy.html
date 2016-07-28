@@ -1,0 +1,876 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="shortcut icon" href="/static/img/favicon.ico" />
+        <title>JDK动态代理及cglib动态代理实现分析 - 技术乐园</title>
+        <meta name="author" content="mixfate博客" />
+        <meta name="description" content="mixfate博客-技术乐园" />
+        <meta name="keywords" content="JDK动态代理及cglib动态代理实现分析, 技术乐园, java" />
+
+        <meta content="0" property="fb:app_id">
+        <meta content="技术乐园" property="og:site_name">
+        
+          <meta content="JDK动态代理及cglib动态代理实现分析" property="og:title">
+        
+        
+          <meta content="article" property="og:type">
+        
+        
+          <meta content="mixfate博客-技术乐园" property="og:description">
+        
+        
+          <meta content="http://www.mixfate.com/java/2016/04/23/jdk-dynamic-proxy.html" property="og:url">
+        
+        
+          <meta content="2016-04-23T20:01:59+08:00" property="article:published_time">
+          <meta content="http://www.mixfate.com/about/" property="article:author">
+        
+        
+          <meta content="http://www.mixfate.com/static/img/logo-high-resolution.png" property="og:image">
+        
+        
+          
+          <meta content="java" property="article:section">
+          
+        
+        
+          
+        
+        <meta name="twitter:card" content="summary">
+        <meta name="twitter:site" content="@\#">
+        <meta name="twitter:creator" content="@\#">
+        
+          <meta name="twitter:title" content="JDK动态代理及cglib动态代理实现分析">
+        
+        
+          <meta name="twitter:url" content="http://www.mixfate.com/java/2016/04/23/jdk-dynamic-proxy.html">
+        
+        
+          <meta name="twitter:description" content="mixfate博客-技术乐园">
+        
+        
+
+        <link rel="alternate" type="application/rss+xml" title="RSS" href="/feed.xml">
+        <!-- Custom Fonts -->
+        <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:300,400,500,700" type="text/css">
+
+        <!-- FontAwesome icons -->
+        <link rel="stylesheet" href="https://use.fontawesome.com/74dfc6cf47.css">
+
+        <!-- Core BootStrap CSS -->
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+        <!-- Material Design CSS -->
+        <link rel="stylesheet" href="http://www.mixfate.com/static/css/bootstrap-material-design.min.css">
+
+        <!-- syntax highlighting CSS -->
+        <link rel="stylesheet" href="http://www.mixfate.com/static/css/syntax.css">
+
+        <!-- Custom CSS -->        
+        <link rel="stylesheet" href="http://www.mixfate.com/static/css/thickbox.css">
+        <link rel="stylesheet" href="http://www.mixfate.com/static/css/main.css">
+        <link rel="stylesheet" href="http://www.mixfate.com/static/css/projects.css">
+        <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UB-72862926-2', 'auto');
+  ga('send', 'pageview');
+
+</script>
+    </head>
+
+    <body class="home overflow-hidden">
+    <!--[if lt IE 7]>
+    <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade
+        your browser</a> to improve your experience.</p>
+    <![endif]-->
+    <div class="header-panel shadow-z-2">
+    <div class="container">
+    <div class="row">
+            <div class="col-md-3 col-sm-4 col-xs-12">
+      <div class="row-picture">
+        <img id="about" class="logo-img" src="http://www.mixfate.com/static/img/avatar.png" height="75px" width="75px">
+      </div>
+      <div class="row-details">
+      <h4 class="list-group-item-heading">mixfate博客</h4>
+      <p class="list-group-item-text">技术乐园</p>
+      <div class="social-icons">
+	
+        <a class="icon" target="_blank" href="#"><i class="fa fa-facebook"></i></a>
+    
+        <a class="icon" target="_blank" href="#"><i class="fa fa-skype"></i></a>
+    
+        <a class="icon" target="_blank" href="#"><i class="fa fa-twitter"></i></a>
+    
+        <a class="icon" target="_blank" href="#"><i class="fa fa-linkedin"></i></a>
+    
+        <a class="icon" target="_blank" href="#"><i class="fa fa-stack-exchange"></i></a>
+    
+</div>
+      </div>
+        <div class="navbar-header pull-right">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+              <span class="sr-only">Toggle navigation</span>
+              <i class="fa fa-2x fa-bars"></i>
+            </button>
+        </div>
+      </div>
+      <div class="col-md-9 col-sm-8 col-xs-12">
+      <h2 class="blog-title-pro">JDK动态代理及cglib动态代理实现分析</h2>
+      <p class="info">
+      
+      <span class="time">2016/04/23</span>
+      
+      
+    <span class="categories">
+        &raquo; <a href="/category/java">java</a>
+    </span>
+    
+      </p>
+      </div>
+      </div>
+      </div>
+    </div>
+    <div class="container main outer">
+        <div class="row">
+            <div class="col-md-3 col-xs-12">
+                    <nav class="menu">
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+    <ul class="list-separator nav navbar-nav well well-primary post">
+
+	
+	
+	
+	
+	<li class="col-lg-12 col-md-12 col-sm-4 col-xs-12 current-menu-item jdk-dynamic-proxy.html"><a href="/"><i class="fa fa-home"></i> 首页</a></li>
+
+	
+	
+	
+	
+	<li class="col-lg-12 col-md-12 col-sm-4 col-xs-12  jdk-dynamic-proxy.html"><a href="/category/java"><i class="fa fa-desktop"></i> 分类</a></li>
+
+	
+	
+	
+	
+	<li class="col-lg-12 col-md-12 col-sm-4 col-xs-12  jdk-dynamic-proxy.html"><a href="/about/"><i class="fa fa-comments"></i> 关于</a></li>
+
+</ul>
+    </div>
+    </nav>
+
+				
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- size_300x250 -->
+<ins class="adsbygoogle"
+     style="display:inline-block;width:280px;height:250px"
+     data-ad-client="ca-pub-4309621458849374"
+     data-ad-slot="8169524649"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+            </div> <!-- end /.col-md-3 -->
+
+            <div class="col-md-9 col-xs-12 full">
+                <div class="post-content well">
+<article class="content">
+    <div class="post" style="font-size: 12px;"><h2 id="jdkcglib">JDK动态代理及cglib动态代理实现分析</h2>
+
+<p>代理是一种常用的设计模式，其目的就是为其他对象提供一个代理以控制对某个对象的访问，动态代理使得开发人员无需手工编写代理类便可动态地获得代理类，下面就JDK动态代理与CGLIB动态代理展开分析。</p>
+
+<p>1、JDK动态代理分析</p>
+
+<p>JDK动态代理依靠接口实现，所以仅支持实现了接口的动态代理，下面用一个常用的JDK动态代理实现进行分析</p>
+
+<p>实现InvocationHandler实现调用处理器</p>
+
+<p>InvocationHandlerImpl.java</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">ppackage</span> <span class="n">com</span><span class="p">.</span><span class="nf">qerooy</span><span class="p">.</span><span class="nf">handler</span><span class="p">;</span>
+
+<span class="n">import</span> <span class="n">java</span><span class="p">.</span><span class="nf">lang</span><span class="p">.</span><span class="nf">reflect</span><span class="o">.</span><span class="no">InvocationHandler</span><span class="p">;</span>
+<span class="n">import</span> <span class="n">java</span><span class="p">.</span><span class="nf">lang</span><span class="p">.</span><span class="nf">reflect</span><span class="o">.</span><span class="no">Method</span><span class="p">;</span>
+
+<span class="n">import</span> <span class="n">org</span><span class="p">.</span><span class="nf">apache</span><span class="p">.</span><span class="nf">log4j</span><span class="o">.</span><span class="no">Logger</span><span class="p">;</span>
+
+<span class="sr">/**
+ * 动态代理类调用处理器
+ */</span>
+<span class="kp">public</span> <span class="k">class</span> <span class="nc">InvocationHandlerImpl</span> <span class="n">implements</span> <span class="no">InvocationHandler</span> <span class="p">{</span>
+	
+	<span class="kp">private</span> <span class="no">Object</span> <span class="n">target</span><span class="p">;</span> <span class="sr">//</span><span class="err">需代理的目录对象</span>
+	
+	<span class="kp">public</span> <span class="no">InvocationHandlerImpl</span><span class="p">(</span><span class="no">Object</span> <span class="n">target</span><span class="p">){</span>
+		<span class="n">this</span><span class="p">.</span><span class="nf">target</span> <span class="o">=</span> <span class="n">target</span><span class="p">;</span>
+	<span class="p">}</span>
+	
+	<span class="no">Logger</span> <span class="n">log</span> <span class="o">=</span> <span class="no">Logger</span><span class="p">.</span><span class="nf">getLogger</span><span class="p">(</span><span class="n">getClass</span><span class="p">());</span>
+	
+	<span class="vi">@Override</span>
+	<span class="kp">public</span> <span class="no">Object</span> <span class="n">invoke</span><span class="p">(</span><span class="no">Object</span> <span class="n">proxy</span><span class="p">,</span> <span class="no">Method</span> <span class="nb">method</span><span class="p">,</span> <span class="no">Object</span><span class="p">[]</span> <span class="n">args</span><span class="p">)</span> <span class="n">throws</span> <span class="no">Throwable</span> <span class="p">{</span>
+		<span class="n">log</span><span class="p">.</span><span class="nf">info</span><span class="p">(</span><span class="s2">"InvocationHandlerImpl invoke start"</span><span class="p">);</span>
+		<span class="no">Object</span> <span class="n">obj</span> <span class="o">=</span> <span class="nb">method</span><span class="p">.</span><span class="nf">invoke</span><span class="p">(</span><span class="n">target</span><span class="p">,</span> <span class="n">args</span><span class="p">);</span>
+		<span class="n">log</span><span class="p">.</span><span class="nf">info</span><span class="p">(</span><span class="s2">"InvocationHandlerImpl invoke end"</span><span class="p">);</span>
+		<span class="k">return</span> <span class="n">obj</span><span class="p">;</span>
+	<span class="p">}</span>
+	
+	<span class="sr">/**
+	 * 获取代理对象
+	 * @param obj
+	 * @return
+	 */</span>
+	<span class="kp">public</span> <span class="no">Object</span> <span class="n">get</span><span class="p">(</span><span class="no">Object</span> <span class="n">obj</span><span class="p">){</span>
+		<span class="k">return</span> <span class="n">java</span><span class="p">.</span><span class="nf">lang</span><span class="p">.</span><span class="nf">reflect</span><span class="o">.</span><span class="no">Proxy</span><span class="p">.</span><span class="nf">newProxyInstance</span><span class="p">(</span><span class="n">obj</span><span class="p">.</span><span class="nf">getClass</span><span class="p">().</span><span class="nf">getClassLoader</span><span class="p">(),</span>  
+				<span class="n">obj</span><span class="p">.</span><span class="nf">getClass</span><span class="p">().</span><span class="nf">getInterfaces</span><span class="p">(),</span> <span class="n">this</span><span class="p">);</span>
+
+	<span class="p">}</span>
+
+<span class="p">}</span></code></pre></figure>
+
+<p>定义UserService接口，并实现此接口UserServiceImpl</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">package</span> <span class="n">com</span><span class="p">.</span><span class="nf">qerooy</span><span class="p">.</span><span class="nf">service</span><span class="p">;</span>
+
+<span class="kp">public</span> <span class="n">interface</span> <span class="no">UserService</span> <span class="p">{</span>
+	
+	<span class="kp">public</span> <span class="n">void</span> <span class="n">saveUser</span><span class="p">();</span>
+
+<span class="p">}</span></code></pre></figure>
+
+<p>UserServiceImpl.java</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">package</span> <span class="n">com</span><span class="p">.</span><span class="nf">qerooy</span><span class="p">.</span><span class="nf">service</span><span class="p">.</span><span class="nf">impl</span><span class="p">;</span>
+
+<span class="n">import</span> <span class="n">org</span><span class="p">.</span><span class="nf">apache</span><span class="p">.</span><span class="nf">log4j</span><span class="o">.</span><span class="no">Logger</span><span class="p">;</span>
+
+<span class="n">import</span> <span class="n">com</span><span class="p">.</span><span class="nf">qerooy</span><span class="p">.</span><span class="nf">service</span><span class="o">.</span><span class="no">UserService</span><span class="p">;</span>
+
+<span class="kp">public</span> <span class="k">class</span> <span class="nc">UserServiceImpl</span> <span class="n">implements</span> <span class="no">UserService</span> <span class="p">{</span>
+
+	<span class="no">Logger</span> <span class="n">log</span> <span class="o">=</span> <span class="no">Logger</span><span class="p">.</span><span class="nf">getLogger</span><span class="p">(</span><span class="n">getClass</span><span class="p">());</span>
+	
+	<span class="kp">public</span> <span class="n">void</span> <span class="n">saveUser</span><span class="p">()</span> <span class="p">{</span>
+		<span class="n">log</span><span class="p">.</span><span class="nf">info</span><span class="p">(</span><span class="s2">"this is saveUser"</span><span class="p">);</span>
+	<span class="p">}</span>
+
+<span class="p">}</span></code></pre></figure>
+
+<p>编写一个测试类进行测试 
+JDKDynamicProxyTest.java</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">package</span> <span class="n">com</span><span class="p">.</span><span class="nf">qerooy</span><span class="p">;</span>
+
+<span class="n">import</span> <span class="n">org</span><span class="p">.</span><span class="nf">apache</span><span class="p">.</span><span class="nf">log4j</span><span class="o">.</span><span class="no">Logger</span><span class="p">;</span>
+<span class="n">import</span> <span class="n">org</span><span class="p">.</span><span class="nf">junit</span><span class="o">.</span><span class="no">Test</span><span class="p">;</span>
+
+<span class="n">import</span> <span class="n">com</span><span class="p">.</span><span class="nf">qerooy</span><span class="p">.</span><span class="nf">handler</span><span class="o">.</span><span class="no">InvocationHandlerImpl</span><span class="p">;</span>
+<span class="n">import</span> <span class="n">com</span><span class="p">.</span><span class="nf">qerooy</span><span class="p">.</span><span class="nf">service</span><span class="o">.</span><span class="no">UserService</span><span class="p">;</span>
+<span class="n">import</span> <span class="n">com</span><span class="p">.</span><span class="nf">qerooy</span><span class="p">.</span><span class="nf">service</span><span class="p">.</span><span class="nf">impl</span><span class="o">.</span><span class="no">UserServiceImpl</span><span class="p">;</span>
+
+<span class="kp">public</span> <span class="k">class</span> <span class="nc">JDKDynamicProxyTest</span> <span class="p">{</span>
+	
+	<span class="no">Logger</span> <span class="n">log</span> <span class="o">=</span> <span class="no">Logger</span><span class="p">.</span><span class="nf">getLogger</span><span class="p">(</span><span class="n">getClass</span><span class="p">());</span>
+	
+	<span class="vi">@Test</span>
+	<span class="kp">public</span> <span class="n">void</span> <span class="nb">test</span><span class="p">(){</span>
+		<span class="no">UserService</span> <span class="n">userService</span> <span class="o">=</span> <span class="kp">new</span> <span class="no">UserServiceImpl</span><span class="p">();</span>
+		<span class="no">InvocationHandlerImpl</span> <span class="n">handler</span> <span class="o">=</span> <span class="kp">new</span> <span class="no">InvocationHandlerImpl</span><span class="p">(</span><span class="n">userService</span><span class="p">);</span>
+		<span class="no">UserService</span> <span class="n">service</span> <span class="o">=</span> <span class="p">(</span><span class="no">UserService</span><span class="p">)</span><span class="n">handler</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="n">userService</span><span class="p">);</span>
+		<span class="n">service</span><span class="p">.</span><span class="nf">saveUser</span><span class="p">();</span>
+		
+		<span class="n">log</span><span class="p">.</span><span class="nf">info</span><span class="p">(</span><span class="s2">"生成的代理类名称:"</span><span class="o">+</span><span class="n">service</span><span class="p">.</span><span class="nf">getClass</span><span class="p">().</span><span class="nf">getName</span><span class="p">());</span>
+		<span class="n">log</span><span class="p">.</span><span class="nf">info</span><span class="p">(</span><span class="s2">"test is ok"</span><span class="p">);</span>
+	<span class="p">}</span>
+
+<span class="p">}</span></code></pre></figure>
+
+<p>运行可得结果</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="no">INFO</span>   <span class="no">InvocationHandlerImpl</span> <span class="n">invoke</span> <span class="n">start</span> 
+<span class="no">INFO</span>   <span class="n">this</span> <span class="n">is</span> <span class="n">saveUser</span> 
+<span class="no">INFO</span>   <span class="no">InvocationHandlerImpl</span> <span class="n">invoke</span> <span class="k">end</span> 
+<span class="no">INFO</span>   <span class="err">生成的代理类名称</span><span class="p">:</span><span class="vg">$Proxy4</span> 
+<span class="no">INFO</span>   <span class="nb">test</span> <span class="n">is</span> <span class="n">ok</span> </code></pre></figure>
+
+<p>至此JDK动态代理实现完成。</p>
+
+<p>可以看到动态代理类是由java.lang.reflect.Proxy.newProxyInstance生成的，那么Proxy到底为我们生成了什么样的代理类呢？接下来通过源代码来了解一下Proxy到底是如何实现的，JDK的安装目录中均有源码src.zip。 
+关键代码</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="kp">public</span> <span class="n">static</span> <span class="no">Object</span> <span class="n">newProxyInstance</span><span class="p">(</span><span class="no">ClassLoader</span> <span class="n">loader</span><span class="p">,</span> <span class="no">Class</span><span class="o">&lt;</span><span class="sc">?&gt;</span><span class="p">[]</span> <span class="n">interfaces</span><span class="p">,</span> <span class="no">InvocationHandler</span> <span class="n">h</span><span class="p">)</span> <span class="n">throws</span> <span class="no">IllegalArgumentException</span> <span class="p">{</span>
+		<span class="sr">//</span> <span class="p">.</span><span class="nf">.</span><span class="o">.</span> <span class="err">省略</span>
+		<span class="sr">//</span><span class="err">此处为生成代理类关键代码</span>
+		<span class="no">Class</span> <span class="n">cl</span> <span class="o">=</span> <span class="n">getProxyClass</span><span class="p">(</span><span class="n">loader</span><span class="p">,</span> <span class="n">interfaces</span><span class="p">);</span>
+		<span class="sr">//</span> <span class="p">.</span><span class="nf">.</span><span class="o">.</span><span class="err">省略</span>
+		<span class="no">Constructor</span> <span class="n">cons</span> <span class="o">=</span> <span class="n">cl</span><span class="p">.</span><span class="nf">getConstructor</span><span class="p">(</span><span class="n">constructorParams</span><span class="p">);</span>
+		<span class="k">return</span> <span class="p">(</span><span class="no">Object</span><span class="p">)</span> <span class="n">cons</span><span class="p">.</span><span class="nf">newInstance</span><span class="p">(</span><span class="kp">new</span> <span class="no">Object</span><span class="p">[]</span> <span class="p">{</span> <span class="n">h</span> <span class="p">});</span>
+		<span class="sr">//</span> <span class="p">.</span><span class="nf">.</span><span class="o">.</span><span class="err">省略</span>
+	<span class="p">}</span>
+
+
+<span class="kp">public</span> <span class="n">static</span> <span class="no">Class</span><span class="o">&lt;</span><span class="sc">?&gt;</span> <span class="n">getProxyClass</span><span class="p">(</span><span class="no">ClassLoader</span> <span class="n">loader</span><span class="p">,</span> <span class="no">Class</span><span class="o">&lt;</span><span class="sc">?&gt;</span><span class="p">.</span><span class="nf">.</span><span class="p">.</span> <span class="nf">interfaces</span><span class="p">)</span> <span class="n">throws</span> <span class="no">IllegalArgumentException</span> <span class="p">{</span>
+		<span class="sr">//</span> <span class="p">.</span><span class="nf">.</span><span class="o">.</span> <span class="err">省略</span>
+		<span class="sr">//</span><span class="err">此处为生成动态代理类的字节码</span><span class="p">,</span><span class="err">由</span><span class="n">defineClass0</span><span class="err">进行装载</span>
+		<span class="sr">//</span><span class="err">所以我们可以用此方法生成代理类</span><span class="p">,</span><span class="err">将其反编译查看</span>
+		<span class="n">byte</span><span class="p">[]</span> <span class="n">proxyClassFile</span> <span class="o">=</span> <span class="no">ProxyGenerator</span><span class="p">.</span><span class="nf">generateProxyClass</span><span class="p">(</span><span class="n">proxyName</span><span class="p">,</span> <span class="n">interfaces</span><span class="p">);</span>
+		<span class="sr">//</span> <span class="p">.</span><span class="nf">.</span><span class="o">.</span> <span class="err">省略</span>
+	<span class="p">}</span></code></pre></figure>
+
+<p>由上可以看到生成代理类的方法，所以在Test类中将代理类生成，Test类改为</p>
+
+<p>JDKDynamicProxyTest.java</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">package</span> <span class="n">com</span><span class="p">.</span><span class="nf">qerooy</span><span class="p">;</span>
+
+<span class="n">import</span> <span class="n">java</span><span class="p">.</span><span class="nf">io</span><span class="o">.</span><span class="no">FileOutputStream</span><span class="p">;</span>
+<span class="n">import</span> <span class="n">java</span><span class="p">.</span><span class="nf">io</span><span class="o">.</span><span class="no">IOException</span><span class="p">;</span>
+
+<span class="n">import</span> <span class="n">org</span><span class="p">.</span><span class="nf">apache</span><span class="p">.</span><span class="nf">log4j</span><span class="o">.</span><span class="no">Logger</span><span class="p">;</span>
+<span class="n">import</span> <span class="n">org</span><span class="p">.</span><span class="nf">junit</span><span class="o">.</span><span class="no">Test</span><span class="p">;</span>
+
+<span class="n">import</span> <span class="n">sun</span><span class="p">.</span><span class="nf">misc</span><span class="o">.</span><span class="no">ProxyGenerator</span><span class="p">;</span>
+
+<span class="n">import</span> <span class="n">com</span><span class="p">.</span><span class="nf">qerooy</span><span class="p">.</span><span class="nf">handler</span><span class="o">.</span><span class="no">InvocationHandlerImpl</span><span class="p">;</span>
+<span class="n">import</span> <span class="n">com</span><span class="p">.</span><span class="nf">qerooy</span><span class="p">.</span><span class="nf">service</span><span class="o">.</span><span class="no">UserService</span><span class="p">;</span>
+<span class="n">import</span> <span class="n">com</span><span class="p">.</span><span class="nf">qerooy</span><span class="p">.</span><span class="nf">service</span><span class="p">.</span><span class="nf">impl</span><span class="o">.</span><span class="no">UserServiceImpl</span><span class="p">;</span>
+
+<span class="kp">public</span> <span class="k">class</span> <span class="nc">JDKDynamicProxyTest</span> <span class="p">{</span>
+	
+	<span class="no">Logger</span> <span class="n">log</span> <span class="o">=</span> <span class="no">Logger</span><span class="p">.</span><span class="nf">getLogger</span><span class="p">(</span><span class="n">getClass</span><span class="p">());</span>
+	
+	<span class="vi">@Test</span>
+	<span class="kp">public</span> <span class="n">void</span> <span class="nb">test</span><span class="p">(){</span>
+		<span class="no">UserService</span> <span class="n">userService</span> <span class="o">=</span> <span class="kp">new</span> <span class="no">UserServiceImpl</span><span class="p">();</span>
+		<span class="no">InvocationHandlerImpl</span> <span class="n">handler</span> <span class="o">=</span> <span class="kp">new</span> <span class="no">InvocationHandlerImpl</span><span class="p">(</span><span class="n">userService</span><span class="p">);</span>
+		<span class="no">UserService</span> <span class="n">service</span> <span class="o">=</span> <span class="p">(</span><span class="no">UserService</span><span class="p">)</span><span class="n">handler</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="n">userService</span><span class="p">);</span>
+		<span class="n">service</span><span class="p">.</span><span class="nf">saveUser</span><span class="p">();</span>
+		
+		<span class="n">log</span><span class="p">.</span><span class="nf">info</span><span class="p">(</span><span class="n">service</span><span class="p">.</span><span class="nf">getClass</span><span class="p">().</span><span class="nf">getName</span><span class="p">());</span>
+		<span class="n">log</span><span class="p">.</span><span class="nf">info</span><span class="p">(</span><span class="s2">"test is ok"</span><span class="p">);</span>
+		<span class="sr">//</span><span class="err">将生成的动态代理类保存到文件</span>
+		<span class="n">writeClassFile</span><span class="p">(</span><span class="s2">"c:/"</span><span class="p">,</span><span class="n">service</span><span class="p">.</span><span class="nf">getClass</span><span class="p">().</span><span class="nf">getName</span><span class="p">(),</span><span class="n">userService</span><span class="p">.</span><span class="nf">getClass</span><span class="p">().</span><span class="nf">getInterfaces</span><span class="p">());</span>
+	<span class="p">}</span>
+	
+	<span class="kp">public</span> <span class="n">static</span> <span class="n">void</span> <span class="n">writeClassFile</span><span class="p">(</span><span class="no">String</span> <span class="n">path</span><span class="p">,</span><span class="no">String</span> <span class="n">className</span><span class="p">,</span><span class="no">Class</span><span class="o">&lt;</span><span class="sc">?&gt;</span><span class="p">[]</span> <span class="n">clazz</span><span class="p">){</span>
+		<span class="sr">//</span><span class="err">获取代理类的字节码</span>
+		<span class="n">byte</span><span class="p">[]</span> <span class="n">classFile</span> <span class="o">=</span> <span class="no">ProxyGenerator</span><span class="p">.</span><span class="nf">generateProxyClass</span><span class="p">(</span><span class="n">className</span><span class="p">,</span><span class="n">clazz</span><span class="p">);</span>
+		<span class="no">FileOutputStream</span> <span class="n">out</span> <span class="o">=</span> <span class="n">null</span><span class="p">;</span>
+		<span class="n">try</span><span class="p">{</span>
+			<span class="n">out</span> <span class="o">=</span> <span class="kp">new</span> <span class="no">FileOutputStream</span><span class="p">(</span><span class="n">path</span><span class="o">+</span><span class="n">className</span><span class="o">+</span><span class="s2">".class"</span><span class="p">);</span>
+			<span class="n">out</span><span class="p">.</span><span class="nf">write</span><span class="p">(</span><span class="n">classFile</span><span class="p">);</span>
+			<span class="n">out</span><span class="p">.</span><span class="nf">flush</span><span class="p">();</span>
+		<span class="p">}</span><span class="kp">catch</span><span class="p">(</span><span class="no">Exception</span> <span class="n">e</span><span class="p">){</span>
+			<span class="n">e</span><span class="p">.</span><span class="nf">printStackTrace</span><span class="p">();</span>
+		<span class="p">}</span><span class="n">finally</span><span class="p">{</span>
+			<span class="n">try</span><span class="p">{</span>
+				<span class="n">out</span><span class="p">.</span><span class="nf">close</span><span class="p">();</span>
+			<span class="p">}</span><span class="kp">catch</span><span class="p">(</span><span class="no">IOException</span> <span class="n">e</span><span class="p">){</span>
+				<span class="n">e</span><span class="p">.</span><span class="nf">printStackTrace</span><span class="p">();</span>
+			<span class="p">}</span>
+		<span class="p">}</span>
+	<span class="p">}</span>
+
+<span class="p">}</span></code></pre></figure>
+
+<p>在C盘根目录下生成了动态的代理类class，使用反编译工具查看关键代码如下</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="kp">public</span> <span class="n">final</span> <span class="k">class</span> <span class="vg">$Proxy4</span> <span class="n">extends</span> <span class="no">Proxy</span> <span class="n">implements</span> <span class="no">UserService</span>
+<span class="p">{</span>
+
+  <span class="kp">public</span> <span class="vg">$Proxy4</span><span class="p">(</span><span class="no">InvocationHandler</span> <span class="n">paramInvocationHandler</span><span class="p">)</span>
+    <span class="n">throws</span> 
+  <span class="p">{</span>
+    <span class="k">super</span><span class="p">(</span><span class="n">paramInvocationHandler</span><span class="p">);</span>
+  <span class="p">}</span>
+
+  <span class="kp">public</span> <span class="n">final</span> <span class="n">void</span> <span class="n">saveUser</span><span class="p">()</span> <span class="n">throws</span> 
+  <span class="p">{</span>
+	  <span class="sr">//</span> <span class="p">.</span><span class="nf">.</span><span class="o">.</span> <span class="err">省略</span>
+      <span class="n">this</span><span class="p">.</span><span class="nf">h</span><span class="p">.</span><span class="nf">invoke</span><span class="p">(</span><span class="n">this</span><span class="p">,</span> <span class="n">m3</span><span class="p">,</span> <span class="n">null</span><span class="p">);</span><span class="sr">//</span><span class="err">此处使用调用器方法并将方法名传回</span>
+      <span class="sr">//</span> <span class="p">.</span><span class="nf">.</span><span class="o">.</span> <span class="err">省略</span>
+  <span class="p">}</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>可以看到，生成的代理类继承了Proxy类并实现了UserService接口，而实现接口的方法中使用调用处理器的方法，处理器h则在构造方法中传入了return (Object) cons.newInstance(new Object[] { h }); 即生成的代理类中调用了InvocationHandler方法。</p>
+
+<p>简单来说生成的代理类中，每一个实现接口的方法均调用InvocationHandler的方法invoke，完成代理的逻辑。</p>
+
+<p>2、CGLIB动态代理分析</p>
+
+<p>JDK动态代理只能代理实现了接口的类，若需代理的类未实现任何接口，则需要使用CGLIB生成代理类 
+同样首先由简单的实现进行分析</p>
+
+<p>编写一个未实现任何接口的类AccountServiceImpl 
+AccountServiceImpl.java</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">package</span> <span class="n">com</span><span class="p">.</span><span class="nf">qerooy</span><span class="p">.</span><span class="nf">service</span><span class="p">.</span><span class="nf">impl</span><span class="p">;</span>
+<span class="n">import</span> <span class="n">org</span><span class="p">.</span><span class="nf">apache</span><span class="p">.</span><span class="nf">log4j</span><span class="o">.</span><span class="no">Logger</span><span class="p">;</span>
+<span class="kp">public</span> <span class="k">class</span> <span class="nc">AccountServiceImpl</span><span class="p">{</span>
+	<span class="no">Logger</span> <span class="n">log</span> <span class="o">=</span> <span class="no">Logger</span><span class="p">.</span><span class="nf">getLogger</span><span class="p">(</span><span class="n">getClass</span><span class="p">());</span>
+	
+	<span class="kp">public</span> <span class="n">void</span> <span class="n">saveAccount</span><span class="p">()</span> <span class="p">{</span>
+		<span class="n">log</span><span class="p">.</span><span class="nf">info</span><span class="p">(</span><span class="s2">"this is saveAccount"</span><span class="p">);</span>
+	<span class="p">}</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>创建类MethodInterceptorImpl实现了CGLIB方法拦截器接口MethodInterceptor 
+MethodInterceptorImpl.java</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">package</span> <span class="n">com</span><span class="p">.</span><span class="nf">qerooy</span><span class="p">.</span><span class="nf">interceptor</span><span class="p">;</span>
+<span class="n">import</span> <span class="n">java</span><span class="p">.</span><span class="nf">lang</span><span class="p">.</span><span class="nf">reflect</span><span class="o">.</span><span class="no">Method</span><span class="p">;</span>
+<span class="n">import</span> <span class="n">net</span><span class="p">.</span><span class="nf">sf</span><span class="p">.</span><span class="nf">cglib</span><span class="p">.</span><span class="nf">proxy</span><span class="o">.</span><span class="no">Enhancer</span><span class="p">;</span>
+<span class="n">import</span> <span class="n">net</span><span class="p">.</span><span class="nf">sf</span><span class="p">.</span><span class="nf">cglib</span><span class="p">.</span><span class="nf">proxy</span><span class="o">.</span><span class="no">MethodInterceptor</span><span class="p">;</span>
+<span class="n">import</span> <span class="n">net</span><span class="p">.</span><span class="nf">sf</span><span class="p">.</span><span class="nf">cglib</span><span class="p">.</span><span class="nf">proxy</span><span class="o">.</span><span class="no">MethodProxy</span><span class="p">;</span>
+<span class="n">import</span> <span class="n">org</span><span class="p">.</span><span class="nf">apache</span><span class="p">.</span><span class="nf">log4j</span><span class="o">.</span><span class="no">Logger</span><span class="p">;</span>
+<span class="kp">public</span> <span class="k">class</span> <span class="nc">MethodInterceptorImpl</span> <span class="n">implements</span> <span class="no">MethodInterceptor</span><span class="p">{</span>
+	<span class="no">Logger</span> <span class="n">log</span> <span class="o">=</span> <span class="no">Logger</span><span class="p">.</span><span class="nf">getLogger</span><span class="p">(</span><span class="n">getClass</span><span class="p">());</span>
+	
+	<span class="vi">@Override</span>
+	<span class="kp">public</span> <span class="no">Object</span> <span class="n">intercept</span><span class="p">(</span><span class="no">Object</span> <span class="n">proxy</span><span class="p">,</span> <span class="no">Method</span> <span class="nb">method</span><span class="p">,</span> <span class="no">Object</span><span class="p">[]</span> <span class="n">params</span><span class="p">,</span> <span class="no">MethodProxy</span> <span class="n">methodProxy</span><span class="p">)</span> <span class="n">throws</span> <span class="no">Throwable</span> <span class="p">{</span>
+		<span class="n">log</span><span class="p">.</span><span class="nf">info</span><span class="p">(</span><span class="s2">"MethodInterceptorImpl invoke start"</span><span class="p">);</span>
+		<span class="no">Object</span> <span class="n">object</span> <span class="o">=</span> <span class="n">methodProxy</span><span class="p">.</span><span class="nf">invokeSuper</span><span class="p">(</span><span class="n">proxy</span><span class="p">,</span> <span class="n">params</span><span class="p">);</span>
+		<span class="n">log</span><span class="p">.</span><span class="nf">info</span><span class="p">(</span><span class="s2">"MethodInterceptorImpl invoke end"</span><span class="p">);</span>
+		<span class="k">return</span> <span class="n">object</span><span class="p">;</span>
+	<span class="p">}</span>
+	
+	<span class="sr">/**
+	 * 获取代理对象
+	 * @param obj
+	 * @return
+	 */</span>
+	<span class="kp">public</span> <span class="no">Object</span> <span class="n">get</span><span class="p">(</span><span class="no">Class</span> <span class="n">clazz</span><span class="p">){</span>
+        <span class="no">Enhancer</span> <span class="n">enhancer</span> <span class="o">=</span> <span class="kp">new</span> <span class="no">Enhancer</span><span class="p">();</span>
+        <span class="n">enhancer</span><span class="p">.</span><span class="nf">setSuperclass</span><span class="p">(</span><span class="n">clazz</span><span class="p">);</span> <span class="sr">//</span><span class="err">设置代理目标</span>
+        <span class="n">enhancer</span><span class="p">.</span><span class="nf">setCallback</span><span class="p">(</span><span class="n">this</span><span class="p">);</span> <span class="sr">//</span><span class="err">设置回调</span>
+        <span class="n">enhancer</span><span class="p">.</span><span class="nf">setClassLoader</span><span class="p">(</span><span class="n">clazz</span><span class="p">.</span><span class="nf">getClassLoader</span><span class="p">());</span>
+        <span class="k">return</span> <span class="n">enhancer</span><span class="p">.</span><span class="nf">create</span><span class="p">();</span>
+	<span class="p">}</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>编写一个测试类
+CGLIBDynamicProxyTest.java</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">package</span> <span class="n">com</span><span class="p">.</span><span class="nf">qerooy</span><span class="p">;</span>
+<span class="n">import</span> <span class="n">org</span><span class="p">.</span><span class="nf">apache</span><span class="p">.</span><span class="nf">log4j</span><span class="o">.</span><span class="no">Logger</span><span class="p">;</span>
+<span class="n">import</span> <span class="n">org</span><span class="p">.</span><span class="nf">junit</span><span class="o">.</span><span class="no">Test</span><span class="p">;</span>
+<span class="n">import</span> <span class="n">com</span><span class="p">.</span><span class="nf">qerooy</span><span class="p">.</span><span class="nf">interceptor</span><span class="o">.</span><span class="no">MethodInterceptorImpl</span><span class="p">;</span>
+<span class="n">import</span> <span class="n">com</span><span class="p">.</span><span class="nf">qerooy</span><span class="p">.</span><span class="nf">service</span><span class="p">.</span><span class="nf">impl</span><span class="o">.</span><span class="no">AccountServiceImpl</span><span class="p">;</span>
+<span class="kp">public</span> <span class="k">class</span> <span class="nc">CGLIBDynamicProxyTest</span> <span class="p">{</span>
+	<span class="no">Logger</span> <span class="n">log</span> <span class="o">=</span> <span class="no">Logger</span><span class="p">.</span><span class="nf">getLogger</span><span class="p">(</span><span class="n">getClass</span><span class="p">());</span>
+	
+	<span class="vi">@Test</span>
+	<span class="kp">public</span> <span class="n">void</span> <span class="nb">test</span><span class="p">(){</span>
+		<span class="no">MethodInterceptorImpl</span> <span class="n">interceptor</span> <span class="o">=</span> <span class="kp">new</span> <span class="no">MethodInterceptorImpl</span><span class="p">();</span>
+		
+		<span class="no">AccountServiceImpl</span> <span class="n">service</span> <span class="o">=</span> <span class="p">(</span><span class="no">AccountServiceImpl</span><span class="p">)</span><span class="n">interceptor</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="no">AccountServiceImpl</span><span class="p">.</span><span class="nf">class</span><span class="p">);</span>
+		<span class="n">log</span><span class="p">.</span><span class="nf">info</span><span class="p">(</span><span class="n">service</span><span class="p">.</span><span class="nf">getClass</span><span class="p">().</span><span class="nf">getName</span><span class="p">());</span>
+		<span class="n">service</span><span class="p">.</span><span class="nf">saveAccount</span><span class="p">();</span>
+		
+		
+		<span class="n">log</span><span class="p">.</span><span class="nf">info</span><span class="p">(</span><span class="s2">"test is ok"</span><span class="p">);</span>
+	<span class="p">}</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>运行结果如下</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="no">INFO</span>   <span class="no">MethodInterceptorImpl</span> <span class="n">invoke</span> <span class="n">start</span> 
+<span class="no">INFO</span>   <span class="n">this</span> <span class="n">is</span> <span class="n">saveAccount</span> 
+<span class="no">INFO</span>   <span class="no">MethodInterceptorImpl</span> <span class="n">invoke</span> <span class="k">end</span> 
+<span class="no">INFO</span>   <span class="nb">test</span> <span class="n">is</span> <span class="n">ok</span> </code></pre></figure>
+
+<p>更新中。。。</p>
+
+<p>结束。</p>
+</div>
+	
+	<!--
+    <hr />
+    { % include share-page.html % }
+	-->
+</article>
+<hr />
+
+
+    
+    
+        
+            
+        
+    
+
+    
+    
+        
+            
+                
+                <div class="panel-body">
+                <h5>相关博客</h5>
+                <ul>
+                
+                <li class="relatedPost" style="font-size: 12px;">
+                    <a href="http://www.mixfate.com/java/dubbo/2016/04/22/spring-dubbo-annotation.html">Spring+Dubbo annotation配置</a>
+                    
+                        <small>(所属分类: <a href="/category/java">java</a>, <a href="/category/dubbo">dubbo</a>)</small>
+                    
+                </li>
+                
+                
+            
+        
+    
+        
+            
+        
+    
+
+    
+    
+        
+            
+                
+                <li class="relatedPost" style="font-size: 12px;">
+                    <a href="http://www.mixfate.com/java/dubbo/2016/04/21/dubbo.html">Dubbo管理控制台(dubbo-admin)</a>
+                    
+                        <small>(所属分类: <a href="/category/java">java</a>, <a href="/category/dubbo">dubbo</a>)</small>
+                    
+                </li>
+                
+                
+            
+        
+    
+        
+            
+        
+    
+
+    
+    
+        
+            
+                
+                <li class="relatedPost" style="font-size: 12px;">
+                    <a href="http://www.mixfate.com/java/zookeeper/2016/04/20/zookeeper-cluster.html">Zookeeper集群环境安装</a>
+                    
+                        <small>(所属分类: <a href="/category/java">java</a>, <a href="/category/zookeeper">zookeeper</a>)</small>
+                    
+                </li>
+                
+                
+            
+        
+    
+        
+            
+        
+    
+
+    
+    
+        
+            
+                
+                <li class="relatedPost" style="font-size: 12px;">
+                    <a href="http://www.mixfate.com/java/dubbo/2016/04/19/spring-dubbo.html">Dubbo全Spring配置方式</a>
+                    
+                        <small>(所属分类: <a href="/category/java">java</a>, <a href="/category/dubbo">dubbo</a>)</small>
+                    
+                </li>
+                
+                
+            
+        
+    
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+    
+
+    
+    
+        
+            
+                
+                <li class="relatedPost" style="font-size: 12px;">
+                    <a href="http://www.mixfate.com/java/spring/2016/04/18/spring-restful.html">Springmvc构建restful webservice应用</a>
+                    
+                        <small>(所属分类: <a href="/category/java">java</a>, <a href="/category/spring">spring</a>)</small>
+                    
+                </li>
+                
+                
+            
+        
+    
+        
+            
+        
+    
+
+    
+    
+        
+            
+                
+                <li class="relatedPost" style="font-size: 12px;">
+                    <a href="http://www.mixfate.com/java/spring/2016/04/17/spring-activemq.html">Spring + Activemq基本使用</a>
+                    
+                        <small>(所属分类: <a href="/category/java">java</a>, <a href="/category/spring">spring</a>)</small>
+                    
+                </li>
+                
+                
+            
+        
+    
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+    
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+    
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+    
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+    
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+    
+
+
+    </ul>
+    </div>
+
+
+<div class="PageNavigation" style="font-size: 12px;">
+  
+    <a class="prev pull-left" href="/java/dubbo/2016/04/22/spring-dubbo-annotation.html">&laquo; Spring+Dubbo annotation配置</a>
+  
+  
+</div>
+<div>&nbsp;</div>
+<!--
+<div class="disqus-comments">
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        /* <![CDATA[ */
+
+        /*
+		var disqus_shortname = "mixfate";
+        var disqus_identifier = "http://www.mixfate.com_JDK动态代理及cglib动态代理实现分析";
+        var disqus_title = "JDK动态代理及cglib动态代理实现分析";
+		*/
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+		/*
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+		*/
+    /* ]]> */
+    </script>
+</div>
+-->
+</div>
+				
+				<!-- google adsense begin -->
+				
+				<!-- size_728x90 -->
+				<ins class="adsbygoogle"
+					 style="display:inline-block;width:728px;height:90px"
+					 data-ad-client="ca-pub-4309621458849374"
+					 data-ad-slot="8507601840"></ins>
+				<script>
+				(adsbygoogle = window.adsbygoogle || []).push({});
+				</script>
+				<!-- google adsense end -->
+				
+                <div class="row">
+                  <div class="col-md-12 col-xs-12 footer">
+                <footer>
+                    © Copyright
+                     
+                    - Powered by Mixfate.
+					<script language="javascript" type="text/javascript" src="http://js.users.51.la/18893327.js"></script>
+					<noscript><a href="http://www.51.la/?18893327" target="_blank"><img alt="&#x6211;&#x8981;&#x5566;&#x514D;&#x8D39;&#x7EDF;&#x8BA1;" src="http://img.users.51.la/18893327.asp" style="border:none" /></a></noscript>
+                    
+                </footer>
+            </div>
+                </div>
+            </div> <!-- end /.col-md-9 -->
+        </div> <!-- end /.row -->
+
+    </div> <!-- end /.container -->
+
+        <!-- Bootstrap core JavaScript
+        ================================================== -->
+        <!-- Placed at the end of the document so the pages load faster -->
+        
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+        <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+        <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+        <script src="http://www.mixfate.com/static/js/thickbox-compressed.js"></script>
+        <script src="http://www.mixfate.com/static/js/material.min.js"></script>
+        <script src="http://www.mixfate.com/static/js/main.js"></script>
+        <script src="http://www.mixfate.com/static/js/projects.js"></script>
+    </body>
+</html>
