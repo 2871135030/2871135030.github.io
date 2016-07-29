@@ -218,6 +218,13 @@
         
         
             
+                <a href="/category/quartz" class="btn btn-sm btn-default btn-raised">quartz</a>
+            
+        
+    
+        
+        
+            
                 <a href="/category/tools" class="btn btn-sm btn-default btn-raised">tools</a>
             
         
@@ -262,6 +269,27 @@
             <div class="least-content">2016-04-24 20:12</div>
             <h4 class="list-group-item-heading" style="font-size: 14px;"><a href="/java/spring/2016/04/24/spring-activemq-annotation.html">Spring + Activemq注解配置使用</a></h4>
             <p class="list-group-item-text">Spring + Activemq注解配置使用 本文接文Spring + Activemq基本使用，将消息接收配置简化，使用注解配置 1、首先升级spring所依赖包版本，将上文中pom.xml的spring版本改为4.3.1.RELEASE，旧版本中无@JmsListener注解，其余依赖不变 2、编写一个消息监听类，此类使用了注解JmsListener，并指定了队列名 ReceiveMessageAnnotationListener.java package com.hode.listener; import javax.jms.JMSException; import javax.jms.Message; import javax.jms.ObjectMessage; import javax.jms.TextMessage; import...</p>
+            
+            </div>
+        </div>
+        <div class="list-group-separator"></div>
+        
+        <div class="list-group-item">
+            <div class="row-action-primary">
+              <i class="fa fa-sticky-note"></i>
+            </div>
+            <div class="row-content" style="font-size: 12px;">
+            
+            
+            
+            
+                
+                
+                
+            
+            <div class="least-content">2016-04-24 19:08</div>
+            <h4 class="list-group-item-heading" style="font-size: 14px;"><a href="/java/spring/quartz/2016/04/24/spring-quartz-annotation.html">Spring + quartz注解配置使用</a></h4>
+            <p class="list-group-item-text">Spring + quartz注解配置使用 本文接文spring4+quartz2基本配置及应用，使用注解配置 1、编写一个定时器执行类，重要的是使用Scheduled注解 AnnotationQueryJob.java package com.hode.job; import org.apache.log4j.Logger; import org.springframework.scheduling.annotation.Scheduled; import org.springframework.stereotype.Component; @Component public class AnnotationQueryJob { private...</p>
             
             </div>
         </div>
@@ -386,7 +414,7 @@
                 
             
             <div class="least-content">2016-04-02 06:51</div>
-            <h4 class="list-group-item-heading" style="font-size: 14px;"><a href="/java/spring/2016/04/02/spring4-quartz2.html">spring4+quartz2基本配置及应用</a></h4>
+            <h4 class="list-group-item-heading" style="font-size: 14px;"><a href="/java/spring/quartz/2016/04/02/spring4-quartz2.html">spring4+quartz2基本配置及应用</a></h4>
             <p class="list-group-item-text">spring4+quartz2基本配置及应用 1、新建maven工程，添加spring4.0及quartz2.2依赖，pom.xml文件内容如下 &lt;project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"&gt; &lt;modelVersion&gt;4.0.0&lt;/modelVersion&gt; &lt;groupId&gt;com.qerooy&lt;/groupId&gt; &lt;artifactId&gt;spring-quartz&lt;/artifactId&gt; &lt;version&gt;0.0.1-SNAPSHOT&lt;/version&gt; &lt;packaging&gt;war&lt;/packaging&gt; &lt;properties&gt; &lt;spring.version&gt;4.0.2.RELEASE&lt;/spring.version&gt; &lt;log4j.version&gt;1.2.17&lt;/log4j.version&gt; &lt;quartz.version&gt;2.2.1&lt;/quartz.version&gt; &lt;/properties&gt; &lt;dependencies&gt; &lt;dependency&gt; &lt;groupId&gt;org.springframework&lt;/groupId&gt;...</p>
             
             </div>

@@ -2,7 +2,7 @@
 layout: post
 title: spring4+quartz2基本配置及应用
 date:   2016-04-01 22:51:39
-categories: [java,spring]
+categories: [java,spring,quartz]
 ---
 
 ## spring4+quartz2基本配置及应用
