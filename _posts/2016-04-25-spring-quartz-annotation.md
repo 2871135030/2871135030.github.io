@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Spring + quartz注解配置使用
-date:   2016-04-24 11:08:48
+date:   2016-04-25 11:08:48
 categories: [java,spring,quartz]
 ---
 
