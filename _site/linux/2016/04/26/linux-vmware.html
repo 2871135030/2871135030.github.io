@@ -6,15 +6,15 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <link rel="shortcut icon" href="/static/img/favicon.ico" />
-        <title>zookeeper安装使用 - Java及相关开源技术博客</title>
+        <title>Vmware linux拷贝网络故障 - Java及相关开源技术博客</title>
         <meta name="author" content="Mixfate博客" />
         <meta name="description" content="Mixfate博客,开源技术博客,IT 博客,java技术,spring开源技术,dubbo分布式架构,maven工具" />
-        <meta name="keywords" content="zookeeper安装使用, Java及相关开源技术博客, tools, zookeeper" />
+        <meta name="keywords" content="Vmware linux拷贝网络故障, Java及相关开源技术博客, linux" />
 
         <meta content="0" property="fb:app_id">
         <meta content="Java及相关开源技术博客" property="og:site_name">
         
-          <meta content="zookeeper安装使用" property="og:title">
+          <meta content="Vmware linux拷贝网络故障" property="og:title">
         
         
           <meta content="article" property="og:type">
@@ -23,10 +23,10 @@
           <meta content="Mixfate博客,开源技术博客,IT 博客,java技术,spring开源技术,dubbo分布式架构,maven工具" property="og:description">
         
         
-          <meta content="http://www.mixfate.com/tools/zookeeper/2016/04/11/zookeeper-install.html" property="og:url">
+          <meta content="http://www.mixfate.com/linux/2016/04/26/linux-vmware.html" property="og:url">
         
         
-          <meta content="2016-04-11T13:32:57+08:00" property="article:published_time">
+          <meta content="2016-04-26T18:27:48+08:00" property="article:published_time">
           <meta content="http://www.mixfate.com/about/" property="article:author">
         
         
@@ -34,7 +34,7 @@
         
         
           
-          <meta content="tools" property="article:section">
+          <meta content="linux" property="article:section">
           
         
         
@@ -44,10 +44,10 @@
         <meta name="twitter:site" content="@\#">
         <meta name="twitter:creator" content="@\#">
         
-          <meta name="twitter:title" content="zookeeper安装使用">
+          <meta name="twitter:title" content="Vmware linux拷贝网络故障">
         
         
-          <meta name="twitter:url" content="http://www.mixfate.com/tools/zookeeper/2016/04/11/zookeeper-install.html">
+          <meta name="twitter:url" content="http://www.mixfate.com/linux/2016/04/26/linux-vmware.html">
         
         
           <meta name="twitter:description" content="Mixfate博客,开源技术博客,IT 博客,java技术,spring开源技术,dubbo分布式架构,maven工具">
@@ -122,14 +122,14 @@
         </div>
       </div>
       <div class="col-md-9 col-sm-8 col-xs-12">
-      <h2 class="blog-title-pro">zookeeper安装使用</h2>
+      <h2 class="blog-title-pro">Vmware linux拷贝网络故障</h2>
       <p class="info">
       
-      <span class="time">2016/04/11</span>
+      <span class="time">2016/04/26</span>
       
       
     <span class="categories">
-        &raquo; <a href="/category/tools">tools</a>, <a href="/category/zookeeper">zookeeper</a>
+        &raquo; <a href="/category/linux">linux</a>
     </span>
     
       </p>
@@ -148,19 +148,19 @@
 	
 	
 	
-	<li class="col-lg-12 col-md-12 col-sm-4 col-xs-12 current-menu-item zookeeper-install.html"><a href="/"><i class="fa fa-home"></i> 首页</a></li>
+	<li class="col-lg-12 col-md-12 col-sm-4 col-xs-12 current-menu-item linux-vmware.html"><a href="/"><i class="fa fa-home"></i> 首页</a></li>
 
 	
 	
 	
 	
-	<li class="col-lg-12 col-md-12 col-sm-4 col-xs-12  zookeeper-install.html"><a href="/category/java"><i class="fa fa-desktop"></i> 分类</a></li>
+	<li class="col-lg-12 col-md-12 col-sm-4 col-xs-12  linux-vmware.html"><a href="/category/java"><i class="fa fa-desktop"></i> 分类</a></li>
 
 	
 	
 	
 	
-	<li class="col-lg-12 col-md-12 col-sm-4 col-xs-12  zookeeper-install.html"><a href="/about/"><i class="fa fa-comments"></i> 关于</a></li>
+	<li class="col-lg-12 col-md-12 col-sm-4 col-xs-12  linux-vmware.html"><a href="/about/"><i class="fa fa-comments"></i> 关于</a></li>
 
 </ul>
     </div>
@@ -181,28 +181,43 @@
             <div class="col-md-9 col-xs-12 full">
                 <div class="post-content well">
 <article class="content">
-    <div class="post" style="font-size: 12px;"><h2 id="zookeeper">ZooKeeper安装使用</h2>
+    <div class="post" style="font-size: 12px;"><h2 id="vmware-linuxbringing-up-interface-eth0-device-eth0-does-not-seem-to-be-present-delaying-initialization">Vmware linux拷贝Bringing up interface eth0: Device eth0 does not seem to be present ,delaying initialization</h2>
 
-<p>下载 zookeeper-3.4.8.tar.gz 包</p>
+<p>Wmware通过拷贝的原系统，重启网络(service network restart)会出现错误Bringing up interface eth0: Device eth0 does not seem to be present ,delaying initialization
+错误截图如下
+<img src="/assets/dfeeded7-8f45-3579-9195-e0e6933a8ad1.png" alt="Bringing up interface eth0" /></p>
 
-<p>tar -xzvf zookeeper-3.4.8.tar.gz</p>
+<font color="red">分析原因：</font>
 
-<p>进入zookeeper目录下的conf子目录, cp -rf zoo_sample.cfg  zoo.cfg 复制一份配置文件</p>
+<p>查看网络配置</p>
 
-<p>vi zoo.cfg完成配置(其它默认便可)</p>
+<div class="language-markdown highlighter-rouge"><pre class="highlight"><code>cat /etc/sysconfig/network-scripts/ifcfg-eth0
+</code></pre>
+</div>
 
-<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">dataDir</span><span class="o">=</span><span class="sr">/data/</span><span class="n">zookeeper</span>
-<span class="n">dataLogDir</span><span class="o">=</span><span class="sr">/data/</span><span class="n">zookeeper</span><span class="o">/</span><span class="n">log</span></code></pre></figure>
+<p><img src="/assets/dfeeded7-8f45-3579-9195-e0e6933a8ad3.png" alt="Bringing up interface eth0" /></p>
 
-<p>单机模式已配置好，启动命令为</p>
+<div class="language-markdown highlighter-rouge"><pre class="highlight"><code>cat /etc/udev/rules.d/70-persistent-net.rules
+</code></pre>
+</div>
 
-<p>bin/zkServer.sh start</p>
+<p><img src="/assets/dfeeded7-8f45-3579-9195-e0e6933a8ad2.png" alt="Bringing up interface eth0" /></p>
 
-<p>Server启动之后, 就可以启动client连接server了, 执行脚本</p>
+<p>出现此故障的原因为虚拟系统安装时的网卡与迁移到新的虚拟机上的虚拟系统不一致，
+当迁移到新虚拟机时重新配置了网上为eth1，但eth0已经失效，所以无法正确配置网络，
+当然可以先删除 /etc/udev/rules.d/70-persistent-net.rules 文件，然后 reboot 重启配置网络</p>
 
-<p>bin/zkCli.sh -server localhost:2181  便可连接成功</p>
+<font color="red">解决方法：</font>
 
-<p>ls / 命令可查看相关节点</p>
+<p>将ifcfg-eth0配置中HWADDR改为70-persistent-net.rules配置中的eth1物理地址一致，
+注意eth需保持一致。因为eth0已失效，所以将eth0</p>
+
+<p>因为eth0已失效，所以将配置70-persistent-net.rules文件中eth0项删除</p>
+
+<p>配置完成后 reboot 重启，网络即可生效，</p>
+
+<p>配置结果如下：
+<img src="/assets/dfeeded7-8f45-3579-9195-e0e6933a8ad4.png" alt="Bringing up interface eth0" /></p>
 
 <p>结束。</p>
 </div>
@@ -220,8 +235,6 @@
         
             
         
-            
-        
     
 
     
@@ -229,17 +242,11 @@
         
             
         
-            
-        
     
         
             
         
-            
-        
     
-        
-            
         
             
         
@@ -250,11 +257,7 @@
         
             
         
-            
-        
     
-        
-            
         
             
         
@@ -265,8 +268,6 @@
         
             
         
-            
-        
     
 
     
@@ -274,26 +275,7 @@
         
             
         
-            
-        
     
-        
-            
-        
-            
-        
-    
-
-    
-    
-        
-            
-        
-            
-        
-    
-        
-            
         
             
         
@@ -304,40 +286,7 @@
         
             
         
-            
-        
     
-        
-            
-        
-            
-                
-                <div class="panel-body">
-                <h5>相关博客</h5>
-                <ul>
-                
-                <li class="relatedPost" style="font-size: 12px;">
-                    <a href="http://www.mixfate.com/java/zookeeper/2016/04/20/zookeeper-cluster.html">Zookeeper集群环境安装</a>
-                    
-                        <small>(所属分类: <a href="/category/java">java</a>, <a href="/category/zookeeper">zookeeper</a>)</small>
-                    
-                </li>
-                
-                
-            
-        
-    
-
-    
-    
-        
-            
-        
-            
-        
-    
-        
-            
         
             
         
@@ -348,20 +297,7 @@
         
             
         
-            
-        
     
-
-    
-    
-        
-            
-        
-            
-        
-    
-        
-            
         
             
         
@@ -372,11 +308,7 @@
         
             
         
-            
-        
     
-        
-            
         
             
         
@@ -387,8 +319,6 @@
         
             
         
-            
-        
     
 
     
@@ -396,17 +326,7 @@
         
             
         
-            
-        
     
-        
-            
-        
-            
-        
-    
-        
-            
         
             
         
@@ -417,42 +337,7 @@
         
             
         
-            
-        
     
-        
-            
-        
-            
-        
-    
-        
-            
-        
-            
-        
-    
-
-    
-    
-        
-            
-                
-                <li class="relatedPost" style="font-size: 12px;">
-                    <a href="http://www.mixfate.com/tools/redis/2016/04/12/redis-install.html">redis安装使用</a>
-                    
-                        <small>(所属分类: <a href="/category/tools">tools</a>, <a href="/category/redis">redis</a>)</small>
-                    
-                </li>
-                
-                
-            
-        
-            
-        
-    
-        
-            
         
             
         
@@ -463,30 +348,18 @@
         
             
         
-            
-        
-    
-        
-            
-        
-            
-        
     
 
     
     
         
             
-                
-                <li class="relatedPost" style="font-size: 12px;">
-                    <a href="http://www.mixfate.com/tools/2016/04/09/git-TortoiseGIT.html">TortoiseGIT记住用户名密码简单方法</a>
-                    
-                        <small>(所属分类: <a href="/category/tools">tools</a>)</small>
-                    
-                </li>
-                
-                
+        
+    
+        
             
+        
+    
         
             
         
@@ -497,23 +370,11 @@
         
             
         
-            
-        
-    
-
-    
     
         
             
         
-            
-        
     
-
-    
-    
-        
-            
         
             
         
@@ -524,49 +385,7 @@
         
             
         
-            
-        
     
-        
-            
-        
-            
-        
-    
-
-    
-    
-        
-            
-                
-                <li class="relatedPost" style="font-size: 12px;">
-                    <a href="http://www.mixfate.com/tools/2016/04/04/mybatis.html">Mybatis使用,Mybatis Generator</a>
-                    
-                        <small>(所属分类: <a href="/category/tools">tools</a>)</small>
-                    
-                </li>
-                
-                
-            
-        
-            
-        
-    
-
-    
-    
-        
-            
-                
-                <li class="relatedPost" style="font-size: 12px;">
-                    <a href="http://www.mixfate.com/tools/2016/04/03/jekyll-github-pages.html">Windows环境jekyll使用</a>
-                    
-                        <small>(所属分类: <a href="/category/tools">tools</a>)</small>
-                    
-                </li>
-                
-                
-            
         
             
         
@@ -577,17 +396,7 @@
         
             
         
-            
-        
     
-        
-            
-        
-            
-        
-    
-        
-            
         
             
         
@@ -598,23 +407,10 @@
         
             
         
-            
-        
     
 
     
     
-        
-            
-        
-            
-        
-    
-
-    
-    
-        
-            
         
             
         
@@ -625,21 +421,89 @@
         
             
         
+    
+
+    
+    
+        
             
         
     
 
+    
+    
+        
+            
+        
+    
+        
+            
+        
+    
 
-    </ul>
-    </div>
+    
+    
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+    
+
 
 
 <div class="PageNavigation" style="font-size: 12px;">
   
-    <a class="prev pull-left" href="/tools/2016/04/09/git-TortoiseGIT.html">&laquo; TortoiseGIT记住用户名密码简单方法</a>
+    <a class="prev pull-left" href="/java/spring/quartz/2016/04/25/spring-quartz-annotation.html">&laquo; Spring + quartz注解配置使用</a>
   
-  
-    <a class="next pull-right" href="/tools/redis/2016/04/12/redis-install.html">redis安装使用 &raquo;</a>
   
 </div>
 <div>&nbsp;</div>
@@ -651,8 +515,8 @@
 
         /*
 		var disqus_shortname = "mixfate";
-        var disqus_identifier = "http://www.mixfate.com_zookeeper安装使用";
-        var disqus_title = "zookeeper安装使用";
+        var disqus_identifier = "http://www.mixfate.com_Vmware linux拷贝网络故障";
+        var disqus_title = "Vmware linux拷贝网络故障";
 		*/
 
         /* * * DON'T EDIT BELOW THIS LINE * * */
