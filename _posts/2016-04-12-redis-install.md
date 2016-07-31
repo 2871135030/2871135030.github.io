@@ -30,6 +30,9 @@ cp ../redis.conf /usr/redis
 cd /usr/redis
 ps -ef | grep 'redis-server' | grep -v grep| awk '{print $2}'| xargs kill -9
 ./redis-server & 后台运行
+
+使用redis-cli连接redis服务
+redis-cli -h 127.0.0.1 -p 6379  -a redis2016
 {% endhighlight %}
 
 结束。

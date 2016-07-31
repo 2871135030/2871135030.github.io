@@ -6,15 +6,15 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <link rel="shortcut icon" href="/static/img/favicon.ico" />
-        <title>redis安装使用 - Java及相关开源技术博客</title>
+        <title>Redis集群安装 - Java及相关开源技术博客</title>
         <meta name="author" content="Mixfate博客" />
         <meta name="description" content="Mixfate博客,开源技术博客,IT 博客,java技术,spring开源技术,dubbo分布式架构,maven工具" />
-        <meta name="keywords" content="redis安装使用, Java及相关开源技术博客, tools, redis" />
+        <meta name="keywords" content="Redis集群安装, Java及相关开源技术博客, redis, tools" />
 
         <meta content="0" property="fb:app_id">
         <meta content="Java及相关开源技术博客" property="og:site_name">
         
-          <meta content="redis安装使用" property="og:title">
+          <meta content="Redis集群安装" property="og:title">
         
         
           <meta content="article" property="og:type">
@@ -23,10 +23,10 @@
           <meta content="Mixfate博客,开源技术博客,IT 博客,java技术,spring开源技术,dubbo分布式架构,maven工具" property="og:description">
         
         
-          <meta content="http://www.mixfate.com/tools/redis/2016/04/12/redis-install.html" property="og:url">
+          <meta content="http://www.mixfate.com/redis/tools/2016/04/27/redis-cluster.html" property="og:url">
         
         
-          <meta content="2016-04-12T23:32:57+08:00" property="article:published_time">
+          <meta content="2016-04-27T18:33:44+08:00" property="article:published_time">
           <meta content="http://www.mixfate.com/about/" property="article:author">
         
         
@@ -34,7 +34,7 @@
         
         
           
-          <meta content="tools" property="article:section">
+          <meta content="redis" property="article:section">
           
         
         
@@ -44,10 +44,10 @@
         <meta name="twitter:site" content="@\#">
         <meta name="twitter:creator" content="@\#">
         
-          <meta name="twitter:title" content="redis安装使用">
+          <meta name="twitter:title" content="Redis集群安装">
         
         
-          <meta name="twitter:url" content="http://www.mixfate.com/tools/redis/2016/04/12/redis-install.html">
+          <meta name="twitter:url" content="http://www.mixfate.com/redis/tools/2016/04/27/redis-cluster.html">
         
         
           <meta name="twitter:description" content="Mixfate博客,开源技术博客,IT 博客,java技术,spring开源技术,dubbo分布式架构,maven工具">
@@ -122,14 +122,14 @@
         </div>
       </div>
       <div class="col-md-9 col-sm-8 col-xs-12">
-      <h2 class="blog-title-pro">redis安装使用</h2>
+      <h2 class="blog-title-pro">Redis集群安装</h2>
       <p class="info">
       
-      <span class="time">2016/04/12</span>
+      <span class="time">2016/04/27</span>
       
       
     <span class="categories">
-        &raquo; <a href="/category/tools">tools</a>, <a href="/category/redis">redis</a>
+        &raquo; <a href="/category/redis">redis</a>, <a href="/category/tools">tools</a>
     </span>
     
       </p>
@@ -148,19 +148,19 @@
 	
 	
 	
-	<li class="col-lg-12 col-md-12 col-sm-4 col-xs-12 current-menu-item redis-install.html"><a href="/"><i class="fa fa-home"></i> 首页</a></li>
+	<li class="col-lg-12 col-md-12 col-sm-4 col-xs-12 current-menu-item redis-cluster.html"><a href="/"><i class="fa fa-home"></i> 首页</a></li>
 
 	
 	
 	
 	
-	<li class="col-lg-12 col-md-12 col-sm-4 col-xs-12  redis-install.html"><a href="/category/java"><i class="fa fa-desktop"></i> 分类</a></li>
+	<li class="col-lg-12 col-md-12 col-sm-4 col-xs-12  redis-cluster.html"><a href="/category/java"><i class="fa fa-desktop"></i> 分类</a></li>
 
 	
 	
 	
 	
-	<li class="col-lg-12 col-md-12 col-sm-4 col-xs-12  redis-install.html"><a href="/about/"><i class="fa fa-comments"></i> 关于</a></li>
+	<li class="col-lg-12 col-md-12 col-sm-4 col-xs-12  redis-cluster.html"><a href="/about/"><i class="fa fa-comments"></i> 关于</a></li>
 
 </ul>
     </div>
@@ -181,34 +181,225 @@
             <div class="col-md-9 col-xs-12 full">
                 <div class="post-content well">
 <article class="content">
-    <div class="post" style="font-size: 12px;"><h2 id="redis">Redis安装使用</h2>
+    <div class="post" style="font-size: 12px;"><h2 id="redis">Redis集群安装</h2>
 
-<p>下载redis-2.8.19.tar.gz</p>
+<p>前文<a href="/tools/redis/2016/04/12/redis-install.html">Redis安装使用</a>介绍过redis的单机版安装，</p>
 
-<p>tar -xzvf redis-2.8.19.tar.gz</p>
+<p>本文将介绍redis集群安装，本文以redis新的稳定版本redis-3.2.2.tar.gz为例。</p>
 
-<p>进入目录 /software/redis-2.8.19</p>
+<p>1、先按前文步骤安装好单机版redis，确认安装成功后继续后面步骤。下列简要列出步骤</p>
 
-<p>make 完成安装</p>
+<div class="language-markdown highlighter-rouge"><pre class="highlight"><code>tar -xzvf redis-3.2.2.tar.gz
 
-<p>若出现错误gcc：命令未找到，先执行 yum -y install gcc</p>
+解压完成后进入目录 
+cd /software/redis-3.2.2/src
 
-<p>若出现错误：jemalloc/jemalloc.h：没有那个文件或目录，执行 make MALLOC=libc 完成安装</p>
+make install
 
-<p>安装成功后完成配置</p>
+若出现错误gcc：命令未找到，先执行 yum -y install gcc
 
-<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">vi</span> <span class="sr">/software/</span><span class="n">redis</span><span class="o">-</span><span class="mi">2</span><span class="o">.</span><span class="mi">8</span><span class="o">.</span><span class="mi">19</span><span class="o">/</span><span class="n">redis</span><span class="p">.</span><span class="nf">conf</span> <span class="err">为</span><span class="n">redis</span><span class="err">设置密码</span> <span class="err">项</span> <span class="n">requirepass</span> <span class="n">redis2016</span>
-<span class="n">mkdir</span> <span class="sr">/usr/</span><span class="n">redis</span>
-<span class="n">cp</span> <span class="n">redis</span><span class="o">-</span><span class="n">server</span> <span class="sr">/usr/</span><span class="n">redis</span>
-<span class="n">cp</span> <span class="n">redis</span><span class="o">-</span><span class="n">benchmark</span> <span class="sr">/usr/</span><span class="n">redis</span>
-<span class="n">cp</span> <span class="n">redis</span><span class="o">-</span><span class="n">cli</span> <span class="sr">/usr/</span><span class="n">redis</span>
-<span class="n">cp</span> <span class="p">.</span><span class="nf">.</span><span class="o">/</span><span class="n">redis</span><span class="p">.</span><span class="nf">conf</span> <span class="sr">/usr/</span><span class="n">redis</span>
-<span class="n">cd</span> <span class="sr">/usr/</span><span class="n">redis</span>
-<span class="n">ps</span> <span class="o">-</span><span class="n">ef</span> <span class="o">|</span> <span class="n">grep</span> <span class="s1">'redis-server'</span> <span class="o">|</span> <span class="n">grep</span> <span class="o">-</span><span class="n">v</span> <span class="n">grep</span><span class="o">|</span> <span class="n">awk</span> <span class="s1">'{print $2}'</span><span class="o">|</span> <span class="n">xargs</span> <span class="n">kill</span> <span class="o">-</span><span class="mi">9</span>
-<span class="p">.</span><span class="nf">/</span><span class="n">redis</span><span class="o">-</span><span class="n">server</span> <span class="o">&amp;</span> <span class="err">后台运行</span>
+若出现错误：jemalloc/jemalloc.h：没有那个文件或目录，执行 make MALLOC=libc 完成安装
 
-<span class="err">使用</span><span class="n">redis</span><span class="o">-</span><span class="n">cli</span><span class="err">连接</span><span class="n">redis</span><span class="err">服务</span>
-<span class="n">redis</span><span class="o">-</span><span class="n">cli</span> <span class="o">-</span><span class="n">h</span> <span class="mi">127</span><span class="o">.</span><span class="mi">0</span><span class="o">.</span><span class="mi">0</span><span class="o">.</span><span class="mi">1</span> <span class="o">-</span><span class="nb">p</span> <span class="mi">6379</span>  <span class="o">-</span><span class="n">a</span> <span class="n">redis2016</span></code></pre></figure>
+执行make install后，test一下
+make test
+
+若出现You need tcl 8.5 or newer in order to run the Redis test
+则执行命令
+yum -y install tcl
+
+安装完成后
+设置密码
+vi /software/redis-3.2.2/redis.conf 为redis设置密码 项 requirepass redis2016
+为了方便不同的外部客户端连接，还需暂时屏蔽bind 127.0.0.1这个配置项
+cd /software/redis-3.2.2/
+mkdir /usr/redis
+cd src
+cp redis-server /usr/redis
+cp redis-benchmark /usr/redis
+cp redis-cli /usr/redis
+cp ../redis.conf /usr/redis
+cd /usr/redis
+ps -ef | grep 'redis-server' | grep -v grep| awk '{print $2}'| xargs kill -9
+/usr/redis/redis-server /usr/redis/redis.conf &amp; 后台启动运行
+
+使用客户端命令redis-cli连接，进行测试
+redis-cli -h 127.0.0.1 -p 6379  -a redis2016
+
+使用以下shell命令可关闭redis服务
+ps -ef | grep 'redis-server' | grep -v grep| awk '{print $2}'| xargs kill -9
+
+</code></pre>
+</div>
+
+<p>到此redis单机版已经安装成功，下面开始配置集群。</p>
+
+<div class="language-markdown highlighter-rouge"><pre class="highlight"><code>创建redis集群目录
+mkdir /usr/redis-cluster
+cd /usr/redis-cluster
+
+分别将文件依次拷贝到指定目录中，这样在准备集群的目录中有四个文件
+cp /usr/redis/redis-server /usr/redis-cluster
+cp /usr/redis/redis-benchmark /usr/redis-cluster
+cp /usr/redis/redis-cli /usr/redis-cluster
+cp /usr/redis/redis.conf /usr/redis-cluster
+
+下面编辑redis.conf文件(注意：本例集群在同一台机器上，需注意端口、配置文件路径等)
+
+vi redis.conf
+分别找到以下项，并修改对应值，若为注释项则解除注释(需屏蔽密码项#requirepass redis2016，创建集群时不需要密码)
+port 7000
+daemonize yes
+pidfile /var/run/redis7000.pid
+cluster-enabled yes
+appendonly yes
+cluster-node-timeout 15000
+cluster-config-file nodes-7000.conf
+
+cp /usr/redis-cluster/redis.conf /usr/redis-cluster/redis-7000.conf
+
+依次编辑redis-7001.conf、redis-7002.conf、redis-7003.conf、redis-7004.conf、redis-7005.conf文件，
+注意配置文件中的 7000改为对应值<span class="sb">
+
+
+</span>下面启动集群redis
+cd /usr/redis-cluster/
+/usr/redis-cluster/redis-server redis-7000.conf &amp;
+/usr/redis-cluster/redis-server redis-7001.conf &amp;
+/usr/redis-cluster/redis-server redis-7002.conf &amp;
+/usr/redis-cluster/redis-server redis-7003.conf &amp;
+/usr/redis-cluster/redis-server redis-7004.conf &amp;
+/usr/redis-cluster/redis-server redis-7005.conf &amp;
+
+使用以下命令检查是否正常
+ps -ef|grep redis
+
+例如：
+root      1830     1  0 20:24 ?        00:00:00 /usr/redis-cluster/redis-server <span class="err">*</span>:7000 <span class="p">[</span><span class="nv">cluster</span><span class="p">]</span>
+root      1832     1  0 20:24 ?        00:00:00 /usr/redis-cluster/redis-server <span class="err">*</span>:7001 <span class="p">[</span><span class="nv">cluster</span><span class="p">]</span>
+root      1834     1  0 20:24 ?        00:00:00 /usr/redis-cluster/redis-server <span class="err">*</span>:7002 <span class="p">[</span><span class="nv">cluster</span><span class="p">]</span>
+root      1835     1  0 20:24 ?        00:00:00 /usr/redis-cluster/redis-server <span class="err">*</span>:7003 <span class="p">[</span><span class="nv">cluster</span><span class="p">]</span>
+root      1836     1  0 20:24 ?        00:00:00 /usr/redis-cluster/redis-server <span class="err">*</span>:7004 <span class="p">[</span><span class="nv">cluster</span><span class="p">]</span>
+root      1837     1  0 20:24 ?        00:00:00 /usr/redis-cluster/redis-server <span class="err">*</span>:7005 <span class="p">[</span><span class="nv">cluster</span><span class="p">]</span>
+
+说明redis各机器正常
+
+此时可以使用命令查看节点
+例如：
+<span class="p">[</span><span class="nv">root@localhost redis-cluster</span><span class="p">]</span># redis-cli -h 127.0.0.1 -p 7000 cluster nodes
+ed309eb3944df6eb721664625525281a0e93bca0 :7000 myself,master - 0 0 0 connected
+<span class="p">[</span><span class="nv">root@localhost redis-cluster</span><span class="p">]</span># redis-cli -h 127.0.0.1 -p 7001 cluster nodes
+46d3a1772aa23ec160fa9b3a789451d855417cc8 :7001 myself,master - 0 0 0 connected
+<span class="p">[</span><span class="nv">root@localhost redis-cluster</span><span class="p">]</span># redis-cli -h 127.0.0.1 -p 7002 cluster nodes
+77404e0a3c32fa80785b06ece1095a162f6fed7b :7002 myself,master - 0 0 0 connected
+<span class="p">[</span><span class="nv">root@localhost redis-cluster</span><span class="p">]</span># redis-cli -h 127.0.0.1 -p 7003 cluster nodes
+1bd8506192c44ec87f599bef99310b9c55c1b1a4 :7003 myself,master - 0 0 0 connected
+<span class="p">[</span><span class="nv">root@localhost redis-cluster</span><span class="p">]</span># redis-cli -h 127.0.0.1 -p 7004 cluster nodes
+a23730e476a3fdf178728a3a57f662c84385019c :7004 myself,master - 0 0 0 connected
+<span class="p">[</span><span class="nv">root@localhost redis-cluster</span><span class="p">]</span># redis-cli -h 127.0.0.1 -p 7005 cluster nodes
+5827cb5db9a9bac200ce5b3814faa6a0cfbb20f3 :7005 myself,master - 0 0 0 connected
+
+可以看到每一个redis服务都是master节点，接下来要执行redis创建集群命令来完成创建集群
+
+创建集群命令为ruby命令，需先安装ruby命令
+yum -y install ruby
+yum -y install rubygems
+
+gem install redis(这里若因为无法连接gem服务器,可手工下载并安装，手工下载地址
+wget https://rubygems.global.ssl.fastly.net/gems/redis-3.3.1.gem ，下载完成后执行gem install -l ./redis-3.3.1.gem完成安装)<span class="sb">
+
+
+</span>安装完成后创建集群
+
+cp /software/redis-3.2.2/src/redis-trib.rb /usr/redis-cluster
+
+/usr/redis-cluster/redis-trib.rb  create --replicas 1 127.0.0.1:7000 127.0.0.1:7001 127.0.0.1:7002 127.0.0.1:7003 127.0.0.1:7004 127.0.0.1:7005
+
+输入yes完成集群配置
+
+示例如下：
+<span class="p">[</span><span class="nv">root@localhost redis-cluster</span><span class="p">]</span># /usr/redis-cluster/redis-trib.rb  create --replicas 1 127.0.0.1:7000 127.0.0.1:7001 127.0.0.1:7002 127.0.0.1:7003 127.0.0.1:7004 127.0.0.1:7005
+<span class="gt">&gt;&gt;&gt; Creating cluster</span>
+<span class="gt">&gt;&gt;&gt; Performing hash slots allocation on 6 nodes...</span>
+Using 3 masters:
+<span class="p">127.</span>0.0.1:7000
+<span class="p">127.</span>0.0.1:7001
+<span class="p">127.</span>0.0.1:7002
+Adding replica 127.0.0.1:7003 to 127.0.0.1:7000
+Adding replica 127.0.0.1:7004 to 127.0.0.1:7001
+Adding replica 127.0.0.1:7005 to 127.0.0.1:7002
+M: ed309eb3944df6eb721664625525281a0e93bca0 127.0.0.1:7000
+   slots:0-5460 (5461 slots) master
+M: 46d3a1772aa23ec160fa9b3a789451d855417cc8 127.0.0.1:7001
+   slots:5461-10922 (5462 slots) master
+M: 77404e0a3c32fa80785b06ece1095a162f6fed7b 127.0.0.1:7002
+   slots:10923-16383 (5461 slots) master
+S: 1bd8506192c44ec87f599bef99310b9c55c1b1a4 127.0.0.1:7003
+   replicates ed309eb3944df6eb721664625525281a0e93bca0
+S: a23730e476a3fdf178728a3a57f662c84385019c 127.0.0.1:7004
+   replicates 46d3a1772aa23ec160fa9b3a789451d855417cc8
+S: 5827cb5db9a9bac200ce5b3814faa6a0cfbb20f3 127.0.0.1:7005
+   replicates 77404e0a3c32fa80785b06ece1095a162f6fed7b
+Can I set the above configuration? (type 'yes' to accept): yes  
+<span class="gt">&gt;&gt;&gt; Nodes configuration updated</span>
+<span class="gt">&gt;&gt;&gt; Assign a different config epoch to each node</span>
+<span class="gt">&gt;&gt;&gt; Sending CLUSTER MEET messages to join the cluster</span>
+Waiting for the cluster to join.....
+<span class="gt">&gt;&gt;&gt; Performing Cluster Check (using node 127.0.0.1:7000)</span>
+M: ed309eb3944df6eb721664625525281a0e93bca0 127.0.0.1:7000
+   slots:0-5460 (5461 slots) master
+M: 46d3a1772aa23ec160fa9b3a789451d855417cc8 127.0.0.1:7001
+   slots:5461-10922 (5462 slots) master
+M: 77404e0a3c32fa80785b06ece1095a162f6fed7b 127.0.0.1:7002
+   slots:10923-16383 (5461 slots) master
+M: 1bd8506192c44ec87f599bef99310b9c55c1b1a4 127.0.0.1:7003
+   slots: (0 slots) master
+   replicates ed309eb3944df6eb721664625525281a0e93bca0
+M: a23730e476a3fdf178728a3a57f662c84385019c 127.0.0.1:7004
+   slots: (0 slots) master
+   replicates 46d3a1772aa23ec160fa9b3a789451d855417cc8
+M: 5827cb5db9a9bac200ce5b3814faa6a0cfbb20f3 127.0.0.1:7005
+   slots: (0 slots) master
+   replicates 77404e0a3c32fa80785b06ece1095a162f6fed7b
+<span class="p">[</span><span class="nv">OK</span><span class="p">]</span> All nodes agree about slots configuration.
+<span class="gt">&gt;&gt;&gt; Check for open slots...</span>
+<span class="gt">&gt;&gt;&gt; Check slots coverage...</span>
+<span class="p">[</span><span class="nv">OK</span><span class="p">]</span> All 16384 slots covered.
+<span class="p">[</span><span class="nv">root@localhost redis-cluster</span><span class="p">]</span># 
+
+使用以下命令检查集群
+/usr/redis-cluster/redis-trib.rb check 127.0.0.1:7000
+
+示例检查结果
+<span class="p">[</span><span class="nv">root@localhost redis-cluster</span><span class="p">]</span># /usr/redis-cluster/redis-trib.rb check
+<span class="p">[</span><span class="nv">ERR</span><span class="p">]</span> Wrong number of arguments for specified sub command
+<span class="p">[</span><span class="nv">root@localhost redis-cluster</span><span class="p">]</span># /usr/redis-cluster/redis-trib.rb check 127.0.0.1:7000
+<span class="gt">&gt;&gt;&gt; Performing Cluster Check (using node 127.0.0.1:7000)</span>
+M: ed309eb3944df6eb721664625525281a0e93bca0 127.0.0.1:7000
+   slots:0-5460 (5461 slots) master
+   1 additional replica(s)
+M: 77404e0a3c32fa80785b06ece1095a162f6fed7b 127.0.0.1:7002
+   slots:10923-16383 (5461 slots) master
+   1 additional replica(s)
+S: a23730e476a3fdf178728a3a57f662c84385019c 127.0.0.1:7004
+   slots: (0 slots) slave
+   replicates 46d3a1772aa23ec160fa9b3a789451d855417cc8
+M: 46d3a1772aa23ec160fa9b3a789451d855417cc8 127.0.0.1:7001
+   slots:5461-10922 (5462 slots) master
+   1 additional replica(s)
+S: 5827cb5db9a9bac200ce5b3814faa6a0cfbb20f3 127.0.0.1:7005
+   slots: (0 slots) slave
+   replicates 77404e0a3c32fa80785b06ece1095a162f6fed7b
+S: 1bd8506192c44ec87f599bef99310b9c55c1b1a4 127.0.0.1:7003
+   slots: (0 slots) slave
+   replicates ed309eb3944df6eb721664625525281a0e93bca0
+<span class="p">[</span><span class="nv">OK</span><span class="p">]</span> All nodes agree about slots configuration.
+<span class="gt">&gt;&gt;&gt; Check for open slots...</span>
+<span class="gt">&gt;&gt;&gt; Check slots coverage...</span>
+<span class="p">[</span><span class="nv">OK</span><span class="p">]</span> All 16384 slots covered.
+<span class="p">[</span><span class="nv">root@localhost redis-cluster</span><span class="p">]</span># 
+
+</code></pre>
+</div>
 
 <p>结束。</p>
 </div>
@@ -227,209 +418,197 @@
             
         
             
+        
+    
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+        
+    
+        
+            
+        
+            
+        
+    
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+        
+    
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+        
+    
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+        
+    
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+        
+    
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+        
+    
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+        
+    
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+        
+    
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+        
+    
+        
+            
+        
+            
+        
+    
+        
+            
                 
                 <div class="panel-body">
                 <h5>相关博客</h5>
                 <ul>
-                
-                <li class="relatedPost" style="font-size: 12px;">
-                    <a href="http://www.mixfate.com/redis/tools/2016/04/27/redis-cluster.html">Redis集群安装</a>
-                    
-                        <small>(所属分类: <a href="/category/redis">redis</a>, <a href="/category/tools">tools</a>)</small>
-                    
-                </li>
-                
-                
-            
-        
-    
-        
-            
-        
-            
-        
-    
-
-    
-    
-        
-            
-        
-            
-        
-    
-
-    
-    
-        
-            
-        
-            
-        
-    
-        
-            
-        
-            
-        
-    
-        
-            
-        
-            
-        
-    
-
-    
-    
-        
-            
-        
-            
-        
-    
-        
-            
-        
-            
-        
-    
-
-    
-    
-        
-            
-        
-            
-        
-    
-
-    
-    
-        
-            
-        
-            
-        
-    
-        
-            
-        
-            
-        
-    
-
-    
-    
-        
-            
-        
-            
-        
-    
-        
-            
-        
-            
-        
-    
-
-    
-    
-        
-            
-        
-            
-        
-    
-        
-            
-        
-            
-        
-    
-
-    
-    
-        
-            
-        
-            
-        
-    
-        
-            
-        
-            
-        
-    
-
-    
-    
-        
-            
-        
-            
-        
-    
-
-    
-    
-        
-            
-        
-            
-        
-    
-        
-            
-        
-            
-        
-    
-
-    
-    
-        
-            
-        
-            
-        
-    
-        
-            
-        
-            
-        
-    
-
-    
-    
-        
-            
-        
-            
-        
-    
-
-    
-    
-        
-            
-        
-            
-        
-    
-        
-            
-        
-            
-        
-    
-        
-            
-        
-            
                 
                 <li class="relatedPost" style="font-size: 12px;">
                     <a href="http://www.mixfate.com/java/spring/redis/2016/04/14/spring-jedis-distributed-lock.html">Spring4+jedis实现分布式锁</a>
@@ -441,6 +620,8 @@
                 
             
         
+            
+        
     
 
     
@@ -457,8 +638,6 @@
             
         
     
-        
-            
         
             
                 
@@ -472,25 +651,39 @@
                 
             
         
-    
-
-    
-    
-        
-            
-        
-            
-        
-    
-        
-            
-        
             
         
     
 
     
     
+        
+            
+        
+            
+                
+                <li class="relatedPost" style="font-size: 12px;">
+                    <a href="http://www.mixfate.com/tools/redis/2016/04/12/redis-install.html">redis安装使用</a>
+                    
+                        <small>(所属分类: <a href="/category/tools">tools</a>, <a href="/category/redis">redis</a>)</small>
+                    
+                </li>
+                
+                
+            
+        
+    
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
         
             
                 
@@ -504,8 +697,6 @@
                 
             
         
-            
-        
     
         
             
@@ -516,6 +707,8 @@
 
     
     
+        
+            
         
             
                 
@@ -529,8 +722,6 @@
                 
             
         
-            
-        
     
 
     
@@ -577,6 +768,8 @@
 
     
     
+        
+            
         
             
                 
@@ -588,8 +781,6 @@
                 </li>
                 
                 
-            
-        
             
         
     
@@ -667,10 +858,8 @@
 
 <div class="PageNavigation" style="font-size: 12px;">
   
-    <a class="prev pull-left" href="/tools/zookeeper/2016/04/11/zookeeper-install.html">&laquo; zookeeper安装使用</a>
+    <a class="prev pull-left" href="/linux/2016/04/26/linux-vmware.html">&laquo; Vmware linux拷贝网络故障</a>
   
-  
-    <a class="next pull-right" href="/java/spring/redis/2016/04/13/spring-jedis.html">Spring4+jedis基本操作 &raquo;</a>
   
 </div>
 <div>&nbsp;</div>
@@ -682,8 +871,8 @@
 
         /*
 		var disqus_shortname = "mixfate";
-        var disqus_identifier = "http://www.mixfate.com_redis安装使用";
-        var disqus_title = "redis安装使用";
+        var disqus_identifier = "http://www.mixfate.com_Redis集群安装";
+        var disqus_title = "Redis集群安装";
 		*/
 
         /* * * DON'T EDIT BELOW THIS LINE * * */
