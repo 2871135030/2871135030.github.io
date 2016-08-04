@@ -6,15 +6,15 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <link rel="shortcut icon" href="/static/img/favicon.ico" />
-        <title>心灵鸡汤 经典语录 - Java及相关开源技术博客</title>
+        <title>maven安装第三方包到本地或私服 - Java及相关开源技术博客</title>
         <meta name="author" content="Mixfate博客" />
         <meta name="description" content="Mixfate博客,开源技术博客,IT 博客,java技术,spring开源技术,dubbo分布式架构,maven工具" />
-        <meta name="keywords" content="心灵鸡汤 经典语录, Java及相关开源技术博客, others" />
+        <meta name="keywords" content="maven安装第三方包到本地或私服, Java及相关开源技术博客, maven, tools" />
 
         <meta content="0" property="fb:app_id">
         <meta content="Java及相关开源技术博客" property="og:site_name">
         
-          <meta content="心灵鸡汤 经典语录" property="og:title">
+          <meta content="maven安装第三方包到本地或私服" property="og:title">
         
         
           <meta content="article" property="og:type">
@@ -23,10 +23,10 @@
           <meta content="Mixfate博客,开源技术博客,IT 博客,java技术,spring开源技术,dubbo分布式架构,maven工具" property="og:description">
         
         
-          <meta content="http://www.mixfate.com/others/2015/06/04/others-1.html" property="og:url">
+          <meta content="http://www.mixfate.com/maven/tools/2016/04/30/maven-nexus.html" property="og:url">
         
         
-          <meta content="2015-06-04T21:50:39+08:00" property="article:published_time">
+          <meta content="2016-04-30T19:26:46+08:00" property="article:published_time">
           <meta content="http://www.mixfate.com/about/" property="article:author">
         
         
@@ -34,7 +34,7 @@
         
         
           
-          <meta content="others" property="article:section">
+          <meta content="maven" property="article:section">
           
         
         
@@ -44,10 +44,10 @@
         <meta name="twitter:site" content="@\#">
         <meta name="twitter:creator" content="@\#">
         
-          <meta name="twitter:title" content="心灵鸡汤 经典语录">
+          <meta name="twitter:title" content="maven安装第三方包到本地或私服">
         
         
-          <meta name="twitter:url" content="http://www.mixfate.com/others/2015/06/04/others-1.html">
+          <meta name="twitter:url" content="http://www.mixfate.com/maven/tools/2016/04/30/maven-nexus.html">
         
         
           <meta name="twitter:description" content="Mixfate博客,开源技术博客,IT 博客,java技术,spring开源技术,dubbo分布式架构,maven工具">
@@ -122,14 +122,14 @@
         </div>
       </div>
       <div class="col-md-9 col-sm-8 col-xs-12">
-      <h2 class="blog-title-pro">心灵鸡汤 经典语录</h2>
+      <h2 class="blog-title-pro">maven安装第三方包到本地或私服</h2>
       <p class="info">
       
-      <span class="time">2015/06/04</span>
+      <span class="time">2016/04/30</span>
       
       
     <span class="categories">
-        &raquo; <a href="/category/others">others</a>
+        &raquo; <a href="/category/maven">maven</a>, <a href="/category/tools">tools</a>
     </span>
     
       </p>
@@ -148,19 +148,19 @@
 	
 	
 	
-	<li class="col-lg-12 col-md-12 col-sm-4 col-xs-12 current-menu-item others-1.html"><a href="/"><i class="fa fa-home"></i> 首页</a></li>
+	<li class="col-lg-12 col-md-12 col-sm-4 col-xs-12 current-menu-item maven-nexus.html"><a href="/"><i class="fa fa-home"></i> 首页</a></li>
 
 	
 	
 	
 	
-	<li class="col-lg-12 col-md-12 col-sm-4 col-xs-12  others-1.html"><a href="/category/java"><i class="fa fa-desktop"></i> 分类</a></li>
+	<li class="col-lg-12 col-md-12 col-sm-4 col-xs-12  maven-nexus.html"><a href="/category/java"><i class="fa fa-desktop"></i> 分类</a></li>
 
 	
 	
 	
 	
-	<li class="col-lg-12 col-md-12 col-sm-4 col-xs-12  others-1.html"><a href="/about/"><i class="fa fa-comments"></i> 关于</a></li>
+	<li class="col-lg-12 col-md-12 col-sm-4 col-xs-12  maven-nexus.html"><a href="/about/"><i class="fa fa-comments"></i> 关于</a></li>
 
 </ul>
     </div>
@@ -181,7 +181,33 @@
             <div class="col-md-9 col-xs-12 full">
                 <div class="post-content well">
 <article class="content">
-    <div class="post" style="font-size: 12px;"><p>低调的人，一定是随和的人。他不会装腔作势，摆出一副盛气凌人的臭架子，令人敬而远之。一个有智慧的人，总是笑容满面，一个愚蠢的人，总是寒气逼人；智慧的人，总是记住别人的名字，愚蠢的人，总是希望名字被别人记住。</p>
+    <div class="post" style="font-size: 12px;"><h2 id="maven">maven安装第三方包到本地或私服</h2>
+
+<p>如需安装到本地，确认本地maven环境正常可使用，可直接install，命令如下：</p>
+
+<div class="language-markdown highlighter-rouge"><pre class="highlight"><code>mvn install:install-file -DgroupId=com.hode -DartifactId=quest -Dversion=1.0 -Dpackaging=jar -Dfile=quest.jar
+</code></pre>
+</div>
+
+<p>说明：可以看到，上面的命令是将quest.jar包直接安装到本地的maven仓库中。</p>
+
+<p>若需要安装到私服上，首先需配置用户的访问权限，在maven的配置文件setting.xml中配置thirdparty项，配置如下</p>
+
+<div class="language-markdown highlighter-rouge"><pre class="highlight"><code><span class="nt">&lt;server&gt;</span>
+	<span class="nt">&lt;id&gt;</span>thirdparty<span class="nt">&lt;/id&gt;</span>
+	<span class="nt">&lt;username&gt;</span>root<span class="nt">&lt;/username&gt;</span>
+	<span class="nt">&lt;password&gt;</span>root<span class="nt">&lt;/password&gt;</span>
+<span class="nt">&lt;/server&gt;</span>
+</code></pre>
+</div>
+
+<p>安装命令如下:</p>
+
+<div class="language-markdown highlighter-rouge"><pre class="highlight"><code>mvn deploy:deploy-file -DgroupId=com.hode -DartifactId=quest -Dversion=1.0 -Dpackaging=jar -Dfile=quest.jar -DrepositoryId=thirdparty -Durl=http://192.168.23.57:8081/nexus/content/repositories/thirdparty/
+</code></pre>
+</div>
+
+<p>结束。</p>
 </div>
 	
 	<!--
@@ -197,25 +223,11 @@
         
             
         
-    
-        
-            
-        
-    
-
-    
-    
-        
             
         
     
         
             
-        
-    
-
-    
-    
         
             
                 
@@ -224,9 +236,9 @@
                 <ul>
                 
                 <li class="relatedPost" style="font-size: 12px;">
-                    <a href="http://www.mixfate.com/others/2016/04/29/others.html">四句话，献给处于阴霾中的你</a>
+                    <a href="http://www.mixfate.com/mysql/tools/2016/05/01/mysql-install.html">mysql windows绿色版使用，导入导出功能</a>
                     
-                        <small>(所属分类: <a href="/category/others">others</a>)</small>
+                        <small>(所属分类: <a href="/category/mysql">mysql</a>, <a href="/category/tools">tools</a>)</small>
                     
                 </li>
                 
@@ -240,7 +252,11 @@
         
             
         
+            
+        
     
+        
+            
         
             
         
@@ -250,92 +266,6 @@
     
         
             
-        
-    
-        
-            
-        
-    
-
-    
-    
-        
-            
-        
-    
-
-    
-    
-        
-            
-        
-    
-        
-            
-        
-    
-        
-            
-        
-    
-
-    
-    
-        
-            
-        
-    
-        
-            
-        
-    
-
-    
-    
-        
-            
-        
-    
-
-    
-    
-        
-            
-        
-    
-        
-            
-        
-    
-
-    
-    
-        
-            
-        
-    
-        
-            
-        
-    
-
-    
-    
-        
-            
-        
-    
-        
-            
-        
-    
-
-    
-    
-        
-            
-        
-    
         
             
         
@@ -347,34 +277,20 @@
             
                 
                 <li class="relatedPost" style="font-size: 12px;">
-                    <a href="http://www.mixfate.com/others/2016/04/18/others.html">幽默故事，欢笑中的人生领悟</a>
+                    <a href="http://www.mixfate.com/maven/tools/2016/04/27/java-proguard-js-yuicompressor.html">Java代码保护，JS代码压缩工具</a>
                     
-                        <small>(所属分类: <a href="/category/others">others</a>)</small>
+                        <small>(所属分类: <a href="/category/maven">maven</a>, <a href="/category/tools">tools</a>)</small>
                     
                 </li>
                 
                 
             
         
-    
-
-    
-    
-        
             
         
     
         
             
-        
-    
-
-    
-    
-        
-            
-        
-    
         
             
         
@@ -385,76 +301,18 @@
         
             
         
-    
-
-    
-    
-        
             
         
     
         
             
-        
-    
-        
-            
-        
-    
-
-    
-    
-        
-            
-        
-    
-        
-            
-        
-    
-        
-            
-        
-    
-
-    
-    
-        
-            
-        
-    
-        
-            
-        
-    
-
-    
-    
-        
-            
-        
-    
-        
-            
-        
-    
-
-    
-    
-        
-            
-        
-    
-
-    
-    
         
             
                 
                 <li class="relatedPost" style="font-size: 12px;">
-                    <a href="http://www.mixfate.com/others/2016/04/09/others.html">小不忍则乱大谋，退一步海阔天空</a>
+                    <a href="http://www.mixfate.com/redis/tools/2016/04/27/redis-cluster.html">Redis集群安装</a>
                     
-                        <small>(所属分类: <a href="/category/others">others</a>)</small>
+                        <small>(所属分类: <a href="/category/redis">redis</a>, <a href="/category/tools">tools</a>)</small>
                     
                 </li>
                 
@@ -465,13 +323,269 @@
 
     
     
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+        
+    
+        
+            
+        
+            
+        
+    
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+        
+    
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+        
+    
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+        
+    
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+        
+    
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+        
+    
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+        
+    
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+        
+    
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+        
+    
+        
+            
+        
+            
+        
+    
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+        
+    
+        
+            
+        
+            
+        
+    
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
         
             
                 
                 <li class="relatedPost" style="font-size: 12px;">
-                    <a href="http://www.mixfate.com/others/2016/04/06/coding-pages.html">Coding pages + Github pages 搭建自己的博客</a>
+                    <a href="http://www.mixfate.com/tools/redis/2016/04/12/redis-install.html">redis安装使用</a>
                     
-                        <small>(所属分类: <a href="/category/others">others</a>)</small>
+                        <small>(所属分类: <a href="/category/tools">tools</a>, <a href="/category/redis">redis</a>)</small>
+                    
+                </li>
+                
+                
+            
+        
+    
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+                
+                <li class="relatedPost" style="font-size: 12px;">
+                    <a href="http://www.mixfate.com/tools/zookeeper/2016/04/11/zookeeper-install.html">zookeeper安装使用</a>
+                    
+                        <small>(所属分类: <a href="/category/tools">tools</a>, <a href="/category/zookeeper">zookeeper</a>)</small>
+                    
+                </li>
+                
+                
+            
+        
+    
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+                
+                <li class="relatedPost" style="font-size: 12px;">
+                    <a href="http://www.mixfate.com/tools/2016/04/09/git-TortoiseGIT.html">TortoiseGIT记住用户名密码简单方法</a>
+                    
+                        <small>(所属分类: <a href="/category/tools">tools</a>)</small>
                     
                 </li>
                 
@@ -485,21 +599,14 @@
         
             
         
-    
-
-    
-    
-        
-            
-        
-    
-        
             
         
     
 
     
     
+        
+            
         
             
         
@@ -510,19 +617,6 @@
         
             
         
-    
-
-    
-    
-        
-            
-        
-    
-        
-            
-        
-    
-        
             
         
     
@@ -532,10 +626,11 @@
         
             
         
+            
+        
     
-
-    
-    
+        
+            
         
             
         
@@ -546,10 +641,71 @@
         
             
         
+            
+        
     
 
     
     
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+        
+    
+        
+            
+        
+            
+        
+    
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
         
             
         
@@ -562,8 +718,10 @@
 
 <div class="PageNavigation" style="font-size: 12px;">
   
+    <a class="prev pull-left" href="/others/2016/04/29/others.html">&laquo; 四句话，献给处于阴霾中的你</a>
   
-    <a class="next pull-right" href="/tomcat/2016/04/01/tomcat-ssl-1.html">tomcat配置ssl单向认证 &raquo;</a>
+  
+    <a class="next pull-right" href="/mysql/tools/2016/05/01/mysql-install.html">mysql windows绿色版使用，导入导出功能 &raquo;</a>
   
 </div>
 <div>&nbsp;</div>
@@ -575,8 +733,8 @@
 
         /*
 		var disqus_shortname = "mixfate";
-        var disqus_identifier = "http://www.mixfate.com_心灵鸡汤 经典语录";
-        var disqus_title = "心灵鸡汤 经典语录";
+        var disqus_identifier = "http://www.mixfate.com_maven安装第三方包到本地或私服";
+        var disqus_title = "maven安装第三方包到本地或私服";
 		*/
 
         /* * * DON'T EDIT BELOW THIS LINE * * */
