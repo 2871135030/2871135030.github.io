@@ -37,6 +37,8 @@ mysqld install 回车
 mysqladmin -u root password "root123"
 ```
 
+使用客户端工具连接后，可配置root用户的权限，将host配置为%表示允许外部访问(若为localhost只允许本地访问)
+
 6、mysql的导入导出命令
 
 ```markdown
