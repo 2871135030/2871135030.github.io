@@ -6,15 +6,15 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <link rel="shortcut icon" href="/static/img/favicon.ico" />
-        <title>四句话，献给处于阴霾中的你 - Java及相关开源技术博客</title>
+        <title>centos minimal使用ssh/scp命令不录入密码 - Java及相关开源技术博客</title>
         <meta name="author" content="Mixfate博客" />
         <meta name="description" content="Mixfate博客,开源技术博客,IT 博客,java技术,spring开源技术,dubbo分布式架构,maven工具" />
-        <meta name="keywords" content="四句话，献给处于阴霾中的你, Java及相关开源技术博客, others" />
+        <meta name="keywords" content="centos minimal使用ssh/scp命令不录入密码, Java及相关开源技术博客, linux" />
 
         <meta content="0" property="fb:app_id">
         <meta content="Java及相关开源技术博客" property="og:site_name">
         
-          <meta content="四句话，献给处于阴霾中的你" property="og:title">
+          <meta content="centos minimal使用ssh/scp命令不录入密码" property="og:title">
         
         
           <meta content="article" property="og:type">
@@ -23,10 +23,10 @@
           <meta content="Mixfate博客,开源技术博客,IT 博客,java技术,spring开源技术,dubbo分布式架构,maven工具" property="og:description">
         
         
-          <meta content="http://www.mixfate.com/others/2016/04/29/others.html" property="og:url">
+          <meta content="http://www.mixfate.com/linux/2016/05/05/linux-centos-scp.html" property="og:url">
         
         
-          <meta content="2016-04-29T18:00:01+08:00" property="article:published_time">
+          <meta content="2016-05-05T20:09:48+08:00" property="article:published_time">
           <meta content="http://www.mixfate.com/about/" property="article:author">
         
         
@@ -34,7 +34,7 @@
         
         
           
-          <meta content="others" property="article:section">
+          <meta content="linux" property="article:section">
           
         
         
@@ -44,10 +44,10 @@
         <meta name="twitter:site" content="@\#">
         <meta name="twitter:creator" content="@\#">
         
-          <meta name="twitter:title" content="四句话，献给处于阴霾中的你">
+          <meta name="twitter:title" content="centos minimal使用ssh/scp命令不录入密码">
         
         
-          <meta name="twitter:url" content="http://www.mixfate.com/others/2016/04/29/others.html">
+          <meta name="twitter:url" content="http://www.mixfate.com/linux/2016/05/05/linux-centos-scp.html">
         
         
           <meta name="twitter:description" content="Mixfate博客,开源技术博客,IT 博客,java技术,spring开源技术,dubbo分布式架构,maven工具">
@@ -122,14 +122,14 @@
         </div>
       </div>
       <div class="col-md-9 col-sm-8 col-xs-12">
-      <h2 class="blog-title-pro">四句话，献给处于阴霾中的你</h2>
+      <h2 class="blog-title-pro">centos minimal使用ssh/scp命令不录入密码</h2>
       <p class="info">
       
-      <span class="time">2016/04/29</span>
+      <span class="time">2016/05/05</span>
       
       
     <span class="categories">
-        &raquo; <a href="/category/others">others</a>
+        &raquo; <a href="/category/linux">linux</a>
     </span>
     
       </p>
@@ -148,19 +148,19 @@
 	
 	
 	
-	<li class="col-lg-12 col-md-12 col-sm-4 col-xs-12 current-menu-item others.html"><a href="/"><i class="fa fa-home"></i> 首页</a></li>
+	<li class="col-lg-12 col-md-12 col-sm-4 col-xs-12 current-menu-item linux-centos-scp.html"><a href="/"><i class="fa fa-home"></i> 首页</a></li>
 
 	
 	
 	
 	
-	<li class="col-lg-12 col-md-12 col-sm-4 col-xs-12  others.html"><a href="/category/java"><i class="fa fa-desktop"></i> 分类</a></li>
+	<li class="col-lg-12 col-md-12 col-sm-4 col-xs-12  linux-centos-scp.html"><a href="/category/java"><i class="fa fa-desktop"></i> 分类</a></li>
 
 	
 	
 	
 	
-	<li class="col-lg-12 col-md-12 col-sm-4 col-xs-12  others.html"><a href="/about/"><i class="fa fa-comments"></i> 关于</a></li>
+	<li class="col-lg-12 col-md-12 col-sm-4 col-xs-12  linux-centos-scp.html"><a href="/about/"><i class="fa fa-comments"></i> 关于</a></li>
 
 </ul>
     </div>
@@ -181,16 +181,100 @@
             <div class="col-md-9 col-xs-12 full">
                 <div class="post-content well">
 <article class="content">
-    <div class="post" style="font-size: 12px;"><h2 id="section">四句话，献给处于阴霾中的你</h2>
-<hr />
+    <div class="post" style="font-size: 12px;"><h2 id="centos-minimalsshscp">centos minimal使用ssh/scp命令不录入密码</h2>
 
-<h4>你病，或者不病倒，老板就在那里，不悲不喜；</h4>
+<p>不同的Linux服务器之间经常需要文档拷贝，本例演示在已安装的两台CentOS-6.7-x86_64-minimal机器上使用scp传输文件。</p>
 
-<h4>你休，或者不休假，工作就在那里，不来不去；</h4>
+<p>暂定义机器A(ip:192.168.88.102)，机器B(ip:192.168.88.103)，</p>
 
-<h4>你拼，或者不拼命，工资就在那里，不增不减；</h4>
+<p>在机器B上操作如下命令</p>
 
-<h4>你辞，或者不辞职，地球还是会转，不歇不停。</h4>
+<div class="language-markdown highlighter-rouge"><pre class="highlight"><code>scp -p /software/download/quartz-2.2.1-distribution.tar.gz root@192.168.88.102:/software/download/quartz-2.2.1-distribution.tar.gz
+</code></pre>
+</div>
+
+<p>表示将机器B上的文件拷贝到机上A上，未做任何配置时，需输入root的密码，日志如下</p>
+
+<div class="language-markdown highlighter-rouge"><pre class="highlight"><code><span class="p">[</span><span class="nv">root@centos-b ~</span><span class="p">]</span># scp -p /software/download/quartz-2.2.1-distribution.tar.gz root@192.168.88.102:/software/download/quartz-2.2.1-distribution.tar.gz
+The authenticity of host '192.168.88.102 (192.168.88.102)' can't be established.
+RSA key fingerprint is dd:b1:b3:ca:5d:17:77:0e:20:44:f6:19:c5:5e:a7:9c.
+Are you sure you want to continue connecting (yes/no)? yes
+Warning: Permanently added '192.168.88.102' (RSA) to the list of known hosts.
+root@192.168.88.102's password: 
+quartz-2.2.1-distribution.tar.gz                                      100% 3216KB   3.1MB/s   00:00    
+<span class="p">[</span><span class="nv">root@centos-b ~</span><span class="p">]</span># 
+</code></pre>
+</div>
+
+<p>可以看到每次都输入密码，为了简化操作，创建key实现两台机器自由传输文件。</p>
+
+<p>在机器B上执行ssh-keygen -t rsa，如下</p>
+
+<div class="language-markdown highlighter-rouge"><pre class="highlight"><code><span class="p">[</span><span class="nv">root@centos-b ~</span><span class="p">]</span># ssh-keygen -t rsa
+Generating public/private rsa key pair.
+Enter file in which to save the key (/root/.ssh/id_rsa): 
+Created directory '/root/.ssh'.
+Enter passphrase (empty for no passphrase): 
+Enter same passphrase again: 
+Your identification has been saved in /root/.ssh/id_rsa.
+Your public key has been saved in /root/.ssh/id_rsa.pub.
+The key fingerprint is:
+c9:c4:96:3f:c0:da:5e:e7:58:e5:49:91:ba:bb:81:c1 root@centos-b
+The key's randomart image is:
++--<span class="p">[</span><span class="nv"> RSA 2048</span><span class="p">]</span>----+
+|              .. |
+|       o .    .. |
+|        B    .o  |
+|       <span class="err">*</span> =  .+ . |
+|      . S E o.o  |
+|       . . O.    |
+|        . o o.   |
+|            ..   |
+|            ..   |
++-----------------+
+<span class="p">[</span><span class="nv">root@centos-b ~</span><span class="p">]</span># 
+</code></pre>
+</div>
+
+<p>可以看到生成了机器的公钥和私钥，分别为目录/root/.ssh下的id_rsa.pub及id_rsa。</p>
+
+<p>将B机器生成的公钥拷贝到A机器的指定目录中（若无此目录，则直接创建），在B机器上执行</p>
+
+<div class="language-markdown highlighter-rouge"><pre class="highlight"><code>scp -p /root/.ssh/id_rsa.pub root@192.168.88.102:/root/.ssh/id_rsa103.pub
+</code></pre>
+</div>
+
+<p>拷贝完成后，可看到A机器目录/root/.ssh/中已有文件id_rsa103.pub</p>
+
+<p>接下来在A机器上执行</p>
+
+<div class="language-markdown highlighter-rouge"><pre class="highlight"><code>cat id_rsa103.pub &gt;&gt; authorized_keys
+</code></pre>
+</div>
+
+<p>文件拷贝完成，编辑文件/etc/ssh/sshd_config</p>
+
+<div class="language-markdown highlighter-rouge"><pre class="highlight"><code>vi /etc/ssh/sshd_config
+
+设置以下两项（如已注释，则取消注释）
+PubkeyAuthentication yes
+AuthorizedKeysFile      .ssh/authorized_keys
+</code></pre>
+</div>
+
+<p>最后使用restorecon恢复属性，并重启ssh服务即可</p>
+
+<div class="language-markdown highlighter-rouge"><pre class="highlight"><code>restorecon -Rv ~/.ssh
+service sshd restart
+</code></pre>
+</div>
+
+<p>注：非root权限可能存在文件权限问题，需要配置权限，如下：</p>
+
+<div class="language-markdown highlighter-rouge"><pre class="highlight"><code>chmod 700 ~/.ssh
+chmod 600 ~/.ssh/authorized_keys 
+</code></pre>
+</div>
 
 <p>结束。</p>
 </div>
@@ -229,178 +313,84 @@
     
         
             
+        
+    
+
+    
+    
+        
+            
+        
+    
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+    
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+    
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+    
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+    
+        
+            
+        
+    
+
+    
+    
+        
+            
                 
                 <div class="panel-body">
                 <h5>相关博客</h5>
                 <ul>
                 
                 <li class="relatedPost" style="font-size: 12px;">
-                    <a href="http://www.mixfate.com/others/2016/05/03/others.html">善行天下，改变命运</a>
+                    <a href="http://www.mixfate.com/linux/2016/04/26/linux-vmware.html">Vmware linux拷贝网络故障</a>
                     
-                        <small>(所属分类: <a href="/category/others">others</a>)</small>
-                    
-                </li>
-                
-                
-            
-        
-    
-
-    
-    
-        
-            
-        
-    
-        
-            
-        
-    
-
-    
-    
-        
-            
-        
-    
-        
-            
-        
-    
-
-    
-    
-        
-            
-        
-    
-        
-            
-        
-    
-
-    
-    
-        
-            
-        
-    
-
-    
-    
-        
-            
-        
-    
-        
-            
-        
-    
-
-    
-    
-        
-            
-        
-    
-        
-            
-        
-    
-
-    
-    
-        
-            
-        
-    
-
-    
-    
-        
-            
-        
-    
-        
-            
-        
-    
-        
-            
-        
-    
-
-    
-    
-        
-            
-        
-    
-        
-            
-        
-    
-
-    
-    
-        
-            
-        
-    
-
-    
-    
-        
-            
-        
-    
-        
-            
-        
-    
-
-    
-    
-        
-            
-        
-    
-        
-            
-        
-    
-
-    
-    
-        
-            
-        
-    
-        
-            
-        
-    
-
-    
-    
-        
-            
-        
-    
-        
-            
-        
-    
-
-    
-    
-        
-            
-                
-                <li class="relatedPost" style="font-size: 12px;">
-                    <a href="http://www.mixfate.com/others/2016/04/18/others.html">幽默故事，欢笑中的人生领悟</a>
-                    
-                        <small>(所属分类: <a href="/category/others">others</a>)</small>
+                        <small>(所属分类: <a href="/category/linux">linux</a>)</small>
                     
                 </li>
                 
@@ -419,6 +409,90 @@
             
         
     
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+    
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+    
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+    
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+    
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+    
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+    
+        
+            
+        
+    
 
     
     
@@ -501,32 +575,12 @@
     
         
             
-                
-                <li class="relatedPost" style="font-size: 12px;">
-                    <a href="http://www.mixfate.com/others/2016/04/09/others.html">小不忍则乱大谋，退一步海阔天空</a>
-                    
-                        <small>(所属分类: <a href="/category/others">others</a>)</small>
-                    
-                </li>
-                
-                
-            
         
     
 
     
     
         
-            
-                
-                <li class="relatedPost" style="font-size: 12px;">
-                    <a href="http://www.mixfate.com/others/2016/04/06/coding-pages.html">Coding pages + Github pages 搭建自己的博客</a>
-                    
-                        <small>(所属分类: <a href="/category/others">others</a>)</small>
-                    
-                </li>
-                
-                
             
         
     
@@ -602,16 +656,6 @@
     
     
         
-            
-                
-                <li class="relatedPost" style="font-size: 12px;">
-                    <a href="http://www.mixfate.com/others/2015/06/04/others-1.html">心灵鸡汤 经典语录</a>
-                    
-                        <small>(所属分类: <a href="/category/others">others</a>)</small>
-                    
-                </li>
-                
-                
             
         
     
@@ -623,10 +667,8 @@
 
 <div class="PageNavigation" style="font-size: 12px;">
   
-    <a class="prev pull-left" href="/maven/tools/2016/04/27/java-proguard-js-yuicompressor.html">&laquo; Java代码保护，JS代码压缩工具</a>
+    <a class="prev pull-left" href="/java/spring/webservice/2016/05/04/spring4-cxf3.html">&laquo; Spring4 + cxf3 构建restful webservice</a>
   
-  
-    <a class="next pull-right" href="/maven/tools/2016/04/30/maven-nexus.html">maven安装第三方包到本地或私服 &raquo;</a>
   
 </div>
 <div>&nbsp;</div>
@@ -638,8 +680,8 @@
 
         /*
 		var disqus_shortname = "mixfate";
-        var disqus_identifier = "http://www.mixfate.com_四句话，献给处于阴霾中的你";
-        var disqus_title = "四句话，献给处于阴霾中的你";
+        var disqus_identifier = "http://www.mixfate.com_centos minimal使用ssh/scp命令不录入密码";
+        var disqus_title = "centos minimal使用ssh/scp命令不录入密码";
 		*/
 
         /* * * DON'T EDIT BELOW THIS LINE * * */
