@@ -6,15 +6,15 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <link rel="shortcut icon" href="/static/img/favicon.ico" />
-        <title>Dubbo管理控制台(dubbo-admin) - Java及相关开源技术博客</title>
+        <title>jenkins安装与使用 - Java及相关开源技术博客</title>
         <meta name="author" content="Mixfate博客" />
         <meta name="description" content="Mixfate博客,开源技术博客,IT 博客,java技术,spring开源技术,dubbo分布式架构,maven工具" />
-        <meta name="keywords" content="Dubbo管理控制台(dubbo-admin), Java及相关开源技术博客, java, dubbo" />
+        <meta name="keywords" content="jenkins安装与使用, Java及相关开源技术博客, tools" />
 
         <meta content="0" property="fb:app_id">
         <meta content="Java及相关开源技术博客" property="og:site_name">
         
-          <meta content="Dubbo管理控制台(dubbo-admin)" property="og:title">
+          <meta content="jenkins安装与使用" property="og:title">
         
         
           <meta content="article" property="og:type">
@@ -23,10 +23,10 @@
           <meta content="Mixfate博客,开源技术博客,IT 博客,java技术,spring开源技术,dubbo分布式架构,maven工具" property="og:description">
         
         
-          <meta content="http://www.mixfate.com/java/dubbo/2016/04/21/dubbo.html" property="og:url">
+          <meta content="http://www.mixfate.com/tools/2016/05/06/jenkins.html" property="og:url">
         
         
-          <meta content="2016-04-21T21:23:46+08:00" property="article:published_time">
+          <meta content="2016-05-06T21:23:48+08:00" property="article:published_time">
           <meta content="http://www.mixfate.com/about/" property="article:author">
         
         
@@ -34,7 +34,7 @@
         
         
           
-          <meta content="java" property="article:section">
+          <meta content="tools" property="article:section">
           
         
         
@@ -44,10 +44,10 @@
         <meta name="twitter:site" content="@\#">
         <meta name="twitter:creator" content="@\#">
         
-          <meta name="twitter:title" content="Dubbo管理控制台(dubbo-admin)">
+          <meta name="twitter:title" content="jenkins安装与使用">
         
         
-          <meta name="twitter:url" content="http://www.mixfate.com/java/dubbo/2016/04/21/dubbo.html">
+          <meta name="twitter:url" content="http://www.mixfate.com/tools/2016/05/06/jenkins.html">
         
         
           <meta name="twitter:description" content="Mixfate博客,开源技术博客,IT 博客,java技术,spring开源技术,dubbo分布式架构,maven工具">
@@ -122,14 +122,14 @@
         </div>
       </div>
       <div class="col-md-9 col-sm-8 col-xs-12">
-      <h2 class="blog-title-pro">Dubbo管理控制台(dubbo-admin)</h2>
+      <h2 class="blog-title-pro">jenkins安装与使用</h2>
       <p class="info">
       
-      <span class="time">2016/04/21</span>
+      <span class="time">2016/05/06</span>
       
       
     <span class="categories">
-        &raquo; <a href="/category/java">java</a>, <a href="/category/dubbo">dubbo</a>
+        &raquo; <a href="/category/tools">tools</a>
     </span>
     
       </p>
@@ -148,19 +148,19 @@
 	
 	
 	
-	<li class="col-lg-12 col-md-12 col-sm-4 col-xs-12 current-menu-item dubbo.html"><a href="/"><i class="fa fa-home"></i> 首页</a></li>
+	<li class="col-lg-12 col-md-12 col-sm-4 col-xs-12 current-menu-item jenkins.html"><a href="/"><i class="fa fa-home"></i> 首页</a></li>
 
 	
 	
 	
 	
-	<li class="col-lg-12 col-md-12 col-sm-4 col-xs-12  dubbo.html"><a href="/category/java"><i class="fa fa-desktop"></i> 分类</a></li>
+	<li class="col-lg-12 col-md-12 col-sm-4 col-xs-12  jenkins.html"><a href="/category/java"><i class="fa fa-desktop"></i> 分类</a></li>
 
 	
 	
 	
 	
-	<li class="col-lg-12 col-md-12 col-sm-4 col-xs-12  dubbo.html"><a href="/about/"><i class="fa fa-comments"></i> 关于</a></li>
+	<li class="col-lg-12 col-md-12 col-sm-4 col-xs-12  jenkins.html"><a href="/about/"><i class="fa fa-comments"></i> 关于</a></li>
 
 </ul>
     </div>
@@ -181,38 +181,65 @@
             <div class="col-md-9 col-xs-12 full">
                 <div class="post-content well">
 <article class="content">
-    <div class="post" style="font-size: 12px;"><h2 id="dubbodubbo-admin">Dubbo的管理控制台(Dubbo Admin)</h2>
+    <div class="post" style="font-size: 12px;"><h2 id="jenkins">jenkins安装与使用</h2>
 
-<p><a href="/java/dubbo/2016/04/19/spring-dubbo.html">dubbo spring配置使用</a>文章介绍过使用dubbo构建简单服务，
-创建了服务提供者及消费者，dubbo提供了管理后台管理服务提供者与消费者</p>
+<p>本例演示使用jenkins.war包直接部署，版本为2.7.2，可以网址https://jenkins.io/index.html查看。</p>
 
-<p>可在<a href="http://dubbo.io/Download-zh.htm">http://dubbo.io/Download-zh.htm(不保证此地址一直可用)</a>直接下载 dubbo-admin-2.5.3.war 放到tomcat目录中并启动，在此就不多作介绍tomcat的部署了，
-也可以将dubbo源码下载到本地，自行打war包放到tomcat中部署，本文介绍根据源码部署dubbo-admin</p>
+<p>步骤一、</p>
 
-<p>1、通过git下载dubbo源码(确认已安装git客户端)，命令</p>
+<p>下载jenkins包(jenkins.war包)</p>
 
-<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">git</span> <span class="nb">clone</span> <span class="n">https</span><span class="ss">:/</span><span class="o">/</span><span class="n">github</span><span class="p">.</span><span class="nf">com</span><span class="o">/</span><span class="n">alibaba</span><span class="o">/</span><span class="n">dubbo</span> <span class="n">dubbo</span></code></pre></figure>
+<p>重新配置下jenkins工作目录 /project/jenkins_space</p>
 
-<p>2、源码下载完成后，可直接在dubbo根目录install，命令</p>
+<div class="language-markdown highlighter-rouge"><pre class="highlight"><code>vi /etc/profile
+文件尾部添加 
+export JENKINS_HOME=/project/jenkins_space
 
-<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">mvn</span> <span class="n">install</span> <span class="o">-</span><span class="no">Dmaven</span><span class="p">.</span><span class="nf">test</span><span class="p">.</span><span class="nf">skip</span></code></pre></figure>
+source /etc/profile
+使配置立即生效
+</code></pre>
+</div>
 
-<p>正确完成install后，在目录/dubbo/dubbo-admin/target/中已打好包dubbo-admin-2.5.4-SNAPSHOT.war（本文以最新git版本库中获取代码为例）
-将此war包放置到tomcat目录中，启动tomcat即可。</p>
+<p>步骤二、</p>
 
-<font color="red">注：有关dubbo-admin的配置在解压war包后的WEB-INF中，可查看dubbo.properties配置信息</font>
+<p>安装好tomcat，将jenkins.war放到tomcat的webapps中，启动tomcat即可，若出现类似以下警告，
+则直接修改hosts文件(vi /etc/hosts)，将原127.0.0.1替换成127.0.0.1   localhost centos-a即可</p>
 
-<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">dubbo</span><span class="p">.</span><span class="nf">registry</span><span class="p">.</span><span class="nf">address</span><span class="o">=</span><span class="n">zookeeper</span><span class="ss">:/</span><span class="o">/</span><span class="mi">127</span><span class="o">.</span><span class="mi">0</span><span class="o">.</span><span class="mi">0</span><span class="o">.</span><span class="mi">1</span><span class="p">:</span><span class="mi">2181</span>
-<span class="n">dubbo</span><span class="p">.</span><span class="nf">admin</span><span class="p">.</span><span class="nf">root</span><span class="p">.</span><span class="nf">password</span><span class="o">=</span><span class="n">root</span>
-<span class="n">dubbo</span><span class="p">.</span><span class="nf">admin</span><span class="p">.</span><span class="nf">guest</span><span class="p">.</span><span class="nf">password</span><span class="o">=</span><span class="n">guest</span></code></pre></figure>
+<div class="language-markdown highlighter-rouge"><pre class="highlight"><code>警告: Could not intialize the host network interface on nullbecause of an error: centos-a: centos-a: 未知的名称或服务
+java.net.UnknownHostException: centos-a: centos-a: 未知的名称或服务
+</code></pre>
+</div>
 
-<p>配置文件参数说明：</p>
+<p>正常启动时提示密码；当然也可直接 cat /project/jenkins_space/secrets/initialAdminPassword 查看密码</p>
 
-<p>zookeeper地址，<a href="/java/zookeeper/2016/04/20/zookeeper-cluster.html">若zookeeper为集群</a>，则指定其中一个节点便可</p>
+<div class="language-markdown highlighter-rouge"><pre class="highlight"><code><span class="p">*************************************************************
+*************************************************************
+*************************************************************
+</span>
+Jenkins initial setup is required. An admin user has been created and a password generated.
+Please use the following password to proceed to installation:
 
-<p>管理控制台用户名密码：2组分别为用户名root密码root，用户名guest密码guest。注意不是admin</p>
+836c01ba144248d2a7a855adf936587b
 
-<p>tomcat启动成功后即可进入管理控制台。</p>
+This may also be found at: /project/jenkins_space/secrets/initialAdminPassword
+<span class="p">
+*************************************************************
+*************************************************************
+*************************************************************
+</span></code></pre>
+</div>
+
+<p>步骤三、</p>
+
+<p>使用提示的密码登入(默认用户名admin)，初次打开会提示安装插件，关闭提示小窗口即可，打开Jenkins-&gt;系统管理，若有以下提示，需要配置tomcat支持utf-8，在Connector标签中添加属性URIEncoding=”UTF-8”重启即可</p>
+
+<div class="language-markdown highlighter-rouge"><pre class="highlight"><code>Your container doesn't use UTF-8 to decode URLs. If you use non-ASCII characters as a job name etc, this will cause problems. See Containers and Tomcat i18n for more details.
+</code></pre>
+</div>
+
+<p>步骤四、</p>
+
+<p>正常启动tomcat后，使用浏览器访问jenkins，会要求输入用户名(admin)及密码(后台启动提示的密码)，按提示操作。</p>
 
 <p>结束。</p>
 </div>
@@ -230,6 +257,11 @@
         
             
         
+    
+
+    
+    
+        
             
         
     
@@ -239,11 +271,39 @@
         
             
         
+    
+        
+            
+        
+    
+        
             
         
     
 
     
+    
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+    
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
     
         
             
@@ -253,57 +313,9 @@
                 <ul>
                 
                 <li class="relatedPost" style="font-size: 12px;">
-                    <a href="http://www.mixfate.com/java/spring/webservice/2016/05/04/spring4-cxf3.html">Spring4 + cxf3 构建restful webservice</a>
+                    <a href="http://www.mixfate.com/mysql/tools/2016/05/01/mysql-install.html">mysql windows绿色版使用，导入导出功能</a>
                     
-                        <small>(所属分类: <a href="/category/java">java</a>, <a href="/category/spring">spring</a>, <a href="/category/webservice">webservice</a>)</small>
-                    
-                </li>
-                
-                
-            
-        
-            
-        
-    
-        
-            
-        
-            
-        
-    
-        
-            
-        
-            
-        
-    
-
-    
-    
-        
-            
-        
-            
-        
-    
-
-    
-    
-        
-            
-        
-            
-        
-    
-        
-            
-        
-            
-                
-                <li class="relatedPost" style="font-size: 12px;">
-                    <a href="http://www.mixfate.com/spring/dubbo/2016/05/02/dubbox-restful.html">Dubbox的rest风格调用例子</a>
-                    
-                        <small>(所属分类: <a href="/category/spring">spring</a>, <a href="/category/dubbo">dubbo</a>)</small>
+                        <small>(所属分类: <a href="/category/mysql">mysql</a>, <a href="/category/tools">tools</a>)</small>
                     
                 </li>
                 
@@ -317,105 +329,216 @@
         
             
         
-            
-        
-    
-        
-            
-        
-            
-        
-    
-
-    
-    
-        
-            
-        
-            
-        
-    
-        
-            
-        
-            
-        
-    
-
-    
-    
-        
-            
-        
-            
-        
-    
-
-    
-    
-        
-            
-        
-            
-        
-    
-        
-            
-        
-            
-        
-    
-
-    
-    
-        
-            
-        
-            
-        
-    
-        
-            
-        
-            
-        
-    
-
-    
-    
-        
-            
-        
-            
-        
-    
-
-    
     
         
             
                 
                 <li class="relatedPost" style="font-size: 12px;">
-                    <a href="http://www.mixfate.com/java/spring/quartz/2016/04/25/spring-quartz-annotation.html">Spring + quartz注解配置使用</a>
+                    <a href="http://www.mixfate.com/maven/tools/2016/04/30/maven-nexus.html">maven安装第三方包到本地或私服</a>
                     
-                        <small>(所属分类: <a href="/category/java">java</a>, <a href="/category/spring">spring</a>, <a href="/category/quartz">quartz</a>)</small>
+                        <small>(所属分类: <a href="/category/maven">maven</a>, <a href="/category/tools">tools</a>)</small>
                     
                 </li>
                 
                 
             
         
+    
+
+    
+    
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+    
+        
+            
+                
+                <li class="relatedPost" style="font-size: 12px;">
+                    <a href="http://www.mixfate.com/maven/tools/2016/04/27/java-proguard-js-yuicompressor.html">Java代码保护，JS代码压缩工具</a>
+                    
+                        <small>(所属分类: <a href="/category/maven">maven</a>, <a href="/category/tools">tools</a>)</small>
+                    
+                </li>
+                
+                
+            
+        
+    
+
+    
+    
+        
+            
+        
+    
+        
+            
+                
+                <li class="relatedPost" style="font-size: 12px;">
+                    <a href="http://www.mixfate.com/redis/tools/2016/04/27/redis-cluster.html">Redis集群安装</a>
+                    
+                        <small>(所属分类: <a href="/category/redis">redis</a>, <a href="/category/tools">tools</a>)</small>
+                    
+                </li>
+                
+                
+            
+        
+    
+
+    
+    
+        
+            
+        
+    
+
+    
+    
+        
             
         
     
         
             
         
+    
+        
+            
+        
+    
+
+    
+    
+        
             
         
     
         
             
+        
+    
+
+    
+    
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+    
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+    
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+    
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+    
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+    
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+    
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+    
+        
+            
+        
+    
         
             
         
@@ -427,20 +550,16 @@
             
                 
                 <li class="relatedPost" style="font-size: 12px;">
-                    <a href="http://www.mixfate.com/java/spring/2016/04/24/spring-activemq-annotation.html">Spring + Activemq注解配置使用</a>
+                    <a href="http://www.mixfate.com/tools/redis/2016/04/12/redis-install.html">redis安装使用</a>
                     
-                        <small>(所属分类: <a href="/category/java">java</a>, <a href="/category/spring">spring</a>)</small>
+                        <small>(所属分类: <a href="/category/tools">tools</a>, <a href="/category/redis">redis</a>)</small>
                     
                 </li>
                 
                 
             
         
-            
-        
     
-        
-            
         
             
         
@@ -452,39 +571,16 @@
             
                 
                 <li class="relatedPost" style="font-size: 12px;">
-                    <a href="http://www.mixfate.com/java/2016/04/23/jdk-dynamic-proxy.html">JDK动态代理及cglib动态代理实现分析</a>
+                    <a href="http://www.mixfate.com/tools/zookeeper/2016/04/11/zookeeper-install.html">zookeeper安装使用</a>
                     
-                        <small>(所属分类: <a href="/category/java">java</a>)</small>
-                    
-                </li>
-                
-                
-            
-        
-            
-        
-    
-
-    
-    
-        
-            
-                
-                <li class="relatedPost" style="font-size: 12px;">
-                    <a href="http://www.mixfate.com/java/dubbo/2016/04/22/spring-dubbo-annotation.html">Spring+Dubbo annotation配置</a>
-                    
-                        <small>(所属分类: <a href="/category/java">java</a>, <a href="/category/dubbo">dubbo</a>)</small>
+                        <small>(所属分类: <a href="/category/tools">tools</a>, <a href="/category/zookeeper">zookeeper</a>)</small>
                     
                 </li>
                 
                 
             
         
-            
-        
     
-        
-            
         
             
         
@@ -495,11 +591,10 @@
         
             
         
-            
-        
     
-        
-            
+
+    
+    
         
             
         
@@ -510,11 +605,10 @@
         
             
         
-            
-        
     
-        
-            
+
+    
+    
         
             
         
@@ -525,11 +619,7 @@
         
             
         
-            
-        
     
-        
-            
         
             
         
@@ -540,20 +630,10 @@
         
             
         
-            
-        
     
 
     
     
-        
-            
-        
-            
-        
-    
-        
-            
         
             
         
@@ -564,20 +644,11 @@
         
             
         
-            
-        
     
         
             
         
-            
-        
     
-
-    
-    
-        
-            
         
             
         
@@ -588,17 +659,10 @@
         
             
         
-            
-        
     
-        
-            
-        
-            
-        
+
     
-        
-            
+    
         
             
         
@@ -609,173 +673,10 @@
         
             
         
-            
-        
-    
-        
-            
-        
-            
-        
-    
-        
-            
-        
-            
-        
     
 
     
     
-        
-            
-        
-            
-        
-    
-        
-            
-        
-            
-        
-    
-
-    
-    
-        
-            
-        
-            
-        
-    
-        
-            
-        
-            
-        
-    
-
-    
-    
-        
-            
-        
-            
-        
-    
-
-    
-    
-        
-            
-        
-            
-        
-    
-
-    
-    
-        
-            
-        
-            
-        
-    
-
-    
-    
-        
-            
-        
-            
-        
-    
-
-    
-    
-        
-            
-        
-            
-        
-    
-        
-            
-        
-            
-        
-    
-
-    
-    
-        
-            
-        
-            
-        
-    
-
-    
-    
-        
-            
-        
-            
-        
-    
-
-    
-    
-        
-            
-        
-            
-        
-    
-        
-            
-        
-            
-        
-    
-        
-            
-        
-            
-        
-    
-
-    
-    
-        
-            
-        
-            
-        
-    
-
-    
-    
-        
-            
-        
-            
-        
-    
-
-    
-    
-        
-            
-        
-            
-        
-    
-
-    
-    
-        
-            
         
             
         
@@ -788,10 +689,8 @@
 
 <div class="PageNavigation" style="font-size: 12px;">
   
-    <a class="prev pull-left" href="/java/zookeeper/2016/04/20/zookeeper-cluster.html">&laquo; Zookeeper集群环境安装</a>
+    <a class="prev pull-left" href="/linux/2016/05/05/linux-centos-scp.html">&laquo; centos minimal使用ssh/scp命令不录入密码</a>
   
-  
-    <a class="next pull-right" href="/java/dubbo/2016/04/22/spring-dubbo-annotation.html">Spring+Dubbo annotation配置 &raquo;</a>
   
 </div>
 <div>&nbsp;</div>
@@ -803,8 +702,8 @@
 
         /*
 		var disqus_shortname = "mixfate";
-        var disqus_identifier = "http://www.mixfate.com_Dubbo管理控制台(dubbo-admin)";
-        var disqus_title = "Dubbo管理控制台(dubbo-admin)";
+        var disqus_identifier = "http://www.mixfate.com_jenkins安装与使用";
+        var disqus_title = "jenkins安装与使用";
 		*/
 
         /* * * DON'T EDIT BELOW THIS LINE * * */
