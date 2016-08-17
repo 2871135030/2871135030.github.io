@@ -7,7 +7,7 @@ categories: [java,spring,dubbo]
 
 ## Spring+Dubbo annotation配置
 
-本文继<a href="/java/dubbo/2016/04/19/spring-dubbo.html">dubbo spring配置使用</a>，上文中使用的xml，dubbo提供了注解方式使代码更加简洁
+本文继<a href="/java/dubbo/spring/2016/04/19/spring-dubbo.html">dubbo spring配置使用</a>，上文中使用的xml，dubbo提供了注解方式使代码更加简洁
 
 1、编写pom.xml，其中包括spring、dubbo基础包，pom.xml内容请参考上文（在此省略）
 
