@@ -1,6 +1,6 @@
 ---
 layout: posts_by_category
-categories: java
+categories: maven
 title: Maven使用
 permalink: /category/maven
 ---

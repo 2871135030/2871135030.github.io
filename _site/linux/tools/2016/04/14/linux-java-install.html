@@ -1,0 +1,1073 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="shortcut icon" href="/static/img/favicon.ico" />
+        <title>汇总一些linux安装java应用环境相关操作命令 - Java及相关开源技术博客</title>
+        <meta name="author" content="Mixfate博客" />
+        <meta name="description" content="Mixfate博客,开源技术博客,IT 博客,java技术,spring开源技术,dubbo分布式架构,maven工具" />
+        <meta name="keywords" content="汇总一些linux安装java应用环境相关操作命令, Java及相关开源技术博客, linux, tools" />
+
+        <meta content="0" property="fb:app_id">
+        <meta content="Java及相关开源技术博客" property="og:site_name">
+        
+          <meta content="汇总一些linux安装java应用环境相关操作命令" property="og:title">
+        
+        
+          <meta content="article" property="og:type">
+        
+        
+          <meta content="Mixfate博客,开源技术博客,IT 博客,java技术,spring开源技术,dubbo分布式架构,maven工具" property="og:description">
+        
+        
+          <meta content="http://www.mixfate.com/linux/tools/2016/04/14/linux-java-install.html" property="og:url">
+        
+        
+          <meta content="2016-04-14T23:32:57+08:00" property="article:published_time">
+          <meta content="http://www.mixfate.com/about/" property="article:author">
+        
+        
+          <meta content="http://www.mixfate.com/static/img/logo-high-resolution.png" property="og:image">
+        
+        
+          
+          <meta content="linux" property="article:section">
+          
+        
+        
+          
+        
+        <meta name="twitter:card" content="summary">
+        <meta name="twitter:site" content="@\#">
+        <meta name="twitter:creator" content="@\#">
+        
+          <meta name="twitter:title" content="汇总一些linux安装java应用环境相关操作命令">
+        
+        
+          <meta name="twitter:url" content="http://www.mixfate.com/linux/tools/2016/04/14/linux-java-install.html">
+        
+        
+          <meta name="twitter:description" content="Mixfate博客,开源技术博客,IT 博客,java技术,spring开源技术,dubbo分布式架构,maven工具">
+        
+        
+
+        <link rel="alternate" type="application/rss+xml" title="RSS" href="/feed.xml">
+        <!-- Custom Fonts -->
+        <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:300,400,500,700" type="text/css">
+
+        <!-- FontAwesome icons -->
+        <link rel="stylesheet" href="https://use.fontawesome.com/74dfc6cf47.css">
+
+        <!-- Core BootStrap CSS -->
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+        <!-- Material Design CSS -->
+        <link rel="stylesheet" href="http://www.mixfate.com/static/css/bootstrap-material-design.min.css">
+
+        <!-- syntax highlighting CSS -->
+        <link rel="stylesheet" href="http://www.mixfate.com/static/css/syntax.css">
+
+        <!-- Custom CSS -->        
+        <link rel="stylesheet" href="http://www.mixfate.com/static/css/thickbox.css">
+        <link rel="stylesheet" href="http://www.mixfate.com/static/css/main.css">
+        <link rel="stylesheet" href="http://www.mixfate.com/static/css/projects.css">
+        <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UB-72862926-2', 'auto');
+  ga('send', 'pageview');
+
+</script>
+    </head>
+
+    <body class="home overflow-hidden">
+    <!--[if lt IE 7]>
+    <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade
+        your browser</a> to improve your experience.</p>
+    <![endif]-->
+    <div class="header-panel shadow-z-2">
+    <div class="container">
+    <div class="row">
+            <div class="col-md-3 col-sm-4 col-xs-12">
+      <div class="row-picture">
+        <img id="about" class="logo-img" src="http://www.mixfate.com/static/img/avatar.png" height="75px" width="75px">
+      </div>
+      <div class="row-details">
+      <h4 class="list-group-item-heading">Mixfate博客</h4>
+      <p class="list-group-item-text">技术乐园</p>
+      <div class="social-icons">
+	
+        <a class="icon" href=""><i class="fa fa-facebook"></i></a>
+    
+        <a class="icon" href=""><i class="fa fa-skype"></i></a>
+    
+        <a class="icon" href=""><i class="fa fa-twitter"></i></a>
+    
+        <a class="icon" href=""><i class="fa fa-linkedin"></i></a>
+    
+        <a class="icon" href=""><i class="fa fa-stack-exchange"></i></a>
+    
+</div>
+      </div>
+        <div class="navbar-header pull-right">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+              <span class="sr-only">Toggle navigation</span>
+              <i class="fa fa-2x fa-bars"></i>
+            </button>
+        </div>
+      </div>
+      <div class="col-md-9 col-sm-8 col-xs-12">
+      <h2 class="blog-title-pro">汇总一些linux安装java应用环境相关操作命令</h2>
+      <p class="info">
+      
+      <span class="time">2016/04/14</span>
+      
+      
+    <span class="categories">
+        &raquo; <a href="/category/linux">linux</a>, <a href="/category/tools">tools</a>
+    </span>
+    
+      </p>
+      </div>
+      </div>
+      </div>
+    </div>
+    <div class="container main outer">
+        <div class="row">
+            <div class="col-md-3 col-xs-12">
+                    <nav class="menu">
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+    <ul class="list-separator nav navbar-nav well well-primary post">
+
+	
+	
+	
+	
+	<li class="col-lg-12 col-md-12 col-sm-4 col-xs-12 current-menu-item linux-java-install.html"><a href="/"><i class="fa fa-home"></i> 首页</a></li>
+
+	
+	
+	
+	
+	<li class="col-lg-12 col-md-12 col-sm-4 col-xs-12  linux-java-install.html"><a href="/category/java"><i class="fa fa-desktop"></i> 分类</a></li>
+
+	
+	
+	
+	
+	<li class="col-lg-12 col-md-12 col-sm-4 col-xs-12  linux-java-install.html"><a href="/about/"><i class="fa fa-comments"></i> 关于</a></li>
+
+</ul>
+    </div>
+    </nav>
+
+				
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- size_300x250 -->
+<ins class="adsbygoogle"
+     style="display:inline-block;width:280px;height:250px"
+     data-ad-client="ca-pub-4309621458849374"
+     data-ad-slot="8169524649"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+            </div> <!-- end /.col-md-3 -->
+
+            <div class="col-md-9 col-xs-12 full">
+                <div class="post-content well">
+<article class="content">
+    <div class="post" style="font-size: 12px;"><h2 id="linuxjava">汇总一些linux安装java应用环境相关操作命令</h2>
+
+<p>收集汇总安装 CentOS-6.7-x86_64-minimal.iso 后安装java运行环境的一些命令操作。</p>
+
+<hr />
+<p>1、安装CentOS-6.7-x86_64-minimal，在vmware中需先创建空白机器，然后导入iso安装盘进行安装，若直接安装将提示安装失败。</p>
+
+<hr />
+<p>2、一般设置直接连接物理网络，可大幅减轻网络连接占用的系统资源，配置成自动获取ip如下</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="err">编辑网卡配置文件，命令：</span> <span class="n">vim</span> <span class="sr">/etc/s</span><span class="n">ysconfig</span><span class="o">/</span><span class="n">network</span><span class="o">-</span><span class="n">scripts</span><span class="o">/</span><span class="n">ifcfg</span><span class="o">-</span><span class="n">eth0</span>
+<span class="err">更改</span><span class="no">ONBOOT</span><span class="o">=</span><span class="n">yes</span>
+<span class="err">更改</span><span class="no">BOOTPROTO</span><span class="err">为：</span>
+<span class="no">BOOTPROTO</span><span class="o">=</span><span class="n">dhcp</span>
+<span class="err">其他的如</span><span class="no">IPADDR</span><span class="err">、</span><span class="no">NETMASK</span><span class="err">等</span><span class="c1">#号注释掉，保存退出</span>
+<span class="err">重启网络连接，命令：</span> <span class="n">service</span> <span class="n">network</span> <span class="n">restart</span></code></pre></figure>
+
+<hr />
+<p>3、安装 sz rz上传下载工具</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="err">运行：</span><span class="n">yum</span> <span class="n">list</span> <span class="o">|</span> <span class="n">grep</span> <span class="err">“</span><span class="n">lrzsz</span><span class="err">”查看</span><span class="n">lrzsz</span><span class="err">包</span>
+<span class="err">运行：</span><span class="n">sudo</span> <span class="n">yum</span> <span class="n">install</span> <span class="n">lrzsz</span><span class="p">.</span><span class="nf">x86_64</span> <span class="err">安装</span></code></pre></figure>
+
+<hr />
+<p>4、安装jdk</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="err">下载安装包</span><span class="n">jdk</span><span class="o">-</span><span class="mi">7</span><span class="n">u67</span><span class="o">-</span><span class="n">linux</span><span class="o">-</span><span class="n">x64</span><span class="p">.</span><span class="nf">tar</span><span class="p">.</span><span class="nf">gz</span>
+<span class="err">命令：</span><span class="n">tar</span> <span class="o">-</span><span class="n">xzvf</span> <span class="n">jdk</span><span class="o">-</span><span class="mi">7</span><span class="n">u67</span><span class="o">-</span><span class="n">linux</span><span class="o">-</span><span class="n">x64</span><span class="p">.</span><span class="nf">tar</span><span class="p">.</span><span class="nf">gz</span>
+<span class="err">设置环境变量：</span><span class="n">vi</span> <span class="sr">/etc/</span><span class="n">profile</span> <span class="err">在最后加入以入几行</span>
+<span class="n">export</span> <span class="no">JAVA_HOME</span><span class="o">=</span><span class="sr">/software/</span><span class="n">jdk1</span><span class="o">.</span><span class="mi">7</span><span class="o">.</span><span class="mo">0_67</span>
+<span class="n">export</span> <span class="no">CLASSPATH</span><span class="o">=.</span><span class="p">:</span><span class="vg">$JAVA_HOME</span><span class="o">/</span><span class="n">jre</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">rt</span><span class="p">.</span><span class="nf">jar</span><span class="p">:</span><span class="vg">$JAVA_HOME</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">dt</span><span class="p">.</span><span class="nf">jar</span><span class="p">:</span><span class="vg">$JAVA_HOME</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">tools</span><span class="p">.</span><span class="nf">jar</span>
+<span class="n">export</span> <span class="no">PATH</span><span class="o">=</span><span class="vg">$JAVA_HOME</span><span class="o">/</span><span class="n">bin</span><span class="p">:</span><span class="vg">$PATH</span>
+<span class="err">输入命令</span> <span class="n">source</span> <span class="sr">/etc/</span><span class="n">profile</span> <span class="err">使环境变量立即生效</span>
+<span class="err">命令</span> <span class="n">java</span> <span class="o">-</span><span class="n">version</span> <span class="err">查看</span><span class="n">jdk</span><span class="err">是否安装成功</span></code></pre></figure>
+
+<hr />
+<p>5、安装tomcat</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="err">下载安装包</span><span class="n">apache</span><span class="o">-</span><span class="n">tomcat</span><span class="o">-</span><span class="mi">7</span><span class="o">.</span><span class="mi">0</span><span class="o">.</span><span class="mi">68</span><span class="p">.</span><span class="nf">tar</span><span class="p">.</span><span class="nf">gz</span>
+<span class="err">命令：</span><span class="n">tar</span> <span class="o">-</span><span class="n">xzvf</span> <span class="n">apache</span><span class="o">-</span><span class="n">tomcat</span><span class="o">-</span><span class="mi">7</span><span class="o">.</span><span class="mi">0</span><span class="o">.</span><span class="mi">68</span><span class="p">.</span><span class="nf">tar</span><span class="p">.</span><span class="nf">gz</span>
+<span class="err">启动</span><span class="n">tomcat</span><span class="err">命令</span> 
+<span class="sr">/software/</span><span class="n">apache</span><span class="o">-</span><span class="n">tomcat</span><span class="o">-</span><span class="mi">7</span><span class="o">.</span><span class="mi">0</span><span class="o">.</span><span class="mi">68</span><span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">startup</span><span class="p">.</span><span class="nf">sh</span>
+<span class="n">tail</span> <span class="o">-</span><span class="n">f</span> <span class="sr">/software/</span><span class="n">apache</span><span class="o">-</span><span class="n">tomcat</span><span class="o">-</span><span class="mi">7</span><span class="o">.</span><span class="mi">0</span><span class="o">.</span><span class="mi">68</span><span class="o">/</span><span class="n">logs</span><span class="o">/*</span><span class="n">out</span>
+<span class="err">快速关闭</span><span class="n">tomcat</span><span class="err">命令</span> 
+<span class="n">ps</span> <span class="o">-</span><span class="n">ef</span> <span class="o">|</span> <span class="n">grep</span> <span class="s1">'/software/apache-tomcat-7.0.68'</span> <span class="o">|</span> <span class="n">grep</span> <span class="o">-</span><span class="n">v</span> <span class="n">grep</span><span class="o">|</span> <span class="n">awk</span> <span class="s1">'{print $2}'</span><span class="o">|</span> <span class="n">xargs</span> <span class="n">kill</span> <span class="o">-</span><span class="mi">9</span></code></pre></figure>
+
+<p>6、防火墙</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="err">永久打开或则关闭</span>
+<span class="n">chkconfig</span> <span class="n">iptables</span> <span class="n">on</span> 
+<span class="n">chkconfig</span> <span class="n">iptables</span> <span class="n">off</span> 
+<span class="err">即时生效：重启后还原</span> 
+<span class="n">service</span> <span class="n">iptables</span> <span class="n">start</span> 
+<span class="n">service</span> <span class="n">iptables</span> <span class="n">stop</span> </code></pre></figure>
+
+<hr />
+<p>7、安装jenkins</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="err">下载</span><span class="n">jenkins</span><span class="p">.</span><span class="nf">war</span><span class="err">包，将</span><span class="n">war</span><span class="err">包放入</span><span class="n">tomcat</span><span class="err">中启动</span><span class="n">tomcat</span>
+<span class="o">&lt;</span><span class="no">Context</span> <span class="n">path</span><span class="o">=</span><span class="s2">""</span> <span class="n">docBase</span><span class="o">=</span><span class="s2">"/software/tomcat-jenkins/jenkins.war"</span> <span class="o">/&gt;</span>
+<span class="n">ps</span> <span class="o">-</span><span class="n">ef</span> <span class="o">|</span> <span class="n">grep</span> <span class="s1">'/software/tomcat-jenkins'</span> <span class="o">|</span> <span class="n">grep</span> <span class="o">-</span><span class="n">v</span> <span class="n">grep</span><span class="o">|</span> <span class="n">awk</span> <span class="s1">'{print $2}'</span><span class="o">|</span> <span class="n">xargs</span> <span class="n">kill</span> <span class="o">-</span><span class="mi">9</span>
+<span class="n">rm</span> <span class="o">-</span><span class="n">rf</span> <span class="sr">/software/</span><span class="n">tomcat</span><span class="o">-</span><span class="n">jenkins</span><span class="o">/</span><span class="n">logs</span><span class="o">/*</span>
+<span class="n">rm</span> <span class="o">-</span><span class="n">rf</span> <span class="sr">/software/</span><span class="n">tomcat</span><span class="o">-</span><span class="n">jenkins</span><span class="o">/</span><span class="n">webapps</span><span class="o">/*</span>
+<span class="n">rm</span> <span class="o">-</span><span class="n">rf</span> <span class="sr">/software/</span><span class="n">tomcat</span><span class="o">-</span><span class="n">jenkins</span><span class="o">/</span><span class="n">work</span><span class="o">/*</span>
+<span class="sr">/software/</span><span class="n">tomcat</span><span class="o">-</span><span class="n">jenkins</span><span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">startup</span><span class="p">.</span><span class="nf">sh</span>
+<span class="n">tail</span> <span class="o">-</span><span class="n">f</span> <span class="sr">/software/</span><span class="n">tomcat</span><span class="o">-</span><span class="n">jenkins</span><span class="o">/</span><span class="n">logs</span><span class="o">/*</span><span class="n">out</span>
+<span class="err">安装完成后，进入</span><span class="n">jenkins</span><span class="o">-&gt;</span><span class="err">系统管理</span><span class="o">-&gt;</span><span class="no">Configure</span> <span class="no">Global</span> <span class="no">Security</span><span class="err">设置</span></code></pre></figure>
+
+<hr />
+<p>8、安装zip unzip</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">yum</span> <span class="n">install</span> <span class="n">zip</span> <span class="n">unzip</span>  
+<span class="err">例如：</span><span class="n">unzip</span> <span class="n">project</span><span class="p">.</span><span class="nf">war</span> <span class="o">-</span><span class="n">d</span> <span class="n">project</span></code></pre></figure>
+
+<hr />
+<p>9、安装maven</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="err">下载</span><span class="n">apache</span><span class="o">-</span><span class="n">maven</span><span class="o">-</span><span class="mi">3</span><span class="o">.</span><span class="mi">3</span><span class="o">.</span><span class="mi">1</span><span class="o">-</span><span class="n">bin</span><span class="p">.</span><span class="nf">zip</span>
+<span class="err">执行命令</span> <span class="n">unzip</span> <span class="n">apache</span><span class="o">-</span><span class="n">maven</span><span class="o">-</span><span class="mi">3</span><span class="o">.</span><span class="mi">3</span><span class="o">.</span><span class="mi">1</span><span class="o">-</span><span class="n">bin</span><span class="p">.</span><span class="nf">zip</span>
+<span class="err">设置环境变量：</span><span class="n">vi</span> <span class="sr">/etc/</span><span class="n">profile</span> <span class="err">在最后加入以入几行</span>
+<span class="n">export</span> <span class="no">PATH</span><span class="o">=</span><span class="vg">$JAVA_HOME</span><span class="o">/</span><span class="n">bin</span><span class="p">:</span><span class="vg">$PATH</span><span class="ss">:/</span><span class="n">software</span><span class="o">/</span><span class="n">apache</span><span class="o">-</span><span class="n">maven</span><span class="o">-</span><span class="mi">3</span><span class="o">.</span><span class="mi">3</span><span class="o">.</span><span class="mi">1</span><span class="o">/</span><span class="n">bin</span>
+<span class="err">输入命令</span> <span class="n">source</span> <span class="sr">/etc/</span><span class="n">profile</span> <span class="err">使环境变量立即生效</span></code></pre></figure>
+
+<hr />
+<p>10、在线安装svn客户端</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">yum</span> <span class="o">-</span><span class="n">y</span> <span class="n">install</span> <span class="n">subversion</span></code></pre></figure>
+
+<hr />
+<p>11、使用svn检出项目/更新项目</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">cd</span> <span class="sr">/project
+svn checkout http:/</span><span class="o">/</span><span class="mi">192</span><span class="o">.</span><span class="mi">168</span><span class="o">.</span><span class="mi">1</span><span class="o">.</span><span class="mi">100</span><span class="o">/</span><span class="n">svn</span><span class="o">/</span><span class="n">hode</span><span class="o">/</span><span class="n">jaxws</span><span class="o">-</span><span class="n">server</span>
+<span class="err">输入用户名及密码即可</span>
+<span class="n">cd</span> <span class="n">jaxws</span><span class="o">-</span><span class="n">server</span>
+<span class="n">svn</span> <span class="n">up</span> <span class="err">即可更新</span>
+<span class="err">若</span><span class="n">svn</span><span class="err">地址变更过，需要</span><span class="n">relocate</span>
+<span class="n">svn</span> <span class="n">switch</span> <span class="o">--</span><span class="n">relocate</span> <span class="n">http</span><span class="ss">:/</span><span class="o">/</span><span class="mi">192</span><span class="o">.</span><span class="mi">168</span><span class="o">.</span><span class="mi">1</span><span class="o">.</span><span class="mi">100</span><span class="o">/</span><span class="n">svn</span><span class="o">/</span><span class="n">hode</span><span class="o">/</span><span class="n">jaxws</span><span class="o">-</span><span class="n">server</span> <span class="n">http</span><span class="ss">:/</span><span class="o">/</span><span class="mi">192</span><span class="o">.</span><span class="mi">168</span><span class="o">.</span><span class="mi">88</span><span class="o">.</span><span class="mi">101</span><span class="o">/</span><span class="n">svn</span><span class="o">/</span><span class="n">hode</span><span class="o">/</span><span class="n">jaxws</span><span class="o">-</span><span class="n">server</span>
+<span class="n">svn</span> <span class="n">checkout</span> <span class="n">http</span><span class="ss">:/</span><span class="o">/</span><span class="mi">192</span><span class="o">.</span><span class="mi">168</span><span class="o">.</span><span class="mi">88</span><span class="o">.</span><span class="mi">101</span><span class="o">/</span><span class="n">svn</span><span class="o">/</span><span class="n">hode</span><span class="o">/</span><span class="n">jaxws</span><span class="o">-</span><span class="n">client</span>
+<span class="n">svn</span> <span class="n">checkout</span> <span class="n">http</span><span class="ss">:/</span><span class="o">/</span><span class="mi">192</span><span class="o">.</span><span class="mi">168</span><span class="o">.</span><span class="mi">88</span><span class="o">.</span><span class="mi">101</span><span class="o">/</span><span class="n">svn</span><span class="o">/</span><span class="n">hode</span><span class="o">/</span><span class="n">jaxws</span><span class="o">-</span><span class="n">interface</span></code></pre></figure>
+
+<hr />
+<p>12、安装zookeeper</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="err">下载</span> <span class="n">zookeeper</span><span class="o">-</span><span class="mi">3</span><span class="o">.</span><span class="mi">4</span><span class="o">.</span><span class="mi">8</span><span class="p">.</span><span class="nf">tar</span><span class="p">.</span><span class="nf">gz</span> <span class="err">包</span>
+<span class="n">tar</span> <span class="o">-</span><span class="n">xzvf</span> <span class="n">zookeeper</span><span class="o">-</span><span class="mi">3</span><span class="o">.</span><span class="mi">4</span><span class="o">.</span><span class="mi">8</span><span class="p">.</span><span class="nf">tar</span><span class="p">.</span><span class="nf">gz</span>
+<span class="err">进入</span><span class="n">zookeeper</span><span class="err">目录下的</span><span class="n">conf</span><span class="err">子目录</span><span class="p">,</span> <span class="n">cp</span> <span class="o">-</span><span class="n">rf</span> <span class="n">zoo_sample</span><span class="p">.</span><span class="nf">cfg</span>  <span class="n">zoo</span><span class="p">.</span><span class="nf">cfg</span> <span class="err">复制一份配置文件</span>
+<span class="n">vi</span> <span class="n">zoo</span><span class="p">.</span><span class="nf">cfg</span><span class="err">完成配置</span><span class="p">(</span><span class="err">其它默认便可</span><span class="p">)</span>
+<span class="n">dataDir</span><span class="o">=</span><span class="sr">/data/</span><span class="n">zookeeper</span>
+<span class="n">dataLogDir</span><span class="o">=</span><span class="sr">/data/</span><span class="n">zookeeper</span><span class="o">/</span><span class="n">lo</span>
+<span class="err">单机模式已配置好，启动命令为</span>  <span class="n">bin</span><span class="o">/</span><span class="n">zkServer</span><span class="p">.</span><span class="nf">sh</span> <span class="n">start</span> 
+<span class="no">Server</span><span class="err">启动之后</span><span class="p">,</span> <span class="err">就可以启动</span><span class="n">client</span><span class="err">连接</span><span class="n">server</span><span class="err">了</span><span class="p">,</span> <span class="err">执行脚本</span>
+<span class="n">bin</span><span class="o">/</span><span class="n">zkCli</span><span class="p">.</span><span class="nf">sh</span> <span class="o">-</span><span class="n">server</span> <span class="n">localhost</span><span class="p">:</span><span class="mi">2181</span>  <span class="err">便可连接成功</span>
+<span class="n">ls</span> <span class="sr">/可查看相关节点</span></code></pre></figure>
+
+<hr />
+<p>13、安装redis</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="err">下载</span><span class="n">redis</span><span class="o">-</span><span class="mi">2</span><span class="o">.</span><span class="mi">8</span><span class="o">.</span><span class="mi">19</span><span class="p">.</span><span class="nf">tar</span><span class="p">.</span><span class="nf">gz</span>
+<span class="n">tar</span> <span class="o">-</span><span class="n">xzvf</span> <span class="n">redis</span><span class="o">-</span><span class="mi">2</span><span class="o">.</span><span class="mi">8</span><span class="o">.</span><span class="mi">19</span><span class="p">.</span><span class="nf">tar</span><span class="p">.</span><span class="nf">gz</span>
+<span class="err">进入目录</span> <span class="o">/</span><span class="n">software</span><span class="o">/</span><span class="n">redis</span><span class="o">-</span><span class="mi">2</span><span class="o">.</span><span class="mi">8</span><span class="o">.</span><span class="mi">19</span>
+<span class="n">make</span> <span class="err">完成安装</span>
+<span class="err">若出现错误</span><span class="n">gcc</span><span class="err">：命令未找到，先执行</span> <span class="n">yum</span> <span class="o">-</span><span class="n">y</span> <span class="n">install</span> <span class="n">gcc</span>
+<span class="err">若出现错误：</span><span class="n">jemalloc</span><span class="o">/</span><span class="n">jemalloc</span><span class="p">.</span><span class="nf">h</span><span class="err">：没有那个文件或目录</span> 
+<span class="err">执行</span> <span class="n">make</span> <span class="no">MALLOC</span><span class="o">=</span><span class="n">libc</span> <span class="err">完成安装</span>
+<span class="n">vi</span> <span class="sr">/software/</span><span class="n">redis</span><span class="o">-</span><span class="mi">2</span><span class="o">.</span><span class="mi">8</span><span class="o">.</span><span class="mi">19</span><span class="o">/</span><span class="n">redis</span><span class="p">.</span><span class="nf">conf</span> <span class="err">为</span><span class="n">redis</span><span class="err">设置密码</span> <span class="err">项</span> <span class="n">requirepass</span> <span class="n">redis2016</span>
+<span class="n">mkdir</span> <span class="sr">/usr/</span><span class="n">redis</span>
+<span class="n">cp</span> <span class="n">redis</span><span class="o">-</span><span class="n">server</span> <span class="sr">/usr/</span><span class="n">redis</span>
+<span class="n">cp</span> <span class="n">redis</span><span class="o">-</span><span class="n">benchmark</span> <span class="sr">/usr/</span><span class="n">redis</span>
+<span class="n">cp</span> <span class="n">redis</span><span class="o">-</span><span class="n">cli</span> <span class="sr">/usr/</span><span class="n">redis</span>
+<span class="n">cp</span> <span class="p">.</span><span class="nf">.</span><span class="o">/</span><span class="n">redis</span><span class="p">.</span><span class="nf">conf</span> <span class="sr">/usr/</span><span class="n">redis</span>
+<span class="n">cd</span> <span class="sr">/usr/</span><span class="n">redis</span>
+<span class="n">ps</span> <span class="o">-</span><span class="n">ef</span> <span class="o">|</span> <span class="n">grep</span> <span class="s1">'redis-server'</span> <span class="o">|</span> <span class="n">grep</span> <span class="o">-</span><span class="n">v</span> <span class="n">grep</span><span class="o">|</span> <span class="n">awk</span> <span class="s1">'{print $2}'</span><span class="o">|</span> <span class="n">xargs</span> <span class="n">kill</span> <span class="o">-</span><span class="mi">9</span>
+<span class="p">.</span><span class="nf">/</span><span class="n">redis</span><span class="o">-</span><span class="n">server</span> <span class="o">&amp;</span> <span class="err">后台运行</span></code></pre></figure>
+
+<hr />
+<p>14、安装Git</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="err">执行命令</span> <span class="n">yum</span> <span class="o">-</span><span class="n">y</span> <span class="n">install</span> <span class="n">git</span> <span class="err">完成安装</span></code></pre></figure>
+
+<hr />
+<p>15、安装telnet</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="err">执行命令</span> <span class="n">yum</span> <span class="o">-</span><span class="n">y</span> <span class="n">install</span> <span class="n">telnet</span> <span class="err">完成安装</span></code></pre></figure>
+
+<p>结束。</p>
+</div>
+	
+	<!--
+    <hr />
+    { % include share-page.html % }
+	-->
+</article>
+<hr />
+
+
+    
+    
+        
+            
+        
+            
+        
+    
+        
+            
+        
+            
+                
+                <div class="panel-body">
+                <h5>相关博客</h5>
+                <ul>
+                
+                <li class="relatedPost" style="font-size: 12px;">
+                    <a href="http://www.mixfate.com/maven/tools/2016/05/08/maven-nexus2.9.0.html">Nexus2.9.0 私服 linux安装使用</a>
+                    
+                        <small>(所属分类: <a href="/category/maven">maven</a>, <a href="/category/tools">tools</a>)</small>
+                    
+                </li>
+                
+                
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+                
+                <li class="relatedPost" style="font-size: 12px;">
+                    <a href="http://www.mixfate.com/tools/tomcat/2016/05/07/jenkins-tomcat-deploy.html">jenkins远程发布应用到tomcat中，使用shell脚本或jenkins deploy插件</a>
+                    
+                        <small>(所属分类: <a href="/category/tools">tools</a>, <a href="/category/tomcat">tomcat</a>)</small>
+                    
+                </li>
+                
+                
+            
+        
+    
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+                
+                <li class="relatedPost" style="font-size: 12px;">
+                    <a href="http://www.mixfate.com/tools/2016/05/06/jenkins.html">jenkins安装与使用</a>
+                    
+                        <small>(所属分类: <a href="/category/tools">tools</a>)</small>
+                    
+                </li>
+                
+                
+            
+        
+    
+
+    
+    
+        
+            
+                
+                <li class="relatedPost" style="font-size: 12px;">
+                    <a href="http://www.mixfate.com/linux/tools/2016/05/05/linux-centos-scp.html">centos minimal使用ssh/scp命令不录入密码</a>
+                    
+                        <small>(所属分类: <a href="/category/linux">linux</a>, <a href="/category/tools">tools</a>)</small>
+                    
+                </li>
+                
+                
+            
+        
+            
+        
+    
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+        
+    
+        
+            
+        
+            
+        
+    
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+        
+    
+        
+            
+        
+            
+        
+    
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+        
+    
+        
+            
+        
+            
+                
+                <li class="relatedPost" style="font-size: 12px;">
+                    <a href="http://www.mixfate.com/mysql/tools/2016/05/01/mysql-install.html">mysql windows绿色版使用，导入导出功能</a>
+                    
+                        <small>(所属分类: <a href="/category/mysql">mysql</a>, <a href="/category/tools">tools</a>)</small>
+                    
+                </li>
+                
+                
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+        
+    
+        
+            
+        
+            
+                
+                <li class="relatedPost" style="font-size: 12px;">
+                    <a href="http://www.mixfate.com/maven/tools/2016/04/30/maven-nexus.html">maven安装第三方包到本地或私服</a>
+                    
+                        <small>(所属分类: <a href="/category/maven">maven</a>, <a href="/category/tools">tools</a>)</small>
+                    
+                </li>
+                
+                
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+        
+    
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+        
+    
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+        
+    
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+        
+    
+        
+            
+        
+            
+        
+    
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+        
+    
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+        
+    
+        
+            
+        
+            
+        
+    
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+        
+    
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+        
+    
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+        
+    
+        
+            
+        
+            
+        
+    
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+        
+    
+        
+            
+        
+            
+        
+    
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+        
+    
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+        
+    
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+        
+    
+        
+            
+        
+            
+        
+    
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+        
+    
+        
+            
+        
+            
+        
+    
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+        
+    
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+        
+    
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+        
+    
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+        
+    
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+        
+    
+        
+            
+        
+            
+        
+    
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+        
+    
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+        
+    
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+        
+    
+
+
+    </ul>
+    </div>
+
+
+<div class="PageNavigation" style="font-size: 12px;">
+  
+    <a class="prev pull-left" href="/java/spring/redis/2016/04/14/spring-jedis-distributed-lock.html">&laquo; Spring4+jedis实现分布式锁</a>
+  
+  
+    <a class="next pull-right" href="/java/spring/2016/04/17/spring-activemq.html">Spring + Activemq基本使用 &raquo;</a>
+  
+</div>
+<div>&nbsp;</div>
+<!--
+<div class="disqus-comments">
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        /* <![CDATA[ */
+
+        /*
+		var disqus_shortname = "mixfate";
+        var disqus_identifier = "http://www.mixfate.com_汇总一些linux安装java应用环境相关操作命令";
+        var disqus_title = "汇总一些linux安装java应用环境相关操作命令";
+		*/
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+		/*
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+		*/
+    /* ]]> */
+    </script>
+</div>
+-->
+</div>
+				
+				<!-- google adsense begin -->
+				
+				<!-- size_728x90 -->
+				<ins class="adsbygoogle"
+					 style="display:inline-block;width:728px;height:90px"
+					 data-ad-client="ca-pub-4309621458849374"
+					 data-ad-slot="8507601840"></ins>
+				<script>
+				(adsbygoogle = window.adsbygoogle || []).push({});
+				</script>
+				<!-- google adsense end -->
+				
+                <div class="row">
+                  <div class="col-md-12 col-xs-12 footer">
+                <footer>
+                    © Copyright
+                     
+                    - Powered by Mixfate.
+					<script language="javascript" type="text/javascript" src="http://js.users.51.la/18893327.js"></script>
+					<noscript><a href="http://www.51.la/?18893327" target="_blank"><img alt="&#x6211;&#x8981;&#x5566;&#x514D;&#x8D39;&#x7EDF;&#x8BA1;" src="http://img.users.51.la/18893327.asp" style="border:none" /></a></noscript>
+                    
+                </footer>
+            </div>
+                </div>
+            </div> <!-- end /.col-md-9 -->
+        </div> <!-- end /.row -->
+
+    </div> <!-- end /.container -->
+
+        <!-- Bootstrap core JavaScript
+        ================================================== -->
+        <!-- Placed at the end of the document so the pages load faster -->
+        <!--
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+		<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+		-->
+		<script src="http://www.mixfate.com/static/js/jquery.min.js"></script>
+		<script src="http://www.mixfate.com/static/js/bootstrap.min.js"></script>
+		
+        <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+        
+
+        <script src="http://www.mixfate.com/static/js/thickbox-compressed.js"></script>
+        <script src="http://www.mixfate.com/static/js/material.min.js"></script>
+        <script src="http://www.mixfate.com/static/js/main.js"></script>
+        <script src="http://www.mixfate.com/static/js/projects.js"></script>
+    </body>
+</html>

@@ -197,6 +197,13 @@
         
         
             
+                <a href="/category/tools" class="btn btn-sm btn-default btn-raised">tools</a>
+            
+        
+    
+        
+        
+            
                 <a href="/category/maven" class="btn btn-sm btn-default btn-raised">maven</a>
             
         
@@ -225,13 +232,6 @@
         
         
             
-                <a href="/category/tools" class="btn btn-sm btn-default btn-raised">tools</a>
-            
-        
-    
-        
-        
-            
                 <a href="/category/zookeeper" class="btn btn-sm btn-default btn-raised">zookeeper</a>
             
         
@@ -246,13 +246,6 @@
         
         
             
-                <a href="/category/dubbo" class="btn btn-sm btn-default btn-raised">dubbo</a>
-            
-        
-    
-        
-        
-            
                 <a href="/category/linux" class="btn btn-sm btn-default btn-raised">linux</a>
             
         
@@ -260,14 +253,28 @@
         
         
             
-                <a href="/category/mysql" class="btn btn-sm btn-default btn-raised">mysql</a>
+                <a href="/category/webservice" class="btn btn-sm btn-default btn-raised">webservice</a>
             
         
     
         
         
             
-                <a href="/category/webservice" class="btn btn-sm btn-default btn-raised">webservice</a>
+                <a href="/category/dubbo" class="btn btn-sm btn-default btn-raised">dubbo</a>
+            
+        
+    
+        
+        
+            
+                <a href="/category/tool" class="btn btn-sm btn-default btn-raised">tool</a>
+            
+        
+    
+        
+        
+            
+                <a href="/category/mysql" class="btn btn-sm btn-default btn-raised">mysql</a>
             
         
     
@@ -309,7 +316,7 @@
                 
             
             <div class="least-content">2016-05-02 20:33</div>
-            <h4 class="list-group-item-heading" style="font-size: 14px;"><a href="/spring/dubbo/2016/05/02/dubbox-restful.html">Dubbox的rest风格调用例子</a></h4>
+            <h4 class="list-group-item-heading" style="font-size: 14px;"><a href="/spring/dubbo/webservice/2016/05/02/dubbox-restful.html">Dubbox的rest风格调用例子</a></h4>
             <p class="list-group-item-text">ubbox的rest风格调用例子 Dubbo是一个被国内很多互联网公司广泛使用的开源分布式服务框架，即使从国际视野来看应该也是一个非常全面的SOA基础框架。 作为一个重要的技术研究课题，在当当网我们根据自身的需求，为Dubbo实现了一些新的功能，并将其命名为Dubbox（即Dubbo eXtensions） 本例中使用jetty server，若本例中其中使用某些alibaba的jar包无法在网上下载，可直接下载源码 git clone https://github.com/dangdangdotcom/dubbox 将其安装到本地库中。 1、编写pom.xml，内容较多，其中包括jetty等 &lt;project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"&gt; &lt;modelVersion&gt;4.0.0&lt;/modelVersion&gt; &lt;groupId&gt;com.hode&lt;/groupId&gt; &lt;artifactId&gt;dubbox&lt;/artifactId&gt; &lt;version&gt;0.0.1-SNAPSHOT&lt;/version&gt;...</p>
             
             </div>
@@ -371,8 +378,50 @@
                 
                 
             
+            <div class="least-content">2016-04-22 21:23</div>
+            <h4 class="list-group-item-heading" style="font-size: 14px;"><a href="/java/spring/dubbo/2016/04/22/spring-dubbo-annotation.html">Spring+Dubbo annotation配置</a></h4>
+            <p class="list-group-item-text">Spring+Dubbo annotation配置 本文继dubbo spring配置使用，上文中使用的xml，dubbo提供了注解方式使代码更加简洁 1、编写pom.xml，其中包括spring、dubbo基础包，pom.xml内容请参考上文（在此省略） 2、编写一个简单的服务 FooService.java package com.hode.dubbo.provider; public interface FooService { public String sayHello(String name); } FooServiceImpl.java，注意需使用alibaba的Service注解 package...</p>
+            
+            </div>
+        </div>
+        <div class="list-group-separator"></div>
+        
+        <div class="list-group-item">
+            <div class="row-action-primary">
+              <i class="fa fa-sticky-note"></i>
+            </div>
+            <div class="row-content" style="font-size: 12px;">
+            
+            
+            
+            
+                
+                
+                
+            
+            <div class="least-content">2016-04-19 21:03</div>
+            <h4 class="list-group-item-heading" style="font-size: 14px;"><a href="/java/dubbo/spring/2016/04/19/spring-dubbo.html">Dubbo全Spring配置方式</a></h4>
+            <p class="list-group-item-text">Dubbo的Spring配置方式 DUBBO是一个分布式服务框架，致力于提供高性能和透明化的RPC远程服务调用方案，是阿里巴巴SOA服务化治理方案的核心框架。 1、编写pom.xml，其中包括spring、dubbo基础包，pom.xml内容如下 &lt;project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"&gt; &lt;modelVersion&gt;4.0.0&lt;/modelVersion&gt; &lt;groupId&gt;com.hode&lt;/groupId&gt; &lt;artifactId&gt;dubbo&lt;/artifactId&gt; &lt;version&gt;0.0.1-SNAPSHOT&lt;/version&gt; &lt;properties&gt; &lt;spring.version&gt;4.0.2.RELEASE&lt;/spring.version&gt; &lt;log4j.version&gt;1.2.17&lt;/log4j.version&gt; &lt;/properties&gt; &lt;dependencies&gt; &lt;dependency&gt; &lt;groupId&gt;org.springframework&lt;/groupId&gt; &lt;artifactId&gt;spring-core&lt;/artifactId&gt;...</p>
+            
+            </div>
+        </div>
+        <div class="list-group-separator"></div>
+        
+        <div class="list-group-item">
+            <div class="row-action-primary">
+              <i class="fa fa-sticky-note"></i>
+            </div>
+            <div class="row-content" style="font-size: 12px;">
+            
+            
+            
+            
+                
+                
+                
+            
             <div class="least-content">2016-04-18 07:13</div>
-            <h4 class="list-group-item-heading" style="font-size: 14px;"><a href="/java/spring/2016/04/18/spring-restful.html">Springmvc构建restful webservice应用</a></h4>
+            <h4 class="list-group-item-heading" style="font-size: 14px;"><a href="/java/spring/webservice/2016/04/18/spring-restful.html">Springmvc构建restful webservice应用</a></h4>
             <p class="list-group-item-text">Spring4 mvc构建restful webservice应用 本文演示使用spring mvc开发一个简单的restful webservice服务，本例使用Jetty作为调试测试，通过使用RestTemplate完成服务调用。 1、编写pom.xml，其中包括spring、json解析所需的包，pom.xml内容如下 &lt;project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"&gt; &lt;modelVersion&gt;4.0.0&lt;/modelVersion&gt; &lt;groupId&gt;com.hode&lt;/groupId&gt; &lt;artifactId&gt;spring-rest&lt;/artifactId&gt; &lt;version&gt;0.0.1-SNAPSHOT&lt;/version&gt; &lt;packaging&gt;war&lt;/packaging&gt; &lt;properties&gt; &lt;spring.version&gt;4.0.2.RELEASE&lt;/spring.version&gt; &lt;log4j.version&gt;1.2.17&lt;/log4j.version&gt;...</p>
             
             </div>
@@ -437,6 +486,27 @@
             <div class="least-content">2016-04-13 23:32</div>
             <h4 class="list-group-item-heading" style="font-size: 14px;"><a href="/java/spring/redis/2016/04/13/spring-jedis.html">Spring4+jedis基本操作</a></h4>
             <p class="list-group-item-text">Spring4+jedis基本操作 首先安装好redis,并启动 1、编写pom.xml文件，添加jedis、spring等配置，pom文件如下 &lt;project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"&gt; &lt;modelVersion&gt;4.0.0&lt;/modelVersion&gt; &lt;groupId&gt;com.hode&lt;/groupId&gt; &lt;artifactId&gt;spring-jedis&lt;/artifactId&gt; &lt;version&gt;0.0.1-SNAPSHOT&lt;/version&gt; &lt;properties&gt; &lt;spring.version&gt;4.0.2.RELEASE&lt;/spring.version&gt; &lt;/properties&gt; &lt;dependencies&gt; &lt;dependency&gt; &lt;groupId&gt;org.springframework.data&lt;/groupId&gt; &lt;artifactId&gt;spring-data-redis&lt;/artifactId&gt; &lt;version&gt;1.6.1.RELEASE&lt;/version&gt;...</p>
+            
+            </div>
+        </div>
+        <div class="list-group-separator"></div>
+        
+        <div class="list-group-item">
+            <div class="row-action-primary">
+              <i class="fa fa-sticky-note"></i>
+            </div>
+            <div class="row-content" style="font-size: 12px;">
+            
+            
+            
+            
+                
+                
+                
+            
+            <div class="least-content">2016-04-05 17:05</div>
+            <h4 class="list-group-item-heading" style="font-size: 14px;"><a href="/java/spring/2016/04/05/springmvc-test.html">使用spring-test测试springmvc</a></h4>
+            <p class="list-group-item-text">使用spring-test测试springmvc web应用开发人员在开发过程中需要测试各种请求，通常需要使用web服务器部署后进行调试，本文介绍基于SpringMVC与Spring Test框架编写单元测试对springmvc进行测试。 1、创建maven项目，pom.xml如下 &lt;project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"&gt; &lt;modelVersion&gt;4.0.0&lt;/modelVersion&gt; &lt;groupId&gt;com.qerooy&lt;/groupId&gt; &lt;artifactId&gt;mvctest&lt;/artifactId&gt; &lt;version&gt;0.0.1-SNAPSHOT&lt;/version&gt; &lt;packaging&gt;war&lt;/packaging&gt; &lt;properties&gt; &lt;spring.version&gt;4.0.2.RELEASE&lt;/spring.version&gt; &lt;log4j.version&gt;1.2.17&lt;/log4j.version&gt; &lt;/properties&gt; &lt;dependencies&gt; &lt;dependency&gt;...</p>
             
             </div>
         </div>

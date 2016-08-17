@@ -1,0 +1,1041 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="shortcut icon" href="/static/img/favicon.ico" />
+        <title>Nexus2.9.0 私服 linux安装使用 - Java及相关开源技术博客</title>
+        <meta name="author" content="Mixfate博客" />
+        <meta name="description" content="Mixfate博客,开源技术博客,IT 博客,java技术,spring开源技术,dubbo分布式架构,maven工具" />
+        <meta name="keywords" content="Nexus2.9.0 私服 linux安装使用, Java及相关开源技术博客, maven, tools" />
+
+        <meta content="0" property="fb:app_id">
+        <meta content="Java及相关开源技术博客" property="og:site_name">
+        
+          <meta content="Nexus2.9.0 私服 linux安装使用" property="og:title">
+        
+        
+          <meta content="article" property="og:type">
+        
+        
+          <meta content="Mixfate博客,开源技术博客,IT 博客,java技术,spring开源技术,dubbo分布式架构,maven工具" property="og:description">
+        
+        
+          <meta content="http://www.mixfate.com/maven/tools/2016/05/08/maven-nexus2.9.0.html" property="og:url">
+        
+        
+          <meta content="2016-05-08T19:22:48+08:00" property="article:published_time">
+          <meta content="http://www.mixfate.com/about/" property="article:author">
+        
+        
+          <meta content="http://www.mixfate.com/static/img/logo-high-resolution.png" property="og:image">
+        
+        
+          
+          <meta content="maven" property="article:section">
+          
+        
+        
+          
+        
+        <meta name="twitter:card" content="summary">
+        <meta name="twitter:site" content="@\#">
+        <meta name="twitter:creator" content="@\#">
+        
+          <meta name="twitter:title" content="Nexus2.9.0 私服 linux安装使用">
+        
+        
+          <meta name="twitter:url" content="http://www.mixfate.com/maven/tools/2016/05/08/maven-nexus2.9.0.html">
+        
+        
+          <meta name="twitter:description" content="Mixfate博客,开源技术博客,IT 博客,java技术,spring开源技术,dubbo分布式架构,maven工具">
+        
+        
+
+        <link rel="alternate" type="application/rss+xml" title="RSS" href="/feed.xml">
+        <!-- Custom Fonts -->
+        <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:300,400,500,700" type="text/css">
+
+        <!-- FontAwesome icons -->
+        <link rel="stylesheet" href="https://use.fontawesome.com/74dfc6cf47.css">
+
+        <!-- Core BootStrap CSS -->
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+        <!-- Material Design CSS -->
+        <link rel="stylesheet" href="http://www.mixfate.com/static/css/bootstrap-material-design.min.css">
+
+        <!-- syntax highlighting CSS -->
+        <link rel="stylesheet" href="http://www.mixfate.com/static/css/syntax.css">
+
+        <!-- Custom CSS -->        
+        <link rel="stylesheet" href="http://www.mixfate.com/static/css/thickbox.css">
+        <link rel="stylesheet" href="http://www.mixfate.com/static/css/main.css">
+        <link rel="stylesheet" href="http://www.mixfate.com/static/css/projects.css">
+        <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UB-72862926-2', 'auto');
+  ga('send', 'pageview');
+
+</script>
+    </head>
+
+    <body class="home overflow-hidden">
+    <!--[if lt IE 7]>
+    <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade
+        your browser</a> to improve your experience.</p>
+    <![endif]-->
+    <div class="header-panel shadow-z-2">
+    <div class="container">
+    <div class="row">
+            <div class="col-md-3 col-sm-4 col-xs-12">
+      <div class="row-picture">
+        <img id="about" class="logo-img" src="http://www.mixfate.com/static/img/avatar.png" height="75px" width="75px">
+      </div>
+      <div class="row-details">
+      <h4 class="list-group-item-heading">Mixfate博客</h4>
+      <p class="list-group-item-text">技术乐园</p>
+      <div class="social-icons">
+	
+        <a class="icon" href=""><i class="fa fa-facebook"></i></a>
+    
+        <a class="icon" href=""><i class="fa fa-skype"></i></a>
+    
+        <a class="icon" href=""><i class="fa fa-twitter"></i></a>
+    
+        <a class="icon" href=""><i class="fa fa-linkedin"></i></a>
+    
+        <a class="icon" href=""><i class="fa fa-stack-exchange"></i></a>
+    
+</div>
+      </div>
+        <div class="navbar-header pull-right">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+              <span class="sr-only">Toggle navigation</span>
+              <i class="fa fa-2x fa-bars"></i>
+            </button>
+        </div>
+      </div>
+      <div class="col-md-9 col-sm-8 col-xs-12">
+      <h2 class="blog-title-pro">Nexus2.9.0 私服 linux安装使用</h2>
+      <p class="info">
+      
+      <span class="time">2016/05/08</span>
+      
+      
+    <span class="categories">
+        &raquo; <a href="/category/maven">maven</a>, <a href="/category/tools">tools</a>
+    </span>
+    
+      </p>
+      </div>
+      </div>
+      </div>
+    </div>
+    <div class="container main outer">
+        <div class="row">
+            <div class="col-md-3 col-xs-12">
+                    <nav class="menu">
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+    <ul class="list-separator nav navbar-nav well well-primary post">
+
+	
+	
+	
+	
+	<li class="col-lg-12 col-md-12 col-sm-4 col-xs-12 current-menu-item maven-nexus2.9.0.html"><a href="/"><i class="fa fa-home"></i> 首页</a></li>
+
+	
+	
+	
+	
+	<li class="col-lg-12 col-md-12 col-sm-4 col-xs-12  maven-nexus2.9.0.html"><a href="/category/java"><i class="fa fa-desktop"></i> 分类</a></li>
+
+	
+	
+	
+	
+	<li class="col-lg-12 col-md-12 col-sm-4 col-xs-12  maven-nexus2.9.0.html"><a href="/about/"><i class="fa fa-comments"></i> 关于</a></li>
+
+</ul>
+    </div>
+    </nav>
+
+				
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- size_300x250 -->
+<ins class="adsbygoogle"
+     style="display:inline-block;width:280px;height:250px"
+     data-ad-client="ca-pub-4309621458849374"
+     data-ad-slot="8169524649"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+            </div> <!-- end /.col-md-3 -->
+
+            <div class="col-md-9 col-xs-12 full">
+                <div class="post-content well">
+<article class="content">
+    <div class="post" style="font-size: 12px;"><h2 id="nexus290--linux">Nexus2.9.0 私服 linux安装使用</h2>
+
+<div class="language-markdown highlighter-rouge"><pre class="highlight"><code>下载nexus-2.9.0-bundle.zip，使用解压命令
+
+unzip nexus-latest-bundle.zip -d . 
+
+解压到目录/software/nexus-2.7.2-03
+
+若为root用户需在 /etc/profile最后添加一行export RUN_AS_USER=root 并source /etc/profile使其生效
+
+cd /software/nexus-2.7.2-03/bin
+
+执行
+./nexus start
+
+若存在Caused by: java.net.UnknownHostException: centos-b 异常，则直接修改hosts文件(vi /etc/hosts)，将原127.0.0.1替换成127.0.0.1 localhost centos-b即可
+
+启动成功后
+http://192.168.88.102:8081/nexus/index.html 即可打开界面
+
+新搭建的neuxs环境只是一个空的仓库，需要手动和远程中心库进行同步，nexus默认是关闭远程索引下载，最重要的一件事情就是开启远程索引下载。登陆nexus系统，默认用户名密码为admin/admin123。
+点击左边Administration菜单下面的Repositories，找到右边仓库列表中的三个仓库Apache Snapshots，Codehaus Snapshots和Maven Central，然后在每个仓库的configuration下把Download Remote Indexes修改为true。
+
+</code></pre>
+</div>
+
+<p>maven的安装配置settings.xml配置修改如下</p>
+<profiles>标签内增加以下代码，表示指定仓库及插件仓库
+
+```markdown
+	<profile>
+		<id>nexus</id>
+		<repositories>
+			<repository>
+				<id>nexus</id>
+				<name>Nexus</name>
+				<url>http://192.168.88.102:8081/nexus/content/groups/public/</url>
+				<release><enabled>true</enabled></release>
+				<snapshots><enabled>true&gt;</enabled></snapshots>
+			</repository>
+		</repositories>
+		<pluginRepositories>
+			<pluginRepository>
+				<id>nexus</id>
+				<name>Nexus</name>
+				<url>http://192.168.88.102:8081/nexus/content/groups/public/</url>
+				<release><enabled>true</enabled></release>
+				<snapshots><enabled>true&gt;</enabled></snapshots>
+			</pluginRepository>
+		</pluginRepositories>
+	</profile>
+```
+
+<settings>标签内增加以下代码，表示激活
+
+```markdown
+	<activeProfiles>
+		<activeProfile>nexus</activeProfile>
+	</activeProfiles>
+```
+
+<settings>标签内增加以下代码，表示发布
+
+```markdown
+	<distributionManagement>  
+        <repository>  
+            <id>release</id>  
+            <name>User Project Release</name>  
+            <url>http://192.168.88.102:8081/nexus/content/repositories/releases/</url>  
+        </repository>  
+  
+        <snapshotRepository>  
+            <id>snapshots</id>  
+            <name>User Project SNAPSHOTS</name>  
+            <url>http://192.168.88.102:8081/nexus/content/repositories/snapshots/</url>  
+        </snapshotRepository>  
+    </distributionManagement>
+```
+
+并且在<settings>标签下的<servers>标签中添加
+
+```markdown
+		<server>
+			<id>release</id>
+			<username>admin</username>
+			<password>admin123</password>
+		</server>
+		<server>
+			<id>snapshots</id>
+			<username>admin</username>
+			<password>admin123</password>
+		</server>
+```
+
+同时pom.xml中也需要添加
+
+```markdown
+	<distributionManagement>  
+        <repository>  
+            <id>release</id>  
+            <name>Project Release</name>  
+            <url>http://192.168.88.102:8081/nexus/content/repositories/releases/</url>  
+        </repository>
+		<snapshotRepository>  
+            <id>snapshots</id>  
+            <name>Project SNAPSHOTS</name>  
+            <url>http://192.168.88.102:8081/nexus/content/repositories/snapshots/</url>  
+        </snapshotRepository>
+	</distributionManagement>
+```
+
+执行命令mvn deploy便可
+
+
+结束。
+</servers></settings></settings></settings></profiles>
+</div>
+	
+	<!--
+    <hr />
+    { % include share-page.html % }
+	-->
+</article>
+<hr />
+
+
+    
+    
+        
+            
+        
+            
+        
+    
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+                
+                <div class="panel-body">
+                <h5>相关博客</h5>
+                <ul>
+                
+                <li class="relatedPost" style="font-size: 12px;">
+                    <a href="http://www.mixfate.com/tools/tomcat/2016/05/07/jenkins-tomcat-deploy.html">jenkins远程发布应用到tomcat中，使用shell脚本或jenkins deploy插件</a>
+                    
+                        <small>(所属分类: <a href="/category/tools">tools</a>, <a href="/category/tomcat">tomcat</a>)</small>
+                    
+                </li>
+                
+                
+            
+        
+    
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+                
+                <li class="relatedPost" style="font-size: 12px;">
+                    <a href="http://www.mixfate.com/tools/2016/05/06/jenkins.html">jenkins安装与使用</a>
+                    
+                        <small>(所属分类: <a href="/category/tools">tools</a>)</small>
+                    
+                </li>
+                
+                
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+        
+    
+        
+            
+        
+            
+                
+                <li class="relatedPost" style="font-size: 12px;">
+                    <a href="http://www.mixfate.com/linux/tools/2016/05/05/linux-centos-scp.html">centos minimal使用ssh/scp命令不录入密码</a>
+                    
+                        <small>(所属分类: <a href="/category/linux">linux</a>, <a href="/category/tools">tools</a>)</small>
+                    
+                </li>
+                
+                
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+        
+    
+        
+            
+        
+            
+        
+    
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+        
+    
+        
+            
+        
+            
+        
+    
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+        
+    
+        
+            
+        
+            
+                
+                <li class="relatedPost" style="font-size: 12px;">
+                    <a href="http://www.mixfate.com/mysql/tools/2016/05/01/mysql-install.html">mysql windows绿色版使用，导入导出功能</a>
+                    
+                        <small>(所属分类: <a href="/category/mysql">mysql</a>, <a href="/category/tools">tools</a>)</small>
+                    
+                </li>
+                
+                
+            
+        
+    
+
+    
+    
+        
+            
+                
+                <li class="relatedPost" style="font-size: 12px;">
+                    <a href="http://www.mixfate.com/maven/tools/2016/04/30/maven-nexus.html">maven安装第三方包到本地或私服</a>
+                    
+                        <small>(所属分类: <a href="/category/maven">maven</a>, <a href="/category/tools">tools</a>)</small>
+                    
+                </li>
+                
+                
+            
+        
+            
+        
+    
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+                
+                <li class="relatedPost" style="font-size: 12px;">
+                    <a href="http://www.mixfate.com/maven/tools/2016/04/27/java-proguard-js-yuicompressor.html">Java代码保护，JS代码压缩工具</a>
+                    
+                        <small>(所属分类: <a href="/category/maven">maven</a>, <a href="/category/tools">tools</a>)</small>
+                    
+                </li>
+                
+                
+            
+        
+            
+        
+    
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+        
+    
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+        
+    
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+        
+    
+        
+            
+        
+            
+        
+    
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+        
+    
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+        
+    
+        
+            
+        
+            
+        
+    
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+        
+    
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+        
+    
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+        
+    
+        
+            
+        
+            
+        
+    
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+        
+    
+        
+            
+        
+            
+        
+    
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+        
+    
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+        
+    
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+        
+    
+        
+            
+        
+            
+        
+    
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+        
+    
+        
+            
+        
+            
+        
+    
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+        
+    
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+        
+    
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+        
+    
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+        
+    
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+        
+    
+        
+            
+        
+            
+        
+    
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+        
+    
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+        
+    
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+        
+    
+
+
+    </ul>
+    </div>
+
+
+<div class="PageNavigation" style="font-size: 12px;">
+  
+    <a class="prev pull-left" href="/tools/tomcat/2016/05/07/jenkins-tomcat-deploy.html">&laquo; jenkins远程发布应用到tomcat中，使用shell脚本或jenkins deploy插件</a>
+  
+  
+</div>
+<div>&nbsp;</div>
+<!--
+<div class="disqus-comments">
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        /* <![CDATA[ */
+
+        /*
+		var disqus_shortname = "mixfate";
+        var disqus_identifier = "http://www.mixfate.com_Nexus2.9.0 私服 linux安装使用";
+        var disqus_title = "Nexus2.9.0 私服 linux安装使用";
+		*/
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+		/*
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+		*/
+    /* ]]> */
+    </script>
+</div>
+-->
+</div>
+				
+				<!-- google adsense begin -->
+				
+				<!-- size_728x90 -->
+				<ins class="adsbygoogle"
+					 style="display:inline-block;width:728px;height:90px"
+					 data-ad-client="ca-pub-4309621458849374"
+					 data-ad-slot="8507601840"></ins>
+				<script>
+				(adsbygoogle = window.adsbygoogle || []).push({});
+				</script>
+				<!-- google adsense end -->
+				
+                <div class="row">
+                  <div class="col-md-12 col-xs-12 footer">
+                <footer>
+                    © Copyright
+                     
+                    - Powered by Mixfate.
+					<script language="javascript" type="text/javascript" src="http://js.users.51.la/18893327.js"></script>
+					<noscript><a href="http://www.51.la/?18893327" target="_blank"><img alt="&#x6211;&#x8981;&#x5566;&#x514D;&#x8D39;&#x7EDF;&#x8BA1;" src="http://img.users.51.la/18893327.asp" style="border:none" /></a></noscript>
+                    
+                </footer>
+            </div>
+                </div>
+            </div> <!-- end /.col-md-9 -->
+        </div> <!-- end /.row -->
+
+    </div> <!-- end /.container -->
+
+        <!-- Bootstrap core JavaScript
+        ================================================== -->
+        <!-- Placed at the end of the document so the pages load faster -->
+        <!--
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+		<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+		-->
+		<script src="http://www.mixfate.com/static/js/jquery.min.js"></script>
+		<script src="http://www.mixfate.com/static/js/bootstrap.min.js"></script>
+		
+        <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+        
+
+        <script src="http://www.mixfate.com/static/js/thickbox-compressed.js"></script>
+        <script src="http://www.mixfate.com/static/js/material.min.js"></script>
+        <script src="http://www.mixfate.com/static/js/main.js"></script>
+        <script src="http://www.mixfate.com/static/js/projects.js"></script>
+    </body>
+</html>

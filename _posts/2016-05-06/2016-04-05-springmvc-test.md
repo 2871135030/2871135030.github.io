@@ -2,7 +2,7 @@
 layout: post
 title: 使用spring-test测试springmvc
 date:   2016-04-05 09:05:12
-categories: java
+categories: [java,spring]
 ---
 
 ## 使用spring-test测试springmvc

@@ -2,7 +2,7 @@
 layout: post
 title: Dubbo全Spring配置方式
 date:   2016-04-19 13:03:13
-categories: [java,dubbo]
+categories: [java,dubbo,spring]
 ---
 
 ## Dubbo的Spring配置方式

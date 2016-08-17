@@ -197,6 +197,13 @@
         
         
             
+                <a href="/category/tools" class="btn btn-sm btn-default btn-raised">tools</a>
+            
+        
+    
+        
+        
+            
                 <a href="/category/maven" class="btn btn-sm btn-default btn-raised">maven</a>
             
         
@@ -225,13 +232,6 @@
         
         
             
-                <a href="/category/tools" class="btn btn-sm btn-default btn-raised">tools</a>
-            
-        
-    
-        
-        
-            
                 <a href="/category/zookeeper" class="btn btn-sm btn-default btn-raised">zookeeper</a>
             
         
@@ -246,13 +246,6 @@
         
         
             
-                <a href="/category/dubbo" class="btn btn-sm btn-default btn-raised">dubbo</a>
-            
-        
-    
-        
-        
-            
                 <button class="btn btn-sm btn-primary btn-raised">linux</button>
             
         
@@ -260,14 +253,28 @@
         
         
             
-                <a href="/category/mysql" class="btn btn-sm btn-default btn-raised">mysql</a>
+                <a href="/category/webservice" class="btn btn-sm btn-default btn-raised">webservice</a>
             
         
     
         
         
             
-                <a href="/category/webservice" class="btn btn-sm btn-default btn-raised">webservice</a>
+                <a href="/category/dubbo" class="btn btn-sm btn-default btn-raised">dubbo</a>
+            
+        
+    
+        
+        
+            
+                <a href="/category/tool" class="btn btn-sm btn-default btn-raised">tool</a>
+            
+        
+    
+        
+        
+            
+                <a href="/category/mysql" class="btn btn-sm btn-default btn-raised">mysql</a>
             
         
     
@@ -288,7 +295,7 @@
             
             
             <div class="least-content">2016-05-05 20:09</div>
-            <h4 class="list-group-item-heading" style="font-size: 14px;"><a href="/linux/2016/05/05/linux-centos-scp.html">centos minimal使用ssh/scp命令不录入密码</a></h4>
+            <h4 class="list-group-item-heading" style="font-size: 14px;"><a href="/linux/tools/2016/05/05/linux-centos-scp.html">centos minimal使用ssh/scp命令不录入密码</a></h4>
             <p class="list-group-item-text">centos minimal使用ssh/scp命令不录入密码 不同的Linux服务器之间经常需要文档拷贝，本例演示在已安装的两台CentOS-6.7-x86_64-minimal机器上使用scp传输文件。 暂定义机器A(ip:192.168.88.102)，机器B(ip:192.168.88.103)， 在机器B上操作如下命令 scp -p /software/download/quartz-2.2.1-distribution.tar.gz root@192.168.88.102:/software/download/quartz-2.2.1-distribution.tar.gz 表示将机器B上的文件拷贝到机上A上，未做任何配置时，需输入root的密码，日志如下 [root@centos-b ~]# scp -p /software/download/quartz-2.2.1-distribution.tar.gz root@192.168.88.102:/software/download/quartz-2.2.1-distribution.tar.gz The authenticity of host...</p>
             
             </div>
@@ -309,8 +316,29 @@
                 
             
             <div class="least-content">2016-04-26 18:27</div>
-            <h4 class="list-group-item-heading" style="font-size: 14px;"><a href="/linux/2016/04/26/linux-vmware.html">Vmware linux拷贝网络故障</a></h4>
+            <h4 class="list-group-item-heading" style="font-size: 14px;"><a href="/tools/linux/2016/04/26/linux-vmware.html">Vmware linux拷贝网络故障</a></h4>
             <p class="list-group-item-text">Vmware linux拷贝Bringing up interface eth0: Device eth0 does not seem to be present ,delaying initialization Wmware通过拷贝的原系统，重启网络(service network restart)会出现错误Bringing up interface...</p>
+            
+            </div>
+        </div>
+        <div class="list-group-separator"></div>
+        
+        <div class="list-group-item">
+            <div class="row-action-primary">
+              <i class="fa fa-sticky-note"></i>
+            </div>
+            <div class="row-content" style="font-size: 12px;">
+            
+            
+            
+            
+                
+                
+                
+            
+            <div class="least-content">2016-04-14 23:32</div>
+            <h4 class="list-group-item-heading" style="font-size: 14px;"><a href="/linux/tools/2016/04/14/linux-java-install.html">汇总一些linux安装java应用环境相关操作命令</a></h4>
+            <p class="list-group-item-text">汇总一些linux安装java应用环境相关操作命令 收集汇总安装 CentOS-6.7-x86_64-minimal.iso 后安装java运行环境的一些命令操作。 1、安装CentOS-6.7-x86_64-minimal，在vmware中需先创建空白机器，然后导入iso安装盘进行安装，若直接安装将提示安装失败。 2、一般设置直接连接物理网络，可大幅减轻网络连接占用的系统资源，配置成自动获取ip如下 编辑网卡配置文件，命令： vim /etc/sysconfig/network-scripts/ifcfg-eth0 更改ONBOOT=yes 更改BOOTPROTO为： BOOTPROTO=dhcp 其他的如IPADDR、NETMASK等#号注释掉，保存退出 重启网络连接，命令： service network restart 3、安装 sz rz上传下载工具...</p>
             
             </div>
         </div>

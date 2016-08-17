@@ -2,7 +2,7 @@
 layout: post
 title: Dubbox的rest风格调用例子
 date:   2016-05-02 12:33:01
-categories: [spring,dubbo]
+categories: [spring,dubbo,webservice]
 ---
 
 ## ubbox的rest风格调用例子

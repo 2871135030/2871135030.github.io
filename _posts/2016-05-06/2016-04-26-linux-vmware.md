@@ -2,7 +2,7 @@
 layout: post
 title: Vmware linux拷贝网络故障
 date:   2016-04-26 10:27:48
-categories: [linux]
+categories: [tools,linux]
 ---
 
 ## Vmware linux拷贝Bringing up interface eth0: Device eth0 does not seem to be present ,delaying initialization

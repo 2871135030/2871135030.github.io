@@ -2,7 +2,7 @@
 layout: post
 title: centos minimal使用ssh/scp命令不录入密码
 date:   2016-05-05 12:09:48
-categories: [linux]
+categories: [linux,tools]
 ---
 
 ## centos minimal使用ssh/scp命令不录入密码

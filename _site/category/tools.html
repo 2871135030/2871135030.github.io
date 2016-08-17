@@ -197,6 +197,13 @@
         
         
             
+                <button class="btn btn-sm btn-primary btn-raised">tools</button>
+            
+        
+    
+        
+        
+            
                 <a href="/category/maven" class="btn btn-sm btn-default btn-raised">maven</a>
             
         
@@ -225,13 +232,6 @@
         
         
             
-                <button class="btn btn-sm btn-primary btn-raised">tools</button>
-            
-        
-    
-        
-        
-            
                 <a href="/category/zookeeper" class="btn btn-sm btn-default btn-raised">zookeeper</a>
             
         
@@ -246,13 +246,6 @@
         
         
             
-                <a href="/category/dubbo" class="btn btn-sm btn-default btn-raised">dubbo</a>
-            
-        
-    
-        
-        
-            
                 <a href="/category/linux" class="btn btn-sm btn-default btn-raised">linux</a>
             
         
@@ -260,14 +253,28 @@
         
         
             
-                <a href="/category/mysql" class="btn btn-sm btn-default btn-raised">mysql</a>
+                <a href="/category/webservice" class="btn btn-sm btn-default btn-raised">webservice</a>
             
         
     
         
         
             
-                <a href="/category/webservice" class="btn btn-sm btn-default btn-raised">webservice</a>
+                <a href="/category/dubbo" class="btn btn-sm btn-default btn-raised">dubbo</a>
+            
+        
+    
+        
+        
+            
+                <a href="/category/tool" class="btn btn-sm btn-default btn-raised">tool</a>
+            
+        
+    
+        
+        
+            
+                <a href="/category/mysql" class="btn btn-sm btn-default btn-raised">mysql</a>
             
         
     
@@ -287,8 +294,29 @@
             
             
             
+            <div class="least-content">2016-05-08 19:22</div>
+            <h4 class="list-group-item-heading" style="font-size: 14px;"><a href="/maven/tools/2016/05/08/maven-nexus2.9.0.html">Nexus2.9.0 私服 linux安装使用</a></h4>
+            <p class="list-group-item-text">Nexus2.9.0 私服 linux安装使用 下载nexus-2.9.0-bundle.zip，使用解压命令 unzip nexus-latest-bundle.zip -d . 解压到目录/software/nexus-2.7.2-03 若为root用户需在 /etc/profile最后添加一行export RUN_AS_USER=root 并source /etc/profile使其生效 cd /software/nexus-2.7.2-03/bin 执行 ./nexus start 若存在Caused...</p>
+            
+            </div>
+        </div>
+        <div class="list-group-separator"></div>
+        
+        <div class="list-group-item">
+            <div class="row-action-primary">
+              <i class="fa fa-sticky-note"></i>
+            </div>
+            <div class="row-content" style="font-size: 12px;">
+            
+            
+            
+            
+                
+                
+                
+            
             <div class="least-content">2016-05-07 20:11</div>
-            <h4 class="list-group-item-heading" style="font-size: 14px;"><a href="/tools/2016/05/07/jenkins-tomcat-deploy.html">jenkins远程发布应用到tomcat中，使用shell脚本或jenkins deploy插件</a></h4>
+            <h4 class="list-group-item-heading" style="font-size: 14px;"><a href="/tools/tomcat/2016/05/07/jenkins-tomcat-deploy.html">jenkins远程发布应用到tomcat中，使用shell脚本或jenkins deploy插件</a></h4>
             <p class="list-group-item-text">jenkins远程发布应用到tomcat中，使用shell脚本或jenkins deploy插件 Jenkins将构建完成后的war包部署到tomcat有很多方式可操作，本文介绍两种操作， 分别是使用jenkins的Deploy to container Plugin插件及执行linux ssh方式。 1、使用插件方式，插件为Deploy to container Plugin，需先安装好插件。 配置远程机器的tomcat(本例使用tomcat-7.0.68)，因此种方式需使用tomcat管理发布，需首先配置用户 进入tomcat根目录 vi conf/tomcat-users.xml 在标签&lt;/tomcat-users&gt;前添加如下代码 &lt;role rolename="tomcat"/&gt; &lt;role...</p>
             
             </div>
@@ -311,6 +339,27 @@
             <div class="least-content">2016-05-06 21:23</div>
             <h4 class="list-group-item-heading" style="font-size: 14px;"><a href="/tools/2016/05/06/jenkins.html">jenkins安装与使用</a></h4>
             <p class="list-group-item-text">jenkins安装与使用 本例演示使用jenkins.war包直接部署，版本为2.7.2，可以网址https://jenkins.io/index.html查看。 步骤一、 下载jenkins包(jenkins.war包) 重新配置下jenkins工作目录 /project/jenkins_space vi /etc/profile 文件尾部添加 export JENKINS_HOME=/project/jenkins_space source /etc/profile 使配置立即生效 步骤二、 安装好tomcat，将jenkins.war放到tomcat的webapps中，启动tomcat即可，若出现类似以下警告， 则直接修改hosts文件(vi /etc/hosts)，将原127.0.0.1替换成127.0.0.1 localhost centos-a即可...</p>
+            
+            </div>
+        </div>
+        <div class="list-group-separator"></div>
+        
+        <div class="list-group-item">
+            <div class="row-action-primary">
+              <i class="fa fa-sticky-note"></i>
+            </div>
+            <div class="row-content" style="font-size: 12px;">
+            
+            
+            
+            
+                
+                
+                
+            
+            <div class="least-content">2016-05-05 20:09</div>
+            <h4 class="list-group-item-heading" style="font-size: 14px;"><a href="/linux/tools/2016/05/05/linux-centos-scp.html">centos minimal使用ssh/scp命令不录入密码</a></h4>
+            <p class="list-group-item-text">centos minimal使用ssh/scp命令不录入密码 不同的Linux服务器之间经常需要文档拷贝，本例演示在已安装的两台CentOS-6.7-x86_64-minimal机器上使用scp传输文件。 暂定义机器A(ip:192.168.88.102)，机器B(ip:192.168.88.103)， 在机器B上操作如下命令 scp -p /software/download/quartz-2.2.1-distribution.tar.gz root@192.168.88.102:/software/download/quartz-2.2.1-distribution.tar.gz 表示将机器B上的文件拷贝到机上A上，未做任何配置时，需输入root的密码，日志如下 [root@centos-b ~]# scp -p /software/download/quartz-2.2.1-distribution.tar.gz root@192.168.88.102:/software/download/quartz-2.2.1-distribution.tar.gz The authenticity of host...</p>
             
             </div>
         </div>
@@ -413,6 +462,69 @@
                 
                 
             
+            <div class="least-content">2016-04-26 18:27</div>
+            <h4 class="list-group-item-heading" style="font-size: 14px;"><a href="/tools/linux/2016/04/26/linux-vmware.html">Vmware linux拷贝网络故障</a></h4>
+            <p class="list-group-item-text">Vmware linux拷贝Bringing up interface eth0: Device eth0 does not seem to be present ,delaying initialization Wmware通过拷贝的原系统，重启网络(service network restart)会出现错误Bringing up interface...</p>
+            
+            </div>
+        </div>
+        <div class="list-group-separator"></div>
+        
+        <div class="list-group-item">
+            <div class="row-action-primary">
+              <i class="fa fa-sticky-note"></i>
+            </div>
+            <div class="row-content" style="font-size: 12px;">
+            
+            
+            
+            
+                
+                
+                
+            
+            <div class="least-content">2016-04-20 21:03</div>
+            <h4 class="list-group-item-heading" style="font-size: 14px;"><a href="/tools/zookeeper/2016/04/20/zookeeper-cluster.html">Zookeeper集群环境安装</a></h4>
+            <p class="list-group-item-text">Zookeeper集群环境安装 ZooKeeper是一个分布式开源框架，提供了协调分布式应用的基本服务，它向外部应用暴露一组通用服务——分布式同步（Distributed Synchronization）、命名服务（Naming Service）、集群维护（Group Maintenance）等，简化分布式应用协调及其管理的难度，提供高性能的分布式服务。ZooKeeper本身可以以Standalone模式安装运行，不过它的长处在于通过分布式ZooKeeper集群（一个Leader，多个Follower），基于一定的策略来保证ZooKeeper集群的稳定性和可用性，从而实现分布式应用的可靠性。 单机安装Zookeeper已在文中ZooKeeper安装使用介绍过，在实际应用中我们将zookeeper集群部署，构建高可用的服务，避免单点故障。 1、在目录/software/zookeeper-cluster/中解压三份zookeeper安装包（zookeeper-3.4.8.tar.gz包），分别为zookeeper-3.4.8-node1、zookeeper-3.4.8-node2、zookeeper-3.4.8-node3， 集群中所有的结点作为一个整体对分布式应用提供服务，本文中在同一台机器上安装3个 分别编辑note1、note2、note3节点的配置文件，文件目录conf/zoo.cfg tickTime=2000 initLimit=10 syncLimit=5 dataDir=/software/zookeeper-cluster/zookeeper-3.4.8-node1/data clientPort=2181 server.1=localhost:2887:3887 server.2=localhost:2888:3888 server.3=localhost:2889:3889 注意：dataDir、clientPort两个参数三个节点不同 dataDir顾名思义就是Zookeeper保存数据的目录,默认情况下Zookeeper将写数据的日志文件也保存在这个目录里，三个节点各自保存在节点的data目录内； clientPort这个端口就是客户端连接Zookeeper服务器的端口,Zookeeper会监听这个端口接受客户端的访问请求；...</p>
+            
+            </div>
+        </div>
+        <div class="list-group-separator"></div>
+        
+        <div class="list-group-item">
+            <div class="row-action-primary">
+              <i class="fa fa-sticky-note"></i>
+            </div>
+            <div class="row-content" style="font-size: 12px;">
+            
+            
+            
+            
+                
+                
+                
+            
+            <div class="least-content">2016-04-14 23:32</div>
+            <h4 class="list-group-item-heading" style="font-size: 14px;"><a href="/linux/tools/2016/04/14/linux-java-install.html">汇总一些linux安装java应用环境相关操作命令</a></h4>
+            <p class="list-group-item-text">汇总一些linux安装java应用环境相关操作命令 收集汇总安装 CentOS-6.7-x86_64-minimal.iso 后安装java运行环境的一些命令操作。 1、安装CentOS-6.7-x86_64-minimal，在vmware中需先创建空白机器，然后导入iso安装盘进行安装，若直接安装将提示安装失败。 2、一般设置直接连接物理网络，可大幅减轻网络连接占用的系统资源，配置成自动获取ip如下 编辑网卡配置文件，命令： vim /etc/sysconfig/network-scripts/ifcfg-eth0 更改ONBOOT=yes 更改BOOTPROTO为： BOOTPROTO=dhcp 其他的如IPADDR、NETMASK等#号注释掉，保存退出 重启网络连接，命令： service network restart 3、安装 sz rz上传下载工具...</p>
+            
+            </div>
+        </div>
+        <div class="list-group-separator"></div>
+        
+        <div class="list-group-item">
+            <div class="row-action-primary">
+              <i class="fa fa-sticky-note"></i>
+            </div>
+            <div class="row-content" style="font-size: 12px;">
+            
+            
+            
+            
+                
+                
+                
+            
             <div class="least-content">2016-04-12 23:32</div>
             <h4 class="list-group-item-heading" style="font-size: 14px;"><a href="/tools/redis/2016/04/12/redis-install.html">redis安装使用</a></h4>
             <p class="list-group-item-text">Redis安装使用 下载redis-2.8.19.tar.gz tar -xzvf redis-2.8.19.tar.gz 进入目录 /software/redis-2.8.19 make 完成安装 若出现错误gcc：命令未找到，先执行 yum -y install gcc 若出现错误：jemalloc/jemalloc.h：没有那个文件或目录，执行 make MALLOC=libc 完成安装 安装成功后完成配置 vi...</p>
@@ -485,6 +597,27 @@
                 
                 
             
+            <div class="least-content">2016-04-06 18:13</div>
+            <h4 class="list-group-item-heading" style="font-size: 14px;"><a href="/tools/2016/04/06/coding-pages.html">Coding pages + Github pages 搭建自己的博客</a></h4>
+            <p class="list-group-item-text">Coding pages + Github pages 搭建自己的博客 本文以博主实际申请操作为例，详述通过申请域名及免费空间Github pages,Coding pages(Coding pages主要是为了解决国内用户访问，百度不收录的问题) 搭建博客。 1、申请个域名www.mixfate.com，为了免去备案的麻烦，选择申请国际域名(.com)。 2、在github创建一个与用户名相同的项目，资源命名必须符合这样的规则username/username.github.io，右边菜单中的Settings按钮，在跳转到的页面 Update your site 对应处点击“Automatic page generator”按钮，这样就有了一个github自动生成的页面用来测试的时候使用。之后点击继续。 来到选择主题界面，选择主题并发布。再次点击右侧“Settings”按钮，在页面中点击博客地址链接（或者直接在浏览器输入http://username.github.io）即可看到自己当前的博客首页了（如果是第一次点击可能会出现404这时候需要等十分钟之后就可以）...</p>
+            
+            </div>
+        </div>
+        <div class="list-group-separator"></div>
+        
+        <div class="list-group-item">
+            <div class="row-action-primary">
+              <i class="fa fa-sticky-note"></i>
+            </div>
+            <div class="row-content" style="font-size: 12px;">
+            
+            
+            
+            
+                
+                
+                
+            
             <div class="least-content">2016-04-04 07:51</div>
             <h4 class="list-group-item-heading" style="font-size: 14px;"><a href="/tools/2016/04/04/mybatis.html">Mybatis使用,Mybatis Generator</a></h4>
             <p class="list-group-item-text">mybatis使用 1、使用Maven管理项目依赖，添加mybatis依赖，并配置mybatis generator插件自动生成mybatis代码 &lt;project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"&gt; &lt;modelVersion&gt;4.0.0&lt;/modelVersion&gt; &lt;groupId&gt;com.qerooy&lt;/groupId&gt; &lt;artifactId&gt;mybatis&lt;/artifactId&gt; &lt;version&gt;0.0.1-SNAPSHOT&lt;/version&gt; &lt;packaging&gt;jar&lt;/packaging&gt; &lt;name&gt;mybatis&lt;/name&gt; &lt;url&gt;http://maven.apache.org&lt;/url&gt; &lt;properties&gt; &lt;project.build.sourceEncoding&gt;UTF-8&lt;/project.build.sourceEncoding&gt; &lt;/properties&gt; &lt;dependencies&gt; &lt;dependency&gt;...</p>
@@ -509,6 +642,48 @@
             <div class="least-content">2016-04-03 07:51</div>
             <h4 class="list-group-item-heading" style="font-size: 14px;"><a href="/tools/2016/04/03/jekyll-github-pages.html">Windows环境jekyll使用</a></h4>
             <p class="list-group-item-text">Windows环境jekyll使用 需准备的软件如下： 1、安装rubyinstaller-2.0.0-p648-x64，假如目录为 D:\jekyll\Ruby200-x64，设置到环境变量中，设置完成后ruby -v检查安装是否成功； 2、安装DevKit-tdm-32-4.5.2-20110712-1620-sfx到D:\jekyll\devkit， cd D:\jekyll\devkit ruby dk.rb init 完成初始化配置 在配置文件config.yml最后一行添加 - D:/jekyll/Ruby200-x64 执行如下命令完成安装 ruby dk.rb review ruby...</p>
+            
+            </div>
+        </div>
+        <div class="list-group-separator"></div>
+        
+        <div class="list-group-item">
+            <div class="row-action-primary">
+              <i class="fa fa-sticky-note"></i>
+            </div>
+            <div class="row-content" style="font-size: 12px;">
+            
+            
+            
+            
+                
+                
+                
+            
+            <div class="least-content">2016-04-01 22:51</div>
+            <h4 class="list-group-item-heading" style="font-size: 14px;"><a href="/tomcat/tools/2016/04/01/tomcat-ssl-2.html">tomcat配置ssl双向认证</a></h4>
+            <p class="list-group-item-text">tomcat配置ssl双向认证 接上篇tomcat ssl单向认证，本文在单向认证的基础上完成双向认证配置。 1、使用以下命令生成客户端证书，并将此证书安装到客户端（此证书请安装到个人目录下）； keytool -genkey -v -alias client1 -keyalg RSA -storetype PKCS12 -keysize 1024 -validity 365 -keystore "F:\cert\client1.p12" 在此密码录入为123456...</p>
+            
+            </div>
+        </div>
+        <div class="list-group-separator"></div>
+        
+        <div class="list-group-item">
+            <div class="row-action-primary">
+              <i class="fa fa-sticky-note"></i>
+            </div>
+            <div class="row-content" style="font-size: 12px;">
+            
+            
+            
+            
+                
+                
+                
+            
+            <div class="least-content">2016-04-01 21:51</div>
+            <h4 class="list-group-item-heading" style="font-size: 14px;"><a href="/tomcat/tools/2016/04/01/tomcat-ssl-1.html">tomcat配置ssl单向认证</a></h4>
+            <p class="list-group-item-text">tomcat配置ssl单向认证 单向认证：客户端向服务器发送消息，服务器接到消息后，用服务器端的密钥库中的私钥对数据进行加密，然后把加密后的数据和服务器端的公钥一起发送到 客户端，客户端用服务器发送来的公钥对数据解密，然后在用传到客户端的服务器公钥对数据加密传给服务器端，服务器用私钥对数据进行解密，这就完成了客户端 和服务器之间通信的安全问题，但是单向认证没有验证客户端的合法性。 1、使用jdk（本例使用1.7.0_67）工具生成证书库文件； keytool -genkey -alias tomcat -keyalg RSA -keysize 1024 -validity 365 -keystore "F:\cert\tomcat.keystore" 密码为123456，www.newbie.com为随意取的，仅用作测试，使用本地host将此域名转发。 执行完成后将看到f:\cert\目录中生成了证书库文件tomcat.keystore。 2、打开tomcat（本例使用apache-tomcat-7.0.55）中的配置文件/conf/server.xml，为避免录入端口修改默认值，修改如下：...</p>
             
             </div>
         </div>

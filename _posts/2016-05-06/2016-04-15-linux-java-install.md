@@ -2,7 +2,7 @@
 layout: post
 title: 汇总一些linux安装java应用环境相关操作命令
 date:   2016-04-14 15:32:57
-categories: java
+categories: [linux,tools]
 ---
 
 ## 汇总一些linux安装java应用环境相关操作命令

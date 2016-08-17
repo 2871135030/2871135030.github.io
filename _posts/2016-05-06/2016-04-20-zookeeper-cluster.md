@@ -2,7 +2,7 @@
 layout: post
 title: Zookeeper集群环境安装
 date:   2016-04-20 13:03:13
-categories: [java,zookeeper]
+categories: [tools,zookeeper]
 ---
 
 ## Zookeeper集群环境安装

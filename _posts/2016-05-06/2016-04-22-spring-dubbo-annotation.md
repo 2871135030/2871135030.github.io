@@ -2,7 +2,7 @@
 layout: post
 title: Spring+Dubbo annotation配置
 date:   2016-04-22 13:23:46
-categories: [java,dubbo]
+categories: [java,spring,dubbo]
 ---
 
 ## Spring+Dubbo annotation配置

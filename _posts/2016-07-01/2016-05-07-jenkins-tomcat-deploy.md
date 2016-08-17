@@ -2,7 +2,7 @@
 layout: post
 title: jenkins远程发布应用到tomcat中，使用shell脚本或jenkins deploy插件
 date:   2016-05-07 12:11:48
-categories: [tools]
+categories: [tools,tomcat]
 ---
 
 ## jenkins远程发布应用到tomcat中，使用shell脚本或jenkins deploy插件
