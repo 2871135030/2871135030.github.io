@@ -32,7 +32,8 @@ http://192.168.88.102:8081/nexus/index.html 即可打开界面
 ```
 
 maven的安装配置settings.xml配置修改如下
-<profiles>标签内增加以下代码，表示指定仓库及插件仓库
+&lt;profiles&gt;标签内增加以下代码，表示指定仓库及插件仓库
+
 
 ```markdown
 	<profile>
@@ -58,7 +59,7 @@ maven的安装配置settings.xml配置修改如下
 	</profile>
 ```
 
-<settings>标签内增加以下代码，表示激活
+&lt;settings&gt;标签内增加以下代码，表示激活
 
 ```markdown
 	<activeProfiles>
@@ -66,7 +67,7 @@ maven的安装配置settings.xml配置修改如下
 	</activeProfiles>
 ```
 
-<settings>标签内增加以下代码，表示发布
+&lt;settings&gt;标签内增加以下代码，表示发布
 
 ```markdown
 	<distributionManagement>  
@@ -84,7 +85,7 @@ maven的安装配置settings.xml配置修改如下
     </distributionManagement>
 ```
 
-并且在<settings>标签下的<servers>标签中添加
+并且在&lt;settings&gt;标签下的&lt;servers&gt;标签中添加
 
 ```markdown
 		<server>

@@ -207,96 +207,94 @@ http://192.168.88.102:8081/nexus/index.html 即可打开界面
 </code></pre>
 </div>
 
-<p>maven的安装配置settings.xml配置修改如下</p>
-<profiles>标签内增加以下代码，表示指定仓库及插件仓库
+<p>maven的安装配置settings.xml配置修改如下
+&lt;profiles&gt;标签内增加以下代码，表示指定仓库及插件仓库</p>
 
-```markdown
-	<profile>
-		<id>nexus</id>
-		<repositories>
-			<repository>
-				<id>nexus</id>
-				<name>Nexus</name>
-				<url>http://192.168.88.102:8081/nexus/content/groups/public/</url>
-				<release><enabled>true</enabled></release>
-				<snapshots><enabled>true&gt;</enabled></snapshots>
-			</repository>
-		</repositories>
-		<pluginRepositories>
-			<pluginRepository>
-				<id>nexus</id>
-				<name>Nexus</name>
-				<url>http://192.168.88.102:8081/nexus/content/groups/public/</url>
-				<release><enabled>true</enabled></release>
-				<snapshots><enabled>true&gt;</enabled></snapshots>
-			</pluginRepository>
-		</pluginRepositories>
-	</profile>
-```
+<div class="language-markdown highlighter-rouge"><pre class="highlight"><code>	<span class="nt">&lt;profile&gt;</span>
+		<span class="nt">&lt;id&gt;</span>nexus<span class="nt">&lt;/id&gt;</span>
+		<span class="nt">&lt;repositories&gt;</span>
+			<span class="nt">&lt;repository&gt;</span>
+				<span class="nt">&lt;id&gt;</span>nexus<span class="nt">&lt;/id&gt;</span>
+				<span class="nt">&lt;name&gt;</span>Nexus<span class="nt">&lt;/name&gt;</span>
+				<span class="nt">&lt;url&gt;</span>http://192.168.88.102:8081/nexus/content/groups/public/<span class="nt">&lt;/url&gt;</span>
+				<span class="nt">&lt;release&gt;&lt;enabled&gt;</span>true<span class="nt">&lt;/enabled&gt;&lt;/release&gt;</span>
+				<span class="nt">&lt;snapshots&gt;&lt;enabled&gt;</span>true&gt;<span class="nt">&lt;/enabled&gt;&lt;/snapshots&gt;</span>
+			<span class="nt">&lt;/repository&gt;</span>
+		<span class="nt">&lt;/repositories&gt;</span>
+		<span class="nt">&lt;pluginRepositories&gt;</span>
+			<span class="nt">&lt;pluginRepository&gt;</span>
+				<span class="nt">&lt;id&gt;</span>nexus<span class="nt">&lt;/id&gt;</span>
+				<span class="nt">&lt;name&gt;</span>Nexus<span class="nt">&lt;/name&gt;</span>
+				<span class="nt">&lt;url&gt;</span>http://192.168.88.102:8081/nexus/content/groups/public/<span class="nt">&lt;/url&gt;</span>
+				<span class="nt">&lt;release&gt;&lt;enabled&gt;</span>true<span class="nt">&lt;/enabled&gt;&lt;/release&gt;</span>
+				<span class="nt">&lt;snapshots&gt;&lt;enabled&gt;</span>true&gt;<span class="nt">&lt;/enabled&gt;&lt;/snapshots&gt;</span>
+			<span class="nt">&lt;/pluginRepository&gt;</span>
+		<span class="nt">&lt;/pluginRepositories&gt;</span>
+	<span class="nt">&lt;/profile&gt;</span>
+</code></pre>
+</div>
 
-<settings>标签内增加以下代码，表示激活
+<p>&lt;settings&gt;标签内增加以下代码，表示激活</p>
 
-```markdown
-	<activeProfiles>
-		<activeProfile>nexus</activeProfile>
-	</activeProfiles>
-```
+<div class="language-markdown highlighter-rouge"><pre class="highlight"><code>	<span class="nt">&lt;activeProfiles&gt;</span>
+		<span class="nt">&lt;activeProfile&gt;</span>nexus<span class="nt">&lt;/activeProfile&gt;</span>
+	<span class="nt">&lt;/activeProfiles&gt;</span>
+</code></pre>
+</div>
 
-<settings>标签内增加以下代码，表示发布
+<p>&lt;settings&gt;标签内增加以下代码，表示发布</p>
 
-```markdown
-	<distributionManagement>  
-        <repository>  
-            <id>release</id>  
-            <name>User Project Release</name>  
-            <url>http://192.168.88.102:8081/nexus/content/repositories/releases/</url>  
-        </repository>  
+<div class="language-markdown highlighter-rouge"><pre class="highlight"><code>	<span class="nt">&lt;distributionManagement&gt;</span>  
+        <span class="nt">&lt;repository&gt;</span>  
+            <span class="nt">&lt;id&gt;</span>release<span class="nt">&lt;/id&gt;</span>  
+            <span class="nt">&lt;name&gt;</span>User Project Release<span class="nt">&lt;/name&gt;</span>  
+            <span class="nt">&lt;url&gt;</span>http://192.168.88.102:8081/nexus/content/repositories/releases/<span class="nt">&lt;/url&gt;</span>  
+        <span class="nt">&lt;/repository&gt;</span>  
   
-        <snapshotRepository>  
-            <id>snapshots</id>  
-            <name>User Project SNAPSHOTS</name>  
-            <url>http://192.168.88.102:8081/nexus/content/repositories/snapshots/</url>  
-        </snapshotRepository>  
-    </distributionManagement>
-```
+        <span class="nt">&lt;snapshotRepository&gt;</span>  
+            <span class="nt">&lt;id&gt;</span>snapshots<span class="nt">&lt;/id&gt;</span>  
+            <span class="nt">&lt;name&gt;</span>User Project SNAPSHOTS<span class="nt">&lt;/name&gt;</span>  
+            <span class="nt">&lt;url&gt;</span>http://192.168.88.102:8081/nexus/content/repositories/snapshots/<span class="nt">&lt;/url&gt;</span>  
+        <span class="nt">&lt;/snapshotRepository&gt;</span>  
+    <span class="nt">&lt;/distributionManagement&gt;</span>
+</code></pre>
+</div>
 
-并且在<settings>标签下的<servers>标签中添加
+<p>并且在&lt;settings&gt;标签下的&lt;servers&gt;标签中添加</p>
 
-```markdown
-		<server>
-			<id>release</id>
-			<username>admin</username>
-			<password>admin123</password>
-		</server>
-		<server>
-			<id>snapshots</id>
-			<username>admin</username>
-			<password>admin123</password>
-		</server>
-```
+<div class="language-markdown highlighter-rouge"><pre class="highlight"><code>		<span class="nt">&lt;server&gt;</span>
+			<span class="nt">&lt;id&gt;</span>release<span class="nt">&lt;/id&gt;</span>
+			<span class="nt">&lt;username&gt;</span>admin<span class="nt">&lt;/username&gt;</span>
+			<span class="nt">&lt;password&gt;</span>admin123<span class="nt">&lt;/password&gt;</span>
+		<span class="nt">&lt;/server&gt;</span>
+		<span class="nt">&lt;server&gt;</span>
+			<span class="nt">&lt;id&gt;</span>snapshots<span class="nt">&lt;/id&gt;</span>
+			<span class="nt">&lt;username&gt;</span>admin<span class="nt">&lt;/username&gt;</span>
+			<span class="nt">&lt;password&gt;</span>admin123<span class="nt">&lt;/password&gt;</span>
+		<span class="nt">&lt;/server&gt;</span>
+</code></pre>
+</div>
 
-同时pom.xml中也需要添加
+<p>同时pom.xml中也需要添加</p>
 
-```markdown
-	<distributionManagement>  
-        <repository>  
-            <id>release</id>  
-            <name>Project Release</name>  
-            <url>http://192.168.88.102:8081/nexus/content/repositories/releases/</url>  
-        </repository>
-		<snapshotRepository>  
-            <id>snapshots</id>  
-            <name>Project SNAPSHOTS</name>  
-            <url>http://192.168.88.102:8081/nexus/content/repositories/snapshots/</url>  
-        </snapshotRepository>
-	</distributionManagement>
-```
+<div class="language-markdown highlighter-rouge"><pre class="highlight"><code>	<span class="nt">&lt;distributionManagement&gt;</span>  
+        <span class="nt">&lt;repository&gt;</span>  
+            <span class="nt">&lt;id&gt;</span>release<span class="nt">&lt;/id&gt;</span>  
+            <span class="nt">&lt;name&gt;</span>Project Release<span class="nt">&lt;/name&gt;</span>  
+            <span class="nt">&lt;url&gt;</span>http://192.168.88.102:8081/nexus/content/repositories/releases/<span class="nt">&lt;/url&gt;</span>  
+        <span class="nt">&lt;/repository&gt;</span>
+		<span class="nt">&lt;snapshotRepository&gt;</span>  
+            <span class="nt">&lt;id&gt;</span>snapshots<span class="nt">&lt;/id&gt;</span>  
+            <span class="nt">&lt;name&gt;</span>Project SNAPSHOTS<span class="nt">&lt;/name&gt;</span>  
+            <span class="nt">&lt;url&gt;</span>http://192.168.88.102:8081/nexus/content/repositories/snapshots/<span class="nt">&lt;/url&gt;</span>  
+        <span class="nt">&lt;/snapshotRepository&gt;</span>
+	<span class="nt">&lt;/distributionManagement&gt;</span>
+</code></pre>
+</div>
 
-执行命令mvn deploy便可
+<p>执行命令mvn deploy便可</p>
 
-
-结束。
-</servers></settings></settings></settings></profiles>
+<p>结束。</p>
 </div>
 	
 	<!--
