@@ -1,11 +1,11 @@
 ---
 layout: post
-title: Maven命令deploy和release命令
+title: Maven命令:deploy和release命令
 date:   2016-05-09 12:08:48
 categories: [maven,tools]
 ---
 
-## Maven命令deploy和release命令
+## Maven命令:deploy和release命令
 
 
 本文介绍deploy及release命令，首先需在maven配置文件conf/settings.xml配置好私服
