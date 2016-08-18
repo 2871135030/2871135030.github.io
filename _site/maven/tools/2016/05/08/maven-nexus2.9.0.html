@@ -242,24 +242,6 @@ http://192.168.88.102:8081/nexus/index.html 即可打开界面
 </code></pre>
 </div>
 
-<p>&lt;settings&gt;标签内增加以下代码，表示发布</p>
-
-<div class="language-markdown highlighter-rouge"><pre class="highlight"><code>	<span class="nt">&lt;distributionManagement&gt;</span>  
-        <span class="nt">&lt;repository&gt;</span>  
-            <span class="nt">&lt;id&gt;</span>release<span class="nt">&lt;/id&gt;</span>  
-            <span class="nt">&lt;name&gt;</span>User Project Release<span class="nt">&lt;/name&gt;</span>  
-            <span class="nt">&lt;url&gt;</span>http://192.168.88.102:8081/nexus/content/repositories/releases/<span class="nt">&lt;/url&gt;</span>  
-        <span class="nt">&lt;/repository&gt;</span>  
-  
-        <span class="nt">&lt;snapshotRepository&gt;</span>  
-            <span class="nt">&lt;id&gt;</span>snapshots<span class="nt">&lt;/id&gt;</span>  
-            <span class="nt">&lt;name&gt;</span>User Project SNAPSHOTS<span class="nt">&lt;/name&gt;</span>  
-            <span class="nt">&lt;url&gt;</span>http://192.168.88.102:8081/nexus/content/repositories/snapshots/<span class="nt">&lt;/url&gt;</span>  
-        <span class="nt">&lt;/snapshotRepository&gt;</span>  
-    <span class="nt">&lt;/distributionManagement&gt;</span>
-</code></pre>
-</div>
-
 <p>并且在&lt;settings&gt;标签下的&lt;servers&gt;标签中添加</p>
 
 <div class="language-markdown highlighter-rouge"><pre class="highlight"><code>		<span class="nt">&lt;server&gt;</span>
@@ -275,7 +257,7 @@ http://192.168.88.102:8081/nexus/index.html 即可打开界面
 </code></pre>
 </div>
 
-<p>同时pom.xml中也需要添加</p>
+<p>同时pom.xml中需要添加发布地址</p>
 
 <div class="language-markdown highlighter-rouge"><pre class="highlight"><code>	<span class="nt">&lt;distributionManagement&gt;</span>  
         <span class="nt">&lt;repository&gt;</span>  
@@ -309,6 +291,20 @@ http://192.168.88.102:8081/nexus/index.html 即可打开界面
     
         
             
+                
+                <div class="panel-body">
+                <h5>相关博客</h5>
+                <ul>
+                
+                <li class="relatedPost" style="font-size: 12px;">
+                    <a href="http://www.mixfate.com/maven/tools/2016/05/09/maven-deploy-release.html">Maven命令deploy和release命令</a>
+                    
+                        <small>(所属分类: <a href="/category/maven">maven</a>, <a href="/category/tools">tools</a>)</small>
+                    
+                </li>
+                
+                
+            
         
             
         
@@ -326,10 +322,21 @@ http://192.168.88.102:8081/nexus/index.html 即可打开界面
             
         
             
-                
-                <div class="panel-body">
-                <h5>相关博客</h5>
-                <ul>
+        
+    
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
                 
                 <li class="relatedPost" style="font-size: 12px;">
                     <a href="http://www.mixfate.com/tools/tomcat/2016/05/07/jenkins-tomcat-deploy.html">jenkins远程发布应用到tomcat中，使用shell脚本或jenkins deploy插件</a>
@@ -506,16 +513,6 @@ http://192.168.88.102:8081/nexus/index.html 即可打开界面
     
     
         
-            
-                
-                <li class="relatedPost" style="font-size: 12px;">
-                    <a href="http://www.mixfate.com/maven/tools/2016/04/27/java-proguard-js-yuicompressor.html">Java代码保护，JS代码压缩工具</a>
-                    
-                        <small>(所属分类: <a href="/category/maven">maven</a>, <a href="/category/tools">tools</a>)</small>
-                    
-                </li>
-                
-                
             
         
             
@@ -966,6 +963,8 @@ http://192.168.88.102:8081/nexus/index.html 即可打开界面
   
     <a class="prev pull-left" href="/tools/tomcat/2016/05/07/jenkins-tomcat-deploy.html">&laquo; jenkins远程发布应用到tomcat中，使用shell脚本或jenkins deploy插件</a>
   
+  
+    <a class="next pull-right" href="/maven/tools/2016/05/09/maven-deploy-release.html">Maven命令deploy和release命令 &raquo;</a>
   
 </div>
 <div>&nbsp;</div>

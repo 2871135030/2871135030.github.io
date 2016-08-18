@@ -67,23 +67,6 @@ maven的安装配置settings.xml配置修改如下
 	</activeProfiles>
 ```
 
-&lt;settings&gt;标签内增加以下代码，表示发布
-
-```markdown
-	<distributionManagement>  
-        <repository>  
-            <id>release</id>  
-            <name>User Project Release</name>  
-            <url>http://192.168.88.102:8081/nexus/content/repositories/releases/</url>  
-        </repository>  
-  
-        <snapshotRepository>  
-            <id>snapshots</id>  
-            <name>User Project SNAPSHOTS</name>  
-            <url>http://192.168.88.102:8081/nexus/content/repositories/snapshots/</url>  
-        </snapshotRepository>  
-    </distributionManagement>
-```
 
 并且在&lt;settings&gt;标签下的&lt;servers&gt;标签中添加
 
@@ -100,7 +83,7 @@ maven的安装配置settings.xml配置修改如下
 		</server>
 ```
 
-同时pom.xml中也需要添加
+同时pom.xml中需要添加发布地址
 
 ```markdown
 	<distributionManagement>  
