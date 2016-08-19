@@ -5,7 +5,7 @@ date:   2016-05-02 12:33:01
 categories: [spring,dubbo,webservice]
 ---
 
-## ubbox的rest风格调用例子
+## Dubbox的rest风格调用例子
 
 Dubbo是一个被国内很多互联网公司广泛使用的开源分布式服务框架，即使从国际视野来看应该也是一个非常全面的SOA基础框架。
 作为一个重要的技术研究课题，在当当网我们根据自身的需求，为Dubbo实现了一些新的功能，并将其命名为Dubbox（即Dubbo eXtensions）
