@@ -172,6 +172,19 @@
           <i class="fa fa-sticky-note"></i>
         </div>
         <div class="row-content">
+          <div class="least-content">2016-04-20 21:03</div>
+          <h4 class="list-group-item-heading" style="font-size: 14px;"><a href="/tools/zookeeper/2016/04/20/zookeeper-cluster.html">Zookeeper集群环境安装</a></h4>
+
+          <p class="list-group-item-text" style="font-size: 12px;">Zookeeper集群环境安装 ZooKeeper是一个分布式开源框架，提供了协调分布式应用的基本服务，它向外部应用暴露一组通用服务——分布式同步（Distributed Synchronization）、命名服务（Naming Service）、集群维护（Group Maintenance）等，简化分布式应用协调及其管理的难度，提供高性能的分布式服务。ZooKeeper本身可以以Standalone模式安装运行，不过它的长处在于通过分布式ZooKeeper集群（一个Leader，多个Follower），基于一定的策略来保证ZooKeeper集群的稳定性和可用性，从而实现分布式应用的可靠性。 单机安装Zookeeper已在文中ZooKeeper安装使用介绍过，在实际应用中我们将zookeeper集群部署，构建高可用的服务，避免单点故障。 1、在目录/software/zookeeper-cluster/中解压三份zookeeper安装包（zookeeper-3.4.8.tar.gz包），分别为zookeeper-3.4.8-node1、zookeeper-3.4.8-node2、zookeeper-3.4.8-node3， 集群中所有的结点作为一个整体对分布式应用提供服务，本文中在同一台机器上安装3个 分别编辑note1、note2、note3节点的配置文件，文件目录conf/zoo.cfg tickTime=2000 initLimit=10 syncLimit=5 dataDir=/software/zookeeper-cluster/zookeeper-3.4.8-node1/data clientPort=2181 server.1=localhost:2887:3887 server.2=localhost:2888:3888 server.3=localhost:2889:3889 注意：dataDir、clientPort两个参数三个节点不同 dataDir顾名思义就是Zookeeper保存数据的目录,默认情况下Zookeeper将写数据的日志文件也保存在这个目录里，三个节点各自保存在节点的data目录内； clientPort这个端口就是客户端连接Zookeeper服务器的端口,Zookeeper会监听这个端口接受客户端的访问请求；...</p>
+        </div>
+      </div>
+      <div class="list-group-separator"></div>
+      
+      <div class="list-group-item">
+        <div class="row-action-primary">
+          <i class="fa fa-sticky-note"></i>
+        </div>
+        <div class="row-content">
           <div class="least-content">2016-04-19 21:03</div>
           <h4 class="list-group-item-heading" style="font-size: 14px;"><a href="/java/dubbo/spring/2016/04/19/spring-dubbo.html">Dubbo全Spring配置方式</a></h4>
 
@@ -467,19 +480,6 @@
           <h4 class="list-group-item-heading" style="font-size: 14px;"><a href="/tomcat/tools/2016/04/01/tomcat-ssl-2.html">tomcat配置ssl双向认证</a></h4>
 
           <p class="list-group-item-text" style="font-size: 12px;">tomcat配置ssl双向认证 接上篇tomcat ssl单向认证，本文在单向认证的基础上完成双向认证配置。 1、使用以下命令生成客户端证书，并将此证书安装到客户端（此证书请安装到个人目录下）； keytool -genkey -v -alias client1 -keyalg RSA -storetype PKCS12 -keysize 1024 -validity 365 -keystore "F:\cert\client1.p12" 在此密码录入为123456...</p>
-        </div>
-      </div>
-      <div class="list-group-separator"></div>
-      
-      <div class="list-group-item">
-        <div class="row-action-primary">
-          <i class="fa fa-sticky-note"></i>
-        </div>
-        <div class="row-content">
-          <div class="least-content">2016-04-01 21:51</div>
-          <h4 class="list-group-item-heading" style="font-size: 14px;"><a href="/tomcat/tools/2016/04/01/tomcat-ssl-1.html">tomcat配置ssl单向认证</a></h4>
-
-          <p class="list-group-item-text" style="font-size: 12px;">tomcat配置ssl单向认证 单向认证：客户端向服务器发送消息，服务器接到消息后，用服务器端的密钥库中的私钥对数据进行加密，然后把加密后的数据和服务器端的公钥一起发送到 客户端，客户端用服务器发送来的公钥对数据解密，然后在用传到客户端的服务器公钥对数据加密传给服务器端，服务器用私钥对数据进行解密，这就完成了客户端 和服务器之间通信的安全问题，但是单向认证没有验证客户端的合法性。 1、使用jdk（本例使用1.7.0_67）工具生成证书库文件； keytool -genkey -alias tomcat -keyalg RSA -keysize 1024 -validity 365 -keystore "F:\cert\tomcat.keystore" 密码为123456，www.newbie.com为随意取的，仅用作测试，使用本地host将此域名转发。 执行完成后将看到f:\cert\目录中生成了证书库文件tomcat.keystore。 2、打开tomcat（本例使用apache-tomcat-7.0.55）中的配置文件/conf/server.xml，为避免录入端口修改默认值，修改如下：...</p>
         </div>
       </div>
       <div class="list-group-separator"></div>
