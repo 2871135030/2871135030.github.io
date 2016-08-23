@@ -6,15 +6,15 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <link rel="shortcut icon" href="/static/img/favicon.ico" />
-        <title>Coding pages + Github pages 搭建自己的博客 - Java及相关开源技术博客</title>
+        <title>Linux环境下安装nginx - Java及相关开源技术博客</title>
         <meta name="author" content="Mixfate博客" />
         <meta name="description" content="Mixfate博客,开源技术博客,IT 博客,java技术,spring开源技术,dubbo分布式架构,maven工具" />
-        <meta name="keywords" content="Coding pages + Github pages 搭建自己的博客, Java及相关开源技术博客, tools" />
+        <meta name="keywords" content="Linux环境下安装nginx, Java及相关开源技术博客, linux, tools" />
 
         <meta content="0" property="fb:app_id">
         <meta content="Java及相关开源技术博客" property="og:site_name">
         
-          <meta content="Coding pages + Github pages 搭建自己的博客" property="og:title">
+          <meta content="Linux环境下安装nginx" property="og:title">
         
         
           <meta content="article" property="og:type">
@@ -23,10 +23,10 @@
           <meta content="Mixfate博客,开源技术博客,IT 博客,java技术,spring开源技术,dubbo分布式架构,maven工具" property="og:description">
         
         
-          <meta content="http://www.mixfate.com/tools/2016/04/06/coding-pages.html" property="og:url">
+          <meta content="http://www.mixfate.com/linux/tools/2016/05/12/nginx-linux-install.html" property="og:url">
         
         
-          <meta content="2016-04-06T18:13:56+08:00" property="article:published_time">
+          <meta content="2016-05-12T21:33:48+08:00" property="article:published_time">
           <meta content="http://www.mixfate.com/about/" property="article:author">
         
         
@@ -34,7 +34,7 @@
         
         
           
-          <meta content="tools" property="article:section">
+          <meta content="linux" property="article:section">
           
         
         
@@ -44,10 +44,10 @@
         <meta name="twitter:site" content="@\#">
         <meta name="twitter:creator" content="@\#">
         
-          <meta name="twitter:title" content="Coding pages + Github pages 搭建自己的博客">
+          <meta name="twitter:title" content="Linux环境下安装nginx">
         
         
-          <meta name="twitter:url" content="http://www.mixfate.com/tools/2016/04/06/coding-pages.html">
+          <meta name="twitter:url" content="http://www.mixfate.com/linux/tools/2016/05/12/nginx-linux-install.html">
         
         
           <meta name="twitter:description" content="Mixfate博客,开源技术博客,IT 博客,java技术,spring开源技术,dubbo分布式架构,maven工具">
@@ -122,14 +122,14 @@
         </div>
       </div>
       <div class="col-md-9 col-sm-8 col-xs-12">
-      <h2 class="blog-title-pro">Coding pages + Github pages 搭建自己的博客</h2>
+      <h2 class="blog-title-pro">Linux环境下安装nginx</h2>
       <p class="info">
       
-      <span class="time">2016/04/06</span>
+      <span class="time">2016/05/12</span>
       
       
     <span class="categories">
-        &raquo; <a href="/category/tools">tools</a>
+        &raquo; <a href="/category/linux">linux</a>, <a href="/category/tools">tools</a>
     </span>
     
       </p>
@@ -148,19 +148,19 @@
 	
 	
 	
-	<li class="col-lg-12 col-md-12 col-sm-4 col-xs-12 current-menu-item coding-pages.html"><a href="/"><i class="fa fa-home"></i> 首页</a></li>
+	<li class="col-lg-12 col-md-12 col-sm-4 col-xs-12 current-menu-item nginx-linux-install.html"><a href="/"><i class="fa fa-home"></i> 首页</a></li>
 
 	
 	
 	
 	
-	<li class="col-lg-12 col-md-12 col-sm-4 col-xs-12  coding-pages.html"><a href="/category/java"><i class="fa fa-desktop"></i> 分类</a></li>
+	<li class="col-lg-12 col-md-12 col-sm-4 col-xs-12  nginx-linux-install.html"><a href="/category/java"><i class="fa fa-desktop"></i> 分类</a></li>
 
 	
 	
 	
 	
-	<li class="col-lg-12 col-md-12 col-sm-4 col-xs-12  coding-pages.html"><a href="/about/"><i class="fa fa-comments"></i> 关于</a></li>
+	<li class="col-lg-12 col-md-12 col-sm-4 col-xs-12  nginx-linux-install.html"><a href="/about/"><i class="fa fa-comments"></i> 关于</a></li>
 
 </ul>
     </div>
@@ -181,30 +181,48 @@
             <div class="col-md-9 col-xs-12 full">
                 <div class="post-content well">
 <article class="content">
-    <div class="post" style="font-size: 12px;"><h2 id="coding-pages--github-pages-">Coding pages + Github pages 搭建自己的博客</h2>
+    <div class="post" style="font-size: 12px;"><h2 id="linuxnginx">Linux环境下安装nginx</h2>
 
-<p>本文以博主实际申请操作为例，详述通过申请域名及免费空间Github pages,Coding pages(Coding pages主要是为了解决国内用户访问，百度不收录的问题) 搭建博客。</p>
+<p>从nginx官网(http://nginx.org/en/download.html)下载nginx-1.11.3.tar.gz安装包</p>
 
-<p>1、申请个域名<a href="http://www.mixfate.com">www.mixfate.com</a>，为了免去备案的麻烦，选择申请国际域名(.com)。</p>
+<p>解压到目录</p>
 
-<p>2、在github创建一个与用户名相同的项目，资源命名必须符合这样的规则username/username.github.io，右边菜单中的Settings按钮，在跳转到的页面 Update your site 对应处点击“Automatic page generator”按钮，这样就有了一个github自动生成的页面用来测试的时候使用。之后点击继续。
-来到选择主题界面，选择主题并发布。再次点击右侧“Settings”按钮，在页面中点击博客地址链接（或者直接在浏览器输入http://username.github.io）即可看到自己当前的博客首页了（如果是第一次点击可能会出现404这时候需要等十分钟之后就可以）</p>
+<div class="language-markdown highlighter-rouge"><pre class="highlight"><code>cd /software
+tar -xzvf nginx-1.11.3.tar.gz
 
-<p>3、创建完成后就可以使用Git客户端更新代码了，本地使用jekyll完成博客发布后将重新push到github。
-绑定域名设置需在项目的根目录创建CNAME文件，内容为www.mixfate.com并上传到github</p>
+</code></pre>
+</div>
 
-<p>4、在域名解析中配置解析到github，如图所示
-<img src="/assets/dfeeded7-8f45-3579-9195-e0e6933a8adb.png" alt="Coding pages + Github pages" />
-此处配置了海外直接访问github，国内还是访问Coding pages不受限制</p>
+<p>安装nginx所需依赖，安装prce(重定向支持)和openssl(https支持，如果不需要https可以不安装。)</p>
 
-<p>5、在Coding中创建一个项目，并创建一个分支命名为coding-pages，同时将此分支设置成默认，将Github代码全量上传一份。在Coding Pages 服务中选择绑定www.mixfate.com，绑定域名后域名解析配置CNAME 记录指向 pages.coding.me 即可访问。</p>
+<div class="language-markdown highlighter-rouge"><pre class="highlight"><code>yum -y install gcc
+yum -y install pcre<span class="err">*</span>
+yum -y install openssl<span class="err">*</span>
+</code></pre>
+</div>
 
-<p>接下来就观察百度，谷歌的收录情况了。</p>
+<p>进入nginx目录安装</p>
 
-<p>持续更新中。。。</p>
+<div class="language-markdown highlighter-rouge"><pre class="highlight"><code>cd /software/nginx-1.11.3
 
-<p>end.</p>
+./configure --prefix=/user/local/nginx-1.11.3 --conf-path=/user/local/nginx-1.11.3/nginx.conf --with-http_ssl_module --with-http_stub_status_module --with-pcre
 
+make &amp; make install
+
+注:nginx包解压目录为/software/nginx-1.11.3，安装目录为/user/local/nginx-1.11.3，nginx生成的配置文件为nginx.conf<span class="sb">
+
+
+</span>cd /user/local/nginx-1.11.3
+./sbin/nginx 即可启动nginx
+
+重新加载配置及停止
+./sbin/nginx -s reload
+./sbin/nginx -s stop
+	
+</code></pre>
+</div>
+
+<p>结束。</p>
 </div>
 	
 	<!--
@@ -220,56 +238,62 @@
         
             
         
+            
+        
     
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+        
+    
+        
+            
+        
+            
+        
+    
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+        
+    
+        
+            
         
             
                 
                 <div class="panel-body">
                 <h5>相关博客</h5>
                 <ul>
-                
-                <li class="relatedPost" style="font-size: 12px;">
-                    <a href="http://www.mixfate.com/linux/tools/2016/05/12/nginx-linux-install.html">Linux环境下安装nginx</a>
-                    
-                        <small>(所属分类: <a href="/category/linux">linux</a>, <a href="/category/tools">tools</a>)</small>
-                    
-                </li>
-                
-                
-            
-        
-    
-
-    
-    
-        
-            
-        
-    
-        
-            
-        
-    
-        
-            
-        
-    
-
-    
-    
-        
-            
-        
-    
-
-    
-    
-        
-            
-        
-    
-        
-            
                 
                 <li class="relatedPost" style="font-size: 12px;">
                     <a href="http://www.mixfate.com/maven/tools/2016/05/09/maven-deploy-release.html">Maven命令:deploy和release命令</a>
@@ -288,7 +312,11 @@
         
             
         
+            
+        
     
+        
+            
         
             
                 
@@ -308,6 +336,8 @@
     
         
             
+        
+            
                 
                 <li class="relatedPost" style="font-size: 12px;">
                     <a href="http://www.mixfate.com/tools/tomcat/2016/05/07/jenkins-tomcat-deploy.html">jenkins远程发布应用到tomcat中，使用shell脚本或jenkins deploy插件</a>
@@ -323,10 +353,14 @@
         
             
         
+            
+        
     
 
     
     
+        
+            
         
             
                 
@@ -346,15 +380,95 @@
     
         
             
-        
-    
-        
-            
                 
                 <li class="relatedPost" style="font-size: 12px;">
                     <a href="http://www.mixfate.com/linux/tools/2016/05/05/linux-centos-scp.html">centos minimal使用ssh/scp命令不录入密码</a>
                     
                         <small>(所属分类: <a href="/category/linux">linux</a>, <a href="/category/tools">tools</a>)</small>
+                    
+                </li>
+                
+                
+            
+        
+            
+        
+    
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+        
+    
+        
+            
+        
+            
+        
+    
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+        
+    
+        
+            
+        
+            
+        
+    
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+        
+    
+        
+            
+        
+            
+                
+                <li class="relatedPost" style="font-size: 12px;">
+                    <a href="http://www.mixfate.com/mysql/tools/2016/05/01/mysql-install.html">mysql windows绿色版使用，导入导出功能</a>
+                    
+                        <small>(所属分类: <a href="/category/mysql">mysql</a>, <a href="/category/tools">tools</a>)</small>
                     
                 </li>
                 
@@ -368,18 +482,11 @@
         
             
         
-    
-        
             
         
     
         
             
-        
-    
-
-    
-    
         
             
         
@@ -390,11 +497,20 @@
         
             
         
+            
+        
+    
+
+    
     
         
             
         
+            
+        
     
+        
+            
         
             
         
@@ -405,7 +521,11 @@
         
             
         
+            
+        
     
+        
+            
         
             
         
@@ -416,7 +536,11 @@
         
             
         
+            
+        
     
+        
+            
         
             
         
@@ -427,25 +551,17 @@
         
             
         
-    
-
-    
-    
-        
             
         
     
         
             
         
-    
-
-    
-    
-        
             
         
     
+        
+            
         
             
         
@@ -456,7 +572,11 @@
         
             
         
+            
+        
     
+        
+            
         
             
         
@@ -467,11 +587,26 @@
         
             
         
+            
+        
+    
+
+    
     
         
             
         
+            
+        
     
+        
+            
+        
+            
+        
+    
+        
+            
         
             
         
@@ -482,7 +617,17 @@
         
             
         
+            
+        
     
+        
+            
+        
+            
+        
+    
+        
+            
         
             
         
@@ -493,18 +638,11 @@
         
             
         
-    
-
-    
-    
-        
             
         
     
         
             
-        
-    
         
             
         
@@ -515,22 +653,17 @@
         
             
         
-    
-        
             
         
     
         
             
         
-    
-
-    
-    
-        
             
         
     
+        
+            
         
             
         
@@ -541,11 +674,26 @@
         
             
         
+            
+        
+    
+
+    
     
         
             
         
+            
+        
     
+        
+            
+        
+            
+        
+    
+        
+            
         
             
         
@@ -556,18 +704,11 @@
         
             
         
-    
-
-    
-    
-        
             
         
     
         
             
-        
-    
         
             
         
@@ -578,7 +719,11 @@
         
             
         
+            
+        
     
+        
+            
         
             
         
@@ -589,7 +734,17 @@
         
             
         
+            
+        
     
+        
+            
+        
+            
+        
+    
+        
+            
         
             
         
@@ -600,26 +755,17 @@
         
             
         
-    
-        
             
         
     
         
             
         
-    
-
-    
-    
-        
             
         
     
         
             
-        
-    
         
             
         
@@ -630,7 +776,11 @@
         
             
         
+            
+        
     
+        
+            
         
             
         
@@ -641,7 +791,11 @@
         
             
         
+            
+        
     
+        
+            
         
             
         
@@ -652,11 +806,6 @@
         
             
         
-    
-
-    
-    
-        
             
         
     
@@ -665,15 +814,6 @@
     
         
             
-        
-    
-
-    
-    
-        
-            
-        
-    
         
             
         
@@ -684,7 +824,20 @@
         
             
         
+            
+        
     
+
+    
+    
+        
+            
+        
+            
+        
+    
+        
+            
         
             
         
@@ -695,10 +848,11 @@
         
             
         
+            
+        
     
-
-    
-    
+        
+            
         
             
         
@@ -709,11 +863,14 @@
         
             
         
-    
-        
             
         
     
+
+    
+    
+        
+            
         
             
         
@@ -724,25 +881,17 @@
         
             
         
-    
-
-    
-    
-        
             
         
     
         
             
         
-    
-
-    
-    
-        
             
         
     
+        
+            
         
             
         
@@ -750,6 +899,47 @@
 
     
     
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+        
+    
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+        
+    
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
         
             
         
@@ -762,10 +952,8 @@
 
 <div class="PageNavigation" style="font-size: 12px;">
   
-    <a class="prev pull-left" href="/java/spring/2016/04/05/springmvc-test.html">&laquo; 使用spring-test测试springmvc</a>
+    <a class="prev pull-left" href="/java/spring/webservice/2016/05/11/spring4-cxf3-webservice.html">&laquo; Spring4 + cxf3 构建wsdl webservice</a>
   
-  
-    <a class="next pull-right" href="/others/2016/04/09/others.html">小不忍则乱大谋，退一步海阔天空 &raquo;</a>
   
 </div>
 <div>&nbsp;</div>
@@ -777,8 +965,8 @@
 
         /*
 		var disqus_shortname = "mixfate";
-        var disqus_identifier = "http://www.mixfate.com_Coding pages + Github pages 搭建自己的博客";
-        var disqus_title = "Coding pages + Github pages 搭建自己的博客";
+        var disqus_identifier = "http://www.mixfate.com_Linux环境下安装nginx";
+        var disqus_title = "Linux环境下安装nginx";
 		*/
 
         /* * * DON'T EDIT BELOW THIS LINE * * */
