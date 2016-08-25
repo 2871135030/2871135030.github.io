@@ -6,15 +6,15 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <link rel="shortcut icon" href="/static/img/favicon.ico" />
-        <title>Spring + quartz注解配置使用 - Java及相关开源技术博客</title>
+        <title>Apache thrift软件框架简单使用介绍 - Java及相关开源技术博客</title>
         <meta name="author" content="Mixfate博客" />
         <meta name="description" content="Mixfate博客,开源技术博客,IT 博客,java技术,spring开源技术,dubbo分布式架构,maven工具" />
-        <meta name="keywords" content="Spring + quartz注解配置使用, Java及相关开源技术博客, java, spring, quartz" />
+        <meta name="keywords" content="Apache thrift软件框架简单使用介绍, Java及相关开源技术博客, java" />
 
         <meta content="0" property="fb:app_id">
         <meta content="Java及相关开源技术博客" property="og:site_name">
         
-          <meta content="Spring + quartz注解配置使用" property="og:title">
+          <meta content="Apache thrift软件框架简单使用介绍" property="og:title">
         
         
           <meta content="article" property="og:type">
@@ -23,10 +23,10 @@
           <meta content="Mixfate博客,开源技术博客,IT 博客,java技术,spring开源技术,dubbo分布式架构,maven工具" property="og:description">
         
         
-          <meta content="http://www.mixfate.com/java/spring/quartz/2016/04/25/spring-quartz-annotation.html" property="og:url">
+          <meta content="http://www.mixfate.com/java/2015/11/12/apache-thrift.html" property="og:url">
         
         
-          <meta content="2016-04-25T19:08:48+08:00" property="article:published_time">
+          <meta content="2015-11-12T20:10:48+08:00" property="article:published_time">
           <meta content="http://www.mixfate.com/about/" property="article:author">
         
         
@@ -44,10 +44,10 @@
         <meta name="twitter:site" content="@\#">
         <meta name="twitter:creator" content="@\#">
         
-          <meta name="twitter:title" content="Spring + quartz注解配置使用">
+          <meta name="twitter:title" content="Apache thrift软件框架简单使用介绍">
         
         
-          <meta name="twitter:url" content="http://www.mixfate.com/java/spring/quartz/2016/04/25/spring-quartz-annotation.html">
+          <meta name="twitter:url" content="http://www.mixfate.com/java/2015/11/12/apache-thrift.html">
         
         
           <meta name="twitter:description" content="Mixfate博客,开源技术博客,IT 博客,java技术,spring开源技术,dubbo分布式架构,maven工具">
@@ -122,14 +122,14 @@
         </div>
       </div>
       <div class="col-md-9 col-sm-8 col-xs-12">
-      <h2 class="blog-title-pro">Spring + quartz注解配置使用</h2>
+      <h2 class="blog-title-pro">Apache thrift软件框架简单使用介绍</h2>
       <p class="info">
       
-      <span class="time">2016/04/25</span>
+      <span class="time">2015/11/12</span>
       
       
     <span class="categories">
-        &raquo; <a href="/category/java">java</a>, <a href="/category/spring">spring</a>, <a href="/category/quartz">quartz</a>
+        &raquo; <a href="/category/java">java</a>
     </span>
     
       </p>
@@ -148,19 +148,19 @@
 	
 	
 	
-	<li class="col-lg-12 col-md-12 col-sm-4 col-xs-12 current-menu-item spring-quartz-annotation.html"><a href="/"><i class="fa fa-home"></i> 首页</a></li>
+	<li class="col-lg-12 col-md-12 col-sm-4 col-xs-12 current-menu-item apache-thrift.html"><a href="/"><i class="fa fa-home"></i> 首页</a></li>
 
 	
 	
 	
 	
-	<li class="col-lg-12 col-md-12 col-sm-4 col-xs-12  spring-quartz-annotation.html"><a href="/category/java"><i class="fa fa-desktop"></i> 分类</a></li>
+	<li class="col-lg-12 col-md-12 col-sm-4 col-xs-12  apache-thrift.html"><a href="/category/java"><i class="fa fa-desktop"></i> 分类</a></li>
 
 	
 	
 	
 	
-	<li class="col-lg-12 col-md-12 col-sm-4 col-xs-12  spring-quartz-annotation.html"><a href="/about/"><i class="fa fa-comments"></i> 关于</a></li>
+	<li class="col-lg-12 col-md-12 col-sm-4 col-xs-12  apache-thrift.html"><a href="/about/"><i class="fa fa-comments"></i> 关于</a></li>
 
 </ul>
     </div>
@@ -181,76 +181,311 @@
             <div class="col-md-9 col-xs-12 full">
                 <div class="post-content well">
 <article class="content">
-    <div class="post" style="font-size: 12px;"><h2 id="spring--quartz">Spring + quartz注解配置使用</h2>
+    <div class="post" style="font-size: 12px;"><h2 id="apache-thrift">Apache thrift软件框架简单使用介绍</h2>
 
-<p>本文接文<a href="/java/spring/quartz/2016/04/02/spring4-quartz2.html">spring4+quartz2基本配置及应用</a>，使用注解配置</p>
+<p><a href="http://thrift.apache.org/">Thrift</a>是一个软件框架，用来进行可扩展且跨语言的服务的开发。它结合了功能强大的软件堆栈和代码生成引擎，
+以构建在 C++, Java, Python, PHP, Ruby, Erlang, Perl, Haskell, C#, Cocoa, JavaScript, Node.js, Smalltalk, and OCaml 
+等等编程语言间无缝结合的、高效的服务。</p>
 
-<p>1、编写一个定时器执行类，重要的是使用Scheduled注解</p>
+<p>本例演示在windows中使用maven构建一个thrift简单例子，编写一个UserService实现保存及按姓名查询功能</p>
 
-<p>AnnotationQueryJob.java</p>
+<p>1、编写pom.xml文件</p>
 
-<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">package</span> <span class="n">com</span><span class="p">.</span><span class="nf">hode</span><span class="p">.</span><span class="nf">job</span><span class="p">;</span>
+<div class="language-markdown highlighter-rouge"><pre class="highlight"><code>&lt;project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"&gt;
+	<span class="nt">&lt;modelVersion&gt;</span>4.0.0<span class="nt">&lt;/modelVersion&gt;</span>
+	<span class="nt">&lt;groupId&gt;</span>com.hode<span class="nt">&lt;/groupId&gt;</span>
+	<span class="nt">&lt;artifactId&gt;</span>thrift<span class="nt">&lt;/artifactId&gt;</span>
+	<span class="nt">&lt;version&gt;</span>0.0.1-SNAPSHOT<span class="nt">&lt;/version&gt;</span><span class="sb">
 
-<span class="n">import</span> <span class="n">org</span><span class="p">.</span><span class="nf">apache</span><span class="p">.</span><span class="nf">log4j</span><span class="o">.</span><span class="no">Logger</span><span class="p">;</span>
-<span class="n">import</span> <span class="n">org</span><span class="p">.</span><span class="nf">springframework</span><span class="p">.</span><span class="nf">scheduling</span><span class="p">.</span><span class="nf">annotation</span><span class="o">.</span><span class="no">Scheduled</span><span class="p">;</span>
-<span class="n">import</span> <span class="n">org</span><span class="p">.</span><span class="nf">springframework</span><span class="p">.</span><span class="nf">stereotype</span><span class="o">.</span><span class="no">Component</span><span class="p">;</span>
+	&lt;dependencies&gt;
+		&lt;dependency&gt;
+			&lt;groupId&gt;org.apache.thrift&lt;/groupId&gt;
+			&lt;artifactId&gt;libthrift&lt;/artifactId&gt;
+			&lt;version&gt;0.9.3&lt;/version&gt;
+		&lt;/dependency&gt;
+		
+		&lt;dependency&gt;
+            &lt;groupId&gt;org.slf4j&lt;/groupId&gt;
+            &lt;artifactId&gt;slf4j-api&lt;/artifactId&gt;
+            &lt;version&gt;1.5.8&lt;/version&gt;
+        &lt;/dependency&gt;
+        
+       &lt;dependency&gt;
+			&lt;groupId&gt;org.slf4j&lt;/groupId&gt;
+			&lt;artifactId&gt;slf4j-log4j12&lt;/artifactId&gt;
+			&lt;version&gt;1.5.8&lt;/version&gt;
+		&lt;/dependency&gt;
 
-<span class="vi">@Component</span>
-<span class="kp">public</span> <span class="k">class</span> <span class="nc">AnnotationQueryJob</span> <span class="p">{</span>
+        &lt;dependency&gt;
+            &lt;groupId&gt;log4j&lt;/groupId&gt;
+            &lt;artifactId&gt;log4j&lt;/artifactId&gt;
+            &lt;version&gt;1.2.14&lt;/version&gt;
+        &lt;/dependency&gt;
+        
+        &lt;dependency&gt;
+		　　&lt;groupId&gt;com.google.code.gson&lt;/groupId&gt;
+		　　&lt;artifactId&gt;gson&lt;/artifactId&gt;
+		　　&lt;version&gt;2.2.4&lt;/version&gt;
+		&lt;/dependency&gt;
 
-	<span class="kp">private</span> <span class="no">Logger</span> <span class="n">log</span> <span class="o">=</span> <span class="no">Logger</span><span class="p">.</span><span class="nf">getLogger</span><span class="p">(</span><span class="n">getClass</span><span class="p">());</span>
+	&lt;/dependencies&gt;
 	
-	<span class="vi">@Scheduled</span><span class="p">(</span><span class="n">cron</span><span class="o">=</span><span class="s2">"0/1 * * * * ?"</span><span class="p">)</span>
-	<span class="kp">public</span> <span class="n">void</span> <span class="n">execute</span><span class="p">(){</span>
-		<span class="n">log</span><span class="p">.</span><span class="nf">info</span><span class="p">(</span><span class="s2">"*** ok ***"</span><span class="p">);</span>
-	<span class="p">}</span>
+	&lt;build&gt;
+		&lt;plugins&gt;
+			&lt;plugin&gt;
+				&lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;
+				&lt;artifactId&gt;maven-compiler-plugin&lt;/artifactId&gt;
+				&lt;version&gt;3.1&lt;/version&gt;
+				&lt;configuration&gt;
+					&lt;source&gt;1.8&lt;/source&gt;
+					&lt;target&gt;1.8&lt;/target&gt;
+					&lt;encoding&gt;UTF-8&lt;/encoding&gt;
+				&lt;/configuration&gt;
+			&lt;/plugin&gt;
+			&lt;!-- apache thrift插件 其中thrift-0.9.3.exe直接从apache thrift官网下载便可 --&gt;
+			&lt;plugin&gt;
+                &lt;groupId&gt;org.apache.thrift.tools&lt;/groupId&gt;
+                &lt;artifactId&gt;maven-thrift-plugin&lt;/artifactId&gt;
+                &lt;version&gt;0.1.11&lt;/version&gt;
+                &lt;configuration&gt;
+                    &lt;thriftExecutable&gt;D:\thrift\thrift-0.9.3.exe&lt;/thriftExecutable&gt;
+                &lt;/configuration&gt;
+                &lt;executions&gt;
+                    &lt;execution&gt;
+                        &lt;id&gt;thrift-sources&lt;/id&gt;
+                        &lt;phase&gt;generate-sources&lt;/phase&gt;
+                        &lt;goals&gt;
+                            &lt;goal&gt;compile&lt;/goal&gt;
+                        &lt;/goals&gt;
+                    &lt;/execution&gt;
+                    &lt;execution&gt;
+                        &lt;id&gt;thrift-test-sources&lt;/id&gt;
+                        &lt;phase&gt;generate-test-sources&lt;/phase&gt;
+                        &lt;goals&gt;
+                            &lt;goal&gt;testCompile&lt;/goal&gt;
+                        &lt;/goals&gt;
+                    &lt;/execution&gt;
+                &lt;/executions&gt;
+            &lt;/plugin&gt;
+		&lt;/plugins&gt;
+		&lt;pluginManagement&gt;
+			&lt;plugins&gt;
+				&lt;!--This plugin's configuration is used to store Eclipse m2e settings 
+					only. It has no influence on the Maven build itself. --&gt;
+				&lt;plugin&gt;
+					&lt;groupId&gt;org.eclipse.m2e&lt;/groupId&gt;
+					&lt;artifactId&gt;lifecycle-mapping&lt;/artifactId&gt;
+					&lt;version&gt;1.0.0&lt;/version&gt;
+					&lt;configuration&gt;
+						&lt;lifecycleMappingMetadata&gt;
+							&lt;pluginExecutions&gt;
+								&lt;pluginExecution&gt;
+									&lt;pluginExecutionFilter&gt;
+										&lt;groupId&gt;org.apache.thrift.tools&lt;/groupId&gt;
+                						&lt;artifactId&gt;maven-thrift-plugin&lt;/artifactId&gt;
+										&lt;versionRange&gt;[0.1.11,)&lt;/versionRange&gt;
+										&lt;goals&gt;
+											&lt;goal&gt;compile&lt;/goal&gt;
+											&lt;goal&gt;testCompile&lt;/goal&gt;
+										&lt;/goals&gt;
+									&lt;/pluginExecutionFilter&gt;
+									&lt;action&gt;
+										&lt;ignore&gt;&lt;/ignore&gt;
+									&lt;/action&gt;
+								&lt;/pluginExecution&gt;
+							&lt;/pluginExecutions&gt;
+						&lt;/lifecycleMappingMetadata&gt;
+					&lt;/configuration&gt;
+				&lt;/plugin&gt;
+			&lt;/plugins&gt;
+		&lt;/pluginManagement&gt;
+	&lt;/build&gt;
+
+</span><span class="nt">&lt;/project&gt;</span>
+</code></pre>
+</div>
+
+<p>2、在maven目录src/main/中新建目录thrift，在此目录按thrift规范编写一个.thrift后缀的文件UserService.thift，内容如下</p>
+
+<div class="language-markdown highlighter-rouge"><pre class="highlight"><code>/<span class="ge">**</span>定义包名 <span class="err">*</span>/
+namespace java com.hode.thrift
+
+/<span class="ge">**</span>定义请求的传输对象<span class="err">*</span>/
+struct TUserRequest{
+1:required string name,
+2:required i32 age,
+3:required i64 birthday,
+4:required string remark
+}
+
+/<span class="ge">**</span>定义返回的传输对象<span class="err">*</span>/
+struct TUserResponse{
+1:required string name,
+2:required i32 age,
+3:required i64 birthday,
+4:required string remark
+}
+
+/<span class="ge">**</span>定义两个接口方法<span class="err">*</span>/
+service TUserService{
+	void save(1:TUserRequest user)
+	TUserResponse findByName(1:string name);
+}
+</code></pre>
+</div>
+
+<p>3、在项目根目录执行 mvn clean compile 命令，便可以看到目录target\generated-sources\thrift中生成了thrift源文件TUserService.java、TUserRequest.java、TUserResponse.java，
+如果是在ide中编辑(如eclipse,netbeans)则直接将目录target\generated-sources\thrift加到build path中。</p>
+
+<p>4、接下来在src/main/java，创建实现类以及编写测试代码</p>
+
+<p>编写TUserServiceImpl.java并实现接口TUserService.Iface，代码如下：</p>
+
+<div class="language-markdown highlighter-rouge"><pre class="highlight"><code>package com.hode.thrift.impl;
+
+import java.util.Date;
+
+import org.apache.thrift.TException;
+
+import com.google.gson.Gson;
+import com.hode.thrift.TUserRequest;
+import com.hode.thrift.TUserResponse;
+import com.hode.thrift.TUserService;
+
+public class TUserServiceImpl implements TUserService.Iface{<span class="sb">
+
+	Gson gson = new Gson(); //为了方便查看结果,使用此工具打印对象
 	
-<span class="p">}</span></code></pre></figure>
+	@Override
+	public void save(TUserRequest user) throws TException {
+		System.out.println(gson.toJson(user));
+	}
 
-<p>2、添加spring配置文件applicationContext-annotation.xml，其内容如下</p>
-
-<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="o">&lt;</span><span class="p">?</span><span class="n">xml</span> <span class="n">version</span><span class="o">=</span><span class="s2">"1.0"</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">"UTF-8"</span><span class="sc">?&gt;</span>
-<span class="o">&lt;</span><span class="n">beans</span> <span class="n">xmlns</span><span class="o">=</span><span class="s2">"http://www.springframework.org/schema/beans"</span>
-	<span class="n">xmlns</span><span class="ss">:mvc</span><span class="o">=</span><span class="s2">"http://www.springframework.org/schema/mvc"</span> <span class="n">xmlns</span><span class="ss">:xsi</span><span class="o">=</span><span class="s2">"http://www.w3.org/2001/XMLSchema-instance"</span>
-	<span class="n">xmlns</span><span class="ss">:context</span><span class="o">=</span><span class="s2">"http://www.springframework.org/schema/context"</span> <span class="n">xmlns</span><span class="ss">:tx</span><span class="o">=</span><span class="s2">"http://www.springframework.org/schema/tx"</span>
-	<span class="n">xmlns</span><span class="ss">:util</span><span class="o">=</span><span class="s2">"http://www.springframework.org/schema/util"</span> <span class="n">xmlns</span><span class="ss">:task</span><span class="o">=</span><span class="s2">"http://www.springframework.org/schema/task"</span>
-	<span class="n">xsi</span><span class="ss">:schemaLocation</span><span class="o">=</span><span class="s2">"http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
-        http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd  
-        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
-        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd
-        http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.0.xsd
-        http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-4.0.xsd"</span><span class="o">&gt;</span>
-
-	<span class="o">&lt;</span><span class="n">context</span><span class="ss">:component</span><span class="o">-</span><span class="nb">scan</span> <span class="n">base</span><span class="o">-</span><span class="n">package</span><span class="o">=</span><span class="s2">"com"</span> <span class="o">/&gt;</span>
-    
-    <span class="o">&lt;</span><span class="n">task</span><span class="ss">:annotation</span><span class="o">-</span><span class="n">driven</span><span class="o">/&gt;</span>
-    
-<span class="o">&lt;</span><span class="sr">/beans&gt;</span></code></pre></figure>
-
-<p>其中关键标签为<font color="red">&lt;task:annotation-driven/&gt;</font></p>
-
-<p>当然可根据需要设置executor、scheduler等</p>
-
-<p>3、编写一个测试类完成测试
-SchedulerAnnotationTest.java</p>
-
-<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">package</span> <span class="n">com</span><span class="p">.</span><span class="nf">hode</span><span class="p">;</span>
-
-<span class="n">import</span> <span class="n">org</span><span class="p">.</span><span class="nf">junit</span><span class="o">.</span><span class="no">Test</span><span class="p">;</span>
-<span class="n">import</span> <span class="n">org</span><span class="p">.</span><span class="nf">junit</span><span class="p">.</span><span class="nf">runner</span><span class="o">.</span><span class="no">RunWith</span><span class="p">;</span>
-<span class="n">import</span> <span class="n">org</span><span class="p">.</span><span class="nf">springframework</span><span class="p">.</span><span class="nf">test</span><span class="p">.</span><span class="nf">context</span><span class="o">.</span><span class="no">ContextConfiguration</span><span class="p">;</span>
-<span class="n">import</span> <span class="n">org</span><span class="p">.</span><span class="nf">springframework</span><span class="p">.</span><span class="nf">test</span><span class="p">.</span><span class="nf">context</span><span class="p">.</span><span class="nf">junit4</span><span class="o">.</span><span class="no">SpringJUnit4ClassRunner</span><span class="p">;</span>
-
-<span class="vi">@RunWith</span><span class="p">(</span><span class="no">SpringJUnit4ClassRunner</span><span class="p">.</span><span class="nf">class</span><span class="p">)</span>
-<span class="vi">@ContextConfiguration</span><span class="p">({</span><span class="s2">"classpath*:*applicationContext-annotation.xml"</span><span class="p">})</span>
-<span class="kp">public</span> <span class="k">class</span> <span class="nc">SchedulerAnnotationTest</span> <span class="p">{</span>
+	@Override
+	public TUserResponse findByName(String name) throws TException {
+		System.out.println("name="+name);
+		TUserResponse rep = new TUserResponse();
+		
+		rep.setName("hode");
+		rep.setAge(21);
+		rep.setBirthday(new Date().getTime());
+		rep.setRemark("测试备注");
+		
+		System.out.println(gson.toJson(rep));
+		return rep;
+	}
 	
-	<span class="vi">@Test</span>
-	<span class="kp">public</span> <span class="n">void</span> <span class="nb">test</span><span class="p">()</span> <span class="n">throws</span> <span class="no">Exception</span><span class="p">{</span>
-		<span class="no">Thread</span><span class="p">.</span><span class="nf">sleep</span><span class="p">(</span><span class="mi">300</span><span class="o">*</span><span class="mi">1000</span><span class="p">);</span>
-	<span class="p">}</span>
-	
-<span class="p">}</span></code></pre></figure>
+</span>}
+
+</code></pre>
+</div>
+
+<p>编写一个服务端代码</p>
+
+<div class="language-markdown highlighter-rouge"><pre class="highlight"><code>package com.hode.thrift;
+
+import org.apache.thrift.TProcessor;
+import org.apache.thrift.protocol.TBinaryProtocol;
+import org.apache.thrift.protocol.TBinaryProtocol.Factory;
+import org.apache.thrift.server.TServer;
+import org.apache.thrift.server.TThreadPoolServer;
+import org.apache.thrift.server.TThreadPoolServer.Args;
+import org.apache.thrift.transport.TServerSocket;
+import org.apache.thrift.transport.TTransportException;
+
+import com.hode.thrift.impl.TUserServiceImpl;
+
+public class UserServiceServer {<span class="sb">
+
+	public static void main(String[] args) {
+
+		try{
+			//设置服务端口为8080
+			TServerSocket serverTransport = new TServerSocket(8080);
+			//设置协议工厂为TBinaryProtocol.Factory()
+			Factory proFactory = new TBinaryProtocol.Factory();
+			//关联处理器与 Hello 服务的实现
+			TProcessor processor = new TUserService.Processor&lt;TUserService.Iface&gt;(new TUserServiceImpl());
+			
+			Args arg = new TThreadPoolServer.Args(serverTransport).processor(processor);
+			arg.protocolFactory(proFactory);
+			TServer server = new TThreadPoolServer(arg);
+			System.out.println("Start server on port 8080...");
+			server.serve();
+		}catch(TTransportException e){
+			e.printStackTrace();
+		}
+		
+	}
+
+</span>}
+
+</code></pre>
+</div>
+
+<p>编写一个客户端代码</p>
+
+<div class="language-markdown highlighter-rouge"><pre class="highlight"><code>package com.hode.thrift;
+
+import java.util.Date;
+
+import org.apache.thrift.protocol.TBinaryProtocol;
+import org.apache.thrift.protocol.TProtocol;
+import org.apache.thrift.transport.TSocket;
+import org.apache.thrift.transport.TTransport;
+
+import com.google.gson.Gson;
+
+public class UserServiceClient {<span class="sb">
+
+	public static void main(String[] args) {
+		Gson gson = new Gson();
+		try {
+			//设置调用的服务地址为本地，端口为8080
+			TTransport transport = new TSocket("localhost",8080);
+			transport.open();
+			
+			//设置传输协议为 TBinaryProtocol
+			TProtocol protocol = new TBinaryProtocol(transport);
+			TUserService.Client client = new TUserService.Client(protocol);
+			
+			TUserRequest user = new TUserRequest();
+			user.setAge(21);
+			user.setBirthday(new Date().getTime());
+			user.setName("hode");
+			user.setRemark("test");
+			
+			System.out.println(gson.toJson(user));
+			//调用服务的方法
+			client.save(user);
+			
+			TUserResponse rep = client.findByName("hode");
+			System.out.println(gson.toJson(rep));
+			
+			
+			transport.close();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+</span>}<span class="sb">
+
+
+</span></code></pre>
+</div>
+
+<p>5、如果在ide中可直接分别运行服务端与客户端即可，也可分别使用以下命令完成测试</p>
+
+<div class="language-markdown highlighter-rouge"><pre class="highlight"><code>启动服务端执行
+mvn clean compile exec:java -Dexec.mainClass="com.hode.thrift.UserServiceServer"
+
+新打开一个命令窗口执行
+mvn clean compile exec:java -Dexec.mainClass="com.hode.thrift.UserServiceClient"
+</code></pre>
+</div>
 
 <p>结束。</p>
 </div>
@@ -268,15 +503,7 @@ SchedulerAnnotationTest.java</p>
         
             
         
-            
-        
-            
-        
     
-        
-            
-        
-            
         
             
         
@@ -301,23 +528,11 @@ SchedulerAnnotationTest.java</p>
                 
             
         
-            
-        
-            
-        
     
         
             
         
-            
-        
-            
-        
     
-        
-            
-        
-            
         
             
         
@@ -328,7 +543,14 @@ SchedulerAnnotationTest.java</p>
         
             
         
+    
+
+    
+    
+        
             
+        
+    
         
             
         
@@ -339,15 +561,7 @@ SchedulerAnnotationTest.java</p>
         
             
         
-            
-        
-            
-        
     
-        
-            
-        
-            
         
             
         
@@ -358,15 +572,7 @@ SchedulerAnnotationTest.java</p>
         
             
         
-            
-        
-            
-        
     
-        
-            
-        
-            
         
             
         
@@ -377,18 +583,6 @@ SchedulerAnnotationTest.java</p>
         
             
         
-            
-        
-            
-        
-    
-        
-            
-        
-            
-        
-            
-        
     
 
     
@@ -396,26 +590,7 @@ SchedulerAnnotationTest.java</p>
         
             
         
-            
-        
-            
-        
     
-
-    
-    
-        
-            
-        
-            
-        
-            
-        
-    
-        
-            
-        
-            
         
             
         
@@ -436,23 +611,11 @@ SchedulerAnnotationTest.java</p>
                 
             
         
-            
-        
-            
-        
     
         
             
         
-            
-        
-            
-        
     
-        
-            
-        
-            
         
             
         
@@ -463,7 +626,18 @@ SchedulerAnnotationTest.java</p>
         
             
         
+    
+
+    
+    
+        
             
+        
+    
+        
+            
+        
+    
         
             
         
@@ -473,167 +647,84 @@ SchedulerAnnotationTest.java</p>
     
         
             
+        
+    
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+    
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+    
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+    
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+    
+        
+            
+        
+    
+
+    
+    
         
             
                 
                 <li class="relatedPost" style="font-size: 12px;">
-                    <a href="http://www.mixfate.com/spring/dubbo/webservice/2016/05/02/dubbox-restful.html">Dubbox的rest风格调用例子</a>
+                    <a href="http://www.mixfate.com/java/spring/quartz/2016/04/25/spring-quartz-annotation.html">Spring + quartz注解配置使用</a>
                     
-                        <small>(所属分类: <a href="/category/spring">spring</a>, <a href="/category/dubbo">dubbo</a>, <a href="/category/webservice">webservice</a>)</small>
+                        <small>(所属分类: <a href="/category/java">java</a>, <a href="/category/spring">spring</a>, <a href="/category/quartz">quartz</a>)</small>
                     
                 </li>
                 
                 
             
         
-            
-        
     
         
             
         
-            
-        
-            
-        
     
-        
-            
-        
-            
-        
-            
-        
-    
-
-    
-    
-        
-            
-        
-            
-        
-            
-        
-    
-        
-            
-        
-            
-        
-            
-        
-    
-
-    
-    
-        
-            
-        
-            
-        
-            
-        
-    
-        
-            
-        
-            
-        
-            
-        
-    
-
-    
-    
-        
-            
-        
-            
-        
-            
-        
-    
-
-    
-    
-        
-            
-        
-            
-        
-            
-        
-    
-        
-            
-        
-            
-        
-            
-        
-    
-
-    
-    
-        
-            
-        
-            
-        
-            
-        
-    
-        
-            
-        
-            
-        
-            
-        
-    
-
-    
-    
-        
-            
-        
-            
-        
-            
-        
-    
-        
-            
-        
-            
-        
-            
-        
-    
-
-    
-    
-        
-            
-        
-            
-        
-            
-        
-    
-        
-            
-        
-            
-        
-            
-        
-    
-        
-            
-        
-            
         
             
         
@@ -654,15 +745,7 @@ SchedulerAnnotationTest.java</p>
                 
             
         
-            
-        
-            
-        
     
-        
-            
-        
-            
         
             
         
@@ -683,10 +766,6 @@ SchedulerAnnotationTest.java</p>
                 
             
         
-            
-        
-            
-        
     
 
     
@@ -704,23 +783,11 @@ SchedulerAnnotationTest.java</p>
                 
             
         
-            
-        
-            
-        
     
         
             
         
-            
-        
-            
-        
     
-        
-            
-        
-            
         
             
         
@@ -731,23 +798,11 @@ SchedulerAnnotationTest.java</p>
         
             
         
-            
-        
-            
-        
     
         
             
         
-            
-        
-            
-        
     
-        
-            
-        
-            
         
             
         
@@ -758,15 +813,7 @@ SchedulerAnnotationTest.java</p>
         
             
         
-            
-        
-            
-        
     
-        
-            
-        
-            
         
             
         
@@ -777,23 +824,11 @@ SchedulerAnnotationTest.java</p>
         
             
         
-            
-        
-            
-        
     
         
             
         
-            
-        
-            
-        
     
-        
-            
-        
-            
         
             
         
@@ -804,7 +839,18 @@ SchedulerAnnotationTest.java</p>
         
             
         
+    
+
+    
+    
+        
             
+        
+    
+        
+            
+        
+    
         
             
         
@@ -815,23 +861,7 @@ SchedulerAnnotationTest.java</p>
         
             
         
-            
-        
-            
-        
     
-        
-            
-        
-            
-        
-            
-        
-    
-        
-            
-        
-            
         
             
         
@@ -842,15 +872,7 @@ SchedulerAnnotationTest.java</p>
         
             
         
-            
-        
-            
-        
     
-        
-            
-        
-            
         
             
         
@@ -861,15 +883,11 @@ SchedulerAnnotationTest.java</p>
         
             
         
-            
-        
-            
-        
     
         
             
         
-            
+    
         
             
         
@@ -880,23 +898,11 @@ SchedulerAnnotationTest.java</p>
         
             
         
-            
-        
-            
-        
     
         
             
         
-            
-        
-            
-        
     
-        
-            
-        
-            
         
             
         
@@ -907,23 +913,7 @@ SchedulerAnnotationTest.java</p>
         
             
         
-            
-        
-            
-        
     
-        
-            
-        
-            
-        
-            
-        
-    
-        
-            
-        
-            
         
             
         
@@ -934,15 +924,7 @@ SchedulerAnnotationTest.java</p>
         
             
         
-            
-        
-            
-        
     
-        
-            
-        
-            
         
             
         
@@ -953,15 +935,10 @@ SchedulerAnnotationTest.java</p>
         
             
         
-            
-        
-            
-        
     
-        
-            
-        
-            
+
+    
+    
         
             
         
@@ -972,7 +949,14 @@ SchedulerAnnotationTest.java</p>
         
             
         
+    
+
+    
+    
+        
             
+        
+    
         
             
         
@@ -983,7 +967,7 @@ SchedulerAnnotationTest.java</p>
         
             
         
-            
+    
         
             
         
@@ -994,7 +978,10 @@ SchedulerAnnotationTest.java</p>
         
             
         
-            
+    
+
+    
+    
         
             
         
@@ -1005,15 +992,11 @@ SchedulerAnnotationTest.java</p>
         
             
         
-            
-        
-            
-        
     
         
             
         
-            
+    
         
             
         
@@ -1024,15 +1007,14 @@ SchedulerAnnotationTest.java</p>
         
             
         
-            
-        
-            
-        
+    
+
+    
     
         
             
         
-            
+    
         
             
         
@@ -1043,7 +1025,7 @@ SchedulerAnnotationTest.java</p>
         
             
         
-            
+    
         
             
         
@@ -1054,105 +1036,10 @@ SchedulerAnnotationTest.java</p>
         
             
         
-            
-        
-            
-        
     
 
     
     
-        
-            
-        
-            
-        
-            
-        
-    
-        
-            
-        
-            
-        
-            
-        
-    
-        
-            
-        
-            
-        
-            
-        
-    
-
-    
-    
-        
-            
-        
-            
-        
-            
-        
-    
-
-    
-    
-        
-            
-        
-            
-        
-            
-        
-    
-        
-            
-        
-            
-        
-            
-        
-    
-
-    
-    
-        
-            
-        
-            
-        
-            
-        
-    
-        
-            
-        
-            
-        
-            
-        
-    
-
-    
-    
-        
-            
-        
-            
-        
-            
-        
-    
-
-    
-    
-        
-            
-        
-            
         
             
         
@@ -1165,10 +1052,10 @@ SchedulerAnnotationTest.java</p>
 
 <div class="PageNavigation" style="font-size: 12px;">
   
-    <a class="prev pull-left" href="/java/spring/2016/04/24/spring-activemq-annotation.html">&laquo; Spring + Activemq注解配置使用</a>
+    <a class="prev pull-left" href="/others/2015/06/04/others-1.html">&laquo; 心灵鸡汤 经典语录</a>
   
   
-    <a class="next pull-right" href="/tools/linux/2016/04/26/linux-vmware.html">Vmware linux拷贝网络故障 &raquo;</a>
+    <a class="next pull-right" href="/tomcat/tools/2016/04/01/tomcat-ssl-1.html">tomcat配置ssl单向认证 &raquo;</a>
   
 </div>
 <div>&nbsp;</div>
@@ -1180,8 +1067,8 @@ SchedulerAnnotationTest.java</p>
 
         /*
 		var disqus_shortname = "mixfate";
-        var disqus_identifier = "http://www.mixfate.com_Spring + quartz注解配置使用";
-        var disqus_title = "Spring + quartz注解配置使用";
+        var disqus_identifier = "http://www.mixfate.com_Apache thrift软件框架简单使用介绍";
+        var disqus_title = "Apache thrift软件框架简单使用介绍";
 		*/
 
         /* * * DON'T EDIT BELOW THIS LINE * * */
