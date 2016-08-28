@@ -6,15 +6,15 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <link rel="shortcut icon" href="/static/img/favicon.ico" />
-        <title>Apache thrift软件框架简单使用介绍 - Java及相关开源技术博客</title>
+        <title>Twitter的RPC框架Finagle简单使用介绍 - Java及相关开源技术博客</title>
         <meta name="author" content="Mixfate博客" />
         <meta name="description" content="Mixfate博客,开源技术博客,IT 博客,java技术,spring开源技术,dubbo分布式架构,maven工具" />
-        <meta name="keywords" content="Apache thrift软件框架简单使用介绍, Java及相关开源技术博客, java" />
+        <meta name="keywords" content="Twitter的RPC框架Finagle简单使用介绍, Java及相关开源技术博客, java" />
 
         <meta content="0" property="fb:app_id">
         <meta content="Java及相关开源技术博客" property="og:site_name">
         
-          <meta content="Apache thrift软件框架简单使用介绍" property="og:title">
+          <meta content="Twitter的RPC框架Finagle简单使用介绍" property="og:title">
         
         
           <meta content="article" property="og:type">
@@ -23,10 +23,10 @@
           <meta content="Mixfate博客,开源技术博客,IT 博客,java技术,spring开源技术,dubbo分布式架构,maven工具" property="og:description">
         
         
-          <meta content="http://www.mixfate.com/java/2015/11/12/apache-thrift.html" property="og:url">
+          <meta content="http://www.mixfate.com/java/2015/11/15/twitter-rpc-finagle.html" property="og:url">
         
         
-          <meta content="2015-11-12T20:10:48+08:00" property="article:published_time">
+          <meta content="2015-11-15T21:00:48+08:00" property="article:published_time">
           <meta content="http://www.mixfate.com/about/" property="article:author">
         
         
@@ -44,10 +44,10 @@
         <meta name="twitter:site" content="@\#">
         <meta name="twitter:creator" content="@\#">
         
-          <meta name="twitter:title" content="Apache thrift软件框架简单使用介绍">
+          <meta name="twitter:title" content="Twitter的RPC框架Finagle简单使用介绍">
         
         
-          <meta name="twitter:url" content="http://www.mixfate.com/java/2015/11/12/apache-thrift.html">
+          <meta name="twitter:url" content="http://www.mixfate.com/java/2015/11/15/twitter-rpc-finagle.html">
         
         
           <meta name="twitter:description" content="Mixfate博客,开源技术博客,IT 博客,java技术,spring开源技术,dubbo分布式架构,maven工具">
@@ -122,10 +122,10 @@
         </div>
       </div>
       <div class="col-md-9 col-sm-8 col-xs-12">
-      <h2 class="blog-title-pro">Apache thrift软件框架简单使用介绍</h2>
+      <h2 class="blog-title-pro">Twitter的RPC框架Finagle简单使用介绍</h2>
       <p class="info">
       
-      <span class="time">2015/11/12</span>
+      <span class="time">2015/11/15</span>
       
       
     <span class="categories">
@@ -148,19 +148,19 @@
 	
 	
 	
-	<li class="col-lg-12 col-md-12 col-sm-4 col-xs-12 current-menu-item apache-thrift.html"><a href="/"><i class="fa fa-home"></i> 首页</a></li>
+	<li class="col-lg-12 col-md-12 col-sm-4 col-xs-12 current-menu-item twitter-rpc-finagle.html"><a href="/"><i class="fa fa-home"></i> 首页</a></li>
 
 	
 	
 	
 	
-	<li class="col-lg-12 col-md-12 col-sm-4 col-xs-12  apache-thrift.html"><a href="/category/java"><i class="fa fa-desktop"></i> 分类</a></li>
+	<li class="col-lg-12 col-md-12 col-sm-4 col-xs-12  twitter-rpc-finagle.html"><a href="/category/java"><i class="fa fa-desktop"></i> 分类</a></li>
 
 	
 	
 	
 	
-	<li class="col-lg-12 col-md-12 col-sm-4 col-xs-12  apache-thrift.html"><a href="/about/"><i class="fa fa-comments"></i> 关于</a></li>
+	<li class="col-lg-12 col-md-12 col-sm-4 col-xs-12  twitter-rpc-finagle.html"><a href="/about/"><i class="fa fa-comments"></i> 关于</a></li>
 
 </ul>
     </div>
@@ -181,13 +181,11 @@
             <div class="col-md-9 col-xs-12 full">
                 <div class="post-content well">
 <article class="content">
-    <div class="post" style="font-size: 12px;"><h2 id="apache-thrift">Apache thrift软件框架简单使用介绍</h2>
+    <div class="post" style="font-size: 12px;"><h2 id="twitterrpcfinagle">Twitter的RPC框架Finagle简单使用介绍</h2>
 
-<p><a href="http://thrift.apache.org/">Thrift</a>是一个软件框架，用来进行可扩展且跨语言的服务的开发。它结合了功能强大的软件堆栈和代码生成引擎，
-以构建在 C++, Java, Python, PHP, Ruby, Erlang, Perl, Haskell, C#, Cocoa, JavaScript, Node.js, Smalltalk, and OCaml 
-等等编程语言间无缝结合的、高效的服务。</p>
+<p>本文接上篇<a href="/java/2015/11/12/apache-thrift.html">Apache Thrift使用介绍</a>，部分代码与上篇一样。</p>
 
-<p>本例演示在windows中使用maven构建一个thrift简单例子，编写一个UserService实现保存及按姓名查询功能</p>
+<p>本例演示使用maven构建一个finagle简单例子，同样使用与上文相同的例子</p>
 
 <p>1、编写pom.xml文件</p>
 
@@ -195,40 +193,50 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"&gt;
 	<span class="nt">&lt;modelVersion&gt;</span>4.0.0<span class="nt">&lt;/modelVersion&gt;</span>
 	<span class="nt">&lt;groupId&gt;</span>com.hode<span class="nt">&lt;/groupId&gt;</span>
-	<span class="nt">&lt;artifactId&gt;</span>thrift<span class="nt">&lt;/artifactId&gt;</span>
-	<span class="nt">&lt;version&gt;</span>0.0.1-SNAPSHOT<span class="nt">&lt;/version&gt;</span><span class="sb">
+	<span class="nt">&lt;artifactId&gt;</span>finagle<span class="nt">&lt;/artifactId&gt;</span>
+	<span class="nt">&lt;version&gt;</span>0.0.1-SNAPSHOT<span class="nt">&lt;/version&gt;</span>
+	
+	<span class="nt">&lt;properties&gt;</span>
+		<span class="nt">&lt;finagle</span><span class="err">.</span><span class="na">version</span><span class="nt">&gt;</span>6.30.0<span class="err">&lt;</span>/finagle.version&gt;
+		<span class="nt">&lt;scrooge</span><span class="err">.</span><span class="na">version</span><span class="nt">&gt;</span>4.2.0<span class="err">&lt;</span>/scrooge.version&gt;
+	<span class="nt">&lt;/properties&gt;</span>
+	
+	<span class="nt">&lt;dependencies&gt;</span>
+		<span class="nt">&lt;dependency&gt;</span>
+			<span class="nt">&lt;groupId&gt;</span>com.twitter<span class="nt">&lt;/groupId&gt;</span>
+			<span class="nt">&lt;artifactId&gt;</span>scrooge-core_2.11<span class="nt">&lt;/artifactId&gt;</span>
+			<span class="nt">&lt;version&gt;</span>${scrooge.version}<span class="nt">&lt;/version&gt;</span>
+		<span class="nt">&lt;/dependency&gt;</span>
+		<span class="nt">&lt;dependency&gt;</span>
+			<span class="nt">&lt;groupId&gt;</span>com.twitter<span class="nt">&lt;/groupId&gt;</span>
+			<span class="nt">&lt;artifactId&gt;</span>finagle-thrift_2.11<span class="nt">&lt;/artifactId&gt;</span>
+			<span class="nt">&lt;version&gt;</span>${finagle.version}<span class="nt">&lt;/version&gt;</span>
+		<span class="nt">&lt;/dependency&gt;</span><span class="sb">
 
-	&lt;dependencies&gt;
 		&lt;dependency&gt;
 			&lt;groupId&gt;org.apache.thrift&lt;/groupId&gt;
 			&lt;artifactId&gt;libthrift&lt;/artifactId&gt;
-			&lt;version&gt;0.9.3&lt;/version&gt;
+			&lt;version&gt;0.5.0-1&lt;/version&gt;
+		&lt;/dependency&gt;
+
+		&lt;dependency&gt;
+			&lt;groupId&gt;com.twitter&lt;/groupId&gt;
+			&lt;artifactId&gt;finagle-serversets_2.11&lt;/artifactId&gt;
+			&lt;version&gt;${finagle.version}&lt;/version&gt;
+			&lt;exclusions&gt;
+				&lt;exclusion&gt;
+					&lt;groupId&gt;org.slf4j&lt;/groupId&gt;
+					&lt;artifactId&gt;slf4j-jdk14&lt;/artifactId&gt;
+				&lt;/exclusion&gt;
+			&lt;/exclusions&gt;
 		&lt;/dependency&gt;
 		
 		&lt;dependency&gt;
-            &lt;groupId&gt;org.slf4j&lt;/groupId&gt;
-            &lt;artifactId&gt;slf4j-api&lt;/artifactId&gt;
-            &lt;version&gt;1.5.8&lt;/version&gt;
-        &lt;/dependency&gt;
-        
-       &lt;dependency&gt;
-			&lt;groupId&gt;org.slf4j&lt;/groupId&gt;
-			&lt;artifactId&gt;slf4j-log4j12&lt;/artifactId&gt;
-			&lt;version&gt;1.5.8&lt;/version&gt;
+			&lt;groupId&gt;com.google.code.gson&lt;/groupId&gt;
+			&lt;artifactId&gt;gson&lt;/artifactId&gt;
+			&lt;version&gt;2.2.4&lt;/version&gt;
 		&lt;/dependency&gt;
-
-        &lt;dependency&gt;
-            &lt;groupId&gt;log4j&lt;/groupId&gt;
-            &lt;artifactId&gt;log4j&lt;/artifactId&gt;
-            &lt;version&gt;1.2.14&lt;/version&gt;
-        &lt;/dependency&gt;
-        
-        &lt;dependency&gt;
-		　　&lt;groupId&gt;com.google.code.gson&lt;/groupId&gt;
-		　　&lt;artifactId&gt;gson&lt;/artifactId&gt;
-		　　&lt;version&gt;2.2.4&lt;/version&gt;
-		&lt;/dependency&gt;
-
+		
 	&lt;/dependencies&gt;
 	
 	&lt;build&gt;
@@ -243,31 +251,44 @@
 					&lt;encoding&gt;UTF-8&lt;/encoding&gt;
 				&lt;/configuration&gt;
 			&lt;/plugin&gt;
-			&lt;!-- apache thrift插件 其中thrift-0.9.3.exe直接从apache thrift官网下载便可 --&gt;
+			&lt;!-- 注意这里使用twitter的插件 --&gt;
 			&lt;plugin&gt;
-                &lt;groupId&gt;org.apache.thrift.tools&lt;/groupId&gt;
-                &lt;artifactId&gt;maven-thrift-plugin&lt;/artifactId&gt;
-                &lt;version&gt;0.1.11&lt;/version&gt;
-                &lt;configuration&gt;
-                    &lt;thriftExecutable&gt;D:\thrift\thrift-0.9.3.exe&lt;/thriftExecutable&gt;
-                &lt;/configuration&gt;
-                &lt;executions&gt;
-                    &lt;execution&gt;
-                        &lt;id&gt;thrift-sources&lt;/id&gt;
-                        &lt;phase&gt;generate-sources&lt;/phase&gt;
-                        &lt;goals&gt;
-                            &lt;goal&gt;compile&lt;/goal&gt;
-                        &lt;/goals&gt;
-                    &lt;/execution&gt;
-                    &lt;execution&gt;
-                        &lt;id&gt;thrift-test-sources&lt;/id&gt;
-                        &lt;phase&gt;generate-test-sources&lt;/phase&gt;
-                        &lt;goals&gt;
-                            &lt;goal&gt;testCompile&lt;/goal&gt;
-                        &lt;/goals&gt;
-                    &lt;/execution&gt;
-                &lt;/executions&gt;
-            &lt;/plugin&gt;
+				&lt;groupId&gt;com.twitter&lt;/groupId&gt;
+				&lt;artifactId&gt;scrooge-maven-plugin&lt;/artifactId&gt;
+				&lt;version&gt;${scrooge.version}&lt;/version&gt;
+				&lt;configuration&gt;
+					&lt;thriftNamespaceMappings&gt;
+						&lt;thriftNamespaceMapping&gt;&lt;!-- 表示thrift文件中的映射,表示thrift映射包名为com.hode.thrift --&gt;
+							&lt;from&gt;thrift&lt;/from&gt;
+							&lt;to&gt;com.hode.thrift&lt;/to&gt;
+						&lt;/thriftNamespaceMapping&gt;
+					&lt;/thriftNamespaceMappings&gt;
+					&lt;language&gt;java&lt;/language&gt; &lt;!-- 生成语言,默认为scala --&gt;
+					&lt;thriftOpts&gt;
+						&lt;thriftOpt&gt;--finagle&lt;/thriftOpt&gt;
+					&lt;/thriftOpts&gt;
+					&lt;dependencyIncludes&gt;
+						&lt;include&gt;event-logger-thrift&lt;/include&gt;
+					&lt;/dependencyIncludes&gt;
+				&lt;/configuration&gt;
+				&lt;executions&gt;
+					&lt;execution&gt;
+						&lt;id&gt;thrift-sources&lt;/id&gt;
+						&lt;phase&gt;generate-sources&lt;/phase&gt;
+						&lt;goals&gt;
+							&lt;goal&gt;compile&lt;/goal&gt;
+						&lt;/goals&gt;
+					&lt;/execution&gt;
+					&lt;execution&gt;
+						&lt;id&gt;thrift-test-sources&lt;/id&gt;
+						&lt;phase&gt;generate-test-sources&lt;/phase&gt;
+						&lt;goals&gt;
+							&lt;goal&gt;testCompile&lt;/goal&gt;
+						&lt;/goals&gt;
+					&lt;/execution&gt;
+				&lt;/executions&gt;
+			&lt;/plugin&gt;
+			
 		&lt;/plugins&gt;
 		&lt;pluginManagement&gt;
 			&lt;plugins&gt;
@@ -282,9 +303,11 @@
 							&lt;pluginExecutions&gt;
 								&lt;pluginExecution&gt;
 									&lt;pluginExecutionFilter&gt;
-										&lt;groupId&gt;org.apache.thrift.tools&lt;/groupId&gt;
-                						&lt;artifactId&gt;maven-thrift-plugin&lt;/artifactId&gt;
-										&lt;versionRange&gt;[0.1.11,)&lt;/versionRange&gt;
+										&lt;groupId&gt;com.twitter&lt;/groupId&gt;
+										&lt;artifactId&gt;
+											scrooge-maven-plugin
+										&lt;/artifactId&gt;
+										&lt;versionRange&gt;[3.3.2,)&lt;/versionRange&gt;
 										&lt;goals&gt;
 											&lt;goal&gt;compile&lt;/goal&gt;
 											&lt;goal&gt;testCompile&lt;/goal&gt;
@@ -301,15 +324,14 @@
 			&lt;/plugins&gt;
 		&lt;/pluginManagement&gt;
 	&lt;/build&gt;
-
 </span><span class="nt">&lt;/project&gt;</span>
 </code></pre>
 </div>
 
 <p>2、在maven目录src/main/中新建目录thrift，在此目录按thrift规范编写一个.thrift后缀的文件UserService.thift，内容如下</p>
 
-<div class="language-markdown highlighter-rouge"><pre class="highlight"><code>/<span class="ge">**</span>定义包名 <span class="err">*</span>/
-namespace java com.hode.thrift
+<div class="language-markdown highlighter-rouge"><pre class="highlight"><code>/<span class="ge">**</span>定义包名,注意此处包名定义为thrift,其中pom.xml中作了映射 <span class="err">*</span>/
+namespace java thrift
 
 /<span class="ge">**</span>定义请求的传输对象<span class="err">*</span>/
 struct TUserRequest{
@@ -335,88 +357,110 @@ service TUserService{
 </code></pre>
 </div>
 
-<p>3、在项目根目录执行 mvn clean compile 命令，便可以看到目录target\generated-sources\thrift中生成了thrift源文件TUserService.java、TUserRequest.java、TUserResponse.java，
-如果是在ide中编辑(如eclipse,netbeans)则直接将目录target\generated-sources\thrift加到build path中。</p>
+<p>3、在项目根目录执行 mvn clean compile 命令，(twitter部分包可能不能正常通过maven下载，可自行网上查找下载)
+便可以看到目录target\generated-sources\thrift\scrooge中生成了thrift源文件TUserService.java、TUserRequest.java、TUserResponse.java，
+如果是在ide中编辑(如eclipse,netbeans)则直接将目录target\generated-sources\thrift\scrooge加到build path中。</p>
 
 <p>4、接下来在src/main/java，创建实现类以及编写测试代码</p>
 
-<p>编写TUserServiceImpl.java并实现接口TUserService.Iface，代码如下：</p>
+<p>实现类FUserServiceImpl.java</p>
 
-<div class="language-markdown highlighter-rouge"><pre class="highlight"><code>package com.hode.thrift.impl;
+<div class="language-markdown highlighter-rouge"><pre class="highlight"><code>package com.hode.finagle.impl;
 
 import java.util.Date;
-
-import org.apache.thrift.TException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 import com.google.gson.Gson;
 import com.hode.thrift.TUserRequest;
 import com.hode.thrift.TUserResponse;
 import com.hode.thrift.TUserService;
+import com.twitter.util.ExecutorServiceFuturePool;
+import com.twitter.util.Function0;
+import com.twitter.util.Future;<span class="sb">
 
-public class TUserServiceImpl implements TUserService.Iface{<span class="sb">
+
+</span>public class FUserServiceImpl implements TUserService.ServiceIface{
+	
+	ExecutorService es = Executors.newFixedThreadPool(4); 
+	
+	ExecutorServiceFuturePool esfp = new ExecutorServiceFuturePool(es);<span class="sb">
 
 	Gson gson = new Gson(); //为了方便查看结果,使用此工具打印对象
 	
+	//保存对象测试
 	@Override
-	public void save(TUserRequest user) throws TException {
-		System.out.println(gson.toJson(user));
+	public Future&lt;Void&gt; save(final TUserRequest user) {
+			
+		Function0&lt;Void&gt; function = new Function0&lt;Void&gt;(){
+			@Override
+			public Void apply() {
+				System.out.println(gson.toJson(user));
+				System.out.println("save return void");
+				return null;
+			}
+		};
+		
+		return esfp.apply(function);
 	}
 
+	//返回对象测试
 	@Override
-	public TUserResponse findByName(String name) throws TException {
+	public Future&lt;TUserResponse&gt; findByName(final String name) {
+		
+		System.out.println("start findByName...");
 		System.out.println("name="+name);
-		TUserResponse rep = new TUserResponse();
+		Function0&lt;TUserResponse&gt; function = new Function0&lt;TUserResponse&gt;(){
+
+			@Override
+			public TUserResponse apply() {
+				TUserResponse rep = new TUserResponse();
 		
-		rep.setName("hode");
-		rep.setAge(21);
-		rep.setBirthday(new Date().getTime());
-		rep.setRemark("测试备注");
+				rep.setName("hode");
+				rep.setAge(21);
+				rep.setBirthday(new Date().getTime());
+				rep.setRemark("测试备注");
+				
+				System.out.println(gson.toJson(rep));
+				return rep;
+			}
+			
+		};
 		
-		System.out.println(gson.toJson(rep));
-		return rep;
+		System.out.println("end findByName...");
+		return esfp.apply(function);
+		
 	}
-	
+
 </span>}
 
 </code></pre>
 </div>
 
-<p>编写一个服务端代码</p>
+<p>服务端代码UserServiceServer.java</p>
 
-<div class="language-markdown highlighter-rouge"><pre class="highlight"><code>package com.hode.thrift;
+<div class="language-markdown highlighter-rouge"><pre class="highlight"><code>package com.hode.finagle;
 
-import org.apache.thrift.TProcessor;
+import java.net.InetSocketAddress;
+
 import org.apache.thrift.protocol.TBinaryProtocol;
-import org.apache.thrift.protocol.TBinaryProtocol.Factory;
-import org.apache.thrift.server.TServer;
-import org.apache.thrift.server.TThreadPoolServer;
-import org.apache.thrift.server.TThreadPoolServer.Args;
-import org.apache.thrift.transport.TServerSocket;
-import org.apache.thrift.transport.TTransportException;
 
-import com.hode.thrift.impl.TUserServiceImpl;
+import com.hode.finagle.impl.FUserServiceImpl;
+import com.hode.thrift.TUserService;
+import com.twitter.finagle.builder.ServerBuilder;
+import com.twitter.finagle.thrift.ThriftServerFramedCodec;
 
 public class UserServiceServer {<span class="sb">
 
 	public static void main(String[] args) {
-
-		try{
-			//设置服务端口为8080
-			TServerSocket serverTransport = new TServerSocket(8080);
-			//设置协议工厂为TBinaryProtocol.Factory()
-			Factory proFactory = new TBinaryProtocol.Factory();
-			//关联处理器与 Hello 服务的实现
-			TProcessor processor = new TUserService.Processor&lt;TUserService.Iface&gt;(new TUserServiceImpl());
-			
-			Args arg = new TThreadPoolServer.Args(serverTransport).processor(processor);
-			arg.protocolFactory(proFactory);
-			TServer server = new TThreadPoolServer(arg);
-			System.out.println("Start server on port 8080...");
-			server.serve();
-		}catch(TTransportException e){
-			e.printStackTrace();
-		}
+		TUserService.ServiceIface server = new FUserServiceImpl();
 		
+		ServerBuilder.safeBuild(
+				new TUserService.Service(server,new TBinaryProtocol.Factory()),
+				ServerBuilder.get().name("UserServiceServer").codec(ThriftServerFramedCodec.get())
+				.bindTo(new InetSocketAddress("localhost",8080)));
+		
+		System.out.println("UserServiceServer is start");
 	}
 
 </span>}
@@ -424,66 +468,91 @@ public class UserServiceServer {<span class="sb">
 </code></pre>
 </div>
 
-<p>编写一个客户端代码</p>
+<p>客户端代码UserServiceClient.java，分别调用两个方法</p>
 
-<div class="language-markdown highlighter-rouge"><pre class="highlight"><code>package com.hode.thrift;
+<div class="language-markdown highlighter-rouge"><pre class="highlight"><code>package com.hode.finagle;
 
+import java.net.InetSocketAddress;
 import java.util.Date;
 
 import org.apache.thrift.protocol.TBinaryProtocol;
-import org.apache.thrift.protocol.TProtocol;
-import org.apache.thrift.transport.TSocket;
-import org.apache.thrift.transport.TTransport;
 
-import com.google.gson.Gson;
+import com.hode.thrift.TUserRequest;
+import com.hode.thrift.TUserResponse;
+import com.hode.thrift.TUserService;
+import com.twitter.finagle.Service;
+import com.twitter.finagle.builder.ClientBuilder;
+import com.twitter.finagle.thrift.ThriftClientFramedCodec;
+import com.twitter.finagle.thrift.ThriftClientRequest;
+import com.twitter.util.Await;
+import com.twitter.util.Future;
+import com.twitter.util.FutureEventListener;
 
 public class UserServiceClient {<span class="sb">
 
-	public static void main(String[] args) {
-		Gson gson = new Gson();
-		try {
-			//设置调用的服务地址为本地，端口为8080
-			TTransport transport = new TSocket("localhost",8080);
-			transport.open();
+	public static void main(String[] args) throws Exception{
+		Service&lt;ThriftClientRequest,byte[]&gt; client = ClientBuilder.safeBuild(
+				ClientBuilder.get().hosts(new InetSocketAddress("localhost",8080))
+				.codec(ThriftClientFramedCodec.get())
+				.hostConnectionLimit(100));
+		
+		TUserService.ServiceIface userClient = new TUserService.ServiceToClient(client,new TBinaryProtocol.Factory());
+		
+		TUserRequest user = new TUserRequest();
+		user.setAge(21);
+		user.setBirthday(new Date().getTime());
+		user.setName("hode");
+		user.setRemark("test");
+		
+		//调用保存方法
+		Future&lt;Void&gt; future = userClient.save(user).addEventListener(new FutureEventListener&lt;Void&gt;(){
+
+			@Override
+			public void onFailure(Throwable arg0) {
+				System.out.println("call fail because: "+arg0);
+			}
+
+			@Override
+			public void onSuccess(Void arg0) {
+				System.out.println("call success.");
+			}
 			
-			//设置传输协议为 TBinaryProtocol
-			TProtocol protocol = new TBinaryProtocol(transport);
-			TUserService.Client client = new TUserService.Client(protocol);
+		});
+		
+		System.out.println(Await.result(future.liftToTry()));
+		
+		//调用查询方法
+		Future&lt;TUserResponse&gt; fu = userClient.findByName("hode").addEventListener(new FutureEventListener&lt;TUserResponse&gt;(){
+
+			@Override
+			public void onFailure(Throwable arg0) {
+				System.out.println("call fail because: "+arg0);
+			}
+
+			@Override
+			public void onSuccess(TUserResponse arg0) {
+				System.out.println("call success. result:"+arg0);
+			}
 			
-			TUserRequest user = new TUserRequest();
-			user.setAge(21);
-			user.setBirthday(new Date().getTime());
-			user.setName("hode");
-			user.setRemark("test");
-			
-			System.out.println(gson.toJson(user));
-			//调用服务的方法
-			client.save(user);
-			
-			TUserResponse rep = client.findByName("hode");
-			System.out.println(gson.toJson(rep));
-			
-			
-			transport.close();
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		});
+		
+		System.out.println(Await.result(fu.liftToTry()));
+		
+		client.close();
 	}
 
-</span>}<span class="sb">
+</span>}
 
-
-</span></code></pre>
+</code></pre>
 </div>
 
 <p>5、如果在ide中可直接分别运行服务端与客户端即可，也可分别使用以下命令完成测试</p>
 
 <div class="language-markdown highlighter-rouge"><pre class="highlight"><code>启动服务端执行
-mvn clean compile exec:java -Dexec.mainClass="com.hode.thrift.UserServiceServer"
+mvn clean compile exec:java -Dexec.mainClass="com.hode.finagle.UserServiceServer"
 
-新打开一个命令窗口执行
-mvn clean compile exec:java -Dexec.mainClass="com.hode.thrift.UserServiceClient"
+新打开一个命令窗口执行(存在线程,使用以下方式完成测试)
+mvn exec:exec -Dexec.executable="java" -Dexec.args="-classpath %classpath;target com.hode.finagle.UserServiceClient"
 </code></pre>
 </div>
 
@@ -1059,10 +1128,10 @@ mvn clean compile exec:java -Dexec.mainClass="com.hode.thrift.UserServiceClient"
 
 <div class="PageNavigation" style="font-size: 12px;">
   
-    <a class="prev pull-left" href="/others/2015/06/04/others-1.html">&laquo; 心灵鸡汤 经典语录</a>
+    <a class="prev pull-left" href="/java/2015/11/12/apache-thrift.html">&laquo; Apache thrift软件框架简单使用介绍</a>
   
   
-    <a class="next pull-right" href="/java/2015/11/15/twitter-rpc-finagle.html">Twitter的RPC框架Finagle简单使用介绍 &raquo;</a>
+    <a class="next pull-right" href="/tomcat/tools/2016/04/01/tomcat-ssl-1.html">tomcat配置ssl单向认证 &raquo;</a>
   
 </div>
 <div>&nbsp;</div>
@@ -1074,8 +1143,8 @@ mvn clean compile exec:java -Dexec.mainClass="com.hode.thrift.UserServiceClient"
 
         /*
 		var disqus_shortname = "mixfate";
-        var disqus_identifier = "http://www.mixfate.com_Apache thrift软件框架简单使用介绍";
-        var disqus_title = "Apache thrift软件框架简单使用介绍";
+        var disqus_identifier = "http://www.mixfate.com_Twitter的RPC框架Finagle简单使用介绍";
+        var disqus_title = "Twitter的RPC框架Finagle简单使用介绍";
 		*/
 
         /* * * DON'T EDIT BELOW THIS LINE * * */
