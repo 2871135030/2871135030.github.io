@@ -172,6 +172,19 @@
           <i class="fa fa-sticky-note"></i>
         </div>
         <div class="row-content">
+          <div class="least-content">2016-05-13 19:14</div>
+          <h4 class="list-group-item-heading" style="font-size: 14px;"><a href="/spring/redis/2016/05/13/spring-session-redis.html">使用Spring Session + Redis管理会话</a></h4>
+
+          <p class="list-group-item-text" style="font-size: 12px;">使用Spring Session + Redis管理会话 1、需先安装好redis，可以参考redis安装。 2、编写pom.xml文件，内容如下 &lt;project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"&gt; &lt;modelVersion&gt;4.0.0&lt;/modelVersion&gt; &lt;groupId&gt;com.hode&lt;/groupId&gt; &lt;artifactId&gt;spring-session&lt;/artifactId&gt; &lt;version&gt;0.0.1-SNAPSHOT&lt;/version&gt; &lt;packaging&gt;war&lt;/packaging&gt; &lt;properties&gt; &lt;spring.version&gt;4.0.7.RELEASE&lt;/spring.version&gt; &lt;log4j.version&gt;1.2.17&lt;/log4j.version&gt; &lt;jackson.version&gt;1.9.12&lt;/jackson.version&gt;...</p>
+        </div>
+      </div>
+      <div class="list-group-separator"></div>
+      
+      <div class="list-group-item">
+        <div class="row-action-primary">
+          <i class="fa fa-sticky-note"></i>
+        </div>
+        <div class="row-content">
           <div class="least-content">2016-05-12 21:33</div>
           <h4 class="list-group-item-heading" style="font-size: 14px;"><a href="/linux/tools/2016/05/12/nginx-linux-install.html">Linux环境下安装nginx</a></h4>
 
@@ -441,19 +454,6 @@
           <h4 class="list-group-item-heading" style="font-size: 14px;"><a href="/java/spring/2016/04/24/spring-activemq-annotation.html">Spring + Activemq注解配置使用</a></h4>
 
           <p class="list-group-item-text" style="font-size: 12px;">Spring + Activemq注解配置使用 本文接文Spring + Activemq基本使用，将消息接收配置简化，使用注解配置 1、首先升级spring所依赖包版本，将上文中pom.xml的spring版本改为4.3.1.RELEASE，旧版本中无@JmsListener注解，其余依赖不变 2、编写一个消息监听类，此类使用了注解JmsListener，并指定了队列名 ReceiveMessageAnnotationListener.java package com.hode.listener; import javax.jms.JMSException; import javax.jms.Message; import javax.jms.ObjectMessage; import javax.jms.TextMessage; import...</p>
-        </div>
-      </div>
-      <div class="list-group-separator"></div>
-      
-      <div class="list-group-item">
-        <div class="row-action-primary">
-          <i class="fa fa-sticky-note"></i>
-        </div>
-        <div class="row-content">
-          <div class="least-content">2016-04-23 20:01</div>
-          <h4 class="list-group-item-heading" style="font-size: 14px;"><a href="/java/2016/04/23/jdk-dynamic-proxy.html">JDK动态代理及cglib动态代理实现分析</a></h4>
-
-          <p class="list-group-item-text" style="font-size: 12px;">JDK动态代理及cglib动态代理实现分析 代理是一种常用的设计模式，其目的就是为其他对象提供一个代理以控制对某个对象的访问，动态代理使得开发人员无需手工编写代理类便可动态地获得代理类，下面就JDK动态代理与CGLIB动态代理展开分析。 1、JDK动态代理分析 JDK动态代理依靠接口实现，所以仅支持实现了接口的动态代理，下面用一个常用的JDK动态代理实现进行分析 实现InvocationHandler实现调用处理器 InvocationHandlerImpl.java ppackage com.qerooy.handler; import java.lang.reflect.InvocationHandler; import java.lang.reflect.Method; import org.apache.log4j.Logger; /** * 动态代理类调用处理器 */ public class...</p>
         </div>
       </div>
       <div class="list-group-separator"></div>
