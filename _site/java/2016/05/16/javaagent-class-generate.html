@@ -6,15 +6,15 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <link rel="shortcut icon" href="/static/img/favicon.ico" />
-        <title>jenkins安装与使用 - Java及相关开源技术博客</title>
+        <title>使用javaagent参数保存二进制class文件 - Java及相关开源技术博客</title>
         <meta name="author" content="Mixfate博客" />
         <meta name="description" content="Mixfate博客,开源技术博客,IT 博客,java技术,spring开源技术,dubbo分布式架构,maven工具" />
-        <meta name="keywords" content="jenkins安装与使用, Java及相关开源技术博客, tools" />
+        <meta name="keywords" content="使用javaagent参数保存二进制class文件, Java及相关开源技术博客, java" />
 
         <meta content="0" property="fb:app_id">
         <meta content="Java及相关开源技术博客" property="og:site_name">
         
-          <meta content="jenkins安装与使用" property="og:title">
+          <meta content="使用javaagent参数保存二进制class文件" property="og:title">
         
         
           <meta content="article" property="og:type">
@@ -23,10 +23,10 @@
           <meta content="Mixfate博客,开源技术博客,IT 博客,java技术,spring开源技术,dubbo分布式架构,maven工具" property="og:description">
         
         
-          <meta content="http://www.mixfate.com/tools/2016/05/06/jenkins.html" property="og:url">
+          <meta content="http://www.mixfate.com/java/2016/05/16/javaagent-class-generate.html" property="og:url">
         
         
-          <meta content="2016-05-06T21:23:48+08:00" property="article:published_time">
+          <meta content="2016-05-16T23:02:58+08:00" property="article:published_time">
           <meta content="http://www.mixfate.com/about/" property="article:author">
         
         
@@ -34,7 +34,7 @@
         
         
           
-          <meta content="tools" property="article:section">
+          <meta content="java" property="article:section">
           
         
         
@@ -44,10 +44,10 @@
         <meta name="twitter:site" content="@\#">
         <meta name="twitter:creator" content="@\#">
         
-          <meta name="twitter:title" content="jenkins安装与使用">
+          <meta name="twitter:title" content="使用javaagent参数保存二进制class文件">
         
         
-          <meta name="twitter:url" content="http://www.mixfate.com/tools/2016/05/06/jenkins.html">
+          <meta name="twitter:url" content="http://www.mixfate.com/java/2016/05/16/javaagent-class-generate.html">
         
         
           <meta name="twitter:description" content="Mixfate博客,开源技术博客,IT 博客,java技术,spring开源技术,dubbo分布式架构,maven工具">
@@ -122,14 +122,14 @@
         </div>
       </div>
       <div class="col-md-9 col-sm-8 col-xs-12">
-      <h2 class="blog-title-pro">jenkins安装与使用</h2>
+      <h2 class="blog-title-pro">使用javaagent参数保存二进制class文件</h2>
       <p class="info">
       
-      <span class="time">2016/05/06</span>
+      <span class="time">2016/05/16</span>
       
       
     <span class="categories">
-        &raquo; <a href="/category/tools">tools</a>
+        &raquo; <a href="/category/java">java</a>
     </span>
     
       </p>
@@ -148,19 +148,19 @@
 	
 	
 	
-	<li class="col-lg-12 col-md-12 col-sm-4 col-xs-12 current-menu-item jenkins.html"><a href="/"><i class="fa fa-home"></i> 首页</a></li>
+	<li class="col-lg-12 col-md-12 col-sm-4 col-xs-12 current-menu-item javaagent-class-generate.html"><a href="/"><i class="fa fa-home"></i> 首页</a></li>
 
 	
 	
 	
 	
-	<li class="col-lg-12 col-md-12 col-sm-4 col-xs-12  jenkins.html"><a href="/category/java"><i class="fa fa-desktop"></i> 分类</a></li>
+	<li class="col-lg-12 col-md-12 col-sm-4 col-xs-12  javaagent-class-generate.html"><a href="/category/java"><i class="fa fa-desktop"></i> 分类</a></li>
 
 	
 	
 	
 	
-	<li class="col-lg-12 col-md-12 col-sm-4 col-xs-12  jenkins.html"><a href="/about/"><i class="fa fa-comments"></i> 关于</a></li>
+	<li class="col-lg-12 col-md-12 col-sm-4 col-xs-12  javaagent-class-generate.html"><a href="/about/"><i class="fa fa-comments"></i> 关于</a></li>
 
 </ul>
     </div>
@@ -181,65 +181,163 @@
             <div class="col-md-9 col-xs-12 full">
                 <div class="post-content well">
 <article class="content">
-    <div class="post" style="font-size: 12px;"><h2 id="jenkins">jenkins安装与使用</h2>
+    <div class="post" style="font-size: 12px;"><h2 id="javaagentclass">使用javaagent参数保存二进制class文件</h2>
 
-<p>本例演示使用jenkins.war包直接部署，版本为2.7.2，可以网址https://jenkins.io/index.html查看。</p>
+<p>使用-javaagent 参数用户可以在执行main函数前执行一些其他操作，如可以动态的修改替换类中代码。既然可以修改类那么自然就可以获取到类（class二进制）了。
+本文同样使用maven去打一个包</p>
 
-<p>步骤一、</p>
+<p>1、编写pom.xml，此处仅仅是定义一个jar工程</p>
 
-<p>下载jenkins包(jenkins.war包)</p>
+<div class="language-markdown highlighter-rouge"><pre class="highlight"><code>&lt;project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"&gt;
+	<span class="nt">&lt;modelVersion&gt;</span>4.0.0<span class="nt">&lt;/modelVersion&gt;</span>
+	<span class="nt">&lt;groupId&gt;</span>com.hode<span class="nt">&lt;/groupId&gt;</span>
+	<span class="nt">&lt;artifactId&gt;</span>clazzagent<span class="nt">&lt;/artifactId&gt;</span>
+	<span class="nt">&lt;version&gt;</span>0.0.1-SNAPSHOT<span class="nt">&lt;/version&gt;</span><span class="sb">
 
-<p>重新配置下jenkins工作目录 /project/jenkins_space</p>
+	&lt;build&gt;
+		&lt;plugins&gt;
+			&lt;plugin&gt;
+				&lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;
+				&lt;artifactId&gt;maven-compiler-plugin&lt;/artifactId&gt;
+				&lt;version&gt;3.1&lt;/version&gt;
+				&lt;configuration&gt;
+					&lt;source&gt;1.8&lt;/source&gt;
+					&lt;target&gt;1.8&lt;/target&gt;
+					&lt;encoding&gt;UTF-8&lt;/encoding&gt;
+				&lt;/configuration&gt;
+			&lt;/plugin&gt;
+			&lt;plugin&gt;
+				&lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;
+				&lt;artifactId&gt;maven-jar-plugin&lt;/artifactId&gt;
+				&lt;version&gt;2.4&lt;/version&gt;
+				&lt;configuration&gt;
+					&lt;archive&gt;&lt;!-- 如果没有被正确打进jar包,请确认MANIFEST.MF是否正确,直接拷贝正确的自动生成的 --&gt;
+						&lt;manifestFile&gt;src/main/resources/META-INF/MANIFEST.MF&lt;/manifestFile&gt;
+					&lt;/archive&gt;
+				&lt;/configuration&gt;
+			&lt;/plugin&gt;
+		&lt;/plugins&gt;
+	&lt;/build&gt;
 
-<div class="language-markdown highlighter-rouge"><pre class="highlight"><code>vi /etc/profile
-文件尾部添加 
-export JENKINS_HOME=/project/jenkins_space
-
-source /etc/profile
-使配置立即生效
+</span><span class="nt">&lt;/project&gt;</span>
 </code></pre>
 </div>
 
-<p>步骤二、</p>
+<p>2、编写一个导出class的类，此类实现了ClassFileTransformer接口并且实现了一个静态方法premain，为了简单起见，只保存指定包下的类二进制文件到指定的目录中。
+代码如下
+ClazzGenerateAgent .java</p>
 
-<p>安装好tomcat，将jenkins.war放到tomcat的webapps中，启动tomcat即可，若出现类似以下警告，
-则直接修改hosts文件(vi /etc/hosts)，将原127.0.0.1替换成127.0.0.1   localhost centos-a即可</p>
+<div class="language-markdown highlighter-rouge"><pre class="highlight"><code>package com.hode;
 
-<div class="language-markdown highlighter-rouge"><pre class="highlight"><code>警告: Could not intialize the host network interface on nullbecause of an error: centos-a: centos-a: 未知的名称或服务
-java.net.UnknownHostException: centos-a: centos-a: 未知的名称或服务
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.lang.instrument.ClassFileTransformer;
+import java.lang.instrument.IllegalClassFormatException;
+import java.lang.instrument.Instrumentation;
+import java.security.ProtectionDomain;
+
+/<span class="ge">**</span>
+<span class="p"> *</span> 导出生成类ClazzGenerateAgent
+<span class="p"> *</span> 需要实现一个静态的public static void premain(String agentArgs,Instrumentation inst)方法
+ <span class="err">*</span>/
+public class ClazzGenerateAgent implements ClassFileTransformer{<span class="sb">
+
+	public static void premain(String agentArgs,Instrumentation inst){
+		inst.addTransformer(new ClazzGenerateAgent());
+	}
+	
+	@Override
+	public byte[] transform(ClassLoader loader, String className,
+			Class&lt;?&gt; classBeingRedefined, ProtectionDomain protectionDomain,
+			byte[] classfileBuffer) throws IllegalClassFormatException {
+		//只导出指定包名下的类
+		if(className.contains("com/hode")){
+			System.out.println(className);
+			int lastIndexOf = className.lastIndexOf("/") + 1;
+			String fileName = className.substring(lastIndexOf) + ".class";
+			exportClazz("c:/clazz/", fileName, classfileBuffer);
+			System.out.println(className+" export success!");
+		}else{
+			
+		}
+		return null;
+	}
+	
+	/**
+	 * 将data保存到文件中
+	 * @param path
+	 * @param filename
+	 * @param data
+	 */
+	private void exportClazz(String path,String filename,byte[] data){
+		try{
+			File file = new File(path+filename);
+			if(!file.exists()){
+				file.createNewFile();
+			}
+			FileOutputStream fos = new FileOutputStream(file);
+			BufferedOutputStream bos = new BufferedOutputStream(fos);
+			bos.write(data);
+			bos.close();
+			fos.close();
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+	}
+
+</span>}
+
 </code></pre>
 </div>
 
-<p>正常启动时提示密码；当然也可直接 cat /project/jenkins_space/secrets/initialAdminPassword 查看密码</p>
+<p>3、接着自定义编写一个MANIFEST.MF文件，文件目录src/main/resources/META-INF/MANIFEST.MF，内容如下</p>
 
-<div class="language-markdown highlighter-rouge"><pre class="highlight"><code><span class="p">*************************************************************
-*************************************************************
-*************************************************************
-</span>
-Jenkins initial setup is required. An admin user has been created and a password generated.
-Please use the following password to proceed to installation:
+<p>MANIFEST.MF</p>
 
-836c01ba144248d2a7a855adf936587b
+<div class="language-markdown highlighter-rouge"><pre class="highlight"><code>Manifest-Version: 1.0
+Premain-Class: com.hode.ClazzGenerateAgent
+Archiver-Version: Plexus Archiver
+Built-By: hode
+Created-By: Apache Maven 3.3.3
+Build-Jdk: 1.8.0_66
 
-This may also be found at: /project/jenkins_space/secrets/initialAdminPassword
-<span class="p">
-*************************************************************
-*************************************************************
-*************************************************************
-</span></code></pre>
-</div>
-
-<p>步骤三、</p>
-
-<p>使用提示的密码登入(默认用户名admin)，初次打开会提示安装插件，关闭提示小窗口即可，打开Jenkins-&gt;系统管理，若有以下提示，需要配置tomcat支持utf-8，在Connector标签中添加属性URIEncoding=”UTF-8”重启即可</p>
-
-<div class="language-markdown highlighter-rouge"><pre class="highlight"><code>Your container doesn't use UTF-8 to decode URLs. If you use non-ASCII characters as a job name etc, this will cause problems. See Containers and Tomcat i18n for more details.
 </code></pre>
 </div>
 
-<p>步骤四、</p>
+<p>4、执行命令，完成安装</p>
 
-<p>正常启动tomcat后，使用浏览器访问jenkins，会要求输入用户名(admin)及密码(后台启动提示的密码)，按提示操作。</p>
+<div class="language-markdown highlighter-rouge"><pre class="highlight"><code>mvn clean install
+</code></pre>
+</div>
+
+<p>安装完成后，可以在maven仓库目录查看jar包，如目录在d:\repository\com\hode\clazzagent\0.0.1-SNAPSHOT\clazzagent-0.0.1-SNAPSHOT.jar</p>
+
+<p>5、编写一个测试类并运行</p>
+<font color="red">注意：运行时需加上jvm参数-javaagent:"D:\repository\com\hode\clazzagent\0.0.1-SNAPSHOT\clazzagent-0.0.1-SNAPSHOT.jar"</font>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>package com.hode;
+
+public class Test {
+
+	public static void main(String[] args) {
+		System.out.println("success");
+	}
+
+}
+</code></pre>
+</div>
+
+<p>在eclipse中在VM arguments中填写，在命令行模式下执行，则如下</p>
+
+<div class="language-markdown highlighter-rouge"><pre class="highlight"><code>java -javaagent:"D:<span class="se">\r</span>epository<span class="se">\c</span>om<span class="se">\h</span>ode<span class="se">\c</span>lazzagent<span class="se">\0</span>.0.1-SNAPSHOT<span class="se">\c</span>lazzagent-0.0.1-SNAPSHOT.jar" com.hode.Test
+</code></pre>
+</div>
+
+<p>执行完成后，即可以类ClazzGenerateAgent定义的保存目录c:\clazz中查看到Test.class类文件，使用反编译工具可查看具体内容。</p>
+
+<h4><a href="/rar/class-agent.rar"><b>Demo代码下载</b></a></h4>
 
 <p>结束。</p>
 </div>
@@ -267,87 +365,15 @@ This may also be found at: /project/jenkins_space/secrets/initialAdminPassword
     
         
             
-        
-    
-
-    
-    
-        
-            
-        
-    
-
-    
-    
-        
-            
-        
-    
-        
-            
-        
-    
-
-    
-    
-        
-            
-        
-    
-        
-            
                 
                 <div class="panel-body">
                 <h5>相关博客</h5>
                 <ul>
                 
                 <li class="relatedPost" style="font-size: 12px;">
-                    <a href="http://www.mixfate.com/linux/tools/2016/05/12/nginx-linux-install.html">Linux环境下安装nginx</a>
+                    <a href="http://www.mixfate.com/spring/java/2016/05/15/spring-security.html">Spring Security配置使用介绍（一）简单配置</a>
                     
-                        <small>(所属分类: <a href="/category/linux">linux</a>, <a href="/category/tools">tools</a>)</small>
-                    
-                </li>
-                
-                
-            
-        
-    
-
-    
-    
-        
-            
-        
-    
-        
-            
-        
-    
-        
-            
-        
-    
-
-    
-    
-        
-            
-        
-    
-
-    
-    
-        
-            
-        
-    
-        
-            
-                
-                <li class="relatedPost" style="font-size: 12px;">
-                    <a href="http://www.mixfate.com/maven/tools/2016/05/09/maven-deploy-release.html">Maven命令:deploy和release命令</a>
-                    
-                        <small>(所属分类: <a href="/category/maven">maven</a>, <a href="/category/tools">tools</a>)</small>
+                        <small>(所属分类: <a href="/category/spring">spring</a>, <a href="/category/java">java</a>)</small>
                     
                 </li>
                 
@@ -362,17 +388,25 @@ This may also be found at: /project/jenkins_space/secrets/initialAdminPassword
             
         
     
+
+    
+    
         
             
-                
-                <li class="relatedPost" style="font-size: 12px;">
-                    <a href="http://www.mixfate.com/maven/tools/2016/05/08/maven-nexus2.9.0.html">Nexus2.9.0 私服 linux安装使用</a>
-                    
-                        <small>(所属分类: <a href="/category/maven">maven</a>, <a href="/category/tools">tools</a>)</small>
-                    
-                </li>
-                
-                
+        
+    
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+    
+        
             
         
     
@@ -383,9 +417,9 @@ This may also be found at: /project/jenkins_space/secrets/initialAdminPassword
             
                 
                 <li class="relatedPost" style="font-size: 12px;">
-                    <a href="http://www.mixfate.com/tools/tomcat/2016/05/07/jenkins-tomcat-deploy.html">jenkins远程发布应用到tomcat中，使用shell脚本或jenkins deploy插件</a>
+                    <a href="http://www.mixfate.com/java/spring/webservice/2016/05/11/spring4-cxf3-webservice.html">Spring4 + cxf3 构建wsdl webservice</a>
                     
-                        <small>(所属分类: <a href="/category/tools">tools</a>, <a href="/category/tomcat">tomcat</a>)</small>
+                        <small>(所属分类: <a href="/category/java">java</a>, <a href="/category/spring">spring</a>, <a href="/category/webservice">webservice</a>)</small>
                     
                 </li>
                 
@@ -397,8 +431,23 @@ This may also be found at: /project/jenkins_space/secrets/initialAdminPassword
             
         
     
+        
+            
+        
+    
 
     
+    
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
     
         
             
@@ -410,14 +459,50 @@ This may also be found at: /project/jenkins_space/secrets/initialAdminPassword
         
             
         
+    
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+    
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+    
+        
+            
+        
+    
+
+    
     
         
             
                 
                 <li class="relatedPost" style="font-size: 12px;">
-                    <a href="http://www.mixfate.com/linux/tools/2016/05/05/linux-centos-scp.html">centos minimal使用ssh/scp命令不录入密码</a>
+                    <a href="http://www.mixfate.com/java/spring/webservice/2016/05/04/spring4-cxf3.html">Spring4 + cxf3 构建restful webservice</a>
                     
-                        <small>(所属分类: <a href="/category/linux">linux</a>, <a href="/category/tools">tools</a>)</small>
+                        <small>(所属分类: <a href="/category/java">java</a>, <a href="/category/spring">spring</a>, <a href="/category/webservice">webservice</a>)</small>
                     
                 </li>
                 
@@ -425,6 +510,21 @@ This may also be found at: /project/jenkins_space/secrets/initialAdminPassword
             
         
     
+        
+            
+        
+    
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+    
 
     
     
@@ -447,6 +547,28 @@ This may also be found at: /project/jenkins_space/secrets/initialAdminPassword
             
         
     
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+    
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+    
 
     
     
@@ -458,6 +580,13 @@ This may also be found at: /project/jenkins_space/secrets/initialAdminPassword
             
         
     
+
+    
+    
+        
+            
+        
+    
         
             
         
@@ -468,14 +597,21 @@ This may also be found at: /project/jenkins_space/secrets/initialAdminPassword
         
             
         
+    
+        
+            
+        
+    
+
+    
     
         
             
                 
                 <li class="relatedPost" style="font-size: 12px;">
-                    <a href="http://www.mixfate.com/mysql/tools/2016/05/01/mysql-install.html">mysql windows绿色版使用，导入导出功能</a>
+                    <a href="http://www.mixfate.com/java/spring/quartz/2016/04/25/spring-quartz-annotation.html">Spring + quartz注解配置使用</a>
                     
-                        <small>(所属分类: <a href="/category/mysql">mysql</a>, <a href="/category/tools">tools</a>)</small>
+                        <small>(所属分类: <a href="/category/java">java</a>, <a href="/category/spring">spring</a>, <a href="/category/quartz">quartz</a>)</small>
                     
                 </li>
                 
@@ -483,9 +619,6 @@ This may also be found at: /project/jenkins_space/secrets/initialAdminPassword
             
         
     
-
-    
-    
         
             
         
@@ -499,12 +632,15 @@ This may also be found at: /project/jenkins_space/secrets/initialAdminPassword
     
         
             
-        
-    
-
-    
-    
-        
+                
+                <li class="relatedPost" style="font-size: 12px;">
+                    <a href="http://www.mixfate.com/java/spring/2016/04/24/spring-activemq-annotation.html">Spring + Activemq注解配置使用</a>
+                    
+                        <small>(所属分类: <a href="/category/java">java</a>, <a href="/category/spring">spring</a>)</small>
+                    
+                </li>
+                
+                
             
         
     
@@ -517,53 +653,15 @@ This may also be found at: /project/jenkins_space/secrets/initialAdminPassword
     
         
             
-        
-    
-        
-            
-        
-    
-
-    
-    
-        
-            
-        
-    
-        
-            
-        
-    
-
-    
-    
-        
-            
-        
-    
-        
-            
-        
-    
-        
-            
-        
-    
-
-    
-    
-        
-            
-        
-    
-        
-            
-        
-    
-
-    
-    
-        
+                
+                <li class="relatedPost" style="font-size: 12px;">
+                    <a href="http://www.mixfate.com/java/2016/04/23/jdk-dynamic-proxy.html">JDK动态代理及cglib动态代理实现分析</a>
+                    
+                        <small>(所属分类: <a href="/category/java">java</a>)</small>
+                    
+                </li>
+                
+                
             
         
     
@@ -849,10 +947,8 @@ This may also be found at: /project/jenkins_space/secrets/initialAdminPassword
 
 <div class="PageNavigation" style="font-size: 12px;">
   
-    <a class="prev pull-left" href="/linux/tools/2016/05/05/linux-centos-scp.html">&laquo; centos minimal使用ssh/scp命令不录入密码</a>
+    <a class="prev pull-left" href="/spring/java/2016/05/15/spring-security.html">&laquo; Spring Security配置使用介绍（一）简单配置</a>
   
-  
-    <a class="next pull-right" href="/tools/tomcat/2016/05/07/jenkins-tomcat-deploy.html">jenkins远程发布应用到tomcat中，使用shell脚本或jenkins deploy插件 &raquo;</a>
   
 </div>
 <div>&nbsp;</div>
@@ -864,8 +960,8 @@ This may also be found at: /project/jenkins_space/secrets/initialAdminPassword
 
         /*
 		var disqus_shortname = "mixfate";
-        var disqus_identifier = "http://www.mixfate.com_jenkins安装与使用";
-        var disqus_title = "jenkins安装与使用";
+        var disqus_identifier = "http://www.mixfate.com_使用javaagent参数保存二进制class文件";
+        var disqus_title = "使用javaagent参数保存二进制class文件";
 		*/
 
         /* * * DON'T EDIT BELOW THIS LINE * * */
