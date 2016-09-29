@@ -6,15 +6,15 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <link rel="shortcut icon" href="/static/img/favicon.ico" />
-        <title>Spring + Activemq注解配置使用 - Java及相关开源技术博客</title>
+        <title>Spring Security配置使用介绍（三）暴力动态配置权限（修改源码不推荐） - Java及相关开源技术博客</title>
         <meta name="author" content="Mixfate博客" />
         <meta name="description" content="Mixfate博客,开源技术博客,IT 博客,java技术,spring开源技术,dubbo分布式架构,maven工具" />
-        <meta name="keywords" content="Spring + Activemq注解配置使用, Java及相关开源技术博客, java, spring" />
+        <meta name="keywords" content="Spring Security配置使用介绍（三）暴力动态配置权限（修改源码不推荐）, Java及相关开源技术博客, spring, java" />
 
         <meta content="0" property="fb:app_id">
         <meta content="Java及相关开源技术博客" property="og:site_name">
         
-          <meta content="Spring + Activemq注解配置使用" property="og:title">
+          <meta content="Spring Security配置使用介绍（三）暴力动态配置权限（修改源码不推荐）" property="og:title">
         
         
           <meta content="article" property="og:type">
@@ -23,10 +23,10 @@
           <meta content="Mixfate博客,开源技术博客,IT 博客,java技术,spring开源技术,dubbo分布式架构,maven工具" property="og:description">
         
         
-          <meta content="http://www.mixfate.com/java/spring/2016/04/24/spring-activemq-annotation.html" property="og:url">
+          <meta content="http://www.mixfate.com/spring/java/2016/05/16/spring-security-3.html" property="og:url">
         
         
-          <meta content="2016-04-24T20:12:48+08:00" property="article:published_time">
+          <meta content="2016-05-16T21:55:58+08:00" property="article:published_time">
           <meta content="http://www.mixfate.com/about/" property="article:author">
         
         
@@ -34,7 +34,7 @@
         
         
           
-          <meta content="java" property="article:section">
+          <meta content="spring" property="article:section">
           
         
         
@@ -44,10 +44,10 @@
         <meta name="twitter:site" content="@\#">
         <meta name="twitter:creator" content="@\#">
         
-          <meta name="twitter:title" content="Spring + Activemq注解配置使用">
+          <meta name="twitter:title" content="Spring Security配置使用介绍（三）暴力动态配置权限（修改源码不推荐）">
         
         
-          <meta name="twitter:url" content="http://www.mixfate.com/java/spring/2016/04/24/spring-activemq-annotation.html">
+          <meta name="twitter:url" content="http://www.mixfate.com/spring/java/2016/05/16/spring-security-3.html">
         
         
           <meta name="twitter:description" content="Mixfate博客,开源技术博客,IT 博客,java技术,spring开源技术,dubbo分布式架构,maven工具">
@@ -122,14 +122,14 @@
         </div>
       </div>
       <div class="col-md-9 col-sm-8 col-xs-12">
-      <h2 class="blog-title-pro">Spring + Activemq注解配置使用</h2>
+      <h2 class="blog-title-pro">Spring Security配置使用介绍（三）暴力动态配置权限（修改源码不推荐）</h2>
       <p class="info">
       
-      <span class="time">2016/04/24</span>
+      <span class="time">2016/05/16</span>
       
       
     <span class="categories">
-        &raquo; <a href="/category/java">java</a>, <a href="/category/spring">spring</a>
+        &raquo; <a href="/category/spring">spring</a>, <a href="/category/java">java</a>
     </span>
     
       </p>
@@ -148,19 +148,19 @@
 	
 	
 	
-	<li class="col-lg-12 col-md-12 col-sm-4 col-xs-12 current-menu-item spring-activemq-annotation.html"><a href="/"><i class="fa fa-home"></i> 首页</a></li>
+	<li class="col-lg-12 col-md-12 col-sm-4 col-xs-12 current-menu-item spring-security-3.html"><a href="/"><i class="fa fa-home"></i> 首页</a></li>
 
 	
 	
 	
 	
-	<li class="col-lg-12 col-md-12 col-sm-4 col-xs-12  spring-activemq-annotation.html"><a href="/category/java"><i class="fa fa-desktop"></i> 分类</a></li>
+	<li class="col-lg-12 col-md-12 col-sm-4 col-xs-12  spring-security-3.html"><a href="/category/java"><i class="fa fa-desktop"></i> 分类</a></li>
 
 	
 	
 	
 	
-	<li class="col-lg-12 col-md-12 col-sm-4 col-xs-12  spring-activemq-annotation.html"><a href="/about/"><i class="fa fa-comments"></i> 关于</a></li>
+	<li class="col-lg-12 col-md-12 col-sm-4 col-xs-12  spring-security-3.html"><a href="/about/"><i class="fa fa-comments"></i> 关于</a></li>
 
 </ul>
     </div>
@@ -181,114 +181,217 @@
             <div class="col-md-9 col-xs-12 full">
                 <div class="post-content well">
 <article class="content">
-    <div class="post" style="font-size: 12px;"><h2 id="spring--activemq">Spring + Activemq注解配置使用</h2>
+    <div class="post" style="font-size: 12px;"><h2 id="spring-security">Spring Security配置使用介绍（三）暴力动态配置权限（修改源码不推荐）</h2>
 
-<p>本文接文<a href="/java/spring/2016/04/17/spring-activemq.html">Spring + Activemq基本使用</a>，将消息接收配置简化，使用注解配置</p>
+<p>前面介绍过<a href="/spring/java/2016/05/16/spring-security-2.html">spring security动态配置权限</a>，使用的方法是增加过滤拦截对权限进行处理，
+此篇介绍修改源码实现动态权限，部分代码基于上一篇进行修改，帮助理解spring security。</p>
 
-<p>1、首先升级spring所依赖包版本，将上文中pom.xml的spring版本改为4.3.1.RELEASE，旧版本中无@JmsListener注解，其余依赖不变</p>
+<p>1、此方法修改源码，不需要另外增加拦截器，我们先在applicationContext-security.xml配置好已有权限，再动态调整其权限。</p>
 
-<p>2、编写一个消息监听类，此类使用了注解JmsListener，并指定了队列名</p>
+<p>applicationContext-security.xml内容如下</p>
 
-<p>ReceiveMessageAnnotationListener.java</p>
+<div class="language-markdown highlighter-rouge"><pre class="highlight"><code><span class="cp">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
+&lt;beans:beans xmlns="http://www.springframework.org/schema/security"
+	xmlns:beans="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+        http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.2.xsd"&gt;<span class="sb">
 
-<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">package</span> <span class="n">com</span><span class="p">.</span><span class="nf">hode</span><span class="p">.</span><span class="nf">listener</span><span class="p">;</span>
-
-<span class="n">import</span> <span class="n">javax</span><span class="p">.</span><span class="nf">jms</span><span class="o">.</span><span class="no">JMSException</span><span class="p">;</span>
-<span class="n">import</span> <span class="n">javax</span><span class="p">.</span><span class="nf">jms</span><span class="o">.</span><span class="no">Message</span><span class="p">;</span>
-<span class="n">import</span> <span class="n">javax</span><span class="p">.</span><span class="nf">jms</span><span class="o">.</span><span class="no">ObjectMessage</span><span class="p">;</span>
-<span class="n">import</span> <span class="n">javax</span><span class="p">.</span><span class="nf">jms</span><span class="o">.</span><span class="no">TextMessage</span><span class="p">;</span>
-
-<span class="n">import</span> <span class="n">org</span><span class="p">.</span><span class="nf">apache</span><span class="p">.</span><span class="nf">log4j</span><span class="o">.</span><span class="no">Logger</span><span class="p">;</span>
-<span class="n">import</span> <span class="n">org</span><span class="p">.</span><span class="nf">springframework</span><span class="p">.</span><span class="nf">jms</span><span class="p">.</span><span class="nf">annotation</span><span class="o">.</span><span class="no">JmsListener</span><span class="p">;</span>
-<span class="n">import</span> <span class="n">org</span><span class="p">.</span><span class="nf">springframework</span><span class="p">.</span><span class="nf">stereotype</span><span class="o">.</span><span class="no">Component</span><span class="p">;</span>
-
-<span class="n">import</span> <span class="n">com</span><span class="p">.</span><span class="nf">hode</span><span class="p">.</span><span class="nf">model</span><span class="o">.</span><span class="no">UserMessage</span><span class="p">;</span>
-
-<span class="vi">@Component</span>
-<span class="kp">public</span> <span class="k">class</span> <span class="nc">ReceiveMessageAnnotationListener</span> <span class="p">{</span>
-
-	<span class="kp">private</span> <span class="n">static</span> <span class="n">final</span> <span class="no">Logger</span> <span class="n">log</span> <span class="o">=</span> <span class="no">Logger</span><span class="p">.</span><span class="nf">getLogger</span><span class="p">(</span><span class="no">ReceiveMessageAnnotationListener</span><span class="p">.</span><span class="nf">class</span><span class="p">);</span>
-
-	<span class="sr">/**
-	 * 处理消息
-	 * @param message
-	 */</span>
-	<span class="vi">@JmsListener</span><span class="p">(</span><span class="n">destination</span><span class="o">=</span><span class="s2">"UserQueue"</span><span class="p">)</span>
-	<span class="kp">public</span> <span class="n">void</span> <span class="n">onMessageHandle</span><span class="p">(</span><span class="no">Message</span> <span class="n">message</span><span class="p">)</span> <span class="p">{</span>
-		<span class="k">if</span> <span class="p">(</span><span class="n">message</span> <span class="n">instanceof</span> <span class="no">TextMessage</span><span class="p">)</span> <span class="p">{</span>
-			<span class="no">TextMessage</span> <span class="n">text</span> <span class="o">=</span> <span class="p">(</span><span class="no">TextMessage</span><span class="p">)</span> <span class="n">message</span><span class="p">;</span>
-			<span class="n">try</span> <span class="p">{</span>
-				<span class="n">log</span><span class="p">.</span><span class="nf">info</span><span class="p">(</span><span class="s2">"Received text message:"</span> <span class="o">+</span> <span class="n">text</span><span class="p">.</span><span class="nf">getText</span><span class="p">());</span>
-			<span class="p">}</span> <span class="kp">catch</span> <span class="p">(</span><span class="no">JMSException</span> <span class="n">e</span><span class="p">)</span> <span class="p">{</span>
-				<span class="n">e</span><span class="p">.</span><span class="nf">printStackTrace</span><span class="p">();</span>
-			<span class="p">}</span>
-		<span class="p">}</span><span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">message</span> <span class="n">instanceof</span> <span class="no">ObjectMessage</span><span class="p">){</span>
-			<span class="no">ObjectMessage</span> <span class="n">om</span> <span class="o">=</span> <span class="p">(</span><span class="no">ObjectMessage</span><span class="p">)</span><span class="n">message</span><span class="p">;</span>
-			<span class="no">UserMessage</span> <span class="n">um</span><span class="p">;</span>
-			<span class="n">try</span> <span class="p">{</span>
-				<span class="n">um</span> <span class="o">=</span> <span class="p">(</span><span class="no">UserMessage</span><span class="p">)</span><span class="n">om</span><span class="p">.</span><span class="nf">getObject</span><span class="p">();</span>
-				<span class="n">log</span><span class="p">.</span><span class="nf">info</span><span class="p">(</span><span class="s2">"Received Object message:"</span> <span class="o">+</span> <span class="n">um</span><span class="p">);</span>
-			<span class="p">}</span> <span class="kp">catch</span> <span class="p">(</span><span class="no">JMSException</span> <span class="n">e</span><span class="p">)</span> <span class="p">{</span>
-				<span class="n">e</span><span class="p">.</span><span class="nf">printStackTrace</span><span class="p">();</span>
-			<span class="p">}</span>
-		<span class="p">}</span><span class="k">else</span><span class="p">{</span>
-			<span class="n">log</span><span class="p">.</span><span class="nf">warn</span><span class="p">(</span><span class="s2">"nothing proper message"</span><span class="p">);</span>
-		<span class="p">}</span>
-	<span class="p">}</span>
+	&lt;http auto-config="true" use-expressions="true" access-denied-page="/access/denied.do"&gt;
+		&lt;!-- 允许访问 --&gt;
+		&lt;intercept-url pattern="/css/**" access="permitAll" /&gt;
+		&lt;intercept-url pattern="/js/**" access="permitAll" /&gt;
+		&lt;intercept-url pattern="/access/**" access="permitAll" /&gt; 
+		
+		&lt;!-- 已有权限 --&gt;
+		&lt;intercept-url pattern="/admin**" access="hasRole('test_role_admin')" /&gt;
+		&lt;intercept-url pattern="/normal**" access="hasRole('test_role_normal')" /&gt;
+		&lt;intercept-url pattern="/manage**" access="hasAnyRole('test_role_admin','test_role_normal')" /&gt;
+		
+		&lt;!-- 表示其他均需授权访问url --&gt;
+		&lt;intercept-url pattern="/**" access="isAuthenticated()" /&gt;
+		
+		&lt;!-- 登录url及登录失败显示url --&gt;
+		&lt;form-login login-page="/access/login.do"
+			authentication-failure-url="/access/login.do"
+			authentication-success-handler-ref="loginSuccessHandler"/&gt;
+		&lt;logout success-handler-ref="logoutSuccessHandler" /&gt;
+		
+	&lt;/http&gt;
 	
-<span class="p">}</span></code></pre></figure>
-
-<p>3、添加spring配置文件applicationContext-mq-annotation.xml，其内容如下</p>
-
-<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="o">&lt;</span><span class="p">?</span><span class="n">xml</span> <span class="n">version</span><span class="o">=</span><span class="s2">"1.0"</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">"UTF-8"</span><span class="sc">?&gt;</span>
-<span class="o">&lt;</span><span class="n">beans</span> <span class="n">xmlns</span><span class="o">=</span><span class="s2">"http://www.springframework.org/schema/beans"</span> <span class="n">xmlns</span><span class="ss">:xsi</span><span class="o">=</span><span class="s2">"http://www.w3.org/2001/XMLSchema-instance"</span>
-	<span class="n">xmlns</span><span class="ss">:context</span><span class="o">=</span><span class="s2">"http://www.springframework.org/schema/context"</span>
-	<span class="n">xmlns</span><span class="ss">:jms</span><span class="o">=</span><span class="s2">"http://www.springframework.org/schema/jms"</span>
-	<span class="n">xsi</span><span class="ss">:schemaLocation</span><span class="o">=</span><span class="s2">"http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
-        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd
-        http://www.springframework.org/schema/jms http://www.springframework.org/schema/jms/spring-jms-4.1.xsd "</span><span class="o">&gt;</span>
+	&lt;beans:bean id="loginSuccessHandler" class="com.hode.security.handler.UserLoginSuccessHandler"&gt;
+		&lt;beans:property name="defaultTargetUrl" value="/manage.do" /&gt;
+	&lt;/beans:bean&gt;
 	
-	<span class="o">&lt;</span><span class="n">context</span><span class="ss">:component</span><span class="o">-</span><span class="nb">scan</span> <span class="n">base</span><span class="o">-</span><span class="n">package</span><span class="o">=</span><span class="s2">"com"</span> <span class="o">/&gt;</span>
+	&lt;beans:bean id="logoutSuccessHandler" class="com.hode.security.handler.UserLogoutSuccessHandler"&gt;
+		&lt;beans:property name="defaultTargetUrl" value="/access/login.do" /&gt;
+	&lt;/beans:bean&gt;
 	
-	<span class="o">&lt;</span><span class="n">jms</span><span class="ss">:annotation</span><span class="o">-</span><span class="n">driven</span><span class="o">/&gt;</span>
+	&lt;authentication-manager alias="authenticationManager"&gt;
+		&lt;authentication-provider user-service-ref="userDetailsService"&gt;
+			&lt;password-encoder hash="md5" &gt;&lt;salt-source system-wide="hode" /&gt;&lt;/password-encoder&gt;
+		&lt;/authentication-provider&gt;
+	&lt;/authentication-manager&gt;
 	
-	<span class="o">&lt;</span><span class="n">bean</span> <span class="nb">id</span><span class="o">=</span><span class="s2">"jmsListenerContainerFactory"</span> <span class="k">class</span><span class="o">=</span><span class="s2">"org.springframework.jms.config.DefaultJmsListenerContainerFactory"</span> <span class="o">&gt;</span>
-		<span class="o">&lt;</span><span class="n">property</span> <span class="nb">name</span><span class="o">=</span><span class="s2">"connectionFactory"</span><span class="o">&gt;</span>
-			<span class="o">&lt;</span><span class="n">bean</span> <span class="k">class</span><span class="o">=</span><span class="s2">"org.apache.activemq.ActiveMQConnectionFactory"</span><span class="o">&gt;</span>
-				<span class="o">&lt;</span><span class="n">property</span> <span class="nb">name</span><span class="o">=</span><span class="s2">"brokerURL"</span><span class="o">&gt;</span>
-					<span class="o">&lt;</span><span class="n">value</span><span class="o">&gt;</span><span class="n">tcp</span><span class="ss">:/</span><span class="o">/</span><span class="mi">192</span><span class="o">.</span><span class="mi">167</span><span class="o">.</span><span class="mi">48</span><span class="o">.</span><span class="mi">128</span><span class="p">:</span><span class="mi">61616</span><span class="o">&lt;</span><span class="sr">/value&gt;
-				&lt;/</span><span class="n">property</span><span class="o">&gt;</span>
-			<span class="o">&lt;</span><span class="sr">/bean&gt;
-		&lt;/</span><span class="n">property</span><span class="o">&gt;</span>
-	<span class="o">&lt;</span><span class="sr">/bean&gt;
+</span><span class="nt">&lt;/beans:beans&gt;</span>
+</code></pre>
+</div>
+
+<p>2、下载spring security源码，对类DefaultFilterInvocationSecurityMetadataSource进行修改，可以看到此类同样有个requestMap变量，为final私有变量，
+将其final去掉并增加setter和getter方法，用于动态修改权限，修改后代码如下（仅列出变更处，详情可看demo，文章尾部附下载地址）</p>
+
+<div class="language-markdown highlighter-rouge"><pre class="highlight"><code>......
+	private Map<span class="nt">&lt;RequestMatcher</span><span class="err">,</span> <span class="na">Collection</span><span class="err">&lt;</span><span class="na">ConfigAttribute</span><span class="nt">&gt;</span>&gt; requestMap;
+......
+	public Map<span class="nt">&lt;RequestMatcher</span><span class="err">,</span> <span class="na">Collection</span><span class="err">&lt;</span><span class="na">ConfigAttribute</span><span class="nt">&gt;</span>&gt; getRequestMap() {
+		return requestMap;
+	}<span class="sb">
+
+	public void setRequestMap(
+			Map&lt;RequestMatcher, Collection&lt;ConfigAttribute&gt;&gt; requestMap) {
+		this.requestMap = requestMap;
+	}
+</span>......	
+</code></pre>
+</div>
+
+<p>3、新增一个SpringUtil.java工具类，用于取bean，</p>
+
+<p>SpringUtil.java</p>
+
+<div class="language-markdown highlighter-rouge"><pre class="highlight"><code>package com.hode.util;
+
+import org.springframework.beans.BeansException;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.ApplicationContextAware;
+import org.springframework.stereotype.Component;
+
+@Component
+public class SpringUtil implements ApplicationContextAware {<span class="sb">
+
+	public static ApplicationContext context;
+
+	public static ApplicationContext getApplicationContext() {
+		return context;
+	}
+
+	@Override
+	public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
+		SpringUtil.context = applicationContext;
+	}
 	
-&lt;/</span><span class="n">beans</span><span class="o">&gt;</span></code></pre></figure>
+	@SuppressWarnings("unchecked")
+	public static &lt;T&gt; T getBean(String name) throws BeansException{
+		return (T)context.getBean(name);
+	}
+	
+	@SuppressWarnings("unchecked")
+	public static &lt;T&gt; T getBean(Class&lt;?&gt; clazz) throws BeansException{
+		return (T)context.getBean(clazz);
+	}
 
-<p>其中关键标签为<font color="red">&lt;jms:annotation-driven/&gt;</font></p>
+</span>}
+</code></pre>
+</div>
 
-<font color="red">另id必须命名为jmsListenerContainerFactory</font>
+<p>4、下载spring security源码，对ExpressionBasedFilterInvocationSecurityMetadataSource进行修改，将processMap方法改为公有，同时String expression下方增加判断，</p>
 
-<p>4、编写一个主类监听消息
-AppAnnotationServer.java</p>
+<p>修改后代码如下（仅列出变更处，详情可看demo，文章尾部附下载地址）</p>
 
-<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">package</span> <span class="n">com</span><span class="p">.</span><span class="nf">hode</span><span class="p">;</span>
+<div class="language-markdown highlighter-rouge"><pre class="highlight"><code>......
+ public static LinkedHashMap<span class="nt">&lt;RequestMatcher</span><span class="err">,</span> <span class="na">Collection</span><span class="err">&lt;</span><span class="na">ConfigAttribute</span><span class="nt">&gt;</span>&gt; processMap
+......
+if(expression==null) //注意首次expression若有值,attribute已转为WebExpressionConfigAttribute类型对象
+            	expression = entry.getValue().toArray(new ConfigAttribute<span class="p">[</span><span class="nv">1</span><span class="p">]</span>)<span class="p">[</span><span class="nv">0</span><span class="p">]</span>.toString();
+......
+</code></pre>
+</div>
 
-<span class="n">import</span> <span class="n">org</span><span class="p">.</span><span class="nf">springframework</span><span class="p">.</span><span class="nf">context</span><span class="p">.</span><span class="nf">support</span><span class="o">.</span><span class="no">ClassPathXmlApplicationContext</span><span class="p">;</span>
+<p>5、重新调整AccessController.java中的reload方法，内容如下</p>
 
-<span class="sr">/**
- * 服务
- */</span>
-<span class="kp">public</span> <span class="k">class</span> <span class="nc">AppAnnotationServer</span> <span class="p">{</span>
+<p>AccessController.java</p>
 
-	<span class="vi">@SuppressWarnings</span><span class="p">(</span><span class="s2">"resource"</span><span class="p">)</span>
-	<span class="kp">public</span> <span class="n">static</span> <span class="n">void</span> <span class="n">main</span><span class="p">(</span><span class="no">String</span><span class="p">[]</span> <span class="n">args</span><span class="p">)</span> <span class="n">throws</span> <span class="no">Exception</span><span class="p">{</span>
-		<span class="no">ClassPathXmlApplicationContext</span> <span class="n">context</span> <span class="o">=</span> <span class="kp">new</span> <span class="no">ClassPathXmlApplicationContext</span><span class="p">(</span><span class="s2">"classpath:applicationContext-mq-annotation.xml"</span><span class="p">);</span>
-		<span class="n">context</span><span class="p">.</span><span class="nf">registerShutdownHook</span><span class="p">();</span>
-	<span class="p">}</span>
+<div class="language-markdown highlighter-rouge"><pre class="highlight"><code>package com.hode.controller;
 
-<span class="p">}</span></code></pre></figure>
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.LinkedHashMap;
 
-<p>同样使用上文中发送消息用例，往mq队列发送消息完成测试。</p>
+import javax.servlet.http.HttpServletRequest;
+
+import org.springframework.security.access.ConfigAttribute;
+import org.springframework.security.access.SecurityConfig;
+import org.springframework.security.web.access.expression.DefaultWebSecurityExpressionHandler;
+import org.springframework.security.web.access.expression.ExpressionBasedFilterInvocationSecurityMetadataSource;
+import org.springframework.security.web.access.intercept.FilterSecurityInterceptor;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+import org.springframework.security.web.util.matcher.RequestMatcher;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.hode.util.SpringUtil;
+
+@Controller
+@RequestMapping("access")
+public class AccessController {<span class="sb">
+
+	@RequestMapping("login")
+	public String login(HttpServletRequest request){
+		return "login"; //返回login.jsp
+	}
+	
+	@RequestMapping("denied")
+	public String denied(HttpServletRequest request){
+		return "denied";
+	}
+	
+	//此处动态配置admin访问normal.do权限
+	@RequestMapping("reload")
+	@ResponseBody
+	public String reload(){
+		try{
+			FilterSecurityInterceptor interceptor = SpringUtil.getBean(FilterSecurityInterceptor.class);
+			DefaultWebSecurityExpressionHandler expressionHandler = SpringUtil.getBean(DefaultWebSecurityExpressionHandler.class);
+			ExpressionBasedFilterInvocationSecurityMetadataSource metadataSource = (ExpressionBasedFilterInvocationSecurityMetadataSource) interceptor.obtainSecurityMetadataSource();
+	
+			LinkedHashMap&lt;RequestMatcher, Collection&lt;ConfigAttribute&gt;&gt; requestMap = (LinkedHashMap&lt;RequestMatcher, Collection&lt;ConfigAttribute&gt;&gt;) metadataSource.getRequestMap();
+	
+			//修改权限
+			RequestMatcher rm = new AntPathRequestMatcher("/normal**");
+    		ConfigAttribute ca = new SecurityConfig("hasAnyRole('test_role_normal','test_role_admin')");
+			Collection&lt;ConfigAttribute&gt; value = new ArrayList&lt;ConfigAttribute&gt;();
+			value.add(ca);
+			requestMap.put(rm, value);
+			
+	
+			LinkedHashMap&lt;RequestMatcher, Collection&lt;ConfigAttribute&gt;&gt; result = ExpressionBasedFilterInvocationSecurityMetadataSource.processMap(requestMap, expressionHandler.getExpressionParser());
+			metadataSource.setRequestMap(result);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return "reload success";
+	}
+
+</span>}
+
+</code></pre>
+</div>
+
+<p>6、启动JettyServer，分别使用以下url访问完成动态权限测试</p>
+
+<div class="language-markdown highlighter-rouge"><pre class="highlight"><code>打开登录页面 http://localhost/access/login.do
+选中admin点击提交，此时admin用户登录成功；跳转到http://localhost/manage.do中，
+根据权限配置admin用户有权访问http://localhost/admin.do，而无权限访问http://localhost/normal.do（访问时将显示禁止访问页面）
+
+同样normal用户登录成功；跳转到http://localhost/manage.do中，
+根据权限配置normal用户无权访问http://localhost/admin.do，而有权限访问http://localhost/normal.do
+
+接着动态修改权限，使用admin登录成功，并访问http://localhost/access/reload.do将完成动态权限添加。此时admin用户已有权限访问http://localhost/normal.do
+
+</code></pre>
+</div>
+
+<h4><a href="/rar/spring-security3.rar"><b>Demo代码下载</b></a></h4>
 
 <p>结束。</p>
 </div>
@@ -303,6 +406,8 @@ AppAnnotationServer.java</p>
 
     
     
+        
+            
         
             
                 
@@ -320,8 +425,6 @@ AppAnnotationServer.java</p>
                 
             
         
-            
-        
     
 
     
@@ -329,16 +432,6 @@ AppAnnotationServer.java</p>
         
             
         
-            
-                
-                <li class="relatedPost" style="font-size: 12px;">
-                    <a href="http://www.mixfate.com/spring/java/2016/05/16/spring-security-3.html">Spring Security配置使用介绍（三）暴力动态配置权限（修改源码不推荐）</a>
-                    
-                        <small>(所属分类: <a href="/category/spring">spring</a>, <a href="/category/java">java</a>)</small>
-                    
-                </li>
-                
-                
             
         
     
@@ -351,8 +444,6 @@ AppAnnotationServer.java</p>
 
     
     
-        
-            
         
             
                 
@@ -366,6 +457,8 @@ AppAnnotationServer.java</p>
                 
             
         
+            
+        
     
         
             
@@ -376,8 +469,6 @@ AppAnnotationServer.java</p>
 
     
     
-        
-            
         
             
                 
@@ -391,6 +482,8 @@ AppAnnotationServer.java</p>
                 
             
         
+            
+        
     
         
             
@@ -410,8 +503,6 @@ AppAnnotationServer.java</p>
 
     
     
-        
-            
         
             
                 
@@ -425,19 +516,6 @@ AppAnnotationServer.java</p>
                 
             
         
-    
-        
-            
-        
-            
-        
-    
-
-    
-    
-        
-            
-        
             
         
     
@@ -450,6 +528,23 @@ AppAnnotationServer.java</p>
 
     
     
+        
+            
+        
+            
+        
+    
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
         
             
                 
@@ -463,8 +558,6 @@ AppAnnotationServer.java</p>
                 
             
         
-            
-        
     
         
             
@@ -562,6 +655,16 @@ AppAnnotationServer.java</p>
         
             
         
+            
+                
+                <li class="relatedPost" style="font-size: 12px;">
+                    <a href="http://www.mixfate.com/java/spring/webservice/2016/05/04/spring4-cxf3.html">Spring4 + cxf3 构建restful webservice</a>
+                    
+                        <small>(所属分类: <a href="/category/java">java</a>, <a href="/category/spring">spring</a>, <a href="/category/webservice">webservice</a>)</small>
+                    
+                </li>
+                
+                
             
         
     
@@ -1116,10 +1219,10 @@ AppAnnotationServer.java</p>
 
 <div class="PageNavigation" style="font-size: 12px;">
   
-    <a class="prev pull-left" href="/java/2016/04/23/jdk-dynamic-proxy.html">&laquo; JDK动态代理及cglib动态代理实现分析</a>
+    <a class="prev pull-left" href="/spring/java/2016/05/16/spring-security-2.html">&laquo; Spring Security配置使用介绍（二）动态配置权限</a>
   
   
-    <a class="next pull-right" href="/java/spring/quartz/2016/04/25/spring-quartz-annotation.html">Spring + quartz注解配置使用 &raquo;</a>
+    <a class="next pull-right" href="/java/2016/05/16/javaagent-class-generate.html">使用javaagent参数保存二进制class文件 &raquo;</a>
   
 </div>
 <div>&nbsp;</div>
@@ -1131,8 +1234,8 @@ AppAnnotationServer.java</p>
 
         /*
 		var disqus_shortname = "mixfate";
-        var disqus_identifier = "http://www.mixfate.com_Spring + Activemq注解配置使用";
-        var disqus_title = "Spring + Activemq注解配置使用";
+        var disqus_identifier = "http://www.mixfate.com_Spring Security配置使用介绍（三）暴力动态配置权限（修改源码不推荐）";
+        var disqus_title = "Spring Security配置使用介绍（三）暴力动态配置权限（修改源码不推荐）";
 		*/
 
         /* * * DON'T EDIT BELOW THIS LINE * * */

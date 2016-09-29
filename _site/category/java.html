@@ -308,6 +308,27 @@
                 
                 
             
+            <div class="least-content">2016-05-16 21:55</div>
+            <h4 class="list-group-item-heading" style="font-size: 14px;"><a href="/spring/java/2016/05/16/spring-security-3.html">Spring Security配置使用介绍（三）暴力动态配置权限（修改源码不推荐）</a></h4>
+            <p class="list-group-item-text">Spring Security配置使用介绍（三）暴力动态配置权限（修改源码不推荐） 前面介绍过spring security动态配置权限，使用的方法是增加过滤拦截对权限进行处理， 此篇介绍修改源码实现动态权限，部分代码基于上一篇进行修改，帮助理解spring security。 1、此方法修改源码，不需要另外增加拦截器，我们先在applicationContext-security.xml配置好已有权限，再动态调整其权限。 applicationContext-security.xml内容如下 &lt;?xml version="1.0" encoding="UTF-8"?&gt; &lt;beans:beans xmlns="http://www.springframework.org/schema/security" xmlns:beans="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.2.xsd"&gt; &lt;http...</p>
+            
+            </div>
+        </div>
+        <div class="list-group-separator"></div>
+        
+        <div class="list-group-item">
+            <div class="row-action-primary">
+              <i class="fa fa-sticky-note"></i>
+            </div>
+            <div class="row-content" style="font-size: 12px;">
+            
+            
+            
+            
+                
+                
+                
+            
             <div class="least-content">2016-05-16 20:55</div>
             <h4 class="list-group-item-heading" style="font-size: 14px;"><a href="/spring/java/2016/05/16/spring-security-2.html">Spring Security配置使用介绍（二）动态配置权限</a></h4>
             <p class="list-group-item-text">Spring Security配置使用介绍（二）动态配置权限 本文接上文Spring Security配置使用介绍（一）简单配置， 由上一篇介绍，在配置文件applicationContext-security.xml中配置了intercept-url pattern=”/**” access=”isAuthenticated()”，表示需登录授权访问， 这是一个非常简单的权限控制，实际使用中我们需要增加角色并配置相应的权限。 在上文中的demo中的代码可以看到，login.jsp中定义了用户名为1，而在类UserDetailsServiceImpl中new User()中填入的用户名为admin，这主要是因为 spring-security并不验证用户名，可从源码中看到(查看源代码验证密码部分，关键代码在 org.springframework.security.authentication.dao.DaoAuthenticationProvider.additionalAuthenticationChecks(UserDetails, UsernamePasswordAuthenticationToken)方法中)，此时会将admin 保存到session中。 根据上一篇所介绍的简单使用，本文在此基础上完成配置，文章后面将附上源码以供下载学习 1、其中pom.xml、log4j.properties、applicationContext.xml、applicationContext-mvc.xml、web.xml不作修改。 2、修改applicationContext-security.xml，增加配置过滤拦截器完成对请求的拦截，内容如下 applicationContext-security.xml &lt;?xml version="1.0"...</p>
