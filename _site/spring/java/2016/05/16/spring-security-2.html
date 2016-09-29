@@ -628,9 +628,12 @@ normal.jsp：normal用户有权限访问显示的页面(注意：经过动态调
 
 接着动态修改权限，使用admin登录成功，并访问http://localhost/access/reload.do将完成动态权限添加。此时admin用户已有权限访问http://localhost/normal.do
 
-抛砖引玉，实际可根据业务场景完成对权限的增减。
 </code></pre>
 </div>
+
+<font color="red">抛砖引玉，本文已实现了动态权限配置，实际可根据具体业务场景完成对权限的增减。
+spring security既然可以在xml中配置好角色权限，那么在启动完成并加载完xml后必将权限信息保存到内存中了，那么我们是否可以动态修改已经保存的权限呢？
+答案是肯定的，不过这有违OO设计原则，不作推荐做法，下一篇将介绍此相对暴力方法实现动态权限配置</font>
 
 <h4><a href="/rar/spring-security2.rar"><b>Demo代码下载</b></a></h4>
 
