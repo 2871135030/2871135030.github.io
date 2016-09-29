@@ -1,0 +1,1528 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="shortcut icon" href="/static/img/favicon.ico" />
+        <title>Spring Security配置使用介绍（二）动态配置权限 - Java及相关开源技术博客</title>
+        <meta name="author" content="Mixfate博客" />
+        <meta name="description" content="Mixfate博客,开源技术博客,IT 博客,java技术,spring开源技术,dubbo分布式架构,maven工具" />
+        <meta name="keywords" content="Spring Security配置使用介绍（二）动态配置权限, Java及相关开源技术博客, spring, java" />
+
+        <meta content="0" property="fb:app_id">
+        <meta content="Java及相关开源技术博客" property="og:site_name">
+        
+          <meta content="Spring Security配置使用介绍（二）动态配置权限" property="og:title">
+        
+        
+          <meta content="article" property="og:type">
+        
+        
+          <meta content="Mixfate博客,开源技术博客,IT 博客,java技术,spring开源技术,dubbo分布式架构,maven工具" property="og:description">
+        
+        
+          <meta content="http://www.mixfate.com/spring/java/2016/05/16/spring-security-2.html" property="og:url">
+        
+        
+          <meta content="2016-05-16T20:55:58+08:00" property="article:published_time">
+          <meta content="http://www.mixfate.com/about/" property="article:author">
+        
+        
+          <meta content="http://www.mixfate.com/static/img/logo-high-resolution.png" property="og:image">
+        
+        
+          
+          <meta content="spring" property="article:section">
+          
+        
+        
+          
+        
+        <meta name="twitter:card" content="summary">
+        <meta name="twitter:site" content="@\#">
+        <meta name="twitter:creator" content="@\#">
+        
+          <meta name="twitter:title" content="Spring Security配置使用介绍（二）动态配置权限">
+        
+        
+          <meta name="twitter:url" content="http://www.mixfate.com/spring/java/2016/05/16/spring-security-2.html">
+        
+        
+          <meta name="twitter:description" content="Mixfate博客,开源技术博客,IT 博客,java技术,spring开源技术,dubbo分布式架构,maven工具">
+        
+        
+
+        <link rel="alternate" type="application/rss+xml" title="RSS" href="/feed.xml">
+        <!-- Custom Fonts -->
+        <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:300,400,500,700" type="text/css">
+
+        <!-- FontAwesome icons -->
+        <link rel="stylesheet" href="https://use.fontawesome.com/74dfc6cf47.css">
+
+        <!-- Core BootStrap CSS -->
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+        <!-- Material Design CSS -->
+        <link rel="stylesheet" href="http://www.mixfate.com/static/css/bootstrap-material-design.min.css">
+
+        <!-- syntax highlighting CSS -->
+        <link rel="stylesheet" href="http://www.mixfate.com/static/css/syntax.css">
+
+        <!-- Custom CSS -->        
+        <link rel="stylesheet" href="http://www.mixfate.com/static/css/thickbox.css">
+        <link rel="stylesheet" href="http://www.mixfate.com/static/css/main.css">
+        <link rel="stylesheet" href="http://www.mixfate.com/static/css/projects.css">
+        <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UB-72862926-2', 'auto');
+  ga('send', 'pageview');
+
+</script>
+    </head>
+
+    <body class="home overflow-hidden">
+    <!--[if lt IE 7]>
+    <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade
+        your browser</a> to improve your experience.</p>
+    <![endif]-->
+    <div class="header-panel shadow-z-2">
+    <div class="container">
+    <div class="row">
+            <div class="col-md-3 col-sm-4 col-xs-12">
+      <div class="row-picture">
+        <img id="about" class="logo-img" src="http://www.mixfate.com/static/img/avatar.png" height="75px" width="75px">
+      </div>
+      <div class="row-details">
+      <h4 class="list-group-item-heading">Mixfate博客</h4>
+      <p class="list-group-item-text">技术乐园</p>
+      <div class="social-icons">
+	
+        <a class="icon" href=""><i class="fa fa-facebook"></i></a>
+    
+        <a class="icon" href=""><i class="fa fa-skype"></i></a>
+    
+        <a class="icon" href=""><i class="fa fa-twitter"></i></a>
+    
+        <a class="icon" href=""><i class="fa fa-linkedin"></i></a>
+    
+        <a class="icon" href=""><i class="fa fa-stack-exchange"></i></a>
+    
+</div>
+      </div>
+        <div class="navbar-header pull-right">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+              <span class="sr-only">Toggle navigation</span>
+              <i class="fa fa-2x fa-bars"></i>
+            </button>
+        </div>
+      </div>
+      <div class="col-md-9 col-sm-8 col-xs-12">
+      <h2 class="blog-title-pro">Spring Security配置使用介绍（二）动态配置权限</h2>
+      <p class="info">
+      
+      <span class="time">2016/05/16</span>
+      
+      
+    <span class="categories">
+        &raquo; <a href="/category/spring">spring</a>, <a href="/category/java">java</a>
+    </span>
+    
+      </p>
+      </div>
+      </div>
+      </div>
+    </div>
+    <div class="container main outer">
+        <div class="row">
+            <div class="col-md-3 col-xs-12">
+                    <nav class="menu">
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+    <ul class="list-separator nav navbar-nav well well-primary post">
+
+	
+	
+	
+	
+	<li class="col-lg-12 col-md-12 col-sm-4 col-xs-12 current-menu-item spring-security-2.html"><a href="/"><i class="fa fa-home"></i> 首页</a></li>
+
+	
+	
+	
+	
+	<li class="col-lg-12 col-md-12 col-sm-4 col-xs-12  spring-security-2.html"><a href="/category/java"><i class="fa fa-desktop"></i> 分类</a></li>
+
+	
+	
+	
+	
+	<li class="col-lg-12 col-md-12 col-sm-4 col-xs-12  spring-security-2.html"><a href="/about/"><i class="fa fa-comments"></i> 关于</a></li>
+
+</ul>
+    </div>
+    </nav>
+
+				
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- size_300x250 -->
+<ins class="adsbygoogle"
+     style="display:inline-block;width:280px;height:250px"
+     data-ad-client="ca-pub-4309621458849374"
+     data-ad-slot="8169524649"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+            </div> <!-- end /.col-md-3 -->
+
+            <div class="col-md-9 col-xs-12 full">
+                <div class="post-content well">
+<article class="content">
+    <div class="post" style="font-size: 12px;"><h2 id="spring-security">Spring Security配置使用介绍（二）动态配置权限</h2>
+
+<p>本文接上文<a href="/spring/java/2016/05/15/spring-security.html">Spring Security配置使用介绍（一）简单配置</a>，</p>
+
+<p>由上一篇介绍，在配置文件applicationContext-security.xml中配置了intercept-url pattern=”/**” access=”isAuthenticated()”，表示需登录授权访问，
+这是一个非常简单的权限控制，实际使用中我们需要增加角色并配置相应的权限。</p>
+
+<p>在上文中的demo中的代码可以看到，login.jsp中定义了用户名为1，而在类UserDetailsServiceImpl中new User()中填入的用户名为admin，这主要是因为
+spring-security并不验证用户名，可从源码中看到(查看源代码验证密码部分，关键代码在
+org.springframework.security.authentication.dao.DaoAuthenticationProvider.additionalAuthenticationChecks(UserDetails, UsernamePasswordAuthenticationToken)方法中)，此时会将admin
+保存到session中。</p>
+
+<p>根据上一篇所介绍的简单使用，本文在此基础上完成配置，文章后面将附上源码以供下载学习</p>
+
+<p>1、其中pom.xml、log4j.properties、applicationContext.xml、applicationContext-mvc.xml、web.xml不作修改。</p>
+
+<p>2、修改applicationContext-security.xml，增加配置过滤拦截器完成对请求的拦截，内容如下</p>
+
+<p>applicationContext-security.xml</p>
+
+<div class="language-markdown highlighter-rouge"><pre class="highlight"><code><span class="cp">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
+&lt;beans:beans xmlns="http://www.springframework.org/schema/security"
+	xmlns:beans="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+        http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.2.xsd"&gt;<span class="sb">
+
+	&lt;http auto-config="true" use-expressions="true" access-denied-page="/access/denied.do"&gt;
+		&lt;!-- 允许访问 --&gt;
+		&lt;intercept-url pattern="/css/**" access="permitAll" /&gt;
+		&lt;intercept-url pattern="/js/**" access="permitAll" /&gt;
+		&lt;intercept-url pattern="/access/**" access="permitAll" /&gt; 
+		&lt;!-- 需授权访问url --&gt;
+		&lt;intercept-url pattern="/**" access="isAuthenticated()" /&gt;
+		
+		&lt;!-- 登录url及登录失败显示url --&gt;
+		&lt;form-login login-page="/access/login.do"
+			authentication-failure-url="/access/login.do"
+			authentication-success-handler-ref="loginSuccessHandler"/&gt;
+		&lt;logout success-handler-ref="logoutSuccessHandler" /&gt;
+		
+		&lt;custom-filter ref="myFilterSecurityInterceptor" before="FILTER_SECURITY_INTERCEPTOR"/&gt;
+	&lt;/http&gt;
+	
+	&lt;beans:bean id="loginSuccessHandler" class="com.hode.security.handler.UserLoginSuccessHandler"&gt;
+		&lt;beans:property name="defaultTargetUrl" value="/manage.do" /&gt;
+	&lt;/beans:bean&gt;
+	
+	&lt;beans:bean id="logoutSuccessHandler" class="com.hode.security.handler.UserLogoutSuccessHandler"&gt;
+		&lt;beans:property name="defaultTargetUrl" value="/access/login.do" /&gt;
+	&lt;/beans:bean&gt;
+	
+	&lt;authentication-manager alias="authenticationManager"&gt;
+		&lt;authentication-provider user-service-ref="userDetailsService"&gt;
+			&lt;password-encoder hash="md5" &gt;&lt;salt-source system-wide="hode" /&gt;&lt;/password-encoder&gt;
+		&lt;/authentication-provider&gt;
+	&lt;/authentication-manager&gt;
+	
+	&lt;beans:bean id="myFilterSecurityInterceptor" class="com.hode.security.MyFilterSecurityInterceptor"&gt;
+		&lt;beans:property name="accessDecisionManager" ref="accessDecisionManager" /&gt;
+		&lt;beans:property name="securityMetadataSource" ref="securityMetadataSource" /&gt;
+		&lt;beans:property name="authenticationManager" ref="authenticationManager" /&gt;
+	&lt;/beans:bean&gt;
+	
+	&lt;beans:bean name="accessDecisionManager" class="com.hode.security.MyAccessDecisionManager" /&gt;
+	
+	&lt;beans:bean name="securityMetadataSource" class="com.hode.security.MySecurityMetadataSource" /&gt;
+	
+</span><span class="nt">&lt;/beans:beans&gt;</span>
+</code></pre>
+</div>
+
+<p>其中myFilterSecurityInterceptor即为拦截器，securityMetadataSource主要是加载权限信息，accessDecisionManager判断是否具有权限</p>
+
+<p>3、分别编写MyFilterSecurityInterceptor.java、MyAccessDecisionManager.java、MySecurityMetadataSource.java三个类</p>
+
+<p>MyFilterSecurityInterceptor.java</p>
+
+<div class="language-markdown highlighter-rouge"><pre class="highlight"><code>package com.hode.security;
+
+import java.io.IOException;
+
+import javax.servlet.Filter;
+import javax.servlet.FilterChain;
+import javax.servlet.FilterConfig;
+import javax.servlet.ServletException;
+import javax.servlet.ServletRequest;
+import javax.servlet.ServletResponse;
+
+import org.springframework.security.access.SecurityMetadataSource;
+import org.springframework.security.access.intercept.AbstractSecurityInterceptor;
+import org.springframework.security.access.intercept.InterceptorStatusToken;
+import org.springframework.security.web.FilterInvocation;
+import org.springframework.security.web.access.intercept.FilterInvocationSecurityMetadataSource;
+
+public class MyFilterSecurityInterceptor extends AbstractSecurityInterceptor implements Filter{<span class="sb">
+
+	private FilterInvocationSecurityMetadataSource securityMetadataSource;
+	
+	public FilterInvocationSecurityMetadataSource getSecurityMetadataSource() {
+		return securityMetadataSource;
+	}
+
+	public void setSecurityMetadataSource(
+			FilterInvocationSecurityMetadataSource securityMetadataSource) {
+		this.securityMetadataSource = securityMetadataSource;
+	}
+
+	@Override
+	public void destroy() {
+		
+	}
+
+	//拦截
+	@Override
+	public void doFilter(ServletRequest request, ServletResponse response,
+			FilterChain chain) throws IOException, ServletException {
+		FilterInvocation fi = new FilterInvocation(request, response, chain);
+		InterceptorStatusToken token = super.beforeInvocation(fi);
+		try{
+			fi.getChain().doFilter(fi.getRequest(), fi.getResponse());
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally{
+			super.afterInvocation(token,null);
+		}
+	}
+
+	@Override
+	public void init(FilterConfig arg0) throws ServletException {
+		
+	}
+
+	@Override
+	public Class&lt;?&gt; getSecureObjectClass() {
+		return FilterInvocation.class;
+	}
+
+	@Override
+	public SecurityMetadataSource obtainSecurityMetadataSource() {
+		return securityMetadataSource;
+	}
+
+</span>}
+
+</code></pre>
+</div>
+
+<p>MyAccessDecisionManager.java</p>
+
+<div class="language-markdown highlighter-rouge"><pre class="highlight"><code>package com.hode.security;
+
+import java.util.Collection;
+import java.util.Iterator;
+
+import org.springframework.security.access.AccessDecisionManager;
+import org.springframework.security.access.AccessDeniedException;
+import org.springframework.security.access.ConfigAttribute;
+import org.springframework.security.authentication.InsufficientAuthenticationException;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
+
+public class MyAccessDecisionManager implements AccessDecisionManager {<span class="sb">
+
+	@Override
+	public void decide(Authentication authentication, Object object,
+			Collection&lt;ConfigAttribute&gt; configAttributes)
+			throws AccessDeniedException, InsufficientAuthenticationException {
+		Iterator&lt;ConfigAttribute&gt; it = configAttributes.iterator();
+		while(it.hasNext()){
+			String resource = it.next().getAttribute();
+			for(GrantedAuthority ga:authentication.getAuthorities()){
+				if(resource.equals(ga.getAuthority())){
+					return ;
+				}
+			}
+		}
+		throw new AccessDeniedException("无权访问");
+	}
+
+	@Override
+	public boolean supports(ConfigAttribute attribute) {
+		return true;
+	}
+
+	@Override
+	public boolean supports(Class&lt;?&gt; clazz) {
+		return true	;
+	}
+
+</span>}
+
+</code></pre>
+</div>
+
+<p>MySecurityMetadataSource.java</p>
+
+<div class="language-markdown highlighter-rouge"><pre class="highlight"><code>package com.hode.security;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+
+import org.springframework.security.access.ConfigAttribute;
+import org.springframework.security.access.SecurityConfig;
+import org.springframework.security.web.FilterInvocation;
+import org.springframework.security.web.access.intercept.FilterInvocationSecurityMetadataSource;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+import org.springframework.security.web.util.matcher.RequestMatcher;
+
+public class MySecurityMetadataSource implements FilterInvocationSecurityMetadataSource{<span class="sb">
+
+	public static Map&lt;RequestMatcher,Collection&lt;ConfigAttribute&gt;&gt; requestMap = new HashMap&lt;RequestMatcher,Collection&lt;ConfigAttribute&gt;&gt;(); //权限信息
+	
+	static{
+		//此处的关键点是为角色配置相应的权限
+		//为了演示方便采取硬编码的方式完成
+		
+		//角色 test_role_admin test_role_normal 拥有的权限如下
+		RequestMatcher rm = new AntPathRequestMatcher("/manage**");
+		ConfigAttribute ca = new SecurityConfig("test_role_admin");
+		ConfigAttribute ca2 = new SecurityConfig("test_role_normal");
+		Collection&lt;ConfigAttribute&gt; value = new ArrayList&lt;ConfigAttribute&gt;();
+		value.add(ca);
+		value.add(ca2);
+		requestMap.put(rm, value);
+		
+		//角色 test_role_admin 拥有权限 /admin**
+		rm = new AntPathRequestMatcher("/admin**");
+		ca = new SecurityConfig("test_role_admin");
+		value = new ArrayList&lt;ConfigAttribute&gt;();
+		value.add(ca);
+		requestMap.put(rm, value);
+				
+		//角色 test_role_normal 拥有权限 /normal**
+		rm = new AntPathRequestMatcher("/normal**");
+		ca = new SecurityConfig("test_role_normal");
+		value = new ArrayList&lt;ConfigAttribute&gt;();
+		value.add(ca);
+		requestMap.put(rm, value);
+		
+	}
+	
+	@Override
+	public Collection&lt;ConfigAttribute&gt; getAttributes(Object object)
+			throws IllegalArgumentException {
+		final HttpServletRequest request = ((FilterInvocation) object).getRequest();
+        for (Map.Entry&lt;RequestMatcher, Collection&lt;ConfigAttribute&gt;&gt; entry : requestMap.entrySet()) {
+            if (entry.getKey().matches(request)) {
+                return entry.getValue();
+            }
+        }
+        return null;
+	}
+
+	@Override
+	public Collection&lt;ConfigAttribute&gt; getAllConfigAttributes() {
+		return null;
+	}
+
+	@Override
+	public boolean supports(Class&lt;?&gt; clazz) {
+		return true;
+	}
+
+</span>}
+
+</code></pre>
+</div>
+
+<font color="red">注意：MySecurityMetadataSource.java中加载的权限在此采用了硬编码方式为角色授权，为了方便演示将requestMap设置成了静态的且为public。
+此时test_role_admin角色是没有访问/normal**的权限的，后面简易动态添加此权限。
+</font>
+
+<font color="red">当然动态权限也有利有蔽，一旦系统被攻破，后果也不可预知。</font>
+
+<p>4、调整UserDetailsServiceImpl.java类，为不同的用户配置不同角色</p>
+
+<div class="language-markdown highlighter-rouge"><pre class="highlight"><code>package com.hode.security.service;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.apache.log4j.Logger;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Service;
+
+@Service("userDetailsService")
+public class UserDetailsServiceImpl implements UserDetailsService {<span class="sb">
+
+	private Logger log = Logger.getLogger(getClass());
+	
+	@Override
+	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+		UserDetails user = null; 
+		log.info("loadUserByUsername username:"+username);
+		List&lt;GrantedAuthority&gt; authList = new ArrayList&lt;GrantedAuthority&gt;();
+		if("admin".equals(username)){
+			authList.add(new SimpleGrantedAuthority("test_role_admin"));
+		}else if("normal".equals(username)){
+			authList.add(new SimpleGrantedAuthority("test_role_normal"));
+		}else{
+			authList.add(new SimpleGrantedAuthority("test_role"));
+		}
+		//MD5("1{hode}")=4005c7b6cfee541c1a1414730cc9a98f,可以由任何md5摘要生成工具生成，当然此值应从数据库读取出来完成判断
+		user = new User(username,"4005c7b6cfee541c1a1414730cc9a98f", true, true, true, true,authList);
+		return user;
+	}
+
+</span>}
+
+</code></pre>
+</div>
+
+<p>5、调整AccessController.java类，添加动态权限功能，在applicationContext-security.xml中已配置了/access/**为放行，代码如下</p>
+
+<div class="language-markdown highlighter-rouge"><pre class="highlight"><code>package com.hode.controller;
+
+import java.util.ArrayList;
+import java.util.Collection;
+
+import javax.servlet.http.HttpServletRequest;
+
+import org.springframework.security.access.ConfigAttribute;
+import org.springframework.security.access.SecurityConfig;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+import org.springframework.security.web.util.matcher.RequestMatcher;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.hode.security.MySecurityMetadataSource;
+
+@Controller
+@RequestMapping("access")
+public class AccessController {<span class="sb">
+
+	@RequestMapping("login")
+	public String login(HttpServletRequest request){
+		return "login"; //返回login.jsp
+	}
+	
+	@RequestMapping("denied")
+	public String denied(HttpServletRequest request){
+		return "denied";
+	}
+	
+	//为了简单起见,在此处动态配置admin访问normal.do权限
+	@RequestMapping("reload")
+	@ResponseBody
+	public String reload(){
+		RequestMatcher rm = new AntPathRequestMatcher("/normal**");
+		ConfigAttribute ca = new SecurityConfig("test_role_admin");
+		
+		Collection&lt;ConfigAttribute&gt; value = null;
+		if(MySecurityMetadataSource.requestMap.get(rm)!=null){
+			value = MySecurityMetadataSource.requestMap.get(rm);
+		}else{
+			value = new ArrayList&lt;ConfigAttribute&gt;();
+		}
+		
+		value.add(ca);
+		MySecurityMetadataSource.requestMap.put(rm, value);
+		return "reload success";
+	}
+
+</span>}
+
+</code></pre>
+</div>
+
+<font color="red">reload方法中动态把权限添加到变量requestMap中了，实际使用中可从数据库、缓存、文件等读取。</font>
+
+<p>6、另外还有一些辅助类及页面，AdminController.java、NormalController.java，分别跳转到指定的页面，表示admin用户和normal用户可访问的请求。</p>
+
+<p>AdminController.java</p>
+
+<div class="language-markdown highlighter-rouge"><pre class="highlight"><code>package com.hode.controller;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+@Controller
+@RequestMapping("admin")
+public class AdminController {<span class="sb">
+
+	@RequestMapping("")
+	public String admin(){
+		return "admin";
+	}
+	
+</span>}
+
+</code></pre>
+</div>
+
+<p>NormalController.java</p>
+
+<div class="language-markdown highlighter-rouge"><pre class="highlight"><code>package com.hode.controller;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+@Controller
+@RequestMapping("normal")
+public class NormalController {<span class="sb">
+
+	@RequestMapping("")
+	public String normal(){
+		return "normal"; //返回normal.jsp
+	}
+	
+</span>}
+
+</code></pre>
+</div>
+
+<font color="red">具体jsp页面只作显示，可参看文章尾部demo下载</font>
+
+<p>页面说明</p>
+
+<div class="language-markdown highlighter-rouge"><pre class="highlight"><code>admin.jsp：admin用户有权限访问显示的页面
+denied.jsp：用户无权限访问显示的页面
+login.jsp：用户登录显示的页面
+manage.jsp：admin及normal用户都有权限访问显示的页面
+normal.jsp：normal用户有权限访问显示的页面(注意：经过动态调整权限后，admin用户也可访问)
+</code></pre>
+</div>
+
+<p>7、启动JettyServer，分别使用以下url访问完成动态权限测试</p>
+
+<div class="language-markdown highlighter-rouge"><pre class="highlight"><code>打开登录页面 http://localhost/access/login.do
+选中admin点击提交，此时admin用户登录成功；跳转到http://localhost/manage.do中，
+根据权限配置admin用户有权访问http://localhost/admin.do，而无权限访问http://localhost/normal.do（访问时将显示禁止访问页面）
+
+同样normal用户登录成功；跳转到http://localhost/manage.do中，
+根据权限配置normal用户无权访问http://localhost/admin.do，而有权限访问http://localhost/normal.do
+
+接着动态修改权限，使用admin登录成功，并访问http://localhost/access/reload.do将完成动态权限添加。此时admin用户已有权限访问http://localhost/normal.do
+
+抛砖引玉，实际可根据业务场景完成对权限的增减。
+</code></pre>
+</div>
+
+<h4><a href="/rar/spring-security2.rar"><b>Demo代码下载</b></a></h4>
+
+<p>结束。</p>
+</div>
+	
+	<!--
+    <hr />
+    { % include share-page.html % }
+	-->
+</article>
+<hr />
+
+
+    
+    
+        
+            
+        
+            
+                
+                <div class="panel-body">
+                <h5>相关博客</h5>
+                <ul>
+                
+                <li class="relatedPost" style="font-size: 12px;">
+                    <a href="http://www.mixfate.com/java/2016/05/16/javaagent-class-generate.html">使用javaagent参数保存二进制class文件</a>
+                    
+                        <small>(所属分类: <a href="/category/java">java</a>)</small>
+                    
+                </li>
+                
+                
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+        
+    
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+                
+                <li class="relatedPost" style="font-size: 12px;">
+                    <a href="http://www.mixfate.com/spring/java/2016/05/15/spring-security.html">Spring Security配置使用介绍（一）简单配置</a>
+                    
+                        <small>(所属分类: <a href="/category/spring">spring</a>, <a href="/category/java">java</a>)</small>
+                    
+                </li>
+                
+                
+            
+        
+            
+        
+    
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+                
+                <li class="relatedPost" style="font-size: 12px;">
+                    <a href="http://www.mixfate.com/spring/redis/2016/05/13/spring-session-redis.html">使用Spring Session + Redis管理会话</a>
+                    
+                        <small>(所属分类: <a href="/category/spring">spring</a>, <a href="/category/redis">redis</a>)</small>
+                    
+                </li>
+                
+                
+            
+        
+            
+        
+    
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+        
+    
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+                
+                <li class="relatedPost" style="font-size: 12px;">
+                    <a href="http://www.mixfate.com/java/spring/webservice/2016/05/11/spring4-cxf3-webservice.html">Spring4 + cxf3 构建wsdl webservice</a>
+                    
+                        <small>(所属分类: <a href="/category/java">java</a>, <a href="/category/spring">spring</a>, <a href="/category/webservice">webservice</a>)</small>
+                    
+                </li>
+                
+                
+            
+        
+    
+        
+            
+        
+            
+        
+    
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+        
+    
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+        
+    
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+        
+    
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+        
+    
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+                
+                <li class="relatedPost" style="font-size: 12px;">
+                    <a href="http://www.mixfate.com/java/spring/webservice/2016/05/04/spring4-cxf3.html">Spring4 + cxf3 构建restful webservice</a>
+                    
+                        <small>(所属分类: <a href="/category/java">java</a>, <a href="/category/spring">spring</a>, <a href="/category/webservice">webservice</a>)</small>
+                    
+                </li>
+                
+                
+            
+        
+    
+        
+            
+        
+            
+        
+    
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+                
+                <li class="relatedPost" style="font-size: 12px;">
+                    <a href="http://www.mixfate.com/spring/dubbo/webservice/2016/05/02/dubbox-restful.html">Dubbox的rest风格调用例子</a>
+                    
+                        <small>(所属分类: <a href="/category/spring">spring</a>, <a href="/category/dubbo">dubbo</a>, <a href="/category/webservice">webservice</a>)</small>
+                    
+                </li>
+                
+                
+            
+        
+            
+        
+    
+        
+            
+        
+            
+        
+    
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+        
+    
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+        
+    
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+        
+    
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+        
+    
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+        
+    
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+        
+    
+        
+            
+        
+            
+        
+    
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+        
+    
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+        
+    
+        
+            
+        
+            
+        
+    
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+        
+    
+        
+            
+        
+            
+        
+    
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+        
+    
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+        
+    
+        
+            
+        
+            
+        
+    
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+        
+    
+        
+            
+        
+            
+        
+    
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+        
+    
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+        
+    
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+        
+    
+        
+            
+        
+            
+        
+    
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+        
+    
+        
+            
+        
+            
+        
+    
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+        
+    
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+        
+    
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+        
+    
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+        
+    
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+        
+    
+        
+            
+        
+            
+        
+    
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+        
+    
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+        
+    
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+        
+    
+
+
+    </ul>
+    </div>
+
+
+<div class="PageNavigation" style="font-size: 12px;">
+  
+    <a class="prev pull-left" href="/spring/java/2016/05/15/spring-security.html">&laquo; Spring Security配置使用介绍（一）简单配置</a>
+  
+  
+    <a class="next pull-right" href="/java/2016/05/16/javaagent-class-generate.html">使用javaagent参数保存二进制class文件 &raquo;</a>
+  
+</div>
+<div>&nbsp;</div>
+<!--
+<div class="disqus-comments">
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        /* <![CDATA[ */
+
+        /*
+		var disqus_shortname = "mixfate";
+        var disqus_identifier = "http://www.mixfate.com_Spring Security配置使用介绍（二）动态配置权限";
+        var disqus_title = "Spring Security配置使用介绍（二）动态配置权限";
+		*/
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+		/*
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+		*/
+    /* ]]> */
+    </script>
+</div>
+-->
+</div>
+				
+				<!-- google adsense begin -->
+				
+				<!-- size_728x90 -->
+				<ins class="adsbygoogle"
+					 style="display:inline-block;width:728px;height:90px"
+					 data-ad-client="ca-pub-4309621458849374"
+					 data-ad-slot="8507601840"></ins>
+				<script>
+				(adsbygoogle = window.adsbygoogle || []).push({});
+				</script>
+				<!-- google adsense end -->
+				
+                <div class="row">
+                  <div class="col-md-12 col-xs-12 footer">
+                <footer>
+                    © Copyright
+                     
+                    - Powered by Mixfate.
+					<script language="javascript" type="text/javascript" src="http://js.users.51.la/18893327.js"></script>
+					<noscript><a href="http://www.51.la/?18893327" target="_blank"><img alt="&#x6211;&#x8981;&#x5566;&#x514D;&#x8D39;&#x7EDF;&#x8BA1;" src="http://img.users.51.la/18893327.asp" style="border:none" /></a></noscript>
+                    
+                </footer>
+            </div>
+                </div>
+            </div> <!-- end /.col-md-9 -->
+        </div> <!-- end /.row -->
+
+    </div> <!-- end /.container -->
+
+        <!-- Bootstrap core JavaScript
+        ================================================== -->
+        <!-- Placed at the end of the document so the pages load faster -->
+        <!--
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+		<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+		-->
+		<script src="http://www.mixfate.com/static/js/jquery.min.js"></script>
+		<script src="http://www.mixfate.com/static/js/bootstrap.min.js"></script>
+		
+        <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+        
+
+        <script src="http://www.mixfate.com/static/js/thickbox-compressed.js"></script>
+        <script src="http://www.mixfate.com/static/js/material.min.js"></script>
+        <script src="http://www.mixfate.com/static/js/main.js"></script>
+        <script src="http://www.mixfate.com/static/js/projects.js"></script>
+    </body>
+</html>

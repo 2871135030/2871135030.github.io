@@ -308,6 +308,27 @@
                 
                 
             
+            <div class="least-content">2016-05-16 20:55</div>
+            <h4 class="list-group-item-heading" style="font-size: 14px;"><a href="/spring/java/2016/05/16/spring-security-2.html">Spring Security配置使用介绍（二）动态配置权限</a></h4>
+            <p class="list-group-item-text">Spring Security配置使用介绍（二）动态配置权限 本文接上文Spring Security配置使用介绍（一）简单配置， 由上一篇介绍，在配置文件applicationContext-security.xml中配置了intercept-url pattern=”/**” access=”isAuthenticated()”，表示需登录授权访问， 这是一个非常简单的权限控制，实际使用中我们需要增加角色并配置相应的权限。 在上文中的demo中的代码可以看到，login.jsp中定义了用户名为1，而在类UserDetailsServiceImpl中new User()中填入的用户名为admin，这主要是因为 spring-security并不验证用户名，可从源码中看到(查看源代码验证密码部分，关键代码在 org.springframework.security.authentication.dao.DaoAuthenticationProvider.additionalAuthenticationChecks(UserDetails, UsernamePasswordAuthenticationToken)方法中)，此时会将admin 保存到session中。 根据上一篇所介绍的简单使用，本文在此基础上完成配置，文章后面将附上源码以供下载学习 1、其中pom.xml、log4j.properties、applicationContext.xml、applicationContext-mvc.xml、web.xml不作修改。 2、修改applicationContext-security.xml，增加配置过滤拦截器完成对请求的拦截，内容如下 applicationContext-security.xml &lt;?xml version="1.0"...</p>
+            
+            </div>
+        </div>
+        <div class="list-group-separator"></div>
+        
+        <div class="list-group-item">
+            <div class="row-action-primary">
+              <i class="fa fa-sticky-note"></i>
+            </div>
+            <div class="row-content" style="font-size: 12px;">
+            
+            
+            
+            
+                
+                
+                
+            
             <div class="least-content">2016-05-15 21:02</div>
             <h4 class="list-group-item-heading" style="font-size: 14px;"><a href="/spring/java/2016/05/15/spring-security.html">Spring Security配置使用介绍（一）简单配置</a></h4>
             <p class="list-group-item-text">Spring Security配置使用介绍（一）简单配置 Spring Security，这是一种基于Spring AOP和Servlet过滤器的安全框架。它提供全面的安全性解决方案，同时在Web请求级和方法调用级处理身份确认和授权。 在Spring Framework基础上，Spring Security充分利用了依赖注入（DI，Dependency Injection）和面向切面技术。 简单来说Spring Security是通过众多的拦截器对请求的url进行拦截，以此达到权限管理的目的，下面一步步介绍Spring Security使用。 1、编写pom.xml，主要有spring及其security相关依赖 &lt;project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"&gt; &lt;modelVersion&gt;4.0.0&lt;/modelVersion&gt; &lt;groupId&gt;com.hode&lt;/groupId&gt;...</p>

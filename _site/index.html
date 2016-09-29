@@ -185,6 +185,19 @@
           <i class="fa fa-sticky-note"></i>
         </div>
         <div class="row-content">
+          <div class="least-content">2016-05-16 20:55</div>
+          <h4 class="list-group-item-heading" style="font-size: 14px;"><a href="/spring/java/2016/05/16/spring-security-2.html">Spring Security配置使用介绍（二）动态配置权限</a></h4>
+
+          <p class="list-group-item-text" style="font-size: 12px;">Spring Security配置使用介绍（二）动态配置权限 本文接上文Spring Security配置使用介绍（一）简单配置， 由上一篇介绍，在配置文件applicationContext-security.xml中配置了intercept-url pattern=”/**” access=”isAuthenticated()”，表示需登录授权访问， 这是一个非常简单的权限控制，实际使用中我们需要增加角色并配置相应的权限。 在上文中的demo中的代码可以看到，login.jsp中定义了用户名为1，而在类UserDetailsServiceImpl中new User()中填入的用户名为admin，这主要是因为 spring-security并不验证用户名，可从源码中看到(查看源代码验证密码部分，关键代码在 org.springframework.security.authentication.dao.DaoAuthenticationProvider.additionalAuthenticationChecks(UserDetails, UsernamePasswordAuthenticationToken)方法中)，此时会将admin 保存到session中。 根据上一篇所介绍的简单使用，本文在此基础上完成配置，文章后面将附上源码以供下载学习 1、其中pom.xml、log4j.properties、applicationContext.xml、applicationContext-mvc.xml、web.xml不作修改。 2、修改applicationContext-security.xml，增加配置过滤拦截器完成对请求的拦截，内容如下 applicationContext-security.xml &lt;?xml version="1.0"...</p>
+        </div>
+      </div>
+      <div class="list-group-separator"></div>
+      
+      <div class="list-group-item">
+        <div class="row-action-primary">
+          <i class="fa fa-sticky-note"></i>
+        </div>
+        <div class="row-content">
           <div class="least-content">2016-05-15 21:02</div>
           <h4 class="list-group-item-heading" style="font-size: 14px;"><a href="/spring/java/2016/05/15/spring-security.html">Spring Security配置使用介绍（一）简单配置</a></h4>
 
@@ -441,19 +454,6 @@
           <h4 class="list-group-item-heading" style="font-size: 14px;"><a href="/maven/tools/2016/04/27/java-proguard-js-yuicompressor.html">Java代码保护，JS代码压缩工具</a></h4>
 
           <p class="list-group-item-text" style="font-size: 12px;">Java代码保护，JS代码压缩工具 作为软件公司，我们经常会将整个应用交由客户的运维人员在客户自己的内部服务器上部署运行，通常可能大部分程序或代码对客户可见并无大碍， 但针对软件公司自行研发的一些核心组件，以及使公司拥有持续的竞争力的技术积累或业务积累有关关键程序或代码，我们就得做一些必要的保护， 使得程序能正常运行，但代码却非常难懂。 本文介绍java代码保护工具proguard，以及js,css代码压缩工具yuicompressor。 1、建立2个maven项目，分别为hode-base、hode-web，hode-web依赖hode-base，而hode-base里主要编写java代码，hode-web中编写js,css代码， 最终打包项目查看代码保护结果。 2、先编写hode-base，缩写完成后可以查看代码保护的结果，编写pom.xml代码如下 &lt;project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"&gt; &lt;modelVersion&gt;4.0.0&lt;/modelVersion&gt; &lt;groupId&gt;com.hode&lt;/groupId&gt; &lt;artifactId&gt;hode-base&lt;/artifactId&gt; &lt;version&gt;0.0.1-SNAPSHOT&lt;/version&gt; &lt;build&gt; &lt;plugins&gt; &lt;plugin&gt;...</p>
-        </div>
-      </div>
-      <div class="list-group-separator"></div>
-      
-      <div class="list-group-item">
-        <div class="row-action-primary">
-          <i class="fa fa-sticky-note"></i>
-        </div>
-        <div class="row-content">
-          <div class="least-content">2016-04-27 18:33</div>
-          <h4 class="list-group-item-heading" style="font-size: 14px;"><a href="/redis/tools/2016/04/27/redis-cluster.html">Redis集群安装</a></h4>
-
-          <p class="list-group-item-text" style="font-size: 12px;">Redis集群安装 前文Redis安装使用介绍过redis的单机版安装， 本文将介绍redis集群安装，本文以redis新的稳定版本redis-3.2.2.tar.gz为例。 1、先按前文步骤安装好单机版redis，确认安装成功后继续后面步骤。下列简要列出步骤 tar -xzvf redis-3.2.2.tar.gz 解压完成后进入目录 cd /software/redis-3.2.2/src make install 若出现错误gcc：命令未找到，先执行 yum -y install gcc 若出现错误：jemalloc/jemalloc.h：没有那个文件或目录，执行 make MALLOC=libc...</p>
         </div>
       </div>
       <div class="list-group-separator"></div>
