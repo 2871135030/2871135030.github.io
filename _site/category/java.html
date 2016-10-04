@@ -287,6 +287,27 @@
             
             
             
+            <div class="least-content">2016-05-17 19:55</div>
+            <h4 class="list-group-item-heading" style="font-size: 14px;"><a href="/spring/java/2016/05/17/spring-security-4.html">Spring Security配置使用介绍（四）增加验证码</a></h4>
+            <p class="list-group-item-text">Spring Security配置使用介绍（四）增加验证码 本文基于此前介绍过spring security动态配置权限，使用的方法是增加过滤拦截对权限进行处理， 此篇介绍基于上一篇已实现动态权限配置，增加验证码功能。 1、实现spring-security验证码功能，只需要增加一个过滤器便可。此过滤继承UsernamePasswordAuthenticationFilter，在验证用户名密码之前验证码校验， java代码实现如下 ValidateCodeAuthenticationFilter.java package com.hode.security; import java.util.Date; import javax.servlet.http.HttpServletRequest; import javax.servlet.http.HttpServletResponse; import org.apache.commons.lang.StringUtils; import org.springframework.security.core.Authentication;...</p>
+            
+            </div>
+        </div>
+        <div class="list-group-separator"></div>
+        
+        <div class="list-group-item">
+            <div class="row-action-primary">
+              <i class="fa fa-sticky-note"></i>
+            </div>
+            <div class="row-content" style="font-size: 12px;">
+            
+            
+            
+            
+                
+                
+                
+            
             <div class="least-content">2016-05-16 23:02</div>
             <h4 class="list-group-item-heading" style="font-size: 14px;"><a href="/java/2016/05/16/javaagent-class-generate.html">使用javaagent参数保存二进制class文件</a></h4>
             <p class="list-group-item-text">使用javaagent参数保存二进制class文件 使用-javaagent 参数用户可以在执行main函数前执行一些其他操作，如可以动态的修改替换类中代码。既然可以修改类那么自然就可以获取到类（class二进制）了。 本文同样使用maven去打一个包 1、编写pom.xml，此处仅仅是定义一个jar工程 &lt;project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"&gt; &lt;modelVersion&gt;4.0.0&lt;/modelVersion&gt; &lt;groupId&gt;com.hode&lt;/groupId&gt; &lt;artifactId&gt;clazzagent&lt;/artifactId&gt; &lt;version&gt;0.0.1-SNAPSHOT&lt;/version&gt; &lt;build&gt; &lt;plugins&gt; &lt;plugin&gt; &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt; &lt;artifactId&gt;maven-compiler-plugin&lt;/artifactId&gt; &lt;version&gt;3.1&lt;/version&gt;...</p>

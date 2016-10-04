@@ -6,15 +6,15 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <link rel="shortcut icon" href="/static/img/favicon.ico" />
-        <title>Vmware linux拷贝网络故障 - Java及相关开源技术博客</title>
+        <title>Spring Security配置使用介绍（四）增加验证码 - Java及相关开源技术博客</title>
         <meta name="author" content="Mixfate博客" />
         <meta name="description" content="Mixfate博客,开源技术博客,IT 博客,java技术,spring开源技术,dubbo分布式架构,maven工具" />
-        <meta name="keywords" content="Vmware linux拷贝网络故障, Java及相关开源技术博客, tools, linux" />
+        <meta name="keywords" content="Spring Security配置使用介绍（四）增加验证码, Java及相关开源技术博客, spring, java" />
 
         <meta content="0" property="fb:app_id">
         <meta content="Java及相关开源技术博客" property="og:site_name">
         
-          <meta content="Vmware linux拷贝网络故障" property="og:title">
+          <meta content="Spring Security配置使用介绍（四）增加验证码" property="og:title">
         
         
           <meta content="article" property="og:type">
@@ -23,10 +23,10 @@
           <meta content="Mixfate博客,开源技术博客,IT 博客,java技术,spring开源技术,dubbo分布式架构,maven工具" property="og:description">
         
         
-          <meta content="http://www.mixfate.com/tools/linux/2016/04/26/linux-vmware.html" property="og:url">
+          <meta content="http://www.mixfate.com/spring/java/2016/05/17/spring-security-4.html" property="og:url">
         
         
-          <meta content="2016-04-26T18:27:48+08:00" property="article:published_time">
+          <meta content="2016-05-17T19:55:58+08:00" property="article:published_time">
           <meta content="http://www.mixfate.com/about/" property="article:author">
         
         
@@ -34,7 +34,7 @@
         
         
           
-          <meta content="tools" property="article:section">
+          <meta content="spring" property="article:section">
           
         
         
@@ -44,10 +44,10 @@
         <meta name="twitter:site" content="@\#">
         <meta name="twitter:creator" content="@\#">
         
-          <meta name="twitter:title" content="Vmware linux拷贝网络故障">
+          <meta name="twitter:title" content="Spring Security配置使用介绍（四）增加验证码">
         
         
-          <meta name="twitter:url" content="http://www.mixfate.com/tools/linux/2016/04/26/linux-vmware.html">
+          <meta name="twitter:url" content="http://www.mixfate.com/spring/java/2016/05/17/spring-security-4.html">
         
         
           <meta name="twitter:description" content="Mixfate博客,开源技术博客,IT 博客,java技术,spring开源技术,dubbo分布式架构,maven工具">
@@ -122,14 +122,14 @@
         </div>
       </div>
       <div class="col-md-9 col-sm-8 col-xs-12">
-      <h2 class="blog-title-pro">Vmware linux拷贝网络故障</h2>
+      <h2 class="blog-title-pro">Spring Security配置使用介绍（四）增加验证码</h2>
       <p class="info">
       
-      <span class="time">2016/04/26</span>
+      <span class="time">2016/05/17</span>
       
       
     <span class="categories">
-        &raquo; <a href="/category/tools">tools</a>, <a href="/category/linux">linux</a>
+        &raquo; <a href="/category/spring">spring</a>, <a href="/category/java">java</a>
     </span>
     
       </p>
@@ -148,19 +148,19 @@
 	
 	
 	
-	<li class="col-lg-12 col-md-12 col-sm-4 col-xs-12 current-menu-item linux-vmware.html"><a href="/"><i class="fa fa-home"></i> 首页</a></li>
+	<li class="col-lg-12 col-md-12 col-sm-4 col-xs-12 current-menu-item spring-security-4.html"><a href="/"><i class="fa fa-home"></i> 首页</a></li>
 
 	
 	
 	
 	
-	<li class="col-lg-12 col-md-12 col-sm-4 col-xs-12  linux-vmware.html"><a href="/category/java"><i class="fa fa-desktop"></i> 分类</a></li>
+	<li class="col-lg-12 col-md-12 col-sm-4 col-xs-12  spring-security-4.html"><a href="/category/java"><i class="fa fa-desktop"></i> 分类</a></li>
 
 	
 	
 	
 	
-	<li class="col-lg-12 col-md-12 col-sm-4 col-xs-12  linux-vmware.html"><a href="/about/"><i class="fa fa-comments"></i> 关于</a></li>
+	<li class="col-lg-12 col-md-12 col-sm-4 col-xs-12  spring-security-4.html"><a href="/about/"><i class="fa fa-comments"></i> 关于</a></li>
 
 </ul>
     </div>
@@ -181,43 +181,171 @@
             <div class="col-md-9 col-xs-12 full">
                 <div class="post-content well">
 <article class="content">
-    <div class="post" style="font-size: 12px;"><h2 id="vmware-linuxbringing-up-interface-eth0-device-eth0-does-not-seem-to-be-present-delaying-initialization">Vmware linux拷贝Bringing up interface eth0: Device eth0 does not seem to be present ,delaying initialization</h2>
+    <div class="post" style="font-size: 12px;"><h2 id="spring-security">Spring Security配置使用介绍（四）增加验证码</h2>
 
-<p>Wmware通过拷贝的原系统，重启网络(service network restart)会出现错误Bringing up interface eth0: Device eth0 does not seem to be present ,delaying initialization
-错误截图如下
-<img src="/assets/dfeeded7-8f45-3579-9195-e0e6933a8ad1.png" alt="Bringing up interface eth0" /></p>
+<p>本文基于此前介绍过<a href="/spring/java/2016/05/16/spring-security-2.html">spring security动态配置权限</a>，使用的方法是增加过滤拦截对权限进行处理，
+此篇介绍基于上一篇已实现动态权限配置，增加验证码功能。</p>
 
-<font color="red">分析原因：</font>
+<p>1、实现spring-security验证码功能，只需要增加一个过滤器便可。此过滤继承UsernamePasswordAuthenticationFilter，在验证用户名密码之前验证码校验，
+java代码实现如下</p>
 
-<p>查看网络配置</p>
+<p>ValidateCodeAuthenticationFilter.java</p>
 
-<div class="language-markdown highlighter-rouge"><pre class="highlight"><code>cat /etc/sysconfig/network-scripts/ifcfg-eth0
+<div class="language-markdown highlighter-rouge"><pre class="highlight"><code>package com.hode.security;
+
+import java.util.Date;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.apache.commons.lang.StringUtils;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.security.web.authentication.session.SessionAuthenticationException;
+
+public class ValidateCodeAuthenticationFilter extends UsernamePasswordAuthenticationFilter {<span class="sb">
+
+	private final static String VALIDATECODE = "validateCode";
+
+	@Override
+	public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response) throws AuthenticationException {
+		System.out.println("开始校验-验证码-"+new Date());
+		
+		String requestCode = request.getParameter(VALIDATECODE);
+		String sessionCode = (String) request.getSession().getAttribute(VALIDATECODE);
+		request.getSession().removeAttribute(VALIDATECODE);
+		if (!StringUtils.equalsIgnoreCase(requestCode, sessionCode)) {
+			throw new SessionAuthenticationException("validatecode error");
+		}else{
+			//验证成功
+			Authentication auth = super.attemptAuthentication(request, response);
+			return auth;
+		}
+	}
+
+</span>}
+
 </code></pre>
 </div>
 
-<p><img src="/assets/dfeeded7-8f45-3579-9195-e0e6933a8ad3.png" alt="Bringing up interface eth0" /></p>
+<p>可以看到在ValidateCodeAuthenticationFilter.java中，验证了一个字段为validateCode值是否与session中的值相同？判断验证码是否正确。
+同时无论验证码是否验证正确，session中的值均需清除</p>
 
-<div class="language-markdown highlighter-rouge"><pre class="highlight"><code>cat /etc/udev/rules.d/70-persistent-net.rules
+<p>2、增加一个生成图片验证码功能，此生成码的功能无需权限控制，将其添加到AccessControler.java中，使用了开源验证码生成工具patchca，demo中已附上源码。
+PatchcaGenerate类请见demo或自行网上下载。</p>
+
+<p>AccessController.java</p>
+
+<div class="language-markdown highlighter-rouge"><pre class="highlight"><code>package com.hode.controller;
+
+import java.util.ArrayList;
+import java.util.Collection;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import org.patchca.PatchcaGenerate;
+import org.springframework.security.access.ConfigAttribute;
+import org.springframework.security.access.SecurityConfig;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+import org.springframework.security.web.util.matcher.RequestMatcher;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.hode.security.MySecurityMetadataSource;
+
+@Controller
+@RequestMapping("access")
+public class AccessController {<span class="sb">
+
+	@RequestMapping("login")
+	public String login(HttpServletRequest request){
+		return "login"; //返回login.jsp
+	}
+	
+	@RequestMapping("denied")
+	public String denied(HttpServletRequest request){
+		return "denied";
+	}
+	
+	//为了简单起见,在此处动态配置admin访问normal.do权限
+	@RequestMapping("reload")
+	@ResponseBody
+	public String reload(){
+		RequestMatcher rm = new AntPathRequestMatcher("/normal**");
+		ConfigAttribute ca = new SecurityConfig("test_role_admin");
+		
+		Collection&lt;ConfigAttribute&gt; value = null;
+		if(MySecurityMetadataSource.requestMap.get(rm)!=null){
+			value = MySecurityMetadataSource.requestMap.get(rm);
+		}else{
+			value = new ArrayList&lt;ConfigAttribute&gt;();
+		}
+		
+		value.add(ca);
+		MySecurityMetadataSource.requestMap.put(rm, value);
+		return "reload success";
+	}
+	
+	@RequestMapping(value="validate")
+	public void validate(HttpServletRequest req, HttpServletResponse res)
+			throws Exception {
+		res.setContentType("image/png");
+		res.setHeader("Cache-Control", "no-cache, no-store");
+		res.setHeader("Pragma", "no-cache");
+		long time = System.currentTimeMillis();
+		res.setDateHeader("Last-Modified", time);
+		res.setDateHeader("Date", time);
+		res.setDateHeader("Expires", time);
+
+		HttpSession session = req.getSession(false);
+		if (session == null) {
+			session = req.getSession();
+		}
+
+		String validateCode = PatchcaGenerate.create(res.getOutputStream());
+		session.setAttribute("validateCode", validateCode);
+		
+	}
+
+</span>}
+
 </code></pre>
 </div>
 
-<p><img src="/assets/dfeeded7-8f45-3579-9195-e0e6933a8ad2.png" alt="Bringing up interface eth0" /></p>
+<p>3、在applicationContext-security.xml配置文件中增加一个filter配置即可</p>
 
-<p>出现此故障的原因为虚拟系统安装时的网卡与迁移到新的虚拟机上的虚拟系统不一致，
-当迁移到新虚拟机时重新配置了网上为eth1，但eth0已经失效，所以无法正确配置网络，
-当然可以先删除 /etc/udev/rules.d/70-persistent-net.rules 文件，然后 reboot 重启配置网络</p>
+<div class="language-markdown highlighter-rouge"><pre class="highlight"><code>&lt;http ...
+...
+<span class="nt">&lt;custom-filter</span> <span class="na">before=</span><span class="s">"FORM_LOGIN_FILTER"</span> <span class="na">ref=</span><span class="s">"validateCodeAuthenticationFilter"</span> <span class="nt">/&gt;</span>
+...
+<span class="nt">&lt;/http&gt;</span>
 
-<font color="red">解决方法：</font>
+<span class="nt">&lt;beans:bean</span> <span class="na">id=</span><span class="s">"validateCodeAuthenticationFilter"</span> <span class="na">class=</span><span class="s">"com.hode.security.ValidateCodeAuthenticationFilter"</span> <span class="nt">&gt;</span>
+	<span class="nt">&lt;beans:property</span> <span class="na">name=</span><span class="s">"authenticationManager"</span> <span class="na">ref=</span><span class="s">"authenticationManager"</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;/beans:bean&gt;</span>
+	
+...
+</code></pre>
+</div>
 
-<p>将ifcfg-eth0配置中HWADDR改为70-persistent-net.rules配置中的eth1物理地址一致，
-注意eth需保持一致。因为eth0已失效，所以将eth0</p>
+<p>4、login.jsp中增加一个图片验证码字段</p>
 
-<p>因为eth0已失效，所以将配置70-persistent-net.rules文件中eth0项删除</p>
+<div class="language-markdown highlighter-rouge"><pre class="highlight"><code><span class="nt">&lt;div&gt;</span>验证码:<span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"text"</span> <span class="na">name=</span><span class="s">"validateCode"</span> <span class="na">value=</span><span class="s">""</span><span class="nt">/&gt;&lt;img</span> <span class="na">src=</span><span class="s">"/access/validate.do"</span> <span class="nt">/&gt;&lt;/div&gt;</span>
+</code></pre>
+</div>
 
-<p>配置完成后 reboot 重启，网络即可生效，</p>
+<p>5、启动JettyServer，分别使用以下url访问完成动态权限测试</p>
 
-<p>配置结果如下：
-<img src="/assets/dfeeded7-8f45-3579-9195-e0e6933a8ad4.png" alt="Bringing up interface eth0" /></p>
+<div class="language-markdown highlighter-rouge"><pre class="highlight"><code>打开登录页面 http://localhost/access/login.do，注意：需使用验证码完成访问。
+选中admin点击提交，此时admin用户登录成功；跳转到http://localhost/manage.do中，若验证码不正确，将提示验证失败。
+</code></pre>
+</div>
+
+<h4><a href="/rar/spring-security4.rar"><b>Demo代码下载</b></a></h4>
 
 <p>结束。</p>
 </div>
@@ -251,183 +379,19 @@
             
         
             
-        
-    
-
-    
-    
-        
-            
-        
-            
-        
-    
-        
-            
-        
-            
-        
-    
-
-    
-    
-        
-            
-        
-            
-        
-    
-        
-            
-        
-            
-        
-    
-
-    
-    
-        
-            
-        
-            
-        
-    
-        
-            
-        
-            
-        
-    
-
-    
-    
-        
-            
-        
-            
-        
-    
-
-    
-    
-        
-            
-        
-            
-        
-    
-        
-            
-        
-            
-        
-    
-
-    
-    
-        
-            
-        
-            
                 
                 <div class="panel-body">
                 <h5>相关博客</h5>
                 <ul>
                 
                 <li class="relatedPost" style="font-size: 12px;">
-                    <a href="http://www.mixfate.com/linux/tools/2016/05/12/nginx-linux-install.html">Linux环境下安装nginx</a>
+                    <a href="http://www.mixfate.com/java/2016/05/16/javaagent-class-generate.html">使用javaagent参数保存二进制class文件</a>
                     
-                        <small>(所属分类: <a href="/category/linux">linux</a>, <a href="/category/tools">tools</a>)</small>
-                    
-                </li>
-                
-                
-            
-        
-    
-        
-            
-        
-            
-        
-    
-
-    
-    
-        
-            
-        
-            
-        
-    
-        
-            
-        
-            
-        
-    
-        
-            
-        
-            
-        
-    
-
-    
-    
-        
-            
-        
-            
-        
-    
-
-    
-    
-        
-            
-        
-            
-        
-    
-        
-            
-                
-                <li class="relatedPost" style="font-size: 12px;">
-                    <a href="http://www.mixfate.com/maven/tools/2016/05/09/maven-deploy-release.html">Maven命令:deploy和release命令</a>
-                    
-                        <small>(所属分类: <a href="/category/maven">maven</a>, <a href="/category/tools">tools</a>)</small>
+                        <small>(所属分类: <a href="/category/java">java</a>)</small>
                     
                 </li>
                 
                 
-            
-        
-            
-        
-    
-
-    
-    
-        
-            
-        
-            
-        
-    
-        
-            
-                
-                <li class="relatedPost" style="font-size: 12px;">
-                    <a href="http://www.mixfate.com/maven/tools/2016/05/08/maven-nexus2.9.0.html">Nexus2.9.0 私服 linux安装使用</a>
-                    
-                        <small>(所属分类: <a href="/category/maven">maven</a>, <a href="/category/tools">tools</a>)</small>
-                    
-                </li>
-                
-                
-            
-        
             
         
     
@@ -438,9 +402,9 @@
             
                 
                 <li class="relatedPost" style="font-size: 12px;">
-                    <a href="http://www.mixfate.com/tools/tomcat/2016/05/07/jenkins-tomcat-deploy.html">jenkins远程发布应用到tomcat中，使用shell脚本或jenkins deploy插件</a>
+                    <a href="http://www.mixfate.com/spring/java/2016/05/16/spring-security-3.html">Spring Security配置使用介绍（三）暴力动态配置权限（修改源码不推荐）</a>
                     
-                        <small>(所属分类: <a href="/category/tools">tools</a>, <a href="/category/tomcat">tomcat</a>)</small>
+                        <small>(所属分类: <a href="/category/spring">spring</a>, <a href="/category/java">java</a>)</small>
                     
                 </li>
                 
@@ -463,13 +427,93 @@
             
                 
                 <li class="relatedPost" style="font-size: 12px;">
-                    <a href="http://www.mixfate.com/tools/2016/05/06/jenkins.html">jenkins安装与使用</a>
+                    <a href="http://www.mixfate.com/spring/java/2016/05/16/spring-security-2.html">Spring Security配置使用介绍（二）动态配置权限</a>
                     
-                        <small>(所属分类: <a href="/category/tools">tools</a>)</small>
+                        <small>(所属分类: <a href="/category/spring">spring</a>, <a href="/category/java">java</a>)</small>
                     
                 </li>
                 
                 
+            
+        
+            
+        
+    
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+                
+                <li class="relatedPost" style="font-size: 12px;">
+                    <a href="http://www.mixfate.com/spring/java/2016/05/15/spring-security.html">Spring Security配置使用介绍（一）简单配置</a>
+                    
+                        <small>(所属分类: <a href="/category/spring">spring</a>, <a href="/category/java">java</a>)</small>
+                    
+                </li>
+                
+                
+            
+        
+            
+        
+    
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+                
+                <li class="relatedPost" style="font-size: 12px;">
+                    <a href="http://www.mixfate.com/spring/redis/2016/05/13/spring-session-redis.html">使用Spring Session + Redis管理会话</a>
+                    
+                        <small>(所属分类: <a href="/category/spring">spring</a>, <a href="/category/redis">redis</a>)</small>
+                    
+                </li>
+                
+                
+            
+        
+            
+        
+    
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+        
+    
+        
             
         
             
@@ -484,13 +528,97 @@
             
                 
                 <li class="relatedPost" style="font-size: 12px;">
-                    <a href="http://www.mixfate.com/linux/tools/2016/05/05/linux-centos-scp.html">centos minimal使用ssh/scp命令不录入密码</a>
+                    <a href="http://www.mixfate.com/java/spring/webservice/2016/05/11/spring4-cxf3-webservice.html">Spring4 + cxf3 构建wsdl webservice</a>
                     
-                        <small>(所属分类: <a href="/category/linux">linux</a>, <a href="/category/tools">tools</a>)</small>
+                        <small>(所属分类: <a href="/category/java">java</a>, <a href="/category/spring">spring</a>, <a href="/category/webservice">webservice</a>)</small>
                     
                 </li>
                 
                 
+            
+        
+    
+        
+            
+        
+            
+        
+    
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+        
+    
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+        
+    
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+        
+    
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
             
         
     
@@ -1060,10 +1188,8 @@
 
 <div class="PageNavigation" style="font-size: 12px;">
   
-    <a class="prev pull-left" href="/java/spring/quartz/2016/04/25/spring-quartz-annotation.html">&laquo; Spring + quartz注解配置使用</a>
+    <a class="prev pull-left" href="/java/2016/05/16/javaagent-class-generate.html">&laquo; 使用javaagent参数保存二进制class文件</a>
   
-  
-    <a class="next pull-right" href="/redis/tools/2016/04/27/redis-cluster.html">Redis集群安装 &raquo;</a>
   
 </div>
 <div>&nbsp;</div>
@@ -1075,8 +1201,8 @@
 
         /*
 		var disqus_shortname = "mixfate";
-        var disqus_identifier = "http://www.mixfate.com_Vmware linux拷贝网络故障";
-        var disqus_title = "Vmware linux拷贝网络故障";
+        var disqus_identifier = "http://www.mixfate.com_Spring Security配置使用介绍（四）增加验证码";
+        var disqus_title = "Spring Security配置使用介绍（四）增加验证码";
 		*/
 
         /* * * DON'T EDIT BELOW THIS LINE * * */

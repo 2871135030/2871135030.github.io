@@ -172,6 +172,19 @@
           <i class="fa fa-sticky-note"></i>
         </div>
         <div class="row-content">
+          <div class="least-content">2016-05-17 19:55</div>
+          <h4 class="list-group-item-heading" style="font-size: 14px;"><a href="/spring/java/2016/05/17/spring-security-4.html">Spring Security配置使用介绍（四）增加验证码</a></h4>
+
+          <p class="list-group-item-text" style="font-size: 12px;">Spring Security配置使用介绍（四）增加验证码 本文基于此前介绍过spring security动态配置权限，使用的方法是增加过滤拦截对权限进行处理， 此篇介绍基于上一篇已实现动态权限配置，增加验证码功能。 1、实现spring-security验证码功能，只需要增加一个过滤器便可。此过滤继承UsernamePasswordAuthenticationFilter，在验证用户名密码之前验证码校验， java代码实现如下 ValidateCodeAuthenticationFilter.java package com.hode.security; import java.util.Date; import javax.servlet.http.HttpServletRequest; import javax.servlet.http.HttpServletResponse; import org.apache.commons.lang.StringUtils; import org.springframework.security.core.Authentication;...</p>
+        </div>
+      </div>
+      <div class="list-group-separator"></div>
+      
+      <div class="list-group-item">
+        <div class="row-action-primary">
+          <i class="fa fa-sticky-note"></i>
+        </div>
+        <div class="row-content">
           <div class="least-content">2016-05-16 23:02</div>
           <h4 class="list-group-item-heading" style="font-size: 14px;"><a href="/java/2016/05/16/javaagent-class-generate.html">使用javaagent参数保存二进制class文件</a></h4>
 
@@ -429,31 +442,6 @@
           <h4 class="list-group-item-heading" style="font-size: 14px;"><a href="/maven/tools/2016/04/30/maven-nexus.html">maven安装第三方包到本地或私服</a></h4>
 
           <p class="list-group-item-text" style="font-size: 12px;">maven安装第三方包到本地或私服 如需安装到本地，确认本地maven环境正常可使用，可直接install，命令如下： mvn install:install-file -DgroupId=com.hode -DartifactId=quest -Dversion=1.0 -Dpackaging=jar -Dfile=quest.jar 说明：可以看到，上面的命令是将quest.jar包直接安装到本地的maven仓库中。 若需要安装到私服上，首先需配置用户的访问权限，在maven的配置文件setting.xml中配置thirdparty项，配置如下 &lt;server&gt; &lt;id&gt;thirdparty&lt;/id&gt; &lt;username&gt;root&lt;/username&gt; &lt;password&gt;root&lt;/password&gt; &lt;/server&gt; 安装命令如下: mvn deploy:deploy-file -DgroupId=com.hode...</p>
-        </div>
-      </div>
-      <div class="list-group-separator"></div>
-      
-      <div class="list-group-item">
-        <div class="row-action-primary">
-          <i class="fa fa-sticky-note"></i>
-        </div>
-        <div class="row-content">
-          <div class="least-content">2016-04-29 18:00</div>
-          <h4 class="list-group-item-heading" style="font-size: 14px;"><a href="/others/2016/04/29/others.html">四句话，献给处于阴霾中的你</a></h4>
-
-          <p class="list-group-item-text" style="font-size: 12px;">四句话，献给处于阴霾中的你
-
-
-你病，或者不病倒，老板就在那里，不悲不喜；
-
-你休，或者不休假，工作就在那里，不来不去；
-
-你拼，或者不拼命，工资就在那里，不增不减；
-
-你辞，或者不辞职，地球还是会转，不歇不停。
-
-结束。
-</p>
         </div>
       </div>
       <div class="list-group-separator"></div>

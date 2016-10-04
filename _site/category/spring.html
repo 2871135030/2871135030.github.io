@@ -287,6 +287,27 @@
             
             
             
+            <div class="least-content">2016-05-17 19:55</div>
+            <h4 class="list-group-item-heading" style="font-size: 14px;"><a href="/spring/java/2016/05/17/spring-security-4.html">Spring Security配置使用介绍（四）增加验证码</a></h4>
+            <p class="list-group-item-text">Spring Security配置使用介绍（四）增加验证码 本文基于此前介绍过spring security动态配置权限，使用的方法是增加过滤拦截对权限进行处理， 此篇介绍基于上一篇已实现动态权限配置，增加验证码功能。 1、实现spring-security验证码功能，只需要增加一个过滤器便可。此过滤继承UsernamePasswordAuthenticationFilter，在验证用户名密码之前验证码校验， java代码实现如下 ValidateCodeAuthenticationFilter.java package com.hode.security; import java.util.Date; import javax.servlet.http.HttpServletRequest; import javax.servlet.http.HttpServletResponse; import org.apache.commons.lang.StringUtils; import org.springframework.security.core.Authentication;...</p>
+            
+            </div>
+        </div>
+        <div class="list-group-separator"></div>
+        
+        <div class="list-group-item">
+            <div class="row-action-primary">
+              <i class="fa fa-sticky-note"></i>
+            </div>
+            <div class="row-content" style="font-size: 12px;">
+            
+            
+            
+            
+                
+                
+                
+            
             <div class="least-content">2016-05-16 21:55</div>
             <h4 class="list-group-item-heading" style="font-size: 14px;"><a href="/spring/java/2016/05/16/spring-security-3.html">Spring Security配置使用介绍（三）暴力动态配置权限（修改源码不推荐）</a></h4>
             <p class="list-group-item-text">Spring Security配置使用介绍（三）暴力动态配置权限（修改源码不推荐） 前面介绍过spring security动态配置权限，使用的方法是增加过滤拦截对权限进行处理， 此篇介绍修改源码实现动态权限，部分代码基于上一篇进行修改，帮助理解spring security。 1、此方法修改源码，不需要另外增加拦截器，我们先在applicationContext-security.xml配置好已有权限，再动态调整其权限。 applicationContext-security.xml内容如下 &lt;?xml version="1.0" encoding="UTF-8"?&gt; &lt;beans:beans xmlns="http://www.springframework.org/schema/security" xmlns:beans="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.2.xsd"&gt; &lt;http...</p>
