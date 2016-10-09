@@ -6,15 +6,15 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <link rel="shortcut icon" href="/static/img/favicon.ico" />
-        <title>maven安装第三方包到本地或私服 - Java及相关开源技术博客</title>
+        <title>Gradle构建spring项目 - Java及相关开源技术博客</title>
         <meta name="author" content="Mixfate博客" />
         <meta name="description" content="Mixfate博客,开源技术博客,IT 博客,java技术,spring开源技术,dubbo分布式架构,maven工具" />
-        <meta name="keywords" content="maven安装第三方包到本地或私服, Java及相关开源技术博客, maven, tools" />
+        <meta name="keywords" content="Gradle构建spring项目, Java及相关开源技术博客, tools, spring" />
 
         <meta content="0" property="fb:app_id">
         <meta content="Java及相关开源技术博客" property="og:site_name">
         
-          <meta content="maven安装第三方包到本地或私服" property="og:title">
+          <meta content="Gradle构建spring项目" property="og:title">
         
         
           <meta content="article" property="og:type">
@@ -23,10 +23,10 @@
           <meta content="Mixfate博客,开源技术博客,IT 博客,java技术,spring开源技术,dubbo分布式架构,maven工具" property="og:description">
         
         
-          <meta content="http://www.mixfate.com/maven/tools/2016/04/30/maven-nexus.html" property="og:url">
+          <meta content="http://www.mixfate.com/tools/spring/2016/05/19/gradle-spring-project.html" property="og:url">
         
         
-          <meta content="2016-04-30T19:26:46+08:00" property="article:published_time">
+          <meta content="2016-05-19T20:20:58+08:00" property="article:published_time">
           <meta content="http://www.mixfate.com/about/" property="article:author">
         
         
@@ -34,7 +34,7 @@
         
         
           
-          <meta content="maven" property="article:section">
+          <meta content="tools" property="article:section">
           
         
         
@@ -44,10 +44,10 @@
         <meta name="twitter:site" content="@\#">
         <meta name="twitter:creator" content="@\#">
         
-          <meta name="twitter:title" content="maven安装第三方包到本地或私服">
+          <meta name="twitter:title" content="Gradle构建spring项目">
         
         
-          <meta name="twitter:url" content="http://www.mixfate.com/maven/tools/2016/04/30/maven-nexus.html">
+          <meta name="twitter:url" content="http://www.mixfate.com/tools/spring/2016/05/19/gradle-spring-project.html">
         
         
           <meta name="twitter:description" content="Mixfate博客,开源技术博客,IT 博客,java技术,spring开源技术,dubbo分布式架构,maven工具">
@@ -122,14 +122,14 @@
         </div>
       </div>
       <div class="col-md-9 col-sm-8 col-xs-12">
-      <h2 class="blog-title-pro">maven安装第三方包到本地或私服</h2>
+      <h2 class="blog-title-pro">Gradle构建spring项目</h2>
       <p class="info">
       
-      <span class="time">2016/04/30</span>
+      <span class="time">2016/05/19</span>
       
       
     <span class="categories">
-        &raquo; <a href="/category/maven">maven</a>, <a href="/category/tools">tools</a>
+        &raquo; <a href="/category/tools">tools</a>, <a href="/category/spring">spring</a>
     </span>
     
       </p>
@@ -148,19 +148,19 @@
 	
 	
 	
-	<li class="col-lg-12 col-md-12 col-sm-4 col-xs-12 current-menu-item maven-nexus.html"><a href="/"><i class="fa fa-home"></i> 首页</a></li>
+	<li class="col-lg-12 col-md-12 col-sm-4 col-xs-12 current-menu-item gradle-spring-project.html"><a href="/"><i class="fa fa-home"></i> 首页</a></li>
 
 	
 	
 	
 	
-	<li class="col-lg-12 col-md-12 col-sm-4 col-xs-12  maven-nexus.html"><a href="/category/java"><i class="fa fa-desktop"></i> 分类</a></li>
+	<li class="col-lg-12 col-md-12 col-sm-4 col-xs-12  gradle-spring-project.html"><a href="/category/java"><i class="fa fa-desktop"></i> 分类</a></li>
 
 	
 	
 	
 	
-	<li class="col-lg-12 col-md-12 col-sm-4 col-xs-12  maven-nexus.html"><a href="/about/"><i class="fa fa-comments"></i> 关于</a></li>
+	<li class="col-lg-12 col-md-12 col-sm-4 col-xs-12  gradle-spring-project.html"><a href="/about/"><i class="fa fa-comments"></i> 关于</a></li>
 
 </ul>
     </div>
@@ -181,33 +181,102 @@
             <div class="col-md-9 col-xs-12 full">
                 <div class="post-content well">
 <article class="content">
-    <div class="post" style="font-size: 12px;"><h2 id="maven">maven安装第三方包到本地或私服</h2>
+    <div class="post" style="font-size: 12px;"><h2 id="gradlespring">Gradle构建spring项目</h2>
 
-<p>如需安装到本地，确认本地maven环境正常可使用，可直接install，命令如下：</p>
+<p>接上一篇<a href="/tools/spring/2016/05/19/gradle-spring-project.html">Gradle安装与简单使用介绍</a>，本文介绍gradle构建一个spring项目</p>
 
-<div class="language-markdown highlighter-rouge"><pre class="highlight"><code>mvn install:install-file -DgroupId=com.hode -DartifactId=quest -Dversion=1.0 -Dpackaging=jar -Dfile=quest.jar
+<p>1、首先编写build.gradle配置文件，内容如下</p>
+
+<div class="language-markdown highlighter-rouge"><pre class="highlight"><code>apply plugin:'java'
+apply plugin:'eclipse'
+
+repositories{
+	mavenCentral()
+}
+
+dependencies{
+	compile(
+		'org.springframework:spring-core:4.0.7.RELEASE'
+		'org.springframework:spring-context:4.0.7.RELEASE'
+	)
+	testCompile(
+		'junit:junit:4.11'
+	)
+}
 </code></pre>
 </div>
 
-<p>说明：可以看到，上面的命令是将quest.jar包直接安装到本地的maven仓库中。</p>
+<font color="red">注意：使用了maven的中央仓库，以及依赖了spring-core、junit。注意相应的格式</font>
 
-<p>若需要安装到私服上，首先需配置用户的访问权限，在maven的配置文件setting.xml中配置thirdparty项，配置如下</p>
+<p>执行命令完成目录创建
+mkdir -p src/{main,test}/{java,resources}</p>
 
-<div class="language-markdown highlighter-rouge"><pre class="highlight"><code><span class="nt">&lt;server&gt;</span>
-	<span class="nt">&lt;id&gt;</span>thirdparty<span class="nt">&lt;/id&gt;</span>
-	<span class="nt">&lt;username&gt;</span>root<span class="nt">&lt;/username&gt;</span>
-	<span class="nt">&lt;password&gt;</span>root<span class="nt">&lt;/password&gt;</span>
-<span class="nt">&lt;/server&gt;</span>
+<p>2、执行命令 gradle eclipse 完成初始化。</p>
+
+<p>3、编写类完成测试（按照包的结构保存类）</p>
+
+<p>UserService.java(目录/src/main/java/com/hode/service/)</p>
+
+<div class="language-markdown highlighter-rouge"><pre class="highlight"><code>package com.hode.service;
+
+import org.springframework.stereotype.Service;
+
+@Service
+public class UserService{
+	
+	public void info(){
+		System.out.println("this is UserService info function");
+	}
+	
+}
 </code></pre>
 </div>
 
-<p>安装命令如下:</p>
+<p>Config.java(目录/src/main/java/com/hode/)</p>
 
-<div class="language-markdown highlighter-rouge"><pre class="highlight"><code>mvn deploy:deploy-file -DgroupId=com.hode -DartifactId=quest -Dversion=1.0 -Dpackaging=jar -Dfile=quest.jar -DrepositoryId=thirdparty -Durl=http://192.168.23.57:8081/nexus/content/repositories/thirdparty/
+<div class="language-markdown highlighter-rouge"><pre class="highlight"><code>package com.hode;
+
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
+
+@Configuration
+@ComponentScan("com.hode")
+public class Config {
+
+}
 </code></pre>
 </div>
 
-<p>结束。</p>
+<p>TestClazz.java(目录/src/test/java/com/hode/)</p>
+
+<div class="language-markdown highlighter-rouge"><pre class="highlight"><code>package com.hode;
+
+import org.junit.Test;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.context.support.AbstractApplicationContext;
+
+import com.hode.service.UserService;
+
+public class TestClazz{
+	
+	@Test
+	public void test(){
+		AbstractApplicationContext context = new AnnotationConfigApplicationContext(Config.class);
+		System.out.println(context);
+		UserService service = context.getBean(UserService.class);
+		service.info();
+	}
+	
+}
+</code></pre>
+</div>
+
+<p>4、执行命令gradle test 完成测试。</p>
+
+<p>测试结果可查看文件build/test-results/test/binary/output.bin</p>
+
+<p>完毕。</p>
+
 </div>
 	
 	<!--
@@ -224,20 +293,6 @@
             
         
             
-                
-                <div class="panel-body">
-                <h5>相关博客</h5>
-                <ul>
-                
-                <li class="relatedPost" style="font-size: 12px;">
-                    <a href="http://www.mixfate.com/tools/spring/2016/05/19/gradle-spring-project.html">Gradle构建spring项目</a>
-                    
-                        <small>(所属分类: <a href="/category/tools">tools</a>, <a href="/category/spring">spring</a>)</small>
-                    
-                </li>
-                
-                
-            
         
     
         
@@ -251,8 +306,10 @@
     
         
             
-        
-            
+                
+                <div class="panel-body">
+                <h5>相关博客</h5>
+                <ul>
                 
                 <li class="relatedPost" style="font-size: 12px;">
                     <a href="http://www.mixfate.com/tools/2016/05/18/gradle-install-userguide.html">Gradle安装与简单使用介绍</a>
@@ -264,108 +321,11 @@
                 
             
         
-    
-
-    
-    
-        
-            
-        
-            
-        
-    
-        
-            
-        
             
         
     
 
     
-    
-        
-            
-        
-            
-        
-    
-
-    
-    
-        
-            
-        
-            
-        
-    
-        
-            
-        
-            
-        
-    
-
-    
-    
-        
-            
-        
-            
-        
-    
-        
-            
-        
-            
-        
-    
-
-    
-    
-        
-            
-        
-            
-        
-    
-        
-            
-        
-            
-        
-    
-
-    
-    
-        
-            
-        
-            
-        
-    
-
-    
-    
-        
-            
-        
-            
-        
-    
-        
-            
-        
-            
-        
-    
-
-    
-    
-        
-            
-        
-            
-        
     
         
             
@@ -373,9 +333,9 @@
             
                 
                 <li class="relatedPost" style="font-size: 12px;">
-                    <a href="http://www.mixfate.com/linux/tools/2016/05/12/nginx-linux-install.html">Linux环境下安装nginx</a>
+                    <a href="http://www.mixfate.com/spring/java/2016/05/17/spring-security-4.html">Spring Security配置使用介绍（四）增加验证码</a>
                     
-                        <small>(所属分类: <a href="/category/linux">linux</a>, <a href="/category/tools">tools</a>)</small>
+                        <small>(所属分类: <a href="/category/spring">spring</a>, <a href="/category/java">java</a>)</small>
                     
                 </li>
                 
@@ -383,21 +343,6 @@
             
         
     
-
-    
-    
-        
-            
-        
-            
-        
-    
-        
-            
-        
-            
-        
-    
         
             
         
@@ -416,44 +361,19 @@
 
     
     
+        
+            
         
             
                 
                 <li class="relatedPost" style="font-size: 12px;">
-                    <a href="http://www.mixfate.com/maven/tools/2016/05/09/maven-deploy-release.html">Maven命令:deploy和release命令</a>
+                    <a href="http://www.mixfate.com/spring/java/2016/05/16/spring-security-3.html">Spring Security配置使用介绍（三）暴力动态配置权限（修改源码不推荐）</a>
                     
-                        <small>(所属分类: <a href="/category/maven">maven</a>, <a href="/category/tools">tools</a>)</small>
-                    
-                </li>
-                
-                
-            
-        
-            
-        
-    
-        
-            
-        
-            
-        
-    
-
-    
-    
-        
-            
-                
-                <li class="relatedPost" style="font-size: 12px;">
-                    <a href="http://www.mixfate.com/maven/tools/2016/05/08/maven-nexus2.9.0.html">Nexus2.9.0 私服 linux安装使用</a>
-                    
-                        <small>(所属分类: <a href="/category/maven">maven</a>, <a href="/category/tools">tools</a>)</small>
+                        <small>(所属分类: <a href="/category/spring">spring</a>, <a href="/category/java">java</a>)</small>
                     
                 </li>
                 
                 
-            
-        
             
         
     
@@ -472,13 +392,162 @@
             
                 
                 <li class="relatedPost" style="font-size: 12px;">
-                    <a href="http://www.mixfate.com/tools/tomcat/2016/05/07/jenkins-tomcat-deploy.html">jenkins远程发布应用到tomcat中，使用shell脚本或jenkins deploy插件</a>
+                    <a href="http://www.mixfate.com/spring/java/2016/05/16/spring-security-2.html">Spring Security配置使用介绍（二）动态配置权限</a>
                     
-                        <small>(所属分类: <a href="/category/tools">tools</a>, <a href="/category/tomcat">tomcat</a>)</small>
+                        <small>(所属分类: <a href="/category/spring">spring</a>, <a href="/category/java">java</a>)</small>
                     
                 </li>
                 
                 
+            
+        
+    
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+                
+                <li class="relatedPost" style="font-size: 12px;">
+                    <a href="http://www.mixfate.com/spring/java/2016/05/15/spring-security.html">Spring Security配置使用介绍（一）简单配置</a>
+                    
+                        <small>(所属分类: <a href="/category/spring">spring</a>, <a href="/category/java">java</a>)</small>
+                    
+                </li>
+                
+                
+            
+        
+    
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+                
+                <li class="relatedPost" style="font-size: 12px;">
+                    <a href="http://www.mixfate.com/spring/redis/2016/05/13/spring-session-redis.html">使用Spring Session + Redis管理会话</a>
+                    
+                        <small>(所属分类: <a href="/category/spring">spring</a>, <a href="/category/redis">redis</a>)</small>
+                    
+                </li>
+                
+                
+            
+        
+    
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+        
+    
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+        
+    
+        
+            
+        
+            
+        
+    
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+        
+    
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+        
+    
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
             
         
     
@@ -1072,10 +1141,8 @@
 
 <div class="PageNavigation" style="font-size: 12px;">
   
-    <a class="prev pull-left" href="/others/2016/04/29/others.html">&laquo; 四句话，献给处于阴霾中的你</a>
+    <a class="prev pull-left" href="/tools/2016/05/18/gradle-install-userguide.html">&laquo; Gradle安装与简单使用介绍</a>
   
-  
-    <a class="next pull-right" href="/mysql/tools/2016/05/01/mysql-install.html">mysql windows绿色版使用，导入导出功能 &raquo;</a>
   
 </div>
 <div>&nbsp;</div>
@@ -1087,8 +1154,8 @@
 
         /*
 		var disqus_shortname = "mixfate";
-        var disqus_identifier = "http://www.mixfate.com_maven安装第三方包到本地或私服";
-        var disqus_title = "maven安装第三方包到本地或私服";
+        var disqus_identifier = "http://www.mixfate.com_Gradle构建spring项目";
+        var disqus_title = "Gradle构建spring项目";
 		*/
 
         /* * * DON'T EDIT BELOW THIS LINE * * */

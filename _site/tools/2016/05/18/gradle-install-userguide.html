@@ -6,15 +6,15 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <link rel="shortcut icon" href="/static/img/favicon.ico" />
-        <title>maven安装第三方包到本地或私服 - Java及相关开源技术博客</title>
+        <title>Gradle安装与简单使用介绍 - Java及相关开源技术博客</title>
         <meta name="author" content="Mixfate博客" />
         <meta name="description" content="Mixfate博客,开源技术博客,IT 博客,java技术,spring开源技术,dubbo分布式架构,maven工具" />
-        <meta name="keywords" content="maven安装第三方包到本地或私服, Java及相关开源技术博客, maven, tools" />
+        <meta name="keywords" content="Gradle安装与简单使用介绍, Java及相关开源技术博客, tools" />
 
         <meta content="0" property="fb:app_id">
         <meta content="Java及相关开源技术博客" property="og:site_name">
         
-          <meta content="maven安装第三方包到本地或私服" property="og:title">
+          <meta content="Gradle安装与简单使用介绍" property="og:title">
         
         
           <meta content="article" property="og:type">
@@ -23,10 +23,10 @@
           <meta content="Mixfate博客,开源技术博客,IT 博客,java技术,spring开源技术,dubbo分布式架构,maven工具" property="og:description">
         
         
-          <meta content="http://www.mixfate.com/maven/tools/2016/04/30/maven-nexus.html" property="og:url">
+          <meta content="http://www.mixfate.com/tools/2016/05/18/gradle-install-userguide.html" property="og:url">
         
         
-          <meta content="2016-04-30T19:26:46+08:00" property="article:published_time">
+          <meta content="2016-05-18T20:00:58+08:00" property="article:published_time">
           <meta content="http://www.mixfate.com/about/" property="article:author">
         
         
@@ -34,7 +34,7 @@
         
         
           
-          <meta content="maven" property="article:section">
+          <meta content="tools" property="article:section">
           
         
         
@@ -44,10 +44,10 @@
         <meta name="twitter:site" content="@\#">
         <meta name="twitter:creator" content="@\#">
         
-          <meta name="twitter:title" content="maven安装第三方包到本地或私服">
+          <meta name="twitter:title" content="Gradle安装与简单使用介绍">
         
         
-          <meta name="twitter:url" content="http://www.mixfate.com/maven/tools/2016/04/30/maven-nexus.html">
+          <meta name="twitter:url" content="http://www.mixfate.com/tools/2016/05/18/gradle-install-userguide.html">
         
         
           <meta name="twitter:description" content="Mixfate博客,开源技术博客,IT 博客,java技术,spring开源技术,dubbo分布式架构,maven工具">
@@ -122,14 +122,14 @@
         </div>
       </div>
       <div class="col-md-9 col-sm-8 col-xs-12">
-      <h2 class="blog-title-pro">maven安装第三方包到本地或私服</h2>
+      <h2 class="blog-title-pro">Gradle安装与简单使用介绍</h2>
       <p class="info">
       
-      <span class="time">2016/04/30</span>
+      <span class="time">2016/05/18</span>
       
       
     <span class="categories">
-        &raquo; <a href="/category/maven">maven</a>, <a href="/category/tools">tools</a>
+        &raquo; <a href="/category/tools">tools</a>
     </span>
     
       </p>
@@ -148,19 +148,19 @@
 	
 	
 	
-	<li class="col-lg-12 col-md-12 col-sm-4 col-xs-12 current-menu-item maven-nexus.html"><a href="/"><i class="fa fa-home"></i> 首页</a></li>
+	<li class="col-lg-12 col-md-12 col-sm-4 col-xs-12 current-menu-item gradle-install-userguide.html"><a href="/"><i class="fa fa-home"></i> 首页</a></li>
 
 	
 	
 	
 	
-	<li class="col-lg-12 col-md-12 col-sm-4 col-xs-12  maven-nexus.html"><a href="/category/java"><i class="fa fa-desktop"></i> 分类</a></li>
+	<li class="col-lg-12 col-md-12 col-sm-4 col-xs-12  gradle-install-userguide.html"><a href="/category/java"><i class="fa fa-desktop"></i> 分类</a></li>
 
 	
 	
 	
 	
-	<li class="col-lg-12 col-md-12 col-sm-4 col-xs-12  maven-nexus.html"><a href="/about/"><i class="fa fa-comments"></i> 关于</a></li>
+	<li class="col-lg-12 col-md-12 col-sm-4 col-xs-12  gradle-install-userguide.html"><a href="/about/"><i class="fa fa-comments"></i> 关于</a></li>
 
 </ul>
     </div>
@@ -181,33 +181,177 @@
             <div class="col-md-9 col-xs-12 full">
                 <div class="post-content well">
 <article class="content">
-    <div class="post" style="font-size: 12px;"><h2 id="maven">maven安装第三方包到本地或私服</h2>
+    <div class="post" style="font-size: 12px;"><h2 id="gradle">Gradle安装与简单使用介绍</h2>
 
-<p>如需安装到本地，确认本地maven环境正常可使用，可直接install，命令如下：</p>
+<p>Gradle是一种构建工具，它抛弃了基于XML的构建脚本，取而代之的是采用一种基于Groovy的内部领域特定语言。详细介绍在此就不作过多描述了，直接以例子切入。</p>
 
-<div class="language-markdown highlighter-rouge"><pre class="highlight"><code>mvn install:install-file -DgroupId=com.hode -DartifactId=quest -Dversion=1.0 -Dpackaging=jar -Dfile=quest.jar
+<p>1、要使用Gradle，首先是安装环境，本文演示在linux(centos6.5)中安装使用。</p>
+
+<div class="language-markdown highlighter-rouge"><pre class="highlight"><code>打开gradle官方下载地址 https://gradle.org/gradle-download/ （不保证此网址一直不变更），可以看到官方给出两句命令完成Gradle的安装，如下（第2、3步使用）：
+
+$ curl -s https://get.sdkman.io | bash
+$ sdk install gradle 3.1
+
 </code></pre>
 </div>
 
-<p>说明：可以看到，上面的命令是将quest.jar包直接安装到本地的maven仓库中。</p>
+<p>2、安装sdk工具</p>
 
-<p>若需要安装到私服上，首先需配置用户的访问权限，在maven的配置文件setting.xml中配置thirdparty项，配置如下</p>
-
-<div class="language-markdown highlighter-rouge"><pre class="highlight"><code><span class="nt">&lt;server&gt;</span>
-	<span class="nt">&lt;id&gt;</span>thirdparty<span class="nt">&lt;/id&gt;</span>
-	<span class="nt">&lt;username&gt;</span>root<span class="nt">&lt;/username&gt;</span>
-	<span class="nt">&lt;password&gt;</span>root<span class="nt">&lt;/password&gt;</span>
-<span class="nt">&lt;/server&gt;</span>
+<div class="language-markdown highlighter-rouge"><pre class="highlight"><code>需先安装unzip工具执行命令
+yum install zip unzip -y
+安装sdkman
+curl -s https://get.sdkman.io | bash
+安装完成后按提示执行以下命令
+source "/root/.sdkman/bin/sdkman-init.sh"
+使用sdk help命令检查安装结果
 </code></pre>
 </div>
 
-<p>安装命令如下:</p>
+<p>3、安装gradle</p>
 
-<div class="language-markdown highlighter-rouge"><pre class="highlight"><code>mvn deploy:deploy-file -DgroupId=com.hode -DartifactId=quest -Dversion=1.0 -Dpackaging=jar -Dfile=quest.jar -DrepositoryId=thirdparty -Durl=http://192.168.23.57:8081/nexus/content/repositories/thirdparty/
+<div class="language-markdown highlighter-rouge"><pre class="highlight"><code>执行以下命令，完成gradle安装（在线安装耗时相对较长）
+sdk install gradle 3.1
+安装结束后可使用以下命令检查安装情况
+gradle -v
 </code></pre>
 </div>
 
-<p>结束。</p>
+<p>4、简单创建一个java工程，或java web工程，注意目录结构与maven标准目录结构一致</p>
+
+<p>目录结构如下(若非web项目，则无目录webapp)：</p>
+
+<div class="language-markdown highlighter-rouge"><pre class="highlight"><code>src
+ ├── main
+ │   ├── java
+ │   ├── resources
+ │   └── webapp
+ └── test
+     ├── java
+     └── resources
+</code></pre>
+</div>
+
+<p>创建此目录结构可直接使用shell命令（建议采用），或使用gradle的task来初始化目录，下面分别介绍</p>
+
+<p>5、使用shell命令</p>
+
+<div class="language-markdown highlighter-rouge"><pre class="highlight"><code>非web项目
+mkdir -p src/{main,test}/{java,resources}
+web项目
+mkdir -p src/{main,test}/{java,resources} src/main/webapp
+创建完成后可使用tree命令查看目录结构，若未安装tree命令，可执行yum install tree -y完成安装
+</code></pre>
+</div>
+
+<p>6、使用gradle任务初始化，在根目录下新建一个文件build.gradle(类似maven的pom.xml)，内容分别如下</p>
+
+<p>非web项目build.gradle如下</p>
+
+<div class="language-markdown highlighter-rouge"><pre class="highlight"><code>apply plugin:'java'
+apply plugin:'eclipse'
+
+task createJavaProject &lt;&lt;{
+sourceSets<span class="ge">*.java.srcDirs*</span>.each{it.mkdirs()}
+sourceSets<span class="ge">*.resources.srcDirs*</span>.each{it.mkdirs()}
+}
+</code></pre>
+</div>
+
+<p>建立目录时执行命令 gradle createJavaProject eclipse，执行完成后同样可使用tree命令查看目录结构</p>
+
+<p>web项目build.gradle如下</p>
+
+<div class="language-markdown highlighter-rouge"><pre class="highlight"><code>apply plugin:'java'
+apply plugin:'eclipse-wtp'
+apply plugin:'war'
+
+task createJavaProject &lt;&lt;{
+sourceSets<span class="ge">*.java.srcDirs*</span>.each{it.mkdirs()}
+sourceSets<span class="ge">*.resources.srcDirs*</span>.each{it.mkdirs()}
+}
+
+task createWebProject(dependsOn:'createJavaProject') &lt;&lt;{
+def webAppDir=file("$webAppDirName")
+webAppDir.mkdirs()
+}
+</code></pre>
+</div>
+
+<p>建立目录时执行命令 gradle createWebProject eclipse，执行完成后同样可使用tree命令查看目录结构</p>
+
+<p>至此，目录简单介绍完毕。</p>
+
+<p>7、下面简单写一个Test类，使用gradle完成编译打包</p>
+
+<p>先创建一个java工程，编写build.gradle，同时注意增加了内容jar且指定了Main-Class</p>
+
+<p>build.gradle</p>
+
+<div class="language-markdown highlighter-rouge"><pre class="highlight"><code>apply plugin:'java'
+apply plugin:'eclipse'
+
+task createJavaProject &lt;&lt;{
+sourceSets<span class="ge">*.java.srcDirs*</span>.each{it.mkdirs()}
+sourceSets<span class="ge">*.resources.srcDirs*</span>.each{it.mkdirs()}
+}
+jar {
+ manifest{
+  attributes 'Main-Class':'com.hode.Test'
+ }
+}
+</code></pre>
+</div>
+
+<p>执行命令 gradle createJavaProject eclipse 完成目录初始化</p>
+
+<p>创建Test.java类（实际目录src/main/java/com/hode），内容如下</p>
+
+<div class="language-markdown highlighter-rouge"><pre class="highlight"><code>package com.hode;
+
+public class Test{
+	public static void main(String<span class="err">[</span>] args){
+		System.out.println("this is a test class for gradle");
+	}
+}
+</code></pre>
+</div>
+
+<p>执行命令gradle build完成构建，可以看到tree目录结构如下，build为编译结果</p>
+
+<div class="language-markdown highlighter-rouge"><pre class="highlight"><code>.
+├── build
+│   ├── classes
+│   │   └── main
+│   │       └── com
+│   │           └── hode
+│   │               └── Test.class
+│   ├── dependency-cache
+│   ├── libs
+│   │   └── javaProject.jar
+│   └── tmp
+│       ├── compileJava
+│       └── jar
+│           └── MANIFEST.MF
+├── build.gradle
+└── src
+    ├── main
+    │   ├── java
+    │   │   └── com
+    │   │       └── hode
+    │   │           └── Test.java
+    │   └── resources
+    └── test
+        ├── java
+        └── resources
+</code></pre>
+</div>
+
+<p>最后使用java -jar build/libs/javaProject.jar 查看测试类的结果。</p>
+
+<p>下一篇简单简单介绍一下构建一个spring项目。</p>
+
+<p>完毕。</p>
+
 </div>
 	
 	<!--
@@ -220,8 +364,6 @@
 
     
     
-        
-            
         
             
                 
@@ -243,39 +385,10 @@
         
             
         
-            
-        
     
 
     
     
-        
-            
-        
-            
-                
-                <li class="relatedPost" style="font-size: 12px;">
-                    <a href="http://www.mixfate.com/tools/2016/05/18/gradle-install-userguide.html">Gradle安装与简单使用介绍</a>
-                    
-                        <small>(所属分类: <a href="/category/tools">tools</a>)</small>
-                    
-                </li>
-                
-                
-            
-        
-    
-
-    
-    
-        
-            
-        
-            
-        
-    
-        
-            
         
             
         
@@ -286,20 +399,7 @@
         
             
         
-            
-        
     
-
-    
-    
-        
-            
-        
-            
-        
-    
-        
-            
         
             
         
@@ -310,11 +410,14 @@
         
             
         
-            
-        
+    
+
+    
     
         
             
+        
+    
         
             
         
@@ -325,11 +428,7 @@
         
             
         
-            
-        
     
-        
-            
         
             
         
@@ -340,20 +439,7 @@
         
             
         
-            
-        
     
-
-    
-    
-        
-            
-        
-            
-        
-    
-        
-            
         
             
         
@@ -364,11 +450,25 @@
         
             
         
+    
+
+    
+    
+        
             
         
     
         
             
+        
+    
+
+    
+    
+        
+            
+        
+    
         
             
                 
@@ -389,17 +489,11 @@
         
             
         
-            
-        
     
         
             
         
-            
-        
     
-        
-            
         
             
         
@@ -410,11 +504,13 @@
         
             
         
-            
-        
     
 
     
+    
+        
+            
+        
     
         
             
@@ -429,17 +525,13 @@
                 
             
         
-            
-        
-    
-        
-            
-        
-            
-        
     
 
     
+    
+        
+            
+        
     
         
             
@@ -454,20 +546,10 @@
                 
             
         
-            
-        
-    
-        
-            
-        
-            
-        
     
 
     
     
-        
-            
         
             
                 
@@ -485,6 +567,21 @@
         
             
         
+    
+
+    
+    
+        
+            
+                
+                <li class="relatedPost" style="font-size: 12px;">
+                    <a href="http://www.mixfate.com/tools/2016/05/06/jenkins.html">jenkins安装与使用</a>
+                    
+                        <small>(所属分类: <a href="/category/tools">tools</a>)</small>
+                    
+                </li>
+                
+                
             
         
     
@@ -494,41 +591,7 @@
         
             
         
-            
-        
     
-
-    
-    
-        
-            
-        
-            
-        
-    
-        
-            
-        
-            
-        
-    
-
-    
-    
-        
-            
-        
-            
-        
-    
-        
-            
-        
-            
-        
-    
-        
-            
         
             
         
@@ -539,26 +602,11 @@
         
             
         
-            
-        
-    
-
-    
     
         
             
         
-            
-        
     
-        
-            
-        
-            
-        
-    
-        
-            
         
             
         
@@ -569,11 +617,18 @@
         
             
         
+    
+
+    
+    
+        
             
         
     
         
             
+        
+    
         
             
         
@@ -584,11 +639,7 @@
         
             
         
-            
-        
     
-        
-            
         
             
         
@@ -599,20 +650,7 @@
         
             
         
-            
-        
     
-
-    
-    
-        
-            
-        
-            
-        
-    
-        
-            
         
             
         
@@ -623,11 +661,14 @@
         
             
         
-            
-        
+    
+
+    
     
         
             
+        
+    
         
             
         
@@ -638,11 +679,7 @@
         
             
         
-            
-        
     
-        
-            
         
             
         
@@ -653,17 +690,7 @@
         
             
         
-            
-        
     
-        
-            
-        
-            
-        
-    
-        
-            
         
             
         
@@ -674,20 +701,11 @@
         
             
         
-            
-        
     
         
             
         
-            
-        
     
-
-    
-    
-        
-            
         
             
         
@@ -698,17 +716,7 @@
         
             
         
-            
-        
     
-        
-            
-        
-            
-        
-    
-        
-            
         
             
         
@@ -719,17 +727,18 @@
         
             
         
+    
+
+    
+    
+        
             
         
     
         
             
         
-            
-        
     
-        
-            
         
             
         
@@ -740,32 +749,11 @@
         
             
         
-            
-        
     
         
             
         
-            
-        
     
-
-    
-    
-        
-            
-        
-            
-        
-    
-        
-            
-        
-            
-        
-    
-        
-            
         
             
         
@@ -776,26 +764,7 @@
         
             
         
-            
-        
     
-
-    
-    
-        
-            
-        
-            
-        
-    
-        
-            
-        
-            
-        
-    
-        
-            
         
             
         
@@ -806,26 +775,11 @@
         
             
         
-            
-        
     
         
             
         
-            
-        
     
-
-    
-    
-        
-            
-        
-            
-        
-    
-        
-            
         
             
         
@@ -836,17 +790,18 @@
         
             
         
+    
+
+    
+    
+        
             
         
     
         
             
         
-            
-        
     
-        
-            
         
             
         
@@ -857,17 +812,7 @@
         
             
         
-            
-        
     
-        
-            
-        
-            
-        
-    
-        
-            
         
             
         
@@ -878,11 +823,7 @@
         
             
         
-            
-        
     
-        
-            
         
             
         
@@ -893,20 +834,11 @@
         
             
         
-            
-        
     
         
             
         
-            
-        
     
-
-    
-    
-        
-            
         
             
         
@@ -917,29 +849,11 @@
         
             
         
-            
-        
-    
-
-    
     
         
             
         
-            
-        
     
-
-    
-    
-        
-            
-        
-            
-        
-    
-        
-            
         
             
         
@@ -950,11 +864,7 @@
         
             
         
-            
-        
     
-        
-            
         
             
         
@@ -965,14 +875,7 @@
         
             
         
-            
-        
     
-
-    
-    
-        
-            
         
             
         
@@ -983,17 +886,10 @@
         
             
         
-            
-        
     
-        
-            
-        
-            
-        
+
     
-        
-            
+    
         
             
         
@@ -1004,8 +900,6 @@
         
             
         
-            
-        
     
 
     
@@ -1013,26 +907,7 @@
         
             
         
-            
-        
     
-        
-            
-        
-            
-        
-    
-
-    
-    
-        
-            
-        
-            
-        
-    
-        
-            
         
             
         
@@ -1043,6 +918,8 @@
         
             
         
+    
+        
             
         
     
@@ -1052,6 +929,11 @@
         
             
         
+    
+
+    
+    
+        
             
         
     
@@ -1060,6 +942,62 @@
     
         
             
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+    
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+    
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+    
+
+    
+    
         
             
         
@@ -1072,10 +1010,10 @@
 
 <div class="PageNavigation" style="font-size: 12px;">
   
-    <a class="prev pull-left" href="/others/2016/04/29/others.html">&laquo; 四句话，献给处于阴霾中的你</a>
+    <a class="prev pull-left" href="/spring/java/2016/05/17/spring-security-4.html">&laquo; Spring Security配置使用介绍（四）增加验证码</a>
   
   
-    <a class="next pull-right" href="/mysql/tools/2016/05/01/mysql-install.html">mysql windows绿色版使用，导入导出功能 &raquo;</a>
+    <a class="next pull-right" href="/tools/spring/2016/05/19/gradle-spring-project.html">Gradle构建spring项目 &raquo;</a>
   
 </div>
 <div>&nbsp;</div>
@@ -1087,8 +1025,8 @@
 
         /*
 		var disqus_shortname = "mixfate";
-        var disqus_identifier = "http://www.mixfate.com_maven安装第三方包到本地或私服";
-        var disqus_title = "maven安装第三方包到本地或私服";
+        var disqus_identifier = "http://www.mixfate.com_Gradle安装与简单使用介绍";
+        var disqus_title = "Gradle安装与简单使用介绍";
 		*/
 
         /* * * DON'T EDIT BELOW THIS LINE * * */
