@@ -6,15 +6,15 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <link rel="shortcut icon" href="/static/img/favicon.ico" />
-        <title>小不忍则乱大谋，退一步海阔天空 - Java及相关开源技术博客</title>
+        <title>CAS 4.2.x webapp使用介绍 - Java及相关开源技术博客</title>
         <meta name="author" content="Mixfate博客" />
         <meta name="description" content="Mixfate博客,开源技术博客,IT 博客,java技术,spring开源技术,dubbo分布式架构,maven工具" />
-        <meta name="keywords" content="小不忍则乱大谋，退一步海阔天空, Java及相关开源技术博客, others" />
+        <meta name="keywords" content="CAS 4.2.x webapp使用介绍, Java及相关开源技术博客, spring" />
 
         <meta content="0" property="fb:app_id">
         <meta content="Java及相关开源技术博客" property="og:site_name">
         
-          <meta content="小不忍则乱大谋，退一步海阔天空" property="og:title">
+          <meta content="CAS 4.2.x webapp使用介绍" property="og:title">
         
         
           <meta content="article" property="og:type">
@@ -23,10 +23,10 @@
           <meta content="Mixfate博客,开源技术博客,IT 博客,java技术,spring开源技术,dubbo分布式架构,maven工具" property="og:description">
         
         
-          <meta content="http://www.mixfate.com/others/2016/04/09/others.html" property="og:url">
+          <meta content="http://www.mixfate.com/spring/2016/05/20/spring-cas-4.2.x.html" property="og:url">
         
         
-          <meta content="2016-04-09T00:33:58+08:00" property="article:published_time">
+          <meta content="2016-05-20T21:59:58+08:00" property="article:published_time">
           <meta content="http://www.mixfate.com/about/" property="article:author">
         
         
@@ -34,7 +34,7 @@
         
         
           
-          <meta content="others" property="article:section">
+          <meta content="spring" property="article:section">
           
         
         
@@ -44,10 +44,10 @@
         <meta name="twitter:site" content="@\#">
         <meta name="twitter:creator" content="@\#">
         
-          <meta name="twitter:title" content="小不忍则乱大谋，退一步海阔天空">
+          <meta name="twitter:title" content="CAS 4.2.x webapp使用介绍">
         
         
-          <meta name="twitter:url" content="http://www.mixfate.com/others/2016/04/09/others.html">
+          <meta name="twitter:url" content="http://www.mixfate.com/spring/2016/05/20/spring-cas-4.2.x.html">
         
         
           <meta name="twitter:description" content="Mixfate博客,开源技术博客,IT 博客,java技术,spring开源技术,dubbo分布式架构,maven工具">
@@ -122,14 +122,14 @@
         </div>
       </div>
       <div class="col-md-9 col-sm-8 col-xs-12">
-      <h2 class="blog-title-pro">小不忍则乱大谋，退一步海阔天空</h2>
+      <h2 class="blog-title-pro">CAS 4.2.x webapp使用介绍</h2>
       <p class="info">
       
-      <span class="time">2016/04/09</span>
+      <span class="time">2016/05/20</span>
       
       
     <span class="categories">
-        &raquo; <a href="/category/others">others</a>
+        &raquo; <a href="/category/spring">spring</a>
     </span>
     
       </p>
@@ -148,19 +148,19 @@
 	
 	
 	
-	<li class="col-lg-12 col-md-12 col-sm-4 col-xs-12 current-menu-item others.html"><a href="/"><i class="fa fa-home"></i> 首页</a></li>
+	<li class="col-lg-12 col-md-12 col-sm-4 col-xs-12 current-menu-item spring-cas-4.2.x.html"><a href="/"><i class="fa fa-home"></i> 首页</a></li>
 
 	
 	
 	
 	
-	<li class="col-lg-12 col-md-12 col-sm-4 col-xs-12  others.html"><a href="/category/java"><i class="fa fa-desktop"></i> 分类</a></li>
+	<li class="col-lg-12 col-md-12 col-sm-4 col-xs-12  spring-cas-4.2.x.html"><a href="/category/java"><i class="fa fa-desktop"></i> 分类</a></li>
 
 	
 	
 	
 	
-	<li class="col-lg-12 col-md-12 col-sm-4 col-xs-12  others.html"><a href="/about/"><i class="fa fa-comments"></i> 关于</a></li>
+	<li class="col-lg-12 col-md-12 col-sm-4 col-xs-12  spring-cas-4.2.x.html"><a href="/about/"><i class="fa fa-comments"></i> 关于</a></li>
 
 </ul>
     </div>
@@ -181,16 +181,143 @@
             <div class="col-md-9 col-xs-12 full">
                 <div class="post-content well">
 <article class="content">
-    <div class="post" style="font-size: 12px;"><h2 id="section">小不忍则乱大谋，退一步海阔天空</h2>
+    <div class="post" style="font-size: 12px;"><h2 id="cas-42x-webapp">CAS 4.2.x webapp使用介绍</h2>
 
-<p>多一点忍耐，就会少几次后悔。</p>
+<p>请到<a href="https://www.apereo.org/projects/cas">CAS官网</a>下载对应版本，本文以 CAS4.2.1版本为例。</p>
 
-<p>少几次翻脸，就多几个台阶。</p>
+<p>1、下载cas-4.2.1.zip，并解压。可以看到有一批子项目，其中cas-server-webapp为web工程，使用gradle编译、打包后生成cas-server-webapp-4.2.1.war</p>
 
-<p>多几次听不见，就少几次庸人自扰。</p>
+<div class="language-markdown highlighter-rouge"><pre class="highlight"><code>可以在cas-4.2.1根目录下执行（首次执行会下载依赖，耗时较长）
+gradle clean build -x test --info -DskipVersionConflict=true
+</code></pre>
+</div>
 
-<p>少撂几句狠话，就多一些余地。</p>
+<p>2、将cas-server-webapp-4.2.1.war改名为cas.war放到tomcat的webapps目录下，启动即可。</p>
 
+<div class="language-markdown highlighter-rouge"><pre class="highlight"><code>使用url访问，如:http://192.167.48.128:8080/cas，可以打开CAS登录界面，用户名:casuser，密码:Mellon，即可登录成功。
+用户名及密码默认在配置文件webapps/cas/WEB-INF/cas.properties中配置，如下
+
+<span class="gh"># Accepted Users Authentication</span>
+<span class="gh">#</span>
+accept.authn.users=casuser::Mellon
+</code></pre>
+</div>
+
+<p>3、我们也可以将其改为数据库的方式，即将用户名密码保存到数据库中</p>
+
+<p>创建一个表并初始化一条记录，接下来cas-server将使用此数据完成验证</p>
+
+<div class="language-markdown highlighter-rouge"><pre class="highlight"><code>DROP TABLE IF EXISTS <span class="sb">`users`</span>;
+CREATE TABLE  <span class="sb">`users`</span> (
+  <span class="sb">`username`</span> varchar(50) NOT NULL,
+  <span class="sb">`password`</span> varchar(50) NOT NULL,
+  PRIMARY KEY (<span class="sb">`username`</span>)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+insert into users values ('hode','123456');
+</code></pre>
+</div>
+
+<p>4、使用数据库需要cas-server-support-jdbc的支持，在此依赖中的目录cas-4.2.1/cas-server-support-jdbc/src/main/java/org/jasig/cas/adaptors/jdbc中有多类组件完成配置。
+以QueryDatabaseAuthenticationHandler为例，可参考<a href="https://apereo.github.io/cas/4.2.x/installation/Database-Authentication.html">官方文档</a></p>
+
+<p>注意使用QueryDatabaseAuthenticationHandler作为数据验证方式需屏蔽一下类QueryAndEncodeDatabaseAuthenticationHandler，如下</p>
+
+<p>QueryAndEncodeDatabaseAuthenticationHandler.java注释内容如下；</p>
+
+<div class="language-markdown highlighter-rouge"><pre class="highlight"><code>......
+//import org.springframework.stereotype.Component;
+......
+//@Component("queryAndEncodeDatabaseAuthenticationHandler")
+......
+</code></pre>
+</div>
+
+<p>修改完成后进入目录cas-4.2.1/cas-server-support-jdbc，重新执行gradle clean build，生成jar包cas-4.2.1/cas-server-support-jdbc/build/libs/cas-server-support-jdbc-4.2.1.jar，
+并将此jar包放入webapps/cas/WEB-INF/lib中，由于本例使用mysql，所以需将mysql驱动包mysql-connector-java-5.1.25.jar也放到lib目录中。</p>
+
+<p>接下来在文件webapps/cas/WEB-INF/deployerConfigContext.xml中增加以下配置，并注释掉一行</p>
+
+<div class="language-markdown highlighter-rouge"><pre class="highlight"><code>&lt;bean id="dataSource"
+  class="com.mchange.v2.c3p0.ComboPooledDataSource"
+  p:driverClass="${database.driverClass}"
+  p:jdbcUrl="${database.url}"
+  p:user="${database.user}"
+  p:password="${database.password}"
+  p:initialPoolSize="${database.pool.minSize}"
+  p:minPoolSize="${database.pool.minSize}"
+  p:maxPoolSize="${database.pool.maxSize}"
+  p:maxIdleTimeExcessConnections="${database.pool.maxIdleTime}"
+  p:checkoutTimeout="${database.pool.maxWait}"
+  p:acquireIncrement="${database.pool.acquireIncrement}"
+  p:acquireRetryAttempts="${database.pool.acquireRetryAttempts}"
+  p:acquireRetryDelay="${database.pool.acquireRetryDelay}"
+  p:idleConnectionTestPeriod="${database.pool.idleConnectionTestPeriod}"
+  p:preferredTestQuery="${database.pool.connectionHealthQuery}" /&gt;
+  
+  <span class="nt">&lt;alias</span> <span class="na">name=</span><span class="s">"queryDatabaseAuthenticationHandler"</span> <span class="na">alias=</span><span class="s">"primaryAuthenticationHandler"</span> <span class="nt">/&gt;</span>
+  <span class="nt">&lt;alias</span> <span class="na">name=</span><span class="s">"dataSource"</span> <span class="na">alias=</span><span class="s">"queryDatabaseDataSource"</span> <span class="nt">/&gt;</span>
+  
+  <span class="c">&lt;!--&lt;alias name="acceptUsersAuthenticationHandler" alias="primaryAuthenticationHandler" /&gt;</span>此行注释--&gt;
+</code></pre>
+</div>
+
+<p>接着配置/webapps/cas/WEB-INF/cas.properties，添加以下内容</p>
+
+<div class="language-markdown highlighter-rouge"><pre class="highlight"><code><span class="gh"># add by hode begin</span>
+
+<span class="gh"># == Basic database connection pool configuration ==</span>
+database.driverClass=com.mysql.jdbc.Driver
+database.url=jdbc:mysql://192.167.48.1:3306/hode
+database.user=root
+database.password=kroot
+database.pool.minSize=6
+database.pool.maxSize=18
+
+<span class="gh"># Maximum amount of time to wait in ms for a connection to become</span>
+<span class="gh"># available when the pool is exhausted</span>
+database.pool.maxWait=10000
+
+<span class="gh"># Amount of time in seconds after which idle connections</span>
+<span class="gh"># in excess of minimum size are pruned.</span>
+database.pool.maxIdleTime=120
+
+<span class="gh"># Number of connections to obtain on pool exhaustion condition.</span>
+<span class="gh"># The maximum pool size is always respected when acquiring</span>
+<span class="gh"># new connections.</span>
+database.pool.acquireIncrement=6
+
+<span class="gh"># == Connection testing settings ==</span>
+
+<span class="gh"># Period in s at which a health query will be issued on idle</span>
+<span class="gh"># connections to determine connection liveliness.</span>
+database.pool.idleConnectionTestPeriod=30
+
+<span class="gh"># Query executed periodically to test health</span>
+database.pool.connectionHealthQuery=select 1
+
+<span class="gh"># == Database recovery settings ==</span>
+
+<span class="gh"># Number of times to retry acquiring a _new_ connection</span>
+<span class="gh"># when an error is encountered during acquisition.</span>
+database.pool.acquireRetryAttempts=5
+
+<span class="gh"># Amount of time in ms to wait between successive aquire retry attempts.</span>
+database.pool.acquireRetryDelay=2000
+
+<span class="gh"># add by hode end</span>
+</code></pre>
+</div>
+
+<p>同时需取消注释项cas.jdbc.authn.query.sql，并添加sql语句，</p>
+
+<div class="language-markdown highlighter-rouge"><pre class="highlight"><code>cas.jdbc.authn.query.sql=select password from users where username=?
+</code></pre>
+</div>
+
+<p>配置完成。重启tomcat即可用hode/123456进行登录，完成验证，cas是推荐使用https的可参考<a href="/tomcat/tools/2016/04/01/tomcat-ssl-1.html">tomcat配置ssl单向认证</a>配置。</p>
+
+<p>下一篇将介绍cas-server-support-jdbc/src/main/java/org/jasig/cas/adaptors/jdbc目录下其他几个认证功能。</p>
 </div>
 	
 	<!--
@@ -216,80 +343,15 @@
     
         
             
-        
-    
-
-    
-    
-        
-            
-        
-    
-
-    
-    
-        
-            
-        
-    
-        
-            
-        
-    
-
-    
-    
-        
-            
-        
-    
-
-    
-    
-        
-            
-        
-    
-        
-            
-        
-    
-
-    
-    
-        
-            
-        
-    
-        
-            
-        
-    
-
-    
-    
-        
-            
-        
-    
-        
-            
-        
-    
-
-    
-    
-        
-            
                 
                 <div class="panel-body">
                 <h5>相关博客</h5>
                 <ul>
                 
                 <li class="relatedPost" style="font-size: 12px;">
-                    <a href="http://www.mixfate.com/others/2016/05/14/others.html">做人的涵养！（深刻）</a>
+                    <a href="http://www.mixfate.com/tools/spring/2016/05/19/gradle-spring-project.html">Gradle构建spring项目</a>
                     
-                        <small>(所属分类: <a href="/category/others">others</a>)</small>
+                        <small>(所属分类: <a href="/category/tools">tools</a>, <a href="/category/spring">spring</a>)</small>
                     
                 </li>
                 
@@ -299,36 +361,6 @@
     
 
     
-    
-        
-            
-        
-    
-        
-            
-        
-    
-
-    
-    
-        
-            
-        
-    
-        
-            
-        
-    
-
-    
-    
-        
-            
-        
-    
-        
-            
-        
     
         
             
@@ -341,484 +373,15 @@
             
                 
                 <li class="relatedPost" style="font-size: 12px;">
-                    <a href="http://www.mixfate.com/others/2016/05/10/others.html">到了我这个年龄，就不想再去取悦谁了</a>
+                    <a href="http://www.mixfate.com/spring/java/2016/05/17/spring-security-4.html">Spring Security配置使用介绍（四）增加验证码</a>
                     
-                        <small>(所属分类: <a href="/category/others">others</a>)</small>
-                    
-                </li>
-                
-                
-            
-        
-    
-
-    
-    
-        
-            
-        
-    
-        
-            
-        
-    
-
-    
-    
-        
-            
-        
-    
-        
-            
-        
-    
-
-    
-    
-        
-            
-        
-    
-        
-            
-        
-    
-
-    
-    
-        
-            
-        
-    
-
-    
-    
-        
-            
-        
-    
-        
-            
-        
-    
-
-    
-    
-        
-            
-        
-    
-        
-            
-        
-    
-        
-            
-        
-    
-
-    
-    
-        
-            
-                
-                <li class="relatedPost" style="font-size: 12px;">
-                    <a href="http://www.mixfate.com/others/2016/05/03/others.html">善行天下，改变命运</a>
-                    
-                        <small>(所属分类: <a href="/category/others">others</a>)</small>
+                        <small>(所属分类: <a href="/category/spring">spring</a>, <a href="/category/java">java</a>)</small>
                     
                 </li>
                 
                 
             
         
-    
-
-    
-    
-        
-            
-        
-    
-        
-            
-        
-    
-        
-            
-        
-    
-
-    
-    
-        
-            
-        
-    
-        
-            
-        
-    
-
-    
-    
-        
-            
-        
-    
-        
-            
-        
-    
-
-    
-    
-        
-            
-                
-                <li class="relatedPost" style="font-size: 12px;">
-                    <a href="http://www.mixfate.com/others/2016/04/29/others.html">四句话，献给处于阴霾中的你</a>
-                    
-                        <small>(所属分类: <a href="/category/others">others</a>)</small>
-                    
-                </li>
-                
-                
-            
-        
-    
-
-    
-    
-        
-            
-        
-    
-        
-            
-        
-    
-
-    
-    
-        
-            
-        
-    
-        
-            
-        
-    
-
-    
-    
-        
-            
-        
-    
-        
-            
-        
-    
-
-    
-    
-        
-            
-        
-    
-        
-            
-        
-    
-        
-            
-        
-    
-
-    
-    
-        
-            
-        
-    
-        
-            
-        
-    
-
-    
-    
-        
-            
-        
-    
-
-    
-    
-        
-            
-        
-    
-        
-            
-        
-    
-        
-            
-        
-    
-
-    
-    
-        
-            
-        
-    
-        
-            
-        
-    
-        
-            
-        
-    
-
-    
-    
-        
-            
-        
-    
-        
-            
-        
-    
-
-    
-    
-        
-            
-        
-    
-        
-            
-        
-    
-        
-            
-        
-    
-
-    
-    
-        
-            
-                
-                <li class="relatedPost" style="font-size: 12px;">
-                    <a href="http://www.mixfate.com/others/2016/04/18/others.html">幽默故事，欢笑中的人生领悟</a>
-                    
-                        <small>(所属分类: <a href="/category/others">others</a>)</small>
-                    
-                </li>
-                
-                
-            
-        
-    
-
-    
-    
-        
-            
-        
-    
-        
-            
-        
-    
-        
-            
-        
-    
-
-    
-    
-        
-            
-        
-    
-        
-            
-        
-    
-
-    
-    
-        
-            
-        
-    
-        
-            
-        
-    
-
-    
-    
-        
-            
-        
-    
-        
-            
-        
-    
-        
-            
-        
-    
-
-    
-    
-        
-            
-        
-    
-        
-            
-        
-    
-        
-            
-        
-    
-
-    
-    
-        
-            
-        
-    
-        
-            
-        
-    
-
-    
-    
-        
-            
-        
-    
-        
-            
-        
-    
-
-    
-    
-        
-            
-        
-    
-
-    
-    
-        
-            
-        
-    
-
-    
-    
-        
-            
-        
-    
-
-    
-    
-        
-            
-        
-    
-        
-            
-        
-    
-
-    
-    
-        
-            
-        
-    
-        
-            
-        
-    
-
-    
-    
-        
-            
-        
-    
-
-    
-    
-        
-            
-        
-    
-
-    
-    
-        
-            
-        
-    
-        
-            
-        
-    
-        
-            
-        
-    
-
-    
-    
-        
-            
-        
-    
-
-    
-    
-        
-            
-        
-    
-        
-            
-        
-    
-
-    
-    
-        
-            
-        
-    
-        
-            
-        
-    
-
-    
     
         
             
@@ -838,13 +401,577 @@
             
                 
                 <li class="relatedPost" style="font-size: 12px;">
-                    <a href="http://www.mixfate.com/others/2015/06/04/others-1.html">心灵鸡汤 经典语录</a>
+                    <a href="http://www.mixfate.com/spring/java/2016/05/16/spring-security-3.html">Spring Security配置使用介绍（三）暴力动态配置权限（修改源码不推荐）</a>
                     
-                        <small>(所属分类: <a href="/category/others">others</a>)</small>
+                        <small>(所属分类: <a href="/category/spring">spring</a>, <a href="/category/java">java</a>)</small>
                     
                 </li>
                 
                 
+            
+        
+    
+        
+            
+        
+    
+
+    
+    
+        
+            
+                
+                <li class="relatedPost" style="font-size: 12px;">
+                    <a href="http://www.mixfate.com/spring/java/2016/05/16/spring-security-2.html">Spring Security配置使用介绍（二）动态配置权限</a>
+                    
+                        <small>(所属分类: <a href="/category/spring">spring</a>, <a href="/category/java">java</a>)</small>
+                    
+                </li>
+                
+                
+            
+        
+    
+        
+            
+        
+    
+
+    
+    
+        
+            
+                
+                <li class="relatedPost" style="font-size: 12px;">
+                    <a href="http://www.mixfate.com/spring/java/2016/05/15/spring-security.html">Spring Security配置使用介绍（一）简单配置</a>
+                    
+                        <small>(所属分类: <a href="/category/spring">spring</a>, <a href="/category/java">java</a>)</small>
+                    
+                </li>
+                
+                
+            
+        
+    
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+    
+
+    
+    
+        
+            
+                
+                <li class="relatedPost" style="font-size: 12px;">
+                    <a href="http://www.mixfate.com/spring/redis/2016/05/13/spring-session-redis.html">使用Spring Session + Redis管理会话</a>
+                    
+                        <small>(所属分类: <a href="/category/spring">spring</a>, <a href="/category/redis">redis</a>)</small>
+                    
+                </li>
+                
+                
+            
+        
+    
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+    
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+    
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+    
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+    
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+    
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+    
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+    
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+    
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+    
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+    
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+    
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+    
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+    
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+    
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+    
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+    
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+    
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+    
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+    
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+    
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+    
+
+    
+    
+        
             
         
     
@@ -856,10 +983,8 @@
 
 <div class="PageNavigation" style="font-size: 12px;">
   
-    <a class="prev pull-left" href="/tools/2016/04/06/coding-pages.html">&laquo; Coding pages + Github pages 搭建自己的博客</a>
+    <a class="prev pull-left" href="/tools/spring/2016/05/19/gradle-spring-project.html">&laquo; Gradle构建spring项目</a>
   
-  
-    <a class="next pull-right" href="/tools/2016/04/09/git-TortoiseGIT.html">TortoiseGIT记住用户名密码简单方法 &raquo;</a>
   
 </div>
 <div>&nbsp;</div>
@@ -871,8 +996,8 @@
 
         /*
 		var disqus_shortname = "mixfate";
-        var disqus_identifier = "http://www.mixfate.com_小不忍则乱大谋，退一步海阔天空";
-        var disqus_title = "小不忍则乱大谋，退一步海阔天空";
+        var disqus_identifier = "http://www.mixfate.com_CAS 4.2.x webapp使用介绍";
+        var disqus_title = "CAS 4.2.x webapp使用介绍";
 		*/
 
         /* * * DON'T EDIT BELOW THIS LINE * * */
