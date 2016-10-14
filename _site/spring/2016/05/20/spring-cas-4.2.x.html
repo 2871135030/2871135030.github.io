@@ -315,9 +315,20 @@ database.pool.acquireRetryDelay=2000
 </code></pre>
 </div>
 
-<p>配置完成。重启tomcat即可用hode/123456进行登录，完成验证，cas是推荐使用https的可参考<a href="/tomcat/tools/2016/04/01/tomcat-ssl-1.html">tomcat配置ssl单向认证</a>配置。</p>
+<p>配置完成。重启tomcat即可用hode/123456进行登录，完成验证。</p>
 
-<p>下一篇将介绍cas-server-support-jdbc/src/main/java/org/jasig/cas/adaptors/jdbc目录下其他几个认证功能。</p>
+<p>当然文明密码保存到数据库中是相当不安全的，所以需要保存加密后的密码，配置如下，此时md5后的结果与数据库的密码进行比较</p>
+
+<div class="language-markdown highlighter-rouge"><pre class="highlight"><code>deployerConfigContext.xml增加一行
+<span class="nt">&lt;alias</span> <span class="na">name=</span><span class="s">"defaultPasswordEncoder"</span> <span class="na">alias=</span><span class="s">"passwordEncoder"</span> <span class="nt">/&gt;</span>
+
+cas.properties增加两行
+cas.authn.password.encoding.char=UTF-8
+cas.authn.password.encoding.alg=MD5
+</code></pre>
+</div>
+
+<p>结束</p>
 </div>
 	
 	<!--
