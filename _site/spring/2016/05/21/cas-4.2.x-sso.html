@@ -6,15 +6,15 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <link rel="shortcut icon" href="/static/img/favicon.ico" />
-        <title>使用javaagent参数保存二进制class文件 - Java及相关开源技术博客</title>
+        <title>CAS 4.2.x 单点登录(SSO) - Java及相关开源技术博客</title>
         <meta name="author" content="Mixfate博客" />
         <meta name="description" content="Mixfate博客,开源技术博客,IT 博客,java技术,spring开源技术,dubbo分布式架构,maven工具" />
-        <meta name="keywords" content="使用javaagent参数保存二进制class文件, Java及相关开源技术博客, java" />
+        <meta name="keywords" content="CAS 4.2.x 单点登录(SSO), Java及相关开源技术博客, spring" />
 
         <meta content="0" property="fb:app_id">
         <meta content="Java及相关开源技术博客" property="og:site_name">
         
-          <meta content="使用javaagent参数保存二进制class文件" property="og:title">
+          <meta content="CAS 4.2.x 单点登录(SSO)" property="og:title">
         
         
           <meta content="article" property="og:type">
@@ -23,10 +23,10 @@
           <meta content="Mixfate博客,开源技术博客,IT 博客,java技术,spring开源技术,dubbo分布式架构,maven工具" property="og:description">
         
         
-          <meta content="http://www.mixfate.com/java/2016/05/16/javaagent-class-generate.html" property="og:url">
+          <meta content="http://www.mixfate.com/spring/2016/05/21/cas-4.2.x-sso.html" property="og:url">
         
         
-          <meta content="2016-05-16T23:02:58+08:00" property="article:published_time">
+          <meta content="2016-05-21T20:00:58+08:00" property="article:published_time">
           <meta content="http://www.mixfate.com/about/" property="article:author">
         
         
@@ -34,7 +34,7 @@
         
         
           
-          <meta content="java" property="article:section">
+          <meta content="spring" property="article:section">
           
         
         
@@ -44,10 +44,10 @@
         <meta name="twitter:site" content="@\#">
         <meta name="twitter:creator" content="@\#">
         
-          <meta name="twitter:title" content="使用javaagent参数保存二进制class文件">
+          <meta name="twitter:title" content="CAS 4.2.x 单点登录(SSO)">
         
         
-          <meta name="twitter:url" content="http://www.mixfate.com/java/2016/05/16/javaagent-class-generate.html">
+          <meta name="twitter:url" content="http://www.mixfate.com/spring/2016/05/21/cas-4.2.x-sso.html">
         
         
           <meta name="twitter:description" content="Mixfate博客,开源技术博客,IT 博客,java技术,spring开源技术,dubbo分布式架构,maven工具">
@@ -122,14 +122,14 @@
         </div>
       </div>
       <div class="col-md-9 col-sm-8 col-xs-12">
-      <h2 class="blog-title-pro">使用javaagent参数保存二进制class文件</h2>
+      <h2 class="blog-title-pro">CAS 4.2.x 单点登录(SSO)</h2>
       <p class="info">
       
-      <span class="time">2016/05/16</span>
+      <span class="time">2016/05/21</span>
       
       
     <span class="categories">
-        &raquo; <a href="/category/java">java</a>
+        &raquo; <a href="/category/spring">spring</a>
     </span>
     
       </p>
@@ -148,19 +148,19 @@
 	
 	
 	
-	<li class="col-lg-12 col-md-12 col-sm-4 col-xs-12 current-menu-item javaagent-class-generate.html"><a href="/"><i class="fa fa-home"></i> 首页</a></li>
+	<li class="col-lg-12 col-md-12 col-sm-4 col-xs-12 current-menu-item cas-4.2.x-sso.html"><a href="/"><i class="fa fa-home"></i> 首页</a></li>
 
 	
 	
 	
 	
-	<li class="col-lg-12 col-md-12 col-sm-4 col-xs-12  javaagent-class-generate.html"><a href="/category/java"><i class="fa fa-desktop"></i> 分类</a></li>
+	<li class="col-lg-12 col-md-12 col-sm-4 col-xs-12  cas-4.2.x-sso.html"><a href="/category/java"><i class="fa fa-desktop"></i> 分类</a></li>
 
 	
 	
 	
 	
-	<li class="col-lg-12 col-md-12 col-sm-4 col-xs-12  javaagent-class-generate.html"><a href="/about/"><i class="fa fa-comments"></i> 关于</a></li>
+	<li class="col-lg-12 col-md-12 col-sm-4 col-xs-12  cas-4.2.x-sso.html"><a href="/about/"><i class="fa fa-comments"></i> 关于</a></li>
 
 </ul>
     </div>
@@ -181,165 +181,229 @@
             <div class="col-md-9 col-xs-12 full">
                 <div class="post-content well">
 <article class="content">
-    <div class="post" style="font-size: 12px;"><h2 id="javaagentclass">使用javaagent参数保存二进制class文件</h2>
+    <div class="post" style="font-size: 12px;"><h2 id="cas-42x-sso">CAS 4.2.x 单点登录(SSO)</h2>
 
-<p>使用-javaagent 参数用户可以在执行main函数前执行一些其他操作，如可以动态的修改替换类中代码。既然可以修改类那么自然就可以获取到类（class二进制）了。
-本文同样使用maven去打一个包</p>
+<p>本文所介绍环境为win7环境下运行，
+下载cas-4.2.1.zip，解压并进入目录 cd D:\document\cas-4.2.1\cas-4.2.1，运行命令</p>
 
-<p>1、编写pom.xml，此处仅仅是定义一个jar工程</p>
-
-<div class="language-markdown highlighter-rouge"><pre class="highlight"><code>&lt;project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"&gt;
-	<span class="nt">&lt;modelVersion&gt;</span>4.0.0<span class="nt">&lt;/modelVersion&gt;</span>
-	<span class="nt">&lt;groupId&gt;</span>com.hode<span class="nt">&lt;/groupId&gt;</span>
-	<span class="nt">&lt;artifactId&gt;</span>clazzagent<span class="nt">&lt;/artifactId&gt;</span>
-	<span class="nt">&lt;version&gt;</span>0.0.1-SNAPSHOT<span class="nt">&lt;/version&gt;</span><span class="sb">
-
-	&lt;build&gt;
-		&lt;plugins&gt;
-			&lt;plugin&gt;
-				&lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;
-				&lt;artifactId&gt;maven-compiler-plugin&lt;/artifactId&gt;
-				&lt;version&gt;3.1&lt;/version&gt;
-				&lt;configuration&gt;
-					&lt;source&gt;1.8&lt;/source&gt;
-					&lt;target&gt;1.8&lt;/target&gt;
-					&lt;encoding&gt;UTF-8&lt;/encoding&gt;
-				&lt;/configuration&gt;
-			&lt;/plugin&gt;
-			&lt;plugin&gt;
-				&lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;
-				&lt;artifactId&gt;maven-jar-plugin&lt;/artifactId&gt;
-				&lt;version&gt;2.4&lt;/version&gt;
-				&lt;configuration&gt;
-					&lt;archive&gt;&lt;!-- 如果没有被正确打进jar包,请确认MANIFEST.MF是否正确,直接拷贝正确的自动生成的 --&gt;
-						&lt;manifestFile&gt;src/main/resources/META-INF/MANIFEST.MF&lt;/manifestFile&gt;
-					&lt;/archive&gt;
-				&lt;/configuration&gt;
-			&lt;/plugin&gt;
-		&lt;/plugins&gt;
-	&lt;/build&gt;
-
-</span><span class="nt">&lt;/project&gt;</span>
+<div class="language-markdown highlighter-rouge"><pre class="highlight"><code>gradlew clean build -x test -x javadocJar -x checkstyleMain -x checkstyleTest -x findbugsMain -DskipVersionConflict=true
 </code></pre>
 </div>
 
-<p>2、编写一个导出class的类，此类实现了ClassFileTransformer接口并且实现了一个静态方法premain，为了简单起见，只保存指定包下的类二进制文件到指定的目录中。
-代码如下
-ClazzGenerateAgent .java</p>
+<p>编译成功完成后，进入目录cas-4.2.1\cas-server-webapp\build\libs，获取到cas-server-webapp-4.2.1.war，修改为cas.war。</p>
 
-<div class="language-markdown highlighter-rouge"><pre class="highlight"><code>package com.hode;
+<p>1、为了更直观查看单点登录效果配置以下host</p>
 
-import java.io.BufferedOutputStream;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.lang.instrument.ClassFileTransformer;
-import java.lang.instrument.IllegalClassFormatException;
-import java.lang.instrument.Instrumentation;
-import java.security.ProtectionDomain;
+<div class="language-markdown highlighter-rouge"><pre class="highlight"><code><span class="p">127.</span>0.0.1 sso.mixfate.com
+<span class="p">127.</span>0.0.1 bbs.mixfate.com
+<span class="p">127.</span>0.0.1 all.mixfate.com
+</code></pre>
+</div>
 
-/<span class="ge">**</span>
-<span class="p"> *</span> 导出生成类ClazzGenerateAgent
-<span class="p"> *</span> 需要实现一个静态的public static void premain(String agentArgs,Instrumentation inst)方法
- <span class="err">*</span>/
-public class ClazzGenerateAgent implements ClassFileTransformer{<span class="sb">
+<p>如上配置 sso.mixfate.com为cas服务器，bbs.mixfate.com及all.mixfate.com分别为2个应用，均使用cas完成登录认证。</p>
 
-	public static void premain(String agentArgs,Instrumentation inst){
-		inst.addTransformer(new ClazzGenerateAgent());
-	}
+<p>2、下载apache-tomcat-7.0.55-windows-x64.zip，并解压后拷贝三份，分别命名为tomcat-cas-sso,tomcat-cas-bbs,tomcat-cas-all。
+将cas.war放到tomcat-cas-sso目录中，启动tomcat，使用http://sso.mixfate.com:8080/cas访问，使用用户名:casuser，密码:Mellon，即可登录成功。
+配置tomcat支持https，请参考前面的文章<a href="/tomcat/tools/2016/04/01/tomcat-ssl-1.html">tomcat ssl配置。</a>，简单列出步骤如下。</p>
+
+<div class="language-markdown highlighter-rouge"><pre class="highlight"><code>生成证书库命令(注意其中填写您的名字与姓氏项，请填写<span class="err">*</span>.mixfate.com)
+keytool -genkey -alias cas-sso -keyalg RSA -keysize 1024 -validity 365 -keystore "C:<span class="se">\c</span>ert<span class="se">\t</span>omcat.keystore"
+导出证书
+keytool -export -alias cas-sso -keystore "C:<span class="se">\c</span>ert<span class="se">\t</span>omcat.keystore" -storepass 123456 -rfc -file "C:<span class="se">\c</span>ert<span class="se">\t</span>omcat.cer"
+双击C:<span class="se">\c</span>ert<span class="se">\t</span>omcat.cer文件，将此证书安装在“受信任的根证书颁发机构”即可。
+
+同时将证书安装到证书库
+keytool -import -v -trustcacerts -alias tomcat -file "C:<span class="se">\c</span>ert<span class="se">\t</span>omcat.cer" -keystore "D:<span class="se">\P</span>rogram Files<span class="se">\J</span>ava<span class="se">\j</span>dk1.8.0_66<span class="se">\j</span>re<span class="se">\l</span>ib<span class="se">\s</span>ecurity<span class="se">\c</span>acerts"
+
+tomcat中的server.xml配置如下 (注意另外两个tomcat同样需配置)<span class="sb">
+
+	&lt;Connector port="443" protocol="org.apache.coyote.http11.Http11Protocol"
+               maxThreads="150" SSLEnabled="true" scheme="https" secure="true"
+               clientAuth="false" sslProtocol="TLS" 
+			   keystoreFile="c:\cert\tomcat.keystore" keystorePass="123456"/&gt;
+
+</span>tomcat-cas-sso 参考tomcat ssl配置启动，即可以访问https://sso.mixfate.com/cas，使用用户名:casuser，密码:Mellon，即可登录成功。
+
+</code></pre>
+</div>
+
+<p>3、为了简单起见cas客户端直接使用tomcat中的example作为演示web工程。
+先配置好tomcat-cas-bbs,tomcat-cas-all,端口分别为8443(默认),9443，接着在tomcat-cas-bbs/webapps/examples/WEB-INF/web.xml文件的标签 web-app结束前添加如下</p>
+
+<div class="language-markdown highlighter-rouge"><pre class="highlight"><code><span class="nt">&lt;filter&gt;</span>
+        <span class="nt">&lt;filter-name&gt;</span>CAS Single Sign Out Filter<span class="nt">&lt;/filter-name&gt;</span>
+        <span class="nt">&lt;filter-class&gt;</span>org.jasig.cas.client.session.SingleSignOutFilter<span class="nt">&lt;/filter-class&gt;</span>
+        <span class="nt">&lt;init-param&gt;</span>
+            <span class="nt">&lt;param-name&gt;</span>casServerUrlPrefix<span class="nt">&lt;/param-name&gt;</span>
+            <span class="nt">&lt;param-value&gt;</span>https://sso.mixfate.com/cas<span class="nt">&lt;/param-value&gt;</span>
+        <span class="nt">&lt;/init-param&gt;</span>
+    <span class="nt">&lt;/filter&gt;</span><span class="sb">
+
+    &lt;listener&gt;
+        &lt;listener-class&gt;org.jasig.cas.client.session.SingleSignOutHttpSessionListener&lt;/listener-class&gt;
+    &lt;/listener&gt;
+
+    &lt;filter&gt;
+        &lt;filter-name&gt;CAS Authentication Filter&lt;/filter-name&gt;
+        &lt;filter-class&gt;org.jasig.cas.client.authentication.AuthenticationFilter&lt;/filter-class&gt;
+        &lt;init-param&gt;
+            &lt;param-name&gt;casServerLoginUrl&lt;/param-name&gt;
+            &lt;param-value&gt;https://sso.mixfate.com/cas/login&lt;/param-value&gt;
+        &lt;/init-param&gt;
+        &lt;init-param&gt;
+            &lt;param-name&gt;serverName&lt;/param-name&gt;
+            &lt;param-value&gt;https://bbs.mixfate.com:8443&lt;/param-value&gt;
+        &lt;/init-param&gt;
+    &lt;/filter&gt;
+
+    &lt;filter&gt;
+        &lt;filter-name&gt;CAS Validation Filter&lt;/filter-name&gt;
+        &lt;filter-class&gt;org.jasig.cas.client.validation.Cas30ProxyReceivingTicketValidationFilter&lt;/filter-class&gt;
+        &lt;init-param&gt;
+            &lt;param-name&gt;casServerUrlPrefix&lt;/param-name&gt;
+            &lt;param-value&gt;https://sso.mixfate.com/cas&lt;/param-value&gt;
+        &lt;/init-param&gt;
+        &lt;init-param&gt;
+            &lt;param-name&gt;serverName&lt;/param-name&gt;
+            &lt;param-value&gt;https://bbs.mixfate.com:8443&lt;/param-value&gt;
+        &lt;/init-param&gt;
+        &lt;init-param&gt;
+            &lt;param-name&gt;redirectAfterValidation&lt;/param-name&gt;
+            &lt;param-value&gt;true&lt;/param-value&gt;
+        &lt;/init-param&gt;
+        &lt;init-param&gt;
+            &lt;param-name&gt;useSession&lt;/param-name&gt;
+            &lt;param-value&gt;true&lt;/param-value&gt;
+        &lt;/init-param&gt;
+        &lt;init-param&gt;
+            &lt;param-name&gt;authn_method&lt;/param-name&gt;
+            &lt;param-value&gt;mfa-duo&lt;/param-value&gt;
+        &lt;/init-param&gt;
+    &lt;/filter&gt;
+
+    &lt;filter&gt;
+        &lt;filter-name&gt;CAS HttpServletRequest Wrapper Filter&lt;/filter-name&gt;
+        &lt;filter-class&gt;org.jasig.cas.client.util.HttpServletRequestWrapperFilter&lt;/filter-class&gt;
+    &lt;/filter&gt;
+
+    &lt;filter-mapping&gt;
+        &lt;filter-name&gt;CAS Single Sign Out Filter&lt;/filter-name&gt;
+        &lt;url-pattern&gt;/*&lt;/url-pattern&gt;
+    &lt;/filter-mapping&gt;
+
+    &lt;filter-mapping&gt;
+        &lt;filter-name&gt;CAS Validation Filter&lt;/filter-name&gt;
+        &lt;url-pattern&gt;/*&lt;/url-pattern&gt;
+    &lt;/filter-mapping&gt;
+
+    &lt;filter-mapping&gt;
+        &lt;filter-name&gt;CAS Authentication Filter&lt;/filter-name&gt;
+        &lt;url-pattern&gt;/*&lt;/url-pattern&gt;
+    &lt;/filter-mapping&gt;
+
+    &lt;filter-mapping&gt;
+        &lt;filter-name&gt;CAS HttpServletRequest Wrapper Filter&lt;/filter-name&gt;
+        &lt;url-pattern&gt;/*&lt;/url-pattern&gt;
+    &lt;/filter-mapping&gt;
 	
-	@Override
-	public byte[] transform(ClassLoader loader, String className,
-			Class&lt;?&gt; classBeingRedefined, ProtectionDomain protectionDomain,
-			byte[] classfileBuffer) throws IllegalClassFormatException {
-		//只导出指定包名下的类
-		if(className.contains("com/hode")){
-			System.out.println(className);
-			int lastIndexOf = className.lastIndexOf("/") + 1;
-			String fileName = className.substring(lastIndexOf) + ".class";
-			exportClazz("c:/clazz/", fileName, classfileBuffer);
-			System.out.println(className+" export success!");
-		}else{
-			
-		}
-		return null;
-	}
-	
-	/**
-	 * 将data保存到文件中
-	 * @param path
-	 * @param filename
-	 * @param data
-	 */
-	private void exportClazz(String path,String filename,byte[] data){
-		try{
-			File file = new File(path+filename);
-			if(!file.exists()){
-				file.createNewFile();
-			}
-			FileOutputStream fos = new FileOutputStream(file);
-			BufferedOutputStream bos = new BufferedOutputStream(fos);
-			bos.write(data);
-			bos.close();
-			fos.close();
-		}catch(Exception e){
-			e.printStackTrace();
-		}
-	}
+</span></code></pre>
+</div>
 
-</span>}
+<p>再接着在tomcat-cas-all/webapps/examples/WEB-INF/web.xml 文件的标签 web-app结束前添加如下</p>
+
+<div class="language-markdown highlighter-rouge"><pre class="highlight"><code>
+	<span class="nt">&lt;filter&gt;</span>
+        <span class="nt">&lt;filter-name&gt;</span>CAS Single Sign Out Filter<span class="nt">&lt;/filter-name&gt;</span>
+        <span class="nt">&lt;filter-class&gt;</span>org.jasig.cas.client.session.SingleSignOutFilter<span class="nt">&lt;/filter-class&gt;</span>
+        <span class="nt">&lt;init-param&gt;</span>
+            <span class="nt">&lt;param-name&gt;</span>casServerUrlPrefix<span class="nt">&lt;/param-name&gt;</span>
+            <span class="nt">&lt;param-value&gt;</span>https://sso.mixfate.com/cas<span class="nt">&lt;/param-value&gt;</span>
+        <span class="nt">&lt;/init-param&gt;</span>
+    <span class="nt">&lt;/filter&gt;</span><span class="sb">
+
+    &lt;listener&gt;
+        &lt;listener-class&gt;org.jasig.cas.client.session.SingleSignOutHttpSessionListener&lt;/listener-class&gt;
+    &lt;/listener&gt;
+
+    &lt;filter&gt;
+        &lt;filter-name&gt;CAS Authentication Filter&lt;/filter-name&gt;
+        &lt;filter-class&gt;org.jasig.cas.client.authentication.AuthenticationFilter&lt;/filter-class&gt;
+        &lt;init-param&gt;
+            &lt;param-name&gt;casServerLoginUrl&lt;/param-name&gt;
+            &lt;param-value&gt;https://sso.mixfate.com/cas/login&lt;/param-value&gt;
+        &lt;/init-param&gt;
+        &lt;init-param&gt;
+            &lt;param-name&gt;serverName&lt;/param-name&gt;
+            &lt;param-value&gt;https://all.mixfate.com:9443&lt;/param-value&gt;
+        &lt;/init-param&gt;
+    &lt;/filter&gt;
+
+    &lt;filter&gt;
+        &lt;filter-name&gt;CAS Validation Filter&lt;/filter-name&gt;
+        &lt;filter-class&gt;org.jasig.cas.client.validation.Cas30ProxyReceivingTicketValidationFilter&lt;/filter-class&gt;
+        &lt;init-param&gt;
+            &lt;param-name&gt;casServerUrlPrefix&lt;/param-name&gt;
+            &lt;param-value&gt;https://sso.mixfate.com/cas&lt;/param-value&gt;
+        &lt;/init-param&gt;
+        &lt;init-param&gt;
+            &lt;param-name&gt;serverName&lt;/param-name&gt;
+            &lt;param-value&gt;https://all.mixfate.com:9443&lt;/param-value&gt;
+        &lt;/init-param&gt;
+        &lt;init-param&gt;
+            &lt;param-name&gt;redirectAfterValidation&lt;/param-name&gt;
+            &lt;param-value&gt;true&lt;/param-value&gt;
+        &lt;/init-param&gt;
+        &lt;init-param&gt;
+            &lt;param-name&gt;useSession&lt;/param-name&gt;
+            &lt;param-value&gt;true&lt;/param-value&gt;
+        &lt;/init-param&gt;
+        &lt;init-param&gt;
+            &lt;param-name&gt;authn_method&lt;/param-name&gt;
+            &lt;param-value&gt;mfa-duo&lt;/param-value&gt;
+        &lt;/init-param&gt;
+    &lt;/filter&gt;
+
+    &lt;filter&gt;
+        &lt;filter-name&gt;CAS HttpServletRequest Wrapper Filter&lt;/filter-name&gt;
+        &lt;filter-class&gt;org.jasig.cas.client.util.HttpServletRequestWrapperFilter&lt;/filter-class&gt;
+    &lt;/filter&gt;
+
+    &lt;filter-mapping&gt;
+        &lt;filter-name&gt;CAS Single Sign Out Filter&lt;/filter-name&gt;
+        &lt;url-pattern&gt;/*&lt;/url-pattern&gt;
+    &lt;/filter-mapping&gt;
+
+    &lt;filter-mapping&gt;
+        &lt;filter-name&gt;CAS Validation Filter&lt;/filter-name&gt;
+        &lt;url-pattern&gt;/*&lt;/url-pattern&gt;
+    &lt;/filter-mapping&gt;
+
+    &lt;filter-mapping&gt;
+        &lt;filter-name&gt;CAS Authentication Filter&lt;/filter-name&gt;
+        &lt;url-pattern&gt;/*&lt;/url-pattern&gt;
+    &lt;/filter-mapping&gt;
+
+    &lt;filter-mapping&gt;
+        &lt;filter-name&gt;CAS HttpServletRequest Wrapper Filter&lt;/filter-name&gt;
+        &lt;url-pattern&gt;/*&lt;/url-pattern&gt;
+    &lt;/filter-mapping&gt;
+</span></code></pre>
+</div>
+
+<p>4、下载jar包:slf4j-api-1.7.12.jar cas-client-core-3.4.1.jar commons-logging-1.2.jar log4j-1.2.17.jar 
+并将其放到目录
+tomcat-cas-bbs\webapps\examples\WEB-INF\lib中，以及目录 tomcat-cas-all\webapps\examples\WEB-INF\lib中。</p>
+
+<p>启动tomcat-cas-sso,tomcat-cas-all,tomcat-cas-bbs</p>
+
+<p>5、测试</p>
+
+<div class="language-markdown highlighter-rouge"><pre class="highlight"><code>同一浏览器打开2个标签，分别打开地址https://bbs.mixfate.com:8443/examples/和https://all.mixfate.com:9443/examples/
 
 </code></pre>
 </div>
 
-<p>3、接着自定义编写一个MANIFEST.MF文件，文件目录src/main/resources/META-INF/MANIFEST.MF，内容如下</p>
-
-<p>MANIFEST.MF</p>
-
-<div class="language-markdown highlighter-rouge"><pre class="highlight"><code>Manifest-Version: 1.0
-Premain-Class: com.hode.ClazzGenerateAgent
-Archiver-Version: Plexus Archiver
-Built-By: hode
-Created-By: Apache Maven 3.3.3
-Build-Jdk: 1.8.0_66
-
-</code></pre>
-</div>
-
-<p>4、执行命令，完成安装</p>
-
-<div class="language-markdown highlighter-rouge"><pre class="highlight"><code>mvn clean install
-</code></pre>
-</div>
-
-<p>安装完成后，可以在maven仓库目录查看jar包，如目录在d:\repository\com\hode\clazzagent\0.0.1-SNAPSHOT\clazzagent-0.0.1-SNAPSHOT.jar</p>
-
-<p>5、编写一个测试类并运行</p>
-<font color="red">注意：运行时需加上jvm参数-javaagent:"D:\repository\com\hode\clazzagent\0.0.1-SNAPSHOT\clazzagent-0.0.1-SNAPSHOT.jar"</font>
-
-<div class="highlighter-rouge"><pre class="highlight"><code>package com.hode;
-
-public class Test {
-
-	public static void main(String[] args) {
-		System.out.println("success");
-	}
-
-}
-</code></pre>
-</div>
-
-<p>在eclipse中在VM arguments中填写，在命令行模式下执行，则如下</p>
-
-<div class="language-markdown highlighter-rouge"><pre class="highlight"><code>java -javaagent:"D:<span class="se">\r</span>epository<span class="se">\c</span>om<span class="se">\h</span>ode<span class="se">\c</span>lazzagent<span class="se">\0</span>.0.1-SNAPSHOT<span class="se">\c</span>lazzagent-0.0.1-SNAPSHOT.jar" com.hode.Test
-</code></pre>
-</div>
-
-<p>执行完成后，即可以类ClazzGenerateAgent定义的保存目录c:\clazz中查看到Test.class类文件，使用反编译工具可查看具体内容。</p>
-
-<h4><a href="/rar/class-agent.rar"><b>Demo代码下载</b></a></h4>
-
-<p>结束。</p>
+<p>结束</p>
 </div>
 	
 	<!--
@@ -361,44 +425,36 @@ public class Test {
     
         
             
-        
-    
-
-    
-    
-        
-            
-        
-    
-        
-            
-        
-    
-
-    
-    
-        
-            
-        
-    
-
-    
-    
-        
-            
-        
-    
-        
-            
                 
                 <div class="panel-body">
                 <h5>相关博客</h5>
                 <ul>
                 
                 <li class="relatedPost" style="font-size: 12px;">
-                    <a href="http://www.mixfate.com/spring/java/2016/05/17/spring-security-4.html">Spring Security配置使用介绍（四）增加验证码</a>
+                    <a href="http://www.mixfate.com/spring/2016/05/20/spring-cas-4.2.x.html">CAS 4.2.x webapp使用介绍</a>
                     
-                        <small>(所属分类: <a href="/category/spring">spring</a>, <a href="/category/java">java</a>)</small>
+                        <small>(所属分类: <a href="/category/spring">spring</a>)</small>
+                    
+                </li>
+                
+                
+            
+        
+    
+
+    
+    
+        
+            
+        
+    
+        
+            
+                
+                <li class="relatedPost" style="font-size: 12px;">
+                    <a href="http://www.mixfate.com/tools/spring/2016/05/19/gradle-spring-project.html">Gradle构建spring项目</a>
+                    
+                        <small>(所属分类: <a href="/category/tools">tools</a>, <a href="/category/spring">spring</a>)</small>
                     
                 </li>
                 
@@ -418,7 +474,31 @@ public class Test {
     
         
             
+                
+                <li class="relatedPost" style="font-size: 12px;">
+                    <a href="http://www.mixfate.com/spring/java/2016/05/17/spring-security-4.html">Spring Security配置使用介绍（四）增加验证码</a>
+                    
+                        <small>(所属分类: <a href="/category/spring">spring</a>, <a href="/category/java">java</a>)</small>
+                    
+                </li>
+                
+                
+            
         
+    
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+    
+
+    
     
         
             
@@ -434,12 +514,12 @@ public class Test {
             
         
     
-
-    
-    
         
             
         
+    
+
+    
     
         
             
@@ -455,12 +535,12 @@ public class Test {
             
         
     
-
-    
-    
         
             
         
+    
+
+    
     
         
             
@@ -476,56 +556,6 @@ public class Test {
             
         
     
-
-    
-    
-        
-            
-        
-    
-
-    
-    
-        
-            
-        
-    
-        
-            
-        
-    
-
-    
-    
-        
-            
-        
-    
-        
-            
-        
-    
-
-    
-    
-        
-            
-                
-                <li class="relatedPost" style="font-size: 12px;">
-                    <a href="http://www.mixfate.com/java/spring/webservice/2016/05/11/spring4-cxf3-webservice.html">Spring4 + cxf3 构建wsdl webservice</a>
-                    
-                        <small>(所属分类: <a href="/category/java">java</a>, <a href="/category/spring">spring</a>, <a href="/category/webservice">webservice</a>)</small>
-                    
-                </li>
-                
-                
-            
-        
-    
-        
-            
-        
-    
         
             
         
@@ -570,6 +600,50 @@ public class Test {
             
         
     
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+    
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+    
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+    
+        
+            
+        
+    
 
     
     
@@ -592,16 +666,6 @@ public class Test {
     
     
         
-            
-                
-                <li class="relatedPost" style="font-size: 12px;">
-                    <a href="http://www.mixfate.com/java/spring/webservice/2016/05/04/spring4-cxf3.html">Spring4 + cxf3 构建restful webservice</a>
-                    
-                        <small>(所属分类: <a href="/category/java">java</a>, <a href="/category/spring">spring</a>, <a href="/category/webservice">webservice</a>)</small>
-                    
-                </li>
-                
-                
             
         
     
@@ -1012,10 +1076,8 @@ public class Test {
 
 <div class="PageNavigation" style="font-size: 12px;">
   
-    <a class="prev pull-left" href="/spring/java/2016/05/16/spring-security-3.html">&laquo; Spring Security配置使用介绍（三）暴力动态配置权限（修改源码不推荐）</a>
+    <a class="prev pull-left" href="/spring/2016/05/20/spring-cas-4.2.x.html">&laquo; CAS 4.2.x webapp使用介绍</a>
   
-  
-    <a class="next pull-right" href="/spring/java/2016/05/17/spring-security-4.html">Spring Security配置使用介绍（四）增加验证码 &raquo;</a>
   
 </div>
 <div>&nbsp;</div>
@@ -1027,8 +1089,8 @@ public class Test {
 
         /*
 		var disqus_shortname = "mixfate";
-        var disqus_identifier = "http://www.mixfate.com_使用javaagent参数保存二进制class文件";
-        var disqus_title = "使用javaagent参数保存二进制class文件";
+        var disqus_identifier = "http://www.mixfate.com_CAS 4.2.x 单点登录(SSO)";
+        var disqus_title = "CAS 4.2.x 单点登录(SSO)";
 		*/
 
         /* * * DON'T EDIT BELOW THIS LINE * * */

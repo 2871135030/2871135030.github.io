@@ -7,7 +7,7 @@ categories: [tools,spring]
 
 ## Gradle构建spring项目
 
-接上一篇<a href="/tools/spring/2016/05/19/gradle-spring-project.html">Gradle安装与简单使用介绍</a>，本文介绍gradle构建一个spring项目
+接上一篇<a href="/tools/2016/05/18/gradle-install-userguide.html">Gradle安装与简单使用介绍</a>，本文介绍gradle构建一个spring项目
 
 1、首先编写build.gradle配置文件，内容如下
 
