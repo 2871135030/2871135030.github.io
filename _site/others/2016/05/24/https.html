@@ -6,15 +6,15 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <link rel="shortcut icon" href="/static/img/favicon.ico" />
-        <title>Vmware linux拷贝网络故障 - Java及相关开源技术博客</title>
+        <title>HTTPS 是如何保证安全的(转)？ - Java及相关开源技术博客</title>
         <meta name="author" content="Mixfate博客" />
         <meta name="description" content="Mixfate博客,开源技术博客,IT 博客,java技术,spring开源技术,dubbo分布式架构,maven工具" />
-        <meta name="keywords" content="Vmware linux拷贝网络故障, Java及相关开源技术博客, tools, linux" />
+        <meta name="keywords" content="HTTPS 是如何保证安全的(转)？, Java及相关开源技术博客, others" />
 
         <meta content="0" property="fb:app_id">
         <meta content="Java及相关开源技术博客" property="og:site_name">
         
-          <meta content="Vmware linux拷贝网络故障" property="og:title">
+          <meta content="HTTPS 是如何保证安全的(转)？" property="og:title">
         
         
           <meta content="article" property="og:type">
@@ -23,10 +23,10 @@
           <meta content="Mixfate博客,开源技术博客,IT 博客,java技术,spring开源技术,dubbo分布式架构,maven工具" property="og:description">
         
         
-          <meta content="http://www.mixfate.com/tools/linux/2016/04/26/linux-vmware.html" property="og:url">
+          <meta content="http://www.mixfate.com/others/2016/05/24/https.html" property="og:url">
         
         
-          <meta content="2016-04-26T18:27:48+08:00" property="article:published_time">
+          <meta content="2016-05-24T21:59:58+08:00" property="article:published_time">
           <meta content="http://www.mixfate.com/about/" property="article:author">
         
         
@@ -34,7 +34,7 @@
         
         
           
-          <meta content="tools" property="article:section">
+          <meta content="others" property="article:section">
           
         
         
@@ -44,10 +44,10 @@
         <meta name="twitter:site" content="@\#">
         <meta name="twitter:creator" content="@\#">
         
-          <meta name="twitter:title" content="Vmware linux拷贝网络故障">
+          <meta name="twitter:title" content="HTTPS 是如何保证安全的(转)？">
         
         
-          <meta name="twitter:url" content="http://www.mixfate.com/tools/linux/2016/04/26/linux-vmware.html">
+          <meta name="twitter:url" content="http://www.mixfate.com/others/2016/05/24/https.html">
         
         
           <meta name="twitter:description" content="Mixfate博客,开源技术博客,IT 博客,java技术,spring开源技术,dubbo分布式架构,maven工具">
@@ -122,14 +122,14 @@
         </div>
       </div>
       <div class="col-md-9 col-sm-8 col-xs-12">
-      <h2 class="blog-title-pro">Vmware linux拷贝网络故障</h2>
+      <h2 class="blog-title-pro">HTTPS 是如何保证安全的(转)？</h2>
       <p class="info">
       
-      <span class="time">2016/04/26</span>
+      <span class="time">2016/05/24</span>
       
       
     <span class="categories">
-        &raquo; <a href="/category/tools">tools</a>, <a href="/category/linux">linux</a>
+        &raquo; <a href="/category/others">others</a>
     </span>
     
       </p>
@@ -148,19 +148,19 @@
 	
 	
 	
-	<li class="col-lg-12 col-md-12 col-sm-4 col-xs-12 current-menu-item linux-vmware.html"><a href="/"><i class="fa fa-home"></i> 首页</a></li>
+	<li class="col-lg-12 col-md-12 col-sm-4 col-xs-12 current-menu-item https.html"><a href="/"><i class="fa fa-home"></i> 首页</a></li>
 
 	
 	
 	
 	
-	<li class="col-lg-12 col-md-12 col-sm-4 col-xs-12  linux-vmware.html"><a href="/category/java"><i class="fa fa-desktop"></i> 分类</a></li>
+	<li class="col-lg-12 col-md-12 col-sm-4 col-xs-12  https.html"><a href="/category/java"><i class="fa fa-desktop"></i> 分类</a></li>
 
 	
 	
 	
 	
-	<li class="col-lg-12 col-md-12 col-sm-4 col-xs-12  linux-vmware.html"><a href="/about/"><i class="fa fa-comments"></i> 关于</a></li>
+	<li class="col-lg-12 col-md-12 col-sm-4 col-xs-12  https.html"><a href="/about/"><i class="fa fa-comments"></i> 关于</a></li>
 
 </ul>
     </div>
@@ -181,43 +181,49 @@
             <div class="col-md-9 col-xs-12 full">
                 <div class="post-content well">
 <article class="content">
-    <div class="post" style="font-size: 12px;"><h2 id="vmware-linuxbringing-up-interface-eth0-device-eth0-does-not-seem-to-be-present-delaying-initialization">Vmware linux拷贝Bringing up interface eth0: Device eth0 does not seem to be present ,delaying initialization</h2>
+    <div class="post" style="font-size: 12px;"><h2 id="https-">HTTPS 是如何保证安全的(转)？</h2>
 
-<p>Wmware通过拷贝的原系统，重启网络(service network restart)会出现错误Bringing up interface eth0: Device eth0 does not seem to be present ,delaying initialization
-错误截图如下
-<img src="/assets/dfeeded7-8f45-3579-9195-e0e6933a8ad1.png" alt="Bringing up interface eth0" /></p>
+<div class="highlighter-rouge"><pre class="highlight"><code>每当我们讨论到信息安全的时候，我们最长接触到的信息加密传输的方式莫过于 HTTPS 了，当我们浏览器地址栏闪现出绿色时，就代表着这个网站支持 HTTPS 的加密信息传输方式，并且你与它的连接确实被加密了。但是 HTTPS 并不是一个单一的东西，它知识我们常见的 HTTP 协议和某个加密协议的一个混合，这个加密协议通常会是 TLS。那么 HTTPS 为什么安全呢？其实我们需要先考虑 HTTP 为什么不安全。
 
-<font color="red">分析原因：</font>
+假设你坐在一个教室里，你现在非常想把某个信息传递给教室里的另一个人，一般来说，会选择，传纸条。传纸条这个比喻其实非常正确，这就是互联网的一个基础协议 TCP/IP 协议基本的工作模式。而通常，HTTP 协议的数据是使用 TCP/IP 协议进行发送的。HTTP 指的是你在纸条上写明你要传送的目的地是哪个同学的坐位，然后再是要传递的内容。途径的同学拿到纸条后根据纸条上显示的地址依次传过去就好了。这样要面临的第一个问题就是：途径的同学可以完全知道你写了什么。
 
-<p>查看网络配置</p>
+这就是 HTTP 面临的第一个问题，这个问题通常被叫做 “窃听” 或者 “嗅探” ，指的是和你在同一个网络下或者是途径的路由上的攻击者可以偷窥到你传输的内容。这是 HTTPS 要解决的第一个问题。这种问题通常是通过“加密”来解决的。从非常原始的角度来考虑，其实就是双方约定一个暗号。用什么字母去替代什么字母之类的。不过考虑到互联网每天有无数信息需要加密，这种原始的加密方法似乎不太适合。不过实际上方法也差不多，一般是采用一种叫做 AES 的算法来解决的。这种算法需要一个 密钥 key 来加密整个信息，加密和解密所需要使用的 key 是一样的，所以这种加密一般也被称为“对称加密”。AES 在数学上保证了，只要你使用的 key 足够足够足够足够的长，破解是几乎不可能的。
 
-<div class="language-markdown highlighter-rouge"><pre class="highlight"><code>cat /etc/sysconfig/network-scripts/ifcfg-eth0
+我们先假设这种破解确实是不可能的，而且目前也确实没有对 AES 本身能发动起有效的攻击的案例出现。
+
+我们再回到这个教室，你接着要传小纸条，你把地址写上后，把要传输的内容用 AES 蹭蹭蹭加密了起来。刚准备传，问题来了。AES 不是有一个 key 吗？key 怎么给目的地啊？如果我把密钥直接写在纸条上，那么中间的人不依然可以解密吗？在现实中你可以通过一些其它方法来把密钥安全传输给目的地而不被其他人看见，但是在互联网上，要想这么做难度就很大了，毕竟传输终究要经过这些路由，所以要做加密，还得找一个更复杂的数学方法。
+
+于是聪明的人们发明了一种更复杂的加密算法——非对称加密。这种加密或许理解起来比较困难，这种加密指的是可以生成一对密钥 (k1, k2)。凡是 k1 加密的数据，k1 自身不能解密，而需要 k2 才能解密；凡是 k2 加密的数据，k2 不能解密，需要 k1 才能解密。这种算法事实上有很多，常用的是 RSA，其基于的数学原理是两个大素数的乘积很容易算，而拿到这个乘积去算出是哪两个素数相乘就很复杂了。好在以目前的技术，分解大数的素因数确实比较困难，尤其是当这个大数足够大的时候（通常使用2的10次方个二进制位这么大），就算是超级计算机解密也需要非常长的时间。
+
+现在利用这种非对称加密的方法，我们来设想一个场景。你继续想要传纸条，但是传纸条之前你先准备把接下来通讯的对称加密密钥给传输过去。于是你用 RSA 技术生成了一对 k1、k2，你把 k1 用明文发送了出去，路经有人或许会截取，但是没有用，k1 加密的数据需要用 k2 才能解密。而此时，k2 在你自己的手里。k1 送达目的地后，目的地的人会去准备一个接下来用于对称加密传输的密钥 key，然后用收到的 k1 把 key 加密了，把加密好的数据传回来。路上的人就算截取到了，也解密不出 key。等到了你自己手上，你用手上的 k2 把用 k1 加密的 key 解出来，现在全教室就只有你和你的目的地拥有 key，你们就可以用 AES 算法进行对称加密的传输啦！这时候你和目的地的通讯将无法再被任何人窃听！
+
+当然，这时候你可能会问两个问题。
+
+既然 非对称加密 可以那么安全，为什么我们不直接用它来加密信息，而是去加密 对称加密 的密钥呢？
+
+这是因为 非对称加密 的密码对生成和加密的消耗时间比较长，为了节省双方的计算时间，通常只用它来交换密钥，而非直接用来传输数据。
+
+使用 非对称加密 是完全安全的吗？
+
+听起来确实是挺安全的，但实际上，还有一种更恶劣的攻击是这种方法无法防范的，这就是传说中的“中间人攻击”。我们继续让你坐在教室里传小纸条。现在你和目的地上途径一个中间人，他有意想要知道你们的消息。由于这个描述比较复杂，我们将你称为 A，你的目的地称为 B，而中间人称为 M。当你要和 B 完成第一次密钥交换的时候，途径了 M。M 知道你要进行密钥交换了，它把小纸条扣了下来，假装自己是 B，伪造了一个 key ，然后用你发来的 k1 加密了 key 发还给你，你以为你和 B 完成了密钥交换，实际上你是和 M 完成了密钥交换。同时 M 和 B 完成一次密钥交换，让 B 误以为和你完成了密钥交换。现在，由 A -&gt; B完整的加密，变成了 A（加密连接1） -&gt; M（明文）-&gt;B（加密连接2）的情况了。这时候 M 依然可以知道 A 和 B 传输中的全部信息。
+
+对于这种事，我们似乎很难找到一个解决方法来解决这个问题，除非我们能从源头保证，你密钥交换的对象是安全的。这时候我们就要认识互联网 HTTPS 和你传纸条的微妙区别了。你传纸条时，你和你的目的地的关系几乎是对等的。而你访问网站时，你访问的对象通常是一个比较大的服务供应商，他们有充沛的资源，也许可以证明他们的合法性。
+
+这时候我们会引入一个第三方叫做 CA。CA 是一些非常权威的专门用于认证一个网站合法性的组织。服务商可以向他们申请一个证书，使得他们建立安全连接时可以带上 CA 的签名。而 CA 的安全性由操作系统或浏览器来认证。你的 Windows、Mac、Linux、Chrome、Safari 等会在安装时带上一个他们认为安全的 CA 证书列表。如果和你建立安全连接的人带着这些人的签名，那么认为这个安全连接是安全的，没有遭到中间人攻击。
+
+CA 证书通常情况下是安全的。因为一旦某个 CA 颁发出的某个证书被用于了非法用途，浏览器和操作系统一般会通过更新将整个 CA 颁发过的全部证书全部视为不安全。这使得 CA 通常在颁发证书时是比较小心的。
+
+所以通过 对称加密 + 非对称加密 + CA认证 这三个技术混合在一起，才使得 HTTP 的后面加上了一个 S —— Security。实际上 HTTPS 的协议比我这里描述的更复杂一些，我这里说的主要是基本的实现原理。因为其中任何一环稍有闪失，就会使得整个加密都将变得不安全。这也是为什么 HTTPS 的加密协议从SSL 1.0 升级到 SSL 3.0 再被 TLS 1.0 现在被 TLS 1.2 取代，其背后都是一环环细节上的修改，以防任何地方的闪失。
+
+但即使如此，你的 HTTPS 尽可能的保证了你传输的安全，但这种安全也不是绝对的。比如 CA 证书出了问题被用于了中间人攻击，在短期内，你的安全将会陷入直接的麻烦直到浏览器或操作系统重新更新了你的 CA 列表或者你手动调整了这个列表。但大多情况下不必杞人忧天，它基本上是安全的。
+
+当然了，路由也可以选择直接丢包，它看不到的，也不让你看到。
 </code></pre>
 </div>
 
-<p><img src="/assets/dfeeded7-8f45-3579-9195-e0e6933a8ad3.png" alt="Bringing up interface eth0" /></p>
-
-<div class="language-markdown highlighter-rouge"><pre class="highlight"><code>cat /etc/udev/rules.d/70-persistent-net.rules
-</code></pre>
-</div>
-
-<p><img src="/assets/dfeeded7-8f45-3579-9195-e0e6933a8ad2.png" alt="Bringing up interface eth0" /></p>
-
-<p>出现此故障的原因为虚拟系统安装时的网卡与迁移到新的虚拟机上的虚拟系统不一致，
-当迁移到新虚拟机时重新配置了网上为eth1，但eth0已经失效，所以无法正确配置网络，
-当然可以先删除 /etc/udev/rules.d/70-persistent-net.rules 文件，然后 reboot 重启配置网络</p>
-
-<font color="red">解决方法：</font>
-
-<p>将ifcfg-eth0配置中HWADDR改为70-persistent-net.rules配置中的eth1物理地址一致，
-注意eth需保持一致。因为eth0已失效，所以将eth0</p>
-
-<p>因为eth0已失效，所以将配置70-persistent-net.rules文件中eth0项删除</p>
-
-<p>配置完成后 reboot 重启，网络即可生效，</p>
-
-<p>配置结果如下：
-<img src="/assets/dfeeded7-8f45-3579-9195-e0e6933a8ad4.png" alt="Bringing up interface eth0" /></p>
+<p>文／程序员Delton（简书作者）
+原文链接：http://www.jianshu.com/p/b894a7e1c779
+著作权归作者所有，转载请联系作者获得授权，并标注“简书作者”。</p>
 
 <p>结束。</p>
 </div>
@@ -235,23 +241,10 @@
         
             
         
-            
-        
     
 
     
     
-        
-            
-        
-            
-        
-    
-
-    
-    
-        
-            
         
             
         
@@ -262,6 +255,11 @@
         
             
         
+    
+
+    
+    
+        
             
         
     
@@ -270,6 +268,73 @@
     
         
             
+        
+    
+
+    
+    
+        
+            
+        
+    
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+    
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+    
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+    
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+    
         
             
         
@@ -285,20 +350,49 @@
                 <ul>
                 
                 <li class="relatedPost" style="font-size: 12px;">
-                    <a href="http://www.mixfate.com/tools/spring/2016/05/19/gradle-spring-project.html">Gradle构建spring项目</a>
+                    <a href="http://www.mixfate.com/others/2016/05/14/others.html">做人的涵养！（深刻）</a>
                     
-                        <small>(所属分类: <a href="/category/tools">tools</a>, <a href="/category/spring">spring</a>)</small>
+                        <small>(所属分类: <a href="/category/others">others</a>)</small>
                     
                 </li>
                 
                 
             
         
+    
+
+    
+    
+        
             
         
     
         
             
+        
+    
+
+    
+    
+        
+            
+        
+    
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+    
+        
+            
+        
+    
         
             
         
@@ -310,123 +404,9 @@
             
                 
                 <li class="relatedPost" style="font-size: 12px;">
-                    <a href="http://www.mixfate.com/tools/2016/05/18/gradle-install-userguide.html">Gradle安装与简单使用介绍</a>
+                    <a href="http://www.mixfate.com/others/2016/05/10/others.html">到了我这个年龄，就不想再去取悦谁了</a>
                     
-                        <small>(所属分类: <a href="/category/tools">tools</a>)</small>
-                    
-                </li>
-                
-                
-            
-        
-            
-        
-    
-
-    
-    
-        
-            
-        
-            
-        
-    
-        
-            
-        
-            
-        
-    
-
-    
-    
-        
-            
-        
-            
-        
-    
-
-    
-    
-        
-            
-        
-            
-        
-    
-        
-            
-        
-            
-        
-    
-
-    
-    
-        
-            
-        
-            
-        
-    
-        
-            
-        
-            
-        
-    
-
-    
-    
-        
-            
-        
-            
-        
-    
-        
-            
-        
-            
-        
-    
-
-    
-    
-        
-            
-        
-            
-        
-    
-
-    
-    
-        
-            
-        
-            
-        
-    
-        
-            
-        
-            
-        
-    
-
-    
-    
-        
-            
-        
-            
-                
-                <li class="relatedPost" style="font-size: 12px;">
-                    <a href="http://www.mixfate.com/linux/tools/2016/05/12/nginx-linux-install.html">Linux环境下安装nginx</a>
-                    
-                        <small>(所属分类: <a href="/category/linux">linux</a>, <a href="/category/tools">tools</a>)</small>
+                        <small>(所属分类: <a href="/category/others">others</a>)</small>
                     
                 </li>
                 
@@ -434,8 +414,13 @@
             
         
     
+
+    
+    
         
             
+        
+    
         
             
         
@@ -446,17 +431,7 @@
         
             
         
-            
-        
     
-        
-            
-        
-            
-        
-    
-        
-            
         
             
         
@@ -467,30 +442,7 @@
         
             
         
-            
-        
     
-
-    
-    
-        
-            
-        
-            
-        
-    
-        
-            
-                
-                <li class="relatedPost" style="font-size: 12px;">
-                    <a href="http://www.mixfate.com/maven/tools/2016/05/09/maven-deploy-release.html">Maven命令:deploy和release命令</a>
-                    
-                        <small>(所属分类: <a href="/category/maven">maven</a>, <a href="/category/tools">tools</a>)</small>
-                    
-                </li>
-                
-                
-            
         
             
         
@@ -501,21 +453,29 @@
         
             
         
+    
+
+    
+    
+        
             
         
     
         
             
-                
-                <li class="relatedPost" style="font-size: 12px;">
-                    <a href="http://www.mixfate.com/maven/tools/2016/05/08/maven-nexus2.9.0.html">Nexus2.9.0 私服 linux安装使用</a>
-                    
-                        <small>(所属分类: <a href="/category/maven">maven</a>, <a href="/category/tools">tools</a>)</small>
-                    
-                </li>
-                
-                
+        
+    
+
+    
+    
+        
             
+        
+    
+        
+            
+        
+    
         
             
         
@@ -527,20 +487,27 @@
             
                 
                 <li class="relatedPost" style="font-size: 12px;">
-                    <a href="http://www.mixfate.com/tools/tomcat/2016/05/07/jenkins-tomcat-deploy.html">jenkins远程发布应用到tomcat中，使用shell脚本或jenkins deploy插件</a>
+                    <a href="http://www.mixfate.com/others/2016/05/03/others.html">善行天下，改变命运</a>
                     
-                        <small>(所属分类: <a href="/category/tools">tools</a>, <a href="/category/tomcat">tomcat</a>)</small>
+                        <small>(所属分类: <a href="/category/others">others</a>)</small>
                     
                 </li>
                 
                 
             
         
+    
+
+    
+    
+        
             
         
     
         
             
+        
+    
         
             
         
@@ -551,20 +518,7 @@
         
             
         
-            
-        
     
-
-    
-    
-        
-            
-        
-            
-        
-    
-        
-            
         
             
         
@@ -575,17 +529,35 @@
         
             
         
-            
-        
     
         
             
         
-            
-        
+    
+
+    
     
         
             
+                
+                <li class="relatedPost" style="font-size: 12px;">
+                    <a href="http://www.mixfate.com/others/2016/04/29/others.html">四句话，献给处于阴霾中的你</a>
+                    
+                        <small>(所属分类: <a href="/category/others">others</a>)</small>
+                    
+                </li>
+                
+                
+            
+        
+    
+
+    
+    
+        
+            
+        
+    
         
             
         
@@ -596,26 +568,7 @@
         
             
         
-            
-        
     
-
-    
-    
-        
-            
-        
-            
-        
-    
-        
-            
-        
-            
-        
-    
-        
-            
         
             
         
@@ -626,11 +579,7 @@
         
             
         
-            
-        
     
-        
-            
         
             
         
@@ -641,20 +590,11 @@
         
             
         
-            
-        
     
         
             
         
-            
-        
     
-
-    
-    
-        
-            
         
             
         
@@ -665,11 +605,7 @@
         
             
         
-            
-        
     
-        
-            
         
             
         
@@ -680,11 +616,18 @@
         
             
         
+    
+
+    
+    
+        
             
         
     
         
             
+        
+    
         
             
         
@@ -695,32 +638,11 @@
         
             
         
-            
-        
     
         
             
         
-            
-        
     
-
-    
-    
-        
-            
-        
-            
-        
-    
-        
-            
-        
-            
-        
-    
-        
-            
         
             
         
@@ -731,11 +653,7 @@
         
             
         
-            
-        
     
-        
-            
         
             
         
@@ -746,26 +664,11 @@
         
             
         
-            
-        
-    
-
-    
     
         
             
         
-            
-        
     
-        
-            
-        
-            
-        
-    
-        
-            
         
             
         
@@ -775,19 +678,15 @@
     
         
             
-        
-            
-        
-    
-        
-            
-        
-            
-        
-    
-        
-            
-        
+                
+                <li class="relatedPost" style="font-size: 12px;">
+                    <a href="http://www.mixfate.com/others/2016/04/18/others.html">幽默故事，欢笑中的人生领悟</a>
+                    
+                        <small>(所属分类: <a href="/category/others">others</a>)</small>
+                    
+                </li>
+                
+                
             
         
     
@@ -797,11 +696,11 @@
         
             
         
-            
-        
     
         
             
+        
+    
         
             
         
@@ -812,17 +711,7 @@
         
             
         
-            
-        
     
-        
-            
-        
-            
-        
-    
-        
-            
         
             
         
@@ -833,26 +722,7 @@
         
             
         
-            
-        
     
-
-    
-    
-        
-            
-        
-            
-        
-    
-        
-            
-        
-            
-        
-    
-        
-            
         
             
         
@@ -863,26 +733,11 @@
         
             
         
-            
-        
     
         
             
         
-            
-        
     
-
-    
-    
-        
-            
-        
-            
-        
-    
-        
-            
         
             
         
@@ -893,17 +748,11 @@
         
             
         
-            
-        
     
         
             
         
-            
-        
     
-        
-            
         
             
         
@@ -914,17 +763,7 @@
         
             
         
-            
-        
     
-        
-            
-        
-            
-        
-    
-        
-            
         
             
         
@@ -935,11 +774,7 @@
         
             
         
-            
-        
     
-        
-            
         
             
         
@@ -950,11 +785,27 @@
         
             
         
-            
-        
+    
+
+    
     
         
             
+                
+                <li class="relatedPost" style="font-size: 12px;">
+                    <a href="http://www.mixfate.com/others/2016/04/09/others.html">小不忍则乱大谋，退一步海阔天空</a>
+                    
+                        <small>(所属分类: <a href="/category/others">others</a>)</small>
+                    
+                </li>
+                
+                
+            
+        
+    
+
+    
+    
         
             
         
@@ -965,14 +816,7 @@
         
             
         
-            
-        
     
-
-    
-    
-        
-            
         
             
         
@@ -983,20 +827,7 @@
         
             
         
-            
-        
     
-
-    
-    
-        
-            
-        
-            
-        
-    
-        
-            
         
             
         
@@ -1007,11 +838,10 @@
         
             
         
-            
-        
     
-        
-            
+
+    
+    
         
             
         
@@ -1022,35 +852,11 @@
         
             
         
-            
-        
-    
-
-    
     
         
             
         
-            
-        
     
-
-    
-    
-        
-            
-        
-            
-        
-    
-        
-            
-        
-            
-        
-    
-        
-            
         
             
         
@@ -1061,8 +867,6 @@
         
             
         
-            
-        
     
 
     
@@ -1070,26 +874,7 @@
         
             
         
-            
-        
     
-        
-            
-        
-            
-        
-    
-
-    
-    
-        
-            
-        
-            
-        
-    
-        
-            
         
             
         
@@ -1100,6 +885,8 @@
         
             
         
+    
+        
             
         
     
@@ -1109,14 +896,17 @@
         
             
         
-            
-        
     
 
     
     
         
             
+        
+    
+
+    
+    
         
             
         
@@ -1129,10 +919,8 @@
 
 <div class="PageNavigation" style="font-size: 12px;">
   
-    <a class="prev pull-left" href="/java/spring/quartz/2016/04/25/spring-quartz-annotation.html">&laquo; Spring + quartz注解配置使用</a>
+    <a class="prev pull-left" href="/spring/2016/05/23/mongodb.html">&laquo; Mongodb安装与spring中基本使用</a>
   
-  
-    <a class="next pull-right" href="/redis/tools/2016/04/27/redis-cluster.html">Redis集群安装 &raquo;</a>
   
 </div>
 <div>&nbsp;</div>
@@ -1144,8 +932,8 @@
 
         /*
 		var disqus_shortname = "mixfate";
-        var disqus_identifier = "http://www.mixfate.com_Vmware linux拷贝网络故障";
-        var disqus_title = "Vmware linux拷贝网络故障";
+        var disqus_identifier = "http://www.mixfate.com_HTTPS 是如何保证安全的(转)？";
+        var disqus_title = "HTTPS 是如何保证安全的(转)？";
 		*/
 
         /* * * DON'T EDIT BELOW THIS LINE * * */
