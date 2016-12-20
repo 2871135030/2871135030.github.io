@@ -6,15 +6,15 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <link rel="shortcut icon" href="/static/img/favicon.ico" />
-        <title>tomcat配置ssl双向认证 - Java及相关开源技术博客</title>
+        <title>Nodejs安装与基本使用 - Java及相关开源技术博客</title>
         <meta name="author" content="Mixfate博客" />
         <meta name="description" content="Mixfate博客,开源技术博客,IT 博客,java技术,spring开源技术,dubbo分布式架构,maven工具" />
-        <meta name="keywords" content="tomcat配置ssl双向认证, Java及相关开源技术博客, tomcat, tools" />
+        <meta name="keywords" content="Nodejs安装与基本使用, Java及相关开源技术博客, tools" />
 
         <meta content="0" property="fb:app_id">
         <meta content="Java及相关开源技术博客" property="og:site_name">
         
-          <meta content="tomcat配置ssl双向认证" property="og:title">
+          <meta content="Nodejs安装与基本使用" property="og:title">
         
         
           <meta content="article" property="og:type">
@@ -23,10 +23,10 @@
           <meta content="Mixfate博客,开源技术博客,IT 博客,java技术,spring开源技术,dubbo分布式架构,maven工具" property="og:description">
         
         
-          <meta content="http://www.mixfate.com/tomcat/tools/2016/04/01/tomcat-ssl-2.html" property="og:url">
+          <meta content="http://www.mixfate.com/tools/2016/05/25/nodejs.html" property="og:url">
         
         
-          <meta content="2016-04-01T22:51:39+08:00" property="article:published_time">
+          <meta content="2016-05-25T20:01:58+08:00" property="article:published_time">
           <meta content="http://www.mixfate.com/about/" property="article:author">
         
         
@@ -34,7 +34,7 @@
         
         
           
-          <meta content="tomcat" property="article:section">
+          <meta content="tools" property="article:section">
           
         
         
@@ -44,10 +44,10 @@
         <meta name="twitter:site" content="@\#">
         <meta name="twitter:creator" content="@\#">
         
-          <meta name="twitter:title" content="tomcat配置ssl双向认证">
+          <meta name="twitter:title" content="Nodejs安装与基本使用">
         
         
-          <meta name="twitter:url" content="http://www.mixfate.com/tomcat/tools/2016/04/01/tomcat-ssl-2.html">
+          <meta name="twitter:url" content="http://www.mixfate.com/tools/2016/05/25/nodejs.html">
         
         
           <meta name="twitter:description" content="Mixfate博客,开源技术博客,IT 博客,java技术,spring开源技术,dubbo分布式架构,maven工具">
@@ -122,14 +122,14 @@
         </div>
       </div>
       <div class="col-md-9 col-sm-8 col-xs-12">
-      <h2 class="blog-title-pro">tomcat配置ssl双向认证</h2>
+      <h2 class="blog-title-pro">Nodejs安装与基本使用</h2>
       <p class="info">
       
-      <span class="time">2016/04/01</span>
+      <span class="time">2016/05/25</span>
       
       
     <span class="categories">
-        &raquo; <a href="/category/tomcat">tomcat</a>, <a href="/category/tools">tools</a>
+        &raquo; <a href="/category/tools">tools</a>
     </span>
     
       </p>
@@ -148,19 +148,19 @@
 	
 	
 	
-	<li class="col-lg-12 col-md-12 col-sm-4 col-xs-12 current-menu-item tomcat-ssl-2.html"><a href="/"><i class="fa fa-home"></i> 首页</a></li>
+	<li class="col-lg-12 col-md-12 col-sm-4 col-xs-12 current-menu-item nodejs.html"><a href="/"><i class="fa fa-home"></i> 首页</a></li>
 
 	
 	
 	
 	
-	<li class="col-lg-12 col-md-12 col-sm-4 col-xs-12  tomcat-ssl-2.html"><a href="/category/java"><i class="fa fa-desktop"></i> 分类</a></li>
+	<li class="col-lg-12 col-md-12 col-sm-4 col-xs-12  nodejs.html"><a href="/category/java"><i class="fa fa-desktop"></i> 分类</a></li>
 
 	
 	
 	
 	
-	<li class="col-lg-12 col-md-12 col-sm-4 col-xs-12  tomcat-ssl-2.html"><a href="/about/"><i class="fa fa-comments"></i> 关于</a></li>
+	<li class="col-lg-12 col-md-12 col-sm-4 col-xs-12  nodejs.html"><a href="/about/"><i class="fa fa-comments"></i> 关于</a></li>
 
 </ul>
     </div>
@@ -181,58 +181,286 @@
             <div class="col-md-9 col-xs-12 full">
                 <div class="post-content well">
 <article class="content">
-    <div class="post" style="font-size: 12px;"><h2 id="tomcatssl">tomcat配置ssl双向认证</h2>
+    <div class="post" style="font-size: 12px;"><h2 id="nodejs">Nodejs安装与基本使用</h2>
 
-<p>接上篇<a href="/tomcat/tools/2016/04/01/tomcat-ssl-1.html">tomcat ssl单向认证</a>，本文在单向认证的基础上完成双向认证配置。</p>
+<p>1、在nodejs官网https://nodejs.org/en/download/下载相应的安装版本，并安装。安装完成后进入安装目录(如d:\Program Files\nodejs，也可将此目录加入path)执行以下命令可查看版本</p>
 
-<p>1、使用以下命令生成客户端证书，并将此证书安装到客户端（此证书请安装到个人目录下）；</p>
-
-<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">keytool</span> <span class="o">-</span><span class="n">genkey</span> <span class="o">-</span><span class="n">v</span> <span class="o">-</span><span class="k">alias</span> <span class="n">client1</span> <span class="o">-</span><span class="n">keyalg</span> <span class="no">RSA</span> <span class="o">-</span><span class="n">storetype</span> <span class="no">PKCS12</span> <span class="o">-</span><span class="n">keysize</span> <span class="mi">1024</span> <span class="o">-</span><span class="n">validity</span> <span class="mi">365</span> <span class="o">-</span><span class="n">keystore</span> <span class="s2">"F:</span><span class="se">\c</span><span class="s2">ert</span><span class="se">\c</span><span class="s2">lient1.p12"</span></code></pre></figure>
-
-<p>在此密码录入为123456 
-<img src="/assets/dfeeded7-8f45-3579-9195-e0e697ea8adb.png" alt="tomcat配置ssl双向认证" /></p>
-
-<p>2、从客户端p12证书导出cer证书；</p>
-
-<div class="language-markdown highlighter-rouge"><pre class="highlight"><code>keytool -export -alias client1 -storetype PKCS12 -keystore "F:<span class="se">\c</span>ert<span class="se">\c</span>lient1.p12" -storepass 123456 -rfc -file "F:<span class="se">\c</span>ert<span class="se">\c</span>lient1.cer"
+<div class="language-markdown highlighter-rouge"><pre class="highlight"><code>node.exe --version
 </code></pre>
 </div>
 
-<p>3、让服务端信任客户端证书，复制原单向认证文件为tomcat_double.keystore，将client1.cer导入到服务器证书库中；</p>
+<p>2、编写一个helloworld.js，内容如下</p>
 
-<div class="language-markdown highlighter-rouge"><pre class="highlight"><code>keytool -import -alias client1 -v -file "F:<span class="se">\c</span>ert<span class="se">\c</span>lient1.cer" -keystore "F:<span class="se">\c</span>ert<span class="se">\t</span>omcat_double.keystore"
+<div class="language-markdown highlighter-rouge"><pre class="highlight"><code>console.log("this is hello world,hahaha!");
 </code></pre>
 </div>
 
-<p><img src="/assets/4ba4cb5a-7abe-3656-887f-0d473eeb3196.png" alt="tomcat配置ssl双向认证" />
-可通过如下命令检查证书情况</p>
+<p>3、使用nodejs来执行此js，命令如下</p>
 
-<div class="language-markdown highlighter-rouge"><pre class="highlight"><code>keytool -list -keystore "F:<span class="se">\c</span>ert<span class="se">\t</span>omcat_double.keystore"
+<div class="language-markdown highlighter-rouge"><pre class="highlight"><code>node d:<span class="se">\n</span>odejs<span class="se">\h</span>elloworld.js
 </code></pre>
 </div>
 
-<p>4、更改配置文件server.xml，将单向认证改为双向认证；</p>
+<p>如无异常，终端将输出正确内容。</p>
 
-<div class="language-markdown highlighter-rouge"><pre class="highlight"><code>&lt;Connector port="443" protocol="org.apache.coyote.http11.Http11Protocol"
-               maxThreads="150" SSLEnabled="true" scheme="https" secure="true"
-               clientAuth="false" sslProtocol="TLS" 
-               keystoreFile="F:<span class="se">\c</span>ert<span class="se">\t</span>omcat.keystore" keystorePass="123456" /&gt;
+<p>4、下面创建一个简单的nodejs应用。创建一个server.js，内容如下</p>
+
+<div class="language-markdown highlighter-rouge"><pre class="highlight"><code>var http = require('http');
+
+http.createServer(function(request,response){
+	// 发送 HTTP 头部
+	// HTTP 状态值: 200 : OK
+	// 内容类型: text/plain
+	response.writeHead(200,{'Content-Type':'text/plain'});
+	// 发送响应数据
+	response.write('hello world haha');
+	response.end();
+}).listen(8888);
+
+// 终端打印如下信息
+console.log('Server running at http://127.0.0.1:8888/');
 </code></pre>
 </div>
 
-<p>修改为</p>
+<p>server.js完成了一个可以工作的 HTTP 服务器。
+使用 node 命令执行server.js</p>
 
-<div class="language-markdown highlighter-rouge"><pre class="highlight"><code>&lt;Connector port="443" protocol="org.apache.coyote.http11.Http11Protocol"
-               maxThreads="150" SSLEnabled="true" scheme="https" secure="true"
-               clientAuth="true" sslProtocol="TLS" 
-               keystoreFile="F:<span class="se">\c</span>ert<span class="se">\t</span>omcat_double.keystore" keystorePass="123456"
-               truststoreFile="F:<span class="se">\c</span>ert<span class="se">\t</span>omcat_double.keystore" truststorePass="123456" /&gt;
+<div class="language-markdown highlighter-rouge"><pre class="highlight"><code>node d:<span class="se">\n</span>odejs<span class="se">\s</span>erver.js
+</code></pre>
+</div>
+
+<p>正常启动后，访问http://127.0.0.1:8888/即可看到结果</p>
+
+<div class="language-markdown highlighter-rouge"><pre class="highlight"><code>----------------分割线-----------------
+</code></pre>
+</div>
+
+<p>下面根据一个实例介绍一下nodejs操作数据库例子.</p>
+
+<p>5、前面的代码可以看到，所有的请求都统一返回一个结果，显然不符合基本要求，下面创建一个router.js(路由模块),requestHandler.js(处理模块,查询及插入数据),server.js,index.js，简单演示一下不同请求的处理</p>
+
+<p>router.js</p>
+
+<div class="language-markdown highlighter-rouge"><pre class="highlight"><code>//路由模块,针对不同的请求,做出不同的响应
+//handle 处理请求方法
+//pathname 请求路径
+
+function route(handle,pathname,response){
+	console.log('route a request foo '+pathname);
+	
+	//检查给定的路径对应的请求处理程序是否存在,如果存在则直接调用相应的函数
+	if(typeof handle<span class="p">[</span><span class="nv">pathname</span><span class="p">]</span> == 'function'){
+		handle<span class="p">[</span><span class="nv">pathname</span><span class="p">](</span><span class="sx">response</span><span class="p">)</span>;
+	}else{
+		console.log('no request handler found for '+pathname);
+		response.writeHead(404,{'Content-Type':'text/plain'});
+		response.write('404 not found');
+		response.end();
+	}
+}
+
+exports.route = route;
+</code></pre>
+</div>
+
+<p>requestHandler.js(简单处理，下一步再加入mysql数据库操作)</p>
+
+<div class="language-markdown highlighter-rouge"><pre class="highlight"><code>//url对应的处理程序
+
+function welcome(response){
+	console.log('request handler "welcome" was called.');
+	response.writeHead(200,{'Content-Type':'text/plain'});
+	response.write('welcome');
+	response.end();
+}
+
+//插入记录
+function insert(response){
+	console.log('request handler "insert" was called.');
+	response.writeHead(200,{'Content-Type':'text/plain'});
+	response.write('insert');
+	response.end();
+}
+
+//查询记录
+function query(response){
+	console.log('request handler "query" was called.');
+	response.writeHead(200,{'Content-Type':'text/plain'});
+	response.write('query');
+	response.end();
+}
+
+exports.insert = insert;
+exports.query = query;
+exports.welcome = welcome;
+</code></pre>
+</div>
+
+<p>server.js</p>
+
+<div class="language-markdown highlighter-rouge"><pre class="highlight"><code>//自带模块
+var http = require('http');
+var url = require('url');
+
+//调用http模块提供的createServer函数
+function start(route,handle){
+	function onRequest(request,response){
+		//获取请求路径
+		var pathname = url.parse(request.url).pathname;
+		
+		//关闭nodejs默认访问favicon.ico
+		if(!pathname.indexOf('/favicon.ico')){
+			return;
+		}
+		
+		console.log('request for '+pathname+' received.');
+		
+		//路由处理
+		route(handle,pathname,response);
+	}
+	
+	http.createServer(onRequest).listen(8888);
+	console.log('Server running at http://127.0.0.1:8888/');
+}
+
+//开放接口
+exports.start = start;
 
 </code></pre>
 </div>
 
-<p>5、配置完成后，重启tomcat，访问便可看到提示需要证书； 
-<img src="/assets/1dca5259-fd58-3b93-bccc-6bc71ea5ce9e.png" alt="tomcat配置ssl双向认证" /></p>
+<p>index.js</p>
+
+<div class="language-markdown highlighter-rouge"><pre class="highlight"><code>var server = require('./server');
+var router = require('./router');
+var requestHandler = require('./requestHandler');
+
+//handle保存不同的请求路径对应的处理方法
+
+var handle = {};
+
+handle<span class="p">[</span><span class="nv">'/'</span><span class="p">]</span> = requestHandler.welcome;
+handle<span class="p">[</span><span class="nv">'/insert'</span><span class="p">]</span> = requestHandler.insert;
+handle<span class="p">[</span><span class="nv">'/query'</span><span class="p">]</span> = requestHandler.query;
+
+//传入路由模块方法,路径处理方法
+server.start(router.route,handle);
+</code></pre>
+</div>
+
+<p>完成基本测试查看结果</p>
+
+<div class="language-markdown highlighter-rouge"><pre class="highlight"><code>启动nodejs
+node d:<span class="se">\n</span>odejs<span class="se">\i</span>ndex.js
+使用以下地址查看结果
+http://127.0.0.1:8888/
+http://127.0.0.1:8888/insert
+http://127.0.0.1:8888/query
+http://127.0.0.1:8888/xxx
+</code></pre>
+</div>
+
+<p>6、添加mysql支持，完成操作数据库(建一个mysql数据库hode,新增一张表user)</p>
+
+<div class="language-markdown highlighter-rouge"><pre class="highlight"><code>CREATE 
+    TABLE user 
+    ( 
+        id int(11) NOT NULL AUTO_INCREMENT, 
+        name varchar(30) NOT NULL, 
+        age int(11) NOT NULL, 
+        UNIQUE USING BTREE (id) 
+    ) 
+    ENGINE= InnoDB
+</code></pre>
+</div>
+
+<p>在nodejs项目根目录执行以下命令安装mysql并添加依赖，如先进入目录d:\nodejs</p>
+
+<div class="language-markdown highlighter-rouge"><pre class="highlight"><code>d:<span class="se">\n</span>odejs&gt;"d:<span class="se">\P</span>rogram Files<span class="se">\n</span>odejs<span class="se">\n</span>pm" install mysql -save
+</code></pre>
+</div>
+
+<p>成功安装后，此目录会生成node_modules文件夹，接着继续修改代码</p>
+
+<p>7、修改requestHandler.js中insert,query中的代码(注意console.log()中含中文,需将js文件编码改为UTF-8)，如下</p>
+
+<div class="language-markdown highlighter-rouge"><pre class="highlight"><code>function insert(response){
+	console.log('request handler "insert" was called.');
+	
+	var mysql = require('mysql');
+	var connection = mysql.createConnection({
+		host:'127.0.0.1',
+		user:'root',
+		password:'kroot',
+		database:'hode'
+	});
+	//连接
+	connection.connect();
+	
+	var result = '';
+	
+	connection.query('insert into user(name,age) values(<span class="se">\'</span>hode'+parseInt(Math.random()<span class="ge">*100,10)+'\','+parseInt(Math.random()*</span>100,10)+')',function(err,rows,fields){
+		if(err){
+			throw err;
+		}else{
+			console.log('insert finished');
+			console.log('影响的行数:'+rows.affectedRows);
+			response.writeHead(200,{'Content-Type':'text/plain;charset=UTF-8'}); //含中文用utf-8
+	        response.write('影响的行数:'+rows.affectedRows+' 时间'+new Date());
+	        response.end();
+		}
+	});
+	//关闭
+	connection.end();
+}
+
+function query(response){
+	console.log('request handler "query" was called.');<span class="sb">
+
+	var mysql = require('mysql');
+	var connection = mysql.createConnection({
+		host:'127.0.0.1',
+		user:'root',
+		password:'kroot',
+		database:'hode'
+	});
+	//连接
+	connection.connect();
+	
+	var result = '';
+	
+	connection.query('select * from user order by id desc limit 10',function(err,rows,fields){
+		if(err){
+			throw err;
+		}else{
+			for(var i=0;i&lt;rows.length;i++){
+				console.log('id:'+rows[i].id+' name :'+rows[i].name+' age:'+rows[i].age);
+				result += 'id:'+rows[i].id+' name :'+rows[i].name+' age:'+rows[i].age+'\r\n';
+			}
+			console.log('query result finished');
+			
+			response.writeHead(200,{'Content-Type':'text/plain'});
+	        response.write(result);
+	        response.end();
+		}
+	});
+	//关闭
+	connection.end();
+	
+</span>}
+</code></pre>
+</div>
+
+<p>重新访问以下地址完成测试</p>
+
+<p>http://127.0.0.1:8888/insert
+http://127.0.0.1:8888/query</p>
+
+<p>好，简单的例子先到此为止。</p>
+
+<h4><a href="/rar/nodejs.rar"><b>Demo代码下载</b></a></h4>
+
+<p>结束。</p>
 </div>
 	
 	<!--
@@ -248,75 +476,51 @@
         
             
         
+    
+
+    
+    
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+    
+
+    
+    
+        
             
                 
                 <div class="panel-body">
                 <h5>相关博客</h5>
                 <ul>
-                
-                <li class="relatedPost" style="font-size: 12px;">
-                    <a href="http://www.mixfate.com/tools/2016/05/25/nodejs.html">Nodejs安装与基本使用</a>
-                    
-                        <small>(所属分类: <a href="/category/tools">tools</a>)</small>
-                    
-                </li>
-                
-                
-            
-        
-    
-
-    
-    
-        
-            
-        
-            
-        
-    
-
-    
-    
-        
-            
-        
-            
-        
-    
-
-    
-    
-        
-            
-        
-            
-        
-    
-
-    
-    
-        
-            
-        
-            
-        
-    
-
-    
-    
-        
-            
-        
-            
-        
-    
-
-    
-    
-        
-            
-        
-            
                 
                 <li class="relatedPost" style="font-size: 12px;">
                     <a href="http://www.mixfate.com/tools/spring/2016/05/19/gradle-spring-project.html">Gradle构建spring项目</a>
@@ -332,14 +536,10 @@
         
             
         
-            
-        
     
 
     
     
-        
-            
         
             
                 
@@ -360,11 +560,7 @@
         
             
         
-            
-        
     
-        
-            
         
             
         
@@ -375,8 +571,6 @@
         
             
         
-            
-        
     
 
     
@@ -384,26 +578,7 @@
         
             
         
-            
-        
     
-        
-            
-        
-            
-        
-    
-
-    
-    
-        
-            
-        
-            
-        
-    
-        
-            
         
             
         
@@ -414,11 +589,7 @@
         
             
         
-            
-        
     
-        
-            
         
             
         
@@ -429,20 +600,7 @@
         
             
         
-            
-        
     
-
-    
-    
-        
-            
-        
-            
-        
-    
-        
-            
         
             
         
@@ -453,11 +611,25 @@
         
             
         
+    
+
+    
+    
+        
             
         
     
         
             
+        
+    
+
+    
+    
+        
+            
+        
+    
         
             
                 
@@ -478,17 +650,11 @@
         
             
         
-            
-        
     
         
             
         
-            
-        
     
-        
-            
         
             
         
@@ -499,8 +665,6 @@
         
             
         
-            
-        
     
 
     
@@ -508,11 +672,7 @@
         
             
         
-            
-        
     
-        
-            
         
             
                 
@@ -533,11 +693,7 @@
         
             
         
-            
-        
     
-        
-            
         
             
                 
@@ -557,21 +713,18 @@
     
         
             
-        
+                
+                <li class="relatedPost" style="font-size: 12px;">
+                    <a href="http://www.mixfate.com/tools/tomcat/2016/05/07/jenkins-tomcat-deploy.html">jenkins远程发布应用到tomcat中，使用shell脚本或jenkins deploy插件</a>
+                    
+                        <small>(所属分类: <a href="/category/tools">tools</a>, <a href="/category/tomcat">tomcat</a>)</small>
+                    
+                </li>
+                
+                
             
         
     
-        
-            
-        
-            
-        
-    
-
-    
-    
-        
-            
         
             
         
@@ -582,11 +735,14 @@
         
             
         
-            
-        
+    
+
+    
     
         
             
+        
+    
         
             
         
@@ -597,17 +753,11 @@
         
             
         
-            
-        
     
         
             
         
-            
-        
     
-        
-            
         
             
         
@@ -618,8 +768,6 @@
         
             
         
-            
-        
     
 
     
@@ -627,17 +775,11 @@
         
             
         
-            
-        
     
         
             
         
-            
-        
     
-        
-            
         
             
         
@@ -648,11 +790,7 @@
         
             
         
-            
-        
     
-        
-            
         
             
         
@@ -663,11 +801,7 @@
         
             
         
-            
-        
     
-        
-            
         
             
         
@@ -678,8 +812,6 @@
         
             
         
-            
-        
     
 
     
@@ -687,26 +819,7 @@
         
             
         
-            
-        
     
-        
-            
-        
-            
-        
-    
-
-    
-    
-        
-            
-        
-            
-        
-    
-        
-            
         
             
         
@@ -717,11 +830,7 @@
         
             
         
-            
-        
     
-        
-            
         
             
         
@@ -732,17 +841,7 @@
         
             
         
-            
-        
     
-        
-            
-        
-            
-        
-    
-        
-            
         
             
         
@@ -753,20 +852,11 @@
         
             
         
-            
-        
     
         
             
         
-            
-        
     
-
-    
-    
-        
-            
         
             
         
@@ -777,17 +867,7 @@
         
             
         
-            
-        
     
-        
-            
-        
-            
-        
-    
-        
-            
         
             
         
@@ -798,17 +878,18 @@
         
             
         
+    
+
+    
+    
+        
             
         
     
         
             
         
-            
-        
     
-        
-            
         
             
         
@@ -819,32 +900,11 @@
         
             
         
-            
-        
     
         
             
         
-            
-        
     
-
-    
-    
-        
-            
-        
-            
-        
-    
-        
-            
-        
-            
-        
-    
-        
-            
         
             
         
@@ -855,26 +915,7 @@
         
             
         
-            
-        
     
-
-    
-    
-        
-            
-        
-            
-        
-    
-        
-            
-        
-            
-        
-    
-        
-            
         
             
         
@@ -885,26 +926,11 @@
         
             
         
-            
-        
     
         
             
         
-            
-        
     
-
-    
-    
-        
-            
-        
-            
-        
-    
-        
-            
         
             
         
@@ -915,17 +941,18 @@
         
             
         
+    
+
+    
+    
+        
             
         
     
         
             
         
-            
-        
     
-        
-            
         
             
         
@@ -936,17 +963,7 @@
         
             
         
-            
-        
     
-        
-            
-        
-            
-        
-    
-        
-            
         
             
         
@@ -957,11 +974,7 @@
         
             
         
-            
-        
     
-        
-            
         
             
         
@@ -972,20 +985,11 @@
         
             
         
-            
-        
     
         
             
         
-            
-        
     
-
-    
-    
-        
-            
         
             
         
@@ -996,29 +1000,11 @@
         
             
         
-            
-        
-    
-
-    
     
         
             
         
-            
-        
     
-
-    
-    
-        
-            
-        
-            
-        
-    
-        
-            
         
             
         
@@ -1029,11 +1015,7 @@
         
             
         
-            
-        
     
-        
-            
         
             
         
@@ -1044,14 +1026,7 @@
         
             
         
-            
-        
     
-
-    
-    
-        
-            
         
             
         
@@ -1062,17 +1037,10 @@
         
             
         
-            
-        
     
-        
-            
-        
-            
-        
+
     
-        
-            
+    
         
             
         
@@ -1083,8 +1051,6 @@
         
             
         
-            
-        
     
 
     
@@ -1092,26 +1058,7 @@
         
             
         
-            
-        
     
-        
-            
-        
-            
-        
-    
-
-    
-    
-        
-            
-        
-            
-        
-    
-        
-            
         
             
         
@@ -1122,6 +1069,8 @@
         
             
         
+    
+        
             
         
     
@@ -1131,6 +1080,11 @@
         
             
         
+    
+
+    
+    
+        
             
         
     
@@ -1139,6 +1093,62 @@
     
         
             
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+    
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+    
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+    
+
+    
+    
         
             
         
@@ -1151,10 +1161,8 @@
 
 <div class="PageNavigation" style="font-size: 12px;">
   
-    <a class="prev pull-left" href="/tomcat/tools/2016/04/01/tomcat-ssl-1.html">&laquo; tomcat配置ssl单向认证</a>
+    <a class="prev pull-left" href="/others/2016/05/24/https.html">&laquo; HTTPS 是如何保证安全的(转)？</a>
   
-  
-    <a class="next pull-right" href="/maven/2016/04/02/maven-filter.html">使用maven为不同环境打包，应用不同配置文件 &raquo;</a>
   
 </div>
 <div>&nbsp;</div>
@@ -1166,8 +1174,8 @@
 
         /*
 		var disqus_shortname = "mixfate";
-        var disqus_identifier = "http://www.mixfate.com_tomcat配置ssl双向认证";
-        var disqus_title = "tomcat配置ssl双向认证";
+        var disqus_identifier = "http://www.mixfate.com_Nodejs安装与基本使用";
+        var disqus_title = "Nodejs安装与基本使用";
 		*/
 
         /* * * DON'T EDIT BELOW THIS LINE * * */
