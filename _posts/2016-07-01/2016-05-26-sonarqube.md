@@ -19,6 +19,7 @@ sonar.jdbc.url=jdbc:mysql://localhost:3306/sonar?useUnicode=true&characterEncodi
 ```
 
 3、进入目录F:\newtool\sonar\sonarqube-6.2\bin\windows-x86-64，运行StartSonar.bat启动sonarqube，若需要关闭请键一次Ctrl+C，等待jvm进程关闭后，然后输入Y停止。
+注意不要直接叉掉窗口退出，会造成jvm未正常关闭，需手工清除java进程。
 
 4、启动成功后，打开http://localhost:9000/，右上角点击Login，默认用户名及密码均为admin。
 
