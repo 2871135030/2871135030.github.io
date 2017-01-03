@@ -14,7 +14,7 @@ categories: [tools]
 
 ```markdown
 sonar.jdbc.username=root
-sonar.jdbc.password=kroot
+sonar.jdbc.password=root
 sonar.jdbc.url=jdbc:mysql://localhost:3306/sonar?useUnicode=true&characterEncoding=utf8&rewriteBatchedStatements=true&useConfigs=maxPerformance&useSSL=false
 ```
 
