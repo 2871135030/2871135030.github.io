@@ -6,15 +6,15 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <link rel="shortcut icon" href="/static/img/favicon.ico" />
-        <title>四句话，献给处于阴霾中的你 - Java及相关开源技术博客</title>
+        <title>SonarQube 6.2代码质量管理平台win7安装与使用 - Java及相关开源技术博客</title>
         <meta name="author" content="Mixfate博客" />
         <meta name="description" content="Mixfate博客,开源技术博客,IT 博客,java技术,spring开源技术,dubbo分布式架构,maven工具" />
-        <meta name="keywords" content="四句话，献给处于阴霾中的你, Java及相关开源技术博客, others" />
+        <meta name="keywords" content="SonarQube 6.2代码质量管理平台win7安装与使用, Java及相关开源技术博客, tools" />
 
         <meta content="0" property="fb:app_id">
         <meta content="Java及相关开源技术博客" property="og:site_name">
         
-          <meta content="四句话，献给处于阴霾中的你" property="og:title">
+          <meta content="SonarQube 6.2代码质量管理平台win7安装与使用" property="og:title">
         
         
           <meta content="article" property="og:type">
@@ -23,10 +23,10 @@
           <meta content="Mixfate博客,开源技术博客,IT 博客,java技术,spring开源技术,dubbo分布式架构,maven工具" property="og:description">
         
         
-          <meta content="http://www.mixfate.com/others/2016/04/29/others.html" property="og:url">
+          <meta content="http://www.mixfate.com/tools/2016/05/26/sonarqube.html" property="og:url">
         
         
-          <meta content="2016-04-29T18:00:01+08:00" property="article:published_time">
+          <meta content="2016-05-26T20:59:58+08:00" property="article:published_time">
           <meta content="http://www.mixfate.com/about/" property="article:author">
         
         
@@ -34,7 +34,7 @@
         
         
           
-          <meta content="others" property="article:section">
+          <meta content="tools" property="article:section">
           
         
         
@@ -44,10 +44,10 @@
         <meta name="twitter:site" content="@\#">
         <meta name="twitter:creator" content="@\#">
         
-          <meta name="twitter:title" content="四句话，献给处于阴霾中的你">
+          <meta name="twitter:title" content="SonarQube 6.2代码质量管理平台win7安装与使用">
         
         
-          <meta name="twitter:url" content="http://www.mixfate.com/others/2016/04/29/others.html">
+          <meta name="twitter:url" content="http://www.mixfate.com/tools/2016/05/26/sonarqube.html">
         
         
           <meta name="twitter:description" content="Mixfate博客,开源技术博客,IT 博客,java技术,spring开源技术,dubbo分布式架构,maven工具">
@@ -122,14 +122,14 @@
         </div>
       </div>
       <div class="col-md-9 col-sm-8 col-xs-12">
-      <h2 class="blog-title-pro">四句话，献给处于阴霾中的你</h2>
+      <h2 class="blog-title-pro">SonarQube 6.2代码质量管理平台win7安装与使用</h2>
       <p class="info">
       
-      <span class="time">2016/04/29</span>
+      <span class="time">2016/05/26</span>
       
       
     <span class="categories">
-        &raquo; <a href="/category/others">others</a>
+        &raquo; <a href="/category/tools">tools</a>
     </span>
     
       </p>
@@ -148,19 +148,19 @@
 	
 	
 	
-	<li class="col-lg-12 col-md-12 col-sm-4 col-xs-12 current-menu-item others.html"><a href="/"><i class="fa fa-home"></i> 首页</a></li>
+	<li class="col-lg-12 col-md-12 col-sm-4 col-xs-12 current-menu-item sonarqube.html"><a href="/"><i class="fa fa-home"></i> 首页</a></li>
 
 	
 	
 	
 	
-	<li class="col-lg-12 col-md-12 col-sm-4 col-xs-12  others.html"><a href="/category/java"><i class="fa fa-desktop"></i> 分类</a></li>
+	<li class="col-lg-12 col-md-12 col-sm-4 col-xs-12  sonarqube.html"><a href="/category/java"><i class="fa fa-desktop"></i> 分类</a></li>
 
 	
 	
 	
 	
-	<li class="col-lg-12 col-md-12 col-sm-4 col-xs-12  others.html"><a href="/about/"><i class="fa fa-comments"></i> 关于</a></li>
+	<li class="col-lg-12 col-md-12 col-sm-4 col-xs-12  sonarqube.html"><a href="/about/"><i class="fa fa-comments"></i> 关于</a></li>
 
 </ul>
     </div>
@@ -181,16 +181,43 @@
             <div class="col-md-9 col-xs-12 full">
                 <div class="post-content well">
 <article class="content">
-    <div class="post" style="font-size: 12px;"><h2 id="section">四句话，献给处于阴霾中的你</h2>
-<hr />
+    <div class="post" style="font-size: 12px;"><h2 id="sonarqube-62win7">SonarQube 6.2代码质量管理平台win7安装与使用</h2>
 
-<h4>你病，或者不病倒，老板就在那里，不悲不喜；</h4>
+<p>1、官网下载sonarqube-6.2.zip、sonar-scanner-2.8.zip(请忽略文章发布日期)，并分别解压，
+如解压后目录为F:\newtool\sonar\sonarqube-6.2、F:\newtool\sonar\sonar-scanner-2.8。</p>
 
-<h4>你休，或者不休假，工作就在那里，不来不去；</h4>
+<p>2、安装好mysql，并创建一个数据库sonar，修改配置文件F:\newtool\sonar\sonarqube-6.2\conf\sonar.properties，增加或修改以下配置</p>
 
-<h4>你拼，或者不拼命，工资就在那里，不增不减；</h4>
+<div class="language-markdown highlighter-rouge"><pre class="highlight"><code>sonar.jdbc.username=root
+sonar.jdbc.password=root
+sonar.jdbc.url=jdbc:mysql://localhost:3306/sonar?useUnicode=true&amp;characterEncoding=utf8&amp;rewriteBatchedStatements=true&amp;useConfigs=maxPerformance&amp;useSSL=false
+</code></pre>
+</div>
 
-<h4>你辞，或者不辞职，地球还是会转，不歇不停。</h4>
+<p>3、进入目录F:\newtool\sonar\sonarqube-6.2\bin\windows-x86-64，运行StartSonar.bat启动sonarqube，若需要关闭请键一次Ctrl+C，等待jvm进程关闭后，然后输入Y停止。
+注意不要直接叉掉窗口退出，会造成jvm未正常关闭，需手工清除java进程。</p>
+
+<p>4、启动成功后，打开http://localhost:9000/，右上角点击Login，默认用户名及密码均为admin。</p>
+
+<p>5、登录成功后，点击顶部Administration，然后选择System-&gt;Update Center，再选择Available标签，查找SonarQube Chinese Pack并install安装中文插件。
+安装完成后重启sonar，即可看到中文插件已生效，同时可以看到F:\newtool\sonar\sonarqube-6.2\extensions\plugins新增了sonar-l10n-zh-plugin-1.13.jar插件包。</p>
+
+<p>6、打开sonar scanner配置文件F:\newtool\sonar\sonar-scanner-2.8\conf\sonar-scanner.properties，增加或修改以下配置项即可</p>
+
+<div class="language-markdown highlighter-rouge"><pre class="highlight"><code>sonar.host.url=http://localhost:9000
+sonar.sourceEncoding=UTF-8
+</code></pre>
+</div>
+
+<p>7、确保sonarqube已启动，命令行进入待管理的代码根目录(可包括子文件夹中的项目)，执行以下命令</p>
+
+<div class="language-markdown highlighter-rouge"><pre class="highlight"><code>F:<span class="se">\n</span>ewtool<span class="se">\s</span>onar<span class="se">\s</span>onar-scanner-2.8<span class="se">\b</span>in<span class="se">\s</span>onar-scanner  -Dsonar.projectKey=sonar:testproject -Dsonar.sources=.
+</code></pre>
+</div>
+
+<p>扫描成功后，即可用http://localhost:9000/查看结果。</p>
+
+<p>8、sonar同样提供了maven插件，可直接使用插件完成。</p>
 
 <p>结束。</p>
 </div>
@@ -214,136 +241,15 @@
     
         
             
-        
-    
-
-    
-    
-        
-            
                 
                 <div class="panel-body">
                 <h5>相关博客</h5>
                 <ul>
                 
                 <li class="relatedPost" style="font-size: 12px;">
-                    <a href="http://www.mixfate.com/others/2016/05/24/https.html">HTTPS 是如何保证安全的(转)？</a>
+                    <a href="http://www.mixfate.com/tools/2016/05/25/nodejs.html">Nodejs安装与基本使用</a>
                     
-                        <small>(所属分类: <a href="/category/others">others</a>)</small>
-                    
-                </li>
-                
-                
-            
-        
-    
-
-    
-    
-        
-            
-        
-    
-
-    
-    
-        
-            
-        
-    
-
-    
-    
-        
-            
-        
-    
-
-    
-    
-        
-            
-        
-    
-
-    
-    
-        
-            
-        
-    
-        
-            
-        
-    
-
-    
-    
-        
-            
-        
-    
-
-    
-    
-        
-            
-        
-    
-        
-            
-        
-    
-
-    
-    
-        
-            
-        
-    
-
-    
-    
-        
-            
-        
-    
-        
-            
-        
-    
-
-    
-    
-        
-            
-        
-    
-        
-            
-        
-    
-
-    
-    
-        
-            
-        
-    
-        
-            
-        
-    
-
-    
-    
-        
-            
-                
-                <li class="relatedPost" style="font-size: 12px;">
-                    <a href="http://www.mixfate.com/others/2016/05/14/others.html">做人的涵养！（深刻）</a>
-                    
-                        <small>(所属分类: <a href="/category/others">others</a>)</small>
+                        <small>(所属分类: <a href="/category/tools">tools</a>)</small>
                     
                 </li>
                 
@@ -358,86 +264,6 @@
             
         
     
-        
-            
-        
-    
-
-    
-    
-        
-            
-        
-    
-        
-            
-        
-    
-
-    
-    
-        
-            
-        
-    
-        
-            
-        
-    
-        
-            
-        
-    
-
-    
-    
-        
-            
-                
-                <li class="relatedPost" style="font-size: 12px;">
-                    <a href="http://www.mixfate.com/others/2016/05/10/others.html">到了我这个年龄，就不想再去取悦谁了</a>
-                    
-                        <small>(所属分类: <a href="/category/others">others</a>)</small>
-                    
-                </li>
-                
-                
-            
-        
-    
-
-    
-    
-        
-            
-        
-    
-        
-            
-        
-    
-
-    
-    
-        
-            
-        
-    
-        
-            
-        
-    
-
-    
-    
-        
-            
-        
-    
-        
-            
-        
-    
 
     
     
@@ -452,309 +278,8 @@
             
         
     
-        
-            
-        
-    
 
     
-    
-        
-            
-        
-    
-        
-            
-        
-    
-        
-            
-        
-    
-
-    
-    
-        
-            
-                
-                <li class="relatedPost" style="font-size: 12px;">
-                    <a href="http://www.mixfate.com/others/2016/05/03/others.html">善行天下，改变命运</a>
-                    
-                        <small>(所属分类: <a href="/category/others">others</a>)</small>
-                    
-                </li>
-                
-                
-            
-        
-    
-
-    
-    
-        
-            
-        
-    
-        
-            
-        
-    
-        
-            
-        
-    
-
-    
-    
-        
-            
-        
-    
-        
-            
-        
-    
-
-    
-    
-        
-            
-        
-    
-        
-            
-        
-    
-
-    
-    
-        
-            
-        
-    
-
-    
-    
-        
-            
-        
-    
-        
-            
-        
-    
-
-    
-    
-        
-            
-        
-    
-        
-            
-        
-    
-
-    
-    
-        
-            
-        
-    
-        
-            
-        
-    
-
-    
-    
-        
-            
-        
-    
-        
-            
-        
-    
-        
-            
-        
-    
-
-    
-    
-        
-            
-        
-    
-        
-            
-        
-    
-
-    
-    
-        
-            
-        
-    
-
-    
-    
-        
-            
-        
-    
-        
-            
-        
-    
-        
-            
-        
-    
-
-    
-    
-        
-            
-        
-    
-        
-            
-        
-    
-        
-            
-        
-    
-
-    
-    
-        
-            
-        
-    
-        
-            
-        
-    
-
-    
-    
-        
-            
-        
-    
-        
-            
-        
-    
-        
-            
-        
-    
-
-    
-    
-        
-            
-                
-                <li class="relatedPost" style="font-size: 12px;">
-                    <a href="http://www.mixfate.com/others/2016/04/18/others.html">幽默故事，欢笑中的人生领悟</a>
-                    
-                        <small>(所属分类: <a href="/category/others">others</a>)</small>
-                    
-                </li>
-                
-                
-            
-        
-    
-
-    
-    
-        
-            
-        
-    
-        
-            
-        
-    
-        
-            
-        
-    
-
-    
-    
-        
-            
-        
-    
-        
-            
-        
-    
-
-    
-    
-        
-            
-        
-    
-        
-            
-        
-    
-
-    
-    
-        
-            
-        
-    
-        
-            
-        
-    
-        
-            
-        
-    
-
-    
-    
-        
-            
-        
-    
-        
-            
-        
-    
-        
-            
-        
-    
-
-    
-    
-        
-            
-        
-    
-        
-            
-        
-    
-
-    
-    
-        
-            
-        
     
         
             
@@ -774,13 +299,515 @@
             
                 
                 <li class="relatedPost" style="font-size: 12px;">
-                    <a href="http://www.mixfate.com/others/2016/04/09/others.html">小不忍则乱大谋，退一步海阔天空</a>
+                    <a href="http://www.mixfate.com/tools/spring/2016/05/19/gradle-spring-project.html">Gradle构建spring项目</a>
                     
-                        <small>(所属分类: <a href="/category/others">others</a>)</small>
+                        <small>(所属分类: <a href="/category/tools">tools</a>, <a href="/category/spring">spring</a>)</small>
                     
                 </li>
                 
                 
+            
+        
+    
+        
+            
+        
+    
+
+    
+    
+        
+            
+                
+                <li class="relatedPost" style="font-size: 12px;">
+                    <a href="http://www.mixfate.com/tools/2016/05/18/gradle-install-userguide.html">Gradle安装与简单使用介绍</a>
+                    
+                        <small>(所属分类: <a href="/category/tools">tools</a>)</small>
+                    
+                </li>
+                
+                
+            
+        
+    
+
+    
+    
+        
+            
+        
+    
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+    
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+    
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+    
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+    
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+    
+        
+            
+                
+                <li class="relatedPost" style="font-size: 12px;">
+                    <a href="http://www.mixfate.com/linux/tools/2016/05/12/nginx-linux-install.html">Linux环境下安装nginx</a>
+                    
+                        <small>(所属分类: <a href="/category/linux">linux</a>, <a href="/category/tools">tools</a>)</small>
+                    
+                </li>
+                
+                
+            
+        
+    
+
+    
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+    
+        
+            
+                
+                <li class="relatedPost" style="font-size: 12px;">
+                    <a href="http://www.mixfate.com/maven/tools/2016/05/09/maven-deploy-release.html">Maven命令:deploy和release命令</a>
+                    
+                        <small>(所属分类: <a href="/category/maven">maven</a>, <a href="/category/tools">tools</a>)</small>
+                    
+                </li>
+                
+                
+            
+        
+    
+
+    
+    
+        
+            
+        
+    
+        
+            
+                
+                <li class="relatedPost" style="font-size: 12px;">
+                    <a href="http://www.mixfate.com/maven/tools/2016/05/08/maven-nexus2.9.0.html">Nexus2.9.0 私服 linux安装使用</a>
+                    
+                        <small>(所属分类: <a href="/category/maven">maven</a>, <a href="/category/tools">tools</a>)</small>
+                    
+                </li>
+                
+                
+            
+        
+    
+
+    
+    
+        
+            
+        
+    
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+    
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+    
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+    
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+    
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+    
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+    
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+    
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+    
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+    
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+    
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+    
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+    
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+    
+
+    
+    
+        
             
         
     
@@ -900,10 +927,8 @@
 
 <div class="PageNavigation" style="font-size: 12px;">
   
-    <a class="prev pull-left" href="/maven/tools/2016/04/27/java-proguard-js-yuicompressor.html">&laquo; Java代码保护，JS代码压缩工具</a>
+    <a class="prev pull-left" href="/tools/2016/05/25/nodejs.html">&laquo; Nodejs安装与基本使用</a>
   
-  
-    <a class="next pull-right" href="/maven/tools/2016/04/30/maven-nexus.html">maven安装第三方包到本地或私服 &raquo;</a>
   
 </div>
 <div>&nbsp;</div>
@@ -915,8 +940,8 @@
 
         /*
 		var disqus_shortname = "mixfate";
-        var disqus_identifier = "http://www.mixfate.com_四句话，献给处于阴霾中的你";
-        var disqus_title = "四句话，献给处于阴霾中的你";
+        var disqus_identifier = "http://www.mixfate.com_SonarQube 6.2代码质量管理平台win7安装与使用";
+        var disqus_title = "SonarQube 6.2代码质量管理平台win7安装与使用";
 		*/
 
         /* * * DON'T EDIT BELOW THIS LINE * * */

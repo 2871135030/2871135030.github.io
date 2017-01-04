@@ -287,6 +287,27 @@
             
             
             
+            <div class="least-content">2016-05-26 20:59</div>
+            <h4 class="list-group-item-heading" style="font-size: 14px;"><a href="/tools/2016/05/26/sonarqube.html">SonarQube 6.2代码质量管理平台win7安装与使用</a></h4>
+            <p class="list-group-item-text">SonarQube 6.2代码质量管理平台win7安装与使用 1、官网下载sonarqube-6.2.zip、sonar-scanner-2.8.zip(请忽略文章发布日期)，并分别解压， 如解压后目录为F:\newtool\sonar\sonarqube-6.2、F:\newtool\sonar\sonar-scanner-2.8。 2、安装好mysql，并创建一个数据库sonar，修改配置文件F:\newtool\sonar\sonarqube-6.2\conf\sonar.properties，增加或修改以下配置 sonar.jdbc.username=root sonar.jdbc.password=root sonar.jdbc.url=jdbc:mysql://localhost:3306/sonar?useUnicode=true&amp;characterEncoding=utf8&amp;rewriteBatchedStatements=true&amp;useConfigs=maxPerformance&amp;useSSL=false 3、进入目录F:\newtool\sonar\sonarqube-6.2\bin\windows-x86-64，运行StartSonar.bat启动sonarqube，若需要关闭请键一次Ctrl+C，等待jvm进程关闭后，然后输入Y停止。 注意不要直接叉掉窗口退出，会造成jvm未正常关闭，需手工清除java进程。 4、启动成功后，打开http://localhost:9000/，右上角点击Login，默认用户名及密码均为admin。 5、登录成功后，点击顶部Administration，然后选择System-&gt;Update Center，再选择Available标签，查找SonarQube Chinese Pack并install安装中文插件。 安装完成后重启sonar，即可看到中文插件已生效，同时可以看到F:\newtool\sonar\sonarqube-6.2\extensions\plugins新增了sonar-l10n-zh-plugin-1.13.jar插件包。 6、打开sonar scanner配置文件F:\newtool\sonar\sonar-scanner-2.8\conf\sonar-scanner.properties，增加或修改以下配置项即可 sonar.host.url=http://localhost:9000 sonar.sourceEncoding=UTF-8...</p>
+            
+            </div>
+        </div>
+        <div class="list-group-separator"></div>
+        
+        <div class="list-group-item">
+            <div class="row-action-primary">
+              <i class="fa fa-sticky-note"></i>
+            </div>
+            <div class="row-content" style="font-size: 12px;">
+            
+            
+            
+            
+                
+                
+                
+            
             <div class="least-content">2016-05-25 20:01</div>
             <h4 class="list-group-item-heading" style="font-size: 14px;"><a href="/tools/2016/05/25/nodejs.html">Nodejs安装与基本使用</a></h4>
             <p class="list-group-item-text">Nodejs安装与基本使用 1、在nodejs官网https://nodejs.org/en/download/下载相应的安装版本，并安装。安装完成后进入安装目录(如d:\Program Files\nodejs，也可将此目录加入path)执行以下命令可查看版本 node.exe --version 2、编写一个helloworld.js，内容如下 console.log("this is hello world,hahaha!"); 3、使用nodejs来执行此js，命令如下 node d:\nodejs\helloworld.js 如无异常，终端将输出正确内容。 4、下面创建一个简单的nodejs应用。创建一个server.js，内容如下 var http = require('http'); http.createServer(function(request,response){...</p>

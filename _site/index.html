@@ -172,6 +172,19 @@
           <i class="fa fa-sticky-note"></i>
         </div>
         <div class="row-content">
+          <div class="least-content">2016-05-26 20:59</div>
+          <h4 class="list-group-item-heading" style="font-size: 14px;"><a href="/tools/2016/05/26/sonarqube.html">SonarQube 6.2代码质量管理平台win7安装与使用</a></h4>
+
+          <p class="list-group-item-text" style="font-size: 12px;">SonarQube 6.2代码质量管理平台win7安装与使用 1、官网下载sonarqube-6.2.zip、sonar-scanner-2.8.zip(请忽略文章发布日期)，并分别解压， 如解压后目录为F:\newtool\sonar\sonarqube-6.2、F:\newtool\sonar\sonar-scanner-2.8。 2、安装好mysql，并创建一个数据库sonar，修改配置文件F:\newtool\sonar\sonarqube-6.2\conf\sonar.properties，增加或修改以下配置 sonar.jdbc.username=root sonar.jdbc.password=root sonar.jdbc.url=jdbc:mysql://localhost:3306/sonar?useUnicode=true&amp;characterEncoding=utf8&amp;rewriteBatchedStatements=true&amp;useConfigs=maxPerformance&amp;useSSL=false 3、进入目录F:\newtool\sonar\sonarqube-6.2\bin\windows-x86-64，运行StartSonar.bat启动sonarqube，若需要关闭请键一次Ctrl+C，等待jvm进程关闭后，然后输入Y停止。 注意不要直接叉掉窗口退出，会造成jvm未正常关闭，需手工清除java进程。 4、启动成功后，打开http://localhost:9000/，右上角点击Login，默认用户名及密码均为admin。 5、登录成功后，点击顶部Administration，然后选择System-&gt;Update Center，再选择Available标签，查找SonarQube Chinese Pack并install安装中文插件。 安装完成后重启sonar，即可看到中文插件已生效，同时可以看到F:\newtool\sonar\sonarqube-6.2\extensions\plugins新增了sonar-l10n-zh-plugin-1.13.jar插件包。 6、打开sonar scanner配置文件F:\newtool\sonar\sonar-scanner-2.8\conf\sonar-scanner.properties，增加或修改以下配置项即可 sonar.host.url=http://localhost:9000 sonar.sourceEncoding=UTF-8...</p>
+        </div>
+      </div>
+      <div class="list-group-separator"></div>
+      
+      <div class="list-group-item">
+        <div class="row-action-primary">
+          <i class="fa fa-sticky-note"></i>
+        </div>
+        <div class="row-content">
           <div class="least-content">2016-05-25 20:01</div>
           <h4 class="list-group-item-heading" style="font-size: 14px;"><a href="/tools/2016/05/25/nodejs.html">Nodejs安装与基本使用</a></h4>
 
@@ -410,19 +423,6 @@
           <h4 class="list-group-item-heading" style="font-size: 14px;"><a href="/maven/tools/2016/05/09/maven-deploy-release.html">Maven命令:deploy和release命令</a></h4>
 
           <p class="list-group-item-text" style="font-size: 12px;">Maven命令:deploy和release命令 本文介绍deploy及release命令，首先需在maven配置文件conf/settings.xml配置好私服 示例settings.xml &lt;?xml version="1.0" encoding="UTF-8"?&gt; &lt;settings xmlns="http://maven.apache.org/SETTINGS/1.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0 http://maven.apache.org/xsd/settings-1.0.0.xsd"&gt; &lt;pluginGroups&gt; &lt;/pluginGroups&gt; &lt;proxies&gt; &lt;/proxies&gt; &lt;servers&gt; &lt;!-- 配置发布私服用户名密码 --&gt; &lt;server&gt;...</p>
-        </div>
-      </div>
-      <div class="list-group-separator"></div>
-      
-      <div class="list-group-item">
-        <div class="row-action-primary">
-          <i class="fa fa-sticky-note"></i>
-        </div>
-        <div class="row-content">
-          <div class="least-content">2016-05-08 19:22</div>
-          <h4 class="list-group-item-heading" style="font-size: 14px;"><a href="/maven/tools/2016/05/08/maven-nexus2.9.0.html">Nexus2.9.0 私服 linux安装使用</a></h4>
-
-          <p class="list-group-item-text" style="font-size: 12px;">Nexus2.9.0 私服 linux安装使用 下载nexus-2.9.0-bundle.zip，使用解压命令 unzip nexus-latest-bundle.zip -d . 解压到目录/software/nexus-2.7.2-03 若为root用户需在 /etc/profile最后添加一行export RUN_AS_USER=root 并source /etc/profile使其生效 cd /software/nexus-2.7.2-03/bin 执行 ./nexus start 若存在Caused...</p>
         </div>
       </div>
       <div class="list-group-separator"></div>
