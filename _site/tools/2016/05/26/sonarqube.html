@@ -217,7 +217,61 @@ sonar.sourceEncoding=UTF-8
 
 <p>扫描成功后，即可用http://localhost:9000/查看结果。</p>
 
-<p>8、sonar同样提供了maven插件，可直接使用插件完成。</p>
+<p>8、sonar同样提供了maven插件，可直接使用插件完成，在pom.xml中build标记下添加以下插件</p>
+
+<div class="language-markdown highlighter-rouge"><pre class="highlight"><code><span class="nt">&lt;build&gt;</span><span class="sb">
+
+		&lt;pluginManagement&gt;
+			&lt;plugins&gt;
+				&lt;plugin&gt;
+					&lt;groupId&gt;org.jacoco&lt;/groupId&gt;
+					&lt;artifactId&gt;jacoco-maven-plugin&lt;/artifactId&gt;
+					&lt;version&gt;0.7.8&lt;/version&gt;
+				&lt;/plugin&gt;
+			&lt;/plugins&gt;
+		&lt;/pluginManagement&gt;
+
+
+		&lt;plugins&gt;
+			
+			&lt;plugin&gt;
+				&lt;groupId&gt;org.jacoco&lt;/groupId&gt;
+				&lt;artifactId&gt;jacoco-maven-plugin&lt;/artifactId&gt;
+				&lt;configuration&gt;
+					&lt;append&gt;true&lt;/append&gt;
+				&lt;/configuration&gt;
+				&lt;executions&gt;
+					&lt;execution&gt;
+						&lt;id&gt;agent-for-ut&lt;/id&gt;
+						&lt;goals&gt;
+							&lt;goal&gt;prepare-agent&lt;/goal&gt;
+						&lt;/goals&gt;
+					&lt;/execution&gt;
+					&lt;execution&gt;
+						&lt;id&gt;agent-for-it&lt;/id&gt;
+						&lt;goals&gt;
+							&lt;goal&gt;prepare-agent-integration&lt;/goal&gt;
+						&lt;/goals&gt;
+					&lt;/execution&gt;
+					&lt;execution&gt;
+						&lt;id&gt;jacoco-site&lt;/id&gt;
+						&lt;phase&gt;verify&lt;/phase&gt;
+						&lt;goals&gt;
+							&lt;goal&gt;report&lt;/goal&gt;
+						&lt;/goals&gt;
+					&lt;/execution&gt;
+				&lt;/executions&gt;
+			&lt;/plugin&gt;
+		&lt;/plugins&gt;
+	&lt;/build&gt;
+</span></code></pre>
+</div>
+
+<p>确保sonarqube已启动，使用以下命令完成代码分析</p>
+
+<div class="language-markdown highlighter-rouge"><pre class="highlight"><code>mvn clean install sonar:sonar
+</code></pre>
+</div>
 
 <p>结束。</p>
 </div>

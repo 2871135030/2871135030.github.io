@@ -41,7 +41,60 @@ F:\newtool\sonar\sonar-scanner-2.8\bin\sonar-scanner  -Dsonar.projectKey=sonar:t
 
 扫描成功后，即可用http://localhost:9000/查看结果。
 
-8、sonar同样提供了maven插件，可直接使用插件完成。
+8、sonar同样提供了maven插件，可直接使用插件完成，在pom.xml中build标记下添加以下插件
 
+```markdown
+<build>
+
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.jacoco</groupId>
+					<artifactId>jacoco-maven-plugin</artifactId>
+					<version>0.7.8</version>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+
+
+		<plugins>
+			
+			<plugin>
+				<groupId>org.jacoco</groupId>
+				<artifactId>jacoco-maven-plugin</artifactId>
+				<configuration>
+					<append>true</append>
+				</configuration>
+				<executions>
+					<execution>
+						<id>agent-for-ut</id>
+						<goals>
+							<goal>prepare-agent</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>agent-for-it</id>
+						<goals>
+							<goal>prepare-agent-integration</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>jacoco-site</id>
+						<phase>verify</phase>
+						<goals>
+							<goal>report</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+```
+
+确保sonarqube已启动，使用以下命令完成代码分析
+
+```markdown
+mvn clean install sonar:sonar
+```
 
 结束。
