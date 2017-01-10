@@ -36,7 +36,7 @@ sonar.sourceEncoding=UTF-8
 7、确保sonarqube已启动，命令行进入待管理的代码根目录(可包括子文件夹中的项目)，执行以下命令
 
 ```markdown
-F:\newtool\sonar\sonar-scanner-2.8\bin\sonar-scanner  -Dsonar.projectKey=sonar:testproject -Dsonar.sources=.
+F:\newtool\sonar\sonar-scanner-2.8\bin\sonar-scanner  -Dsonar.projectKey=sonar:testproject -Dsonar.projectName=testproject -Dsonar.sources=.
 ```
 
 扫描成功后，即可用http://localhost:9000/查看结果。
