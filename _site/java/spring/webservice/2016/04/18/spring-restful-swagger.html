@@ -1,0 +1,1595 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="shortcut icon" href="/static/img/favicon.ico" />
+        <title>Springmvc restful使用swagger生成在线文档 - Java及相关开源技术博客</title>
+        <meta name="author" content="Mixfate博客" />
+        <meta name="description" content="Mixfate博客,开源技术博客,IT 博客,java技术,spring开源技术,dubbo分布式架构,maven工具" />
+        <meta name="keywords" content="Springmvc restful使用swagger生成在线文档, Java及相关开源技术博客, java, spring, webservice" />
+
+        <meta content="0" property="fb:app_id">
+        <meta content="Java及相关开源技术博客" property="og:site_name">
+        
+          <meta content="Springmvc restful使用swagger生成在线文档" property="og:title">
+        
+        
+          <meta content="article" property="og:type">
+        
+        
+          <meta content="Mixfate博客,开源技术博客,IT 博客,java技术,spring开源技术,dubbo分布式架构,maven工具" property="og:description">
+        
+        
+          <meta content="http://www.mixfate.com/java/spring/webservice/2016/04/18/spring-restful-swagger.html" property="og:url">
+        
+        
+          <meta content="2016-04-18T07:23:34+08:00" property="article:published_time">
+          <meta content="http://www.mixfate.com/about/" property="article:author">
+        
+        
+          <meta content="http://www.mixfate.com/static/img/logo-high-resolution.png" property="og:image">
+        
+        
+          
+          <meta content="java" property="article:section">
+          
+        
+        
+          
+        
+        <meta name="twitter:card" content="summary">
+        <meta name="twitter:site" content="@\#">
+        <meta name="twitter:creator" content="@\#">
+        
+          <meta name="twitter:title" content="Springmvc restful使用swagger生成在线文档">
+        
+        
+          <meta name="twitter:url" content="http://www.mixfate.com/java/spring/webservice/2016/04/18/spring-restful-swagger.html">
+        
+        
+          <meta name="twitter:description" content="Mixfate博客,开源技术博客,IT 博客,java技术,spring开源技术,dubbo分布式架构,maven工具">
+        
+        
+
+        <link rel="alternate" type="application/rss+xml" title="RSS" href="/feed.xml">
+        <!-- Custom Fonts -->
+        <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:300,400,500,700" type="text/css">
+
+        <!-- FontAwesome icons -->
+        <link rel="stylesheet" href="https://use.fontawesome.com/74dfc6cf47.css">
+
+        <!-- Core BootStrap CSS -->
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+        <!-- Material Design CSS -->
+        <link rel="stylesheet" href="http://www.mixfate.com/static/css/bootstrap-material-design.min.css">
+
+        <!-- syntax highlighting CSS -->
+        <link rel="stylesheet" href="http://www.mixfate.com/static/css/syntax.css">
+
+        <!-- Custom CSS -->        
+        <link rel="stylesheet" href="http://www.mixfate.com/static/css/thickbox.css">
+        <link rel="stylesheet" href="http://www.mixfate.com/static/css/main.css">
+        <link rel="stylesheet" href="http://www.mixfate.com/static/css/projects.css">
+        <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UB-72862926-2', 'auto');
+  ga('send', 'pageview');
+
+</script>
+    </head>
+
+    <body class="home overflow-hidden">
+    <!--[if lt IE 7]>
+    <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade
+        your browser</a> to improve your experience.</p>
+    <![endif]-->
+    <div class="header-panel shadow-z-2">
+    <div class="container">
+    <div class="row">
+            <div class="col-md-3 col-sm-4 col-xs-12">
+      <div class="row-picture">
+        <img id="about" class="logo-img" src="http://www.mixfate.com/static/img/avatar.png" height="75px" width="75px">
+      </div>
+      <div class="row-details">
+      <h4 class="list-group-item-heading">Mixfate博客</h4>
+      <p class="list-group-item-text">技术乐园</p>
+      <div class="social-icons">
+	
+        <a class="icon" href=""><i class="fa fa-facebook"></i></a>
+    
+        <a class="icon" href=""><i class="fa fa-skype"></i></a>
+    
+        <a class="icon" href=""><i class="fa fa-twitter"></i></a>
+    
+        <a class="icon" href=""><i class="fa fa-linkedin"></i></a>
+    
+        <a class="icon" href=""><i class="fa fa-stack-exchange"></i></a>
+    
+</div>
+      </div>
+        <div class="navbar-header pull-right">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+              <span class="sr-only">Toggle navigation</span>
+              <i class="fa fa-2x fa-bars"></i>
+            </button>
+        </div>
+      </div>
+      <div class="col-md-9 col-sm-8 col-xs-12">
+      <h2 class="blog-title-pro">Springmvc restful使用swagger生成在线文档</h2>
+      <p class="info">
+      
+      <span class="time">2016/04/18</span>
+      
+      
+    <span class="categories">
+        &raquo; <a href="/category/java">java</a>, <a href="/category/spring">spring</a>, <a href="/category/webservice">webservice</a>
+    </span>
+    
+      </p>
+      </div>
+      </div>
+      </div>
+    </div>
+    <div class="container main outer">
+        <div class="row">
+            <div class="col-md-3 col-xs-12">
+                    <nav class="menu">
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+    <ul class="list-separator nav navbar-nav well well-primary post">
+
+	
+	
+	
+	
+	<li class="col-lg-12 col-md-12 col-sm-4 col-xs-12 current-menu-item spring-restful-swagger.html"><a href="/"><i class="fa fa-home"></i> 首页</a></li>
+
+	
+	
+	
+	
+	<li class="col-lg-12 col-md-12 col-sm-4 col-xs-12  spring-restful-swagger.html"><a href="/category/java"><i class="fa fa-desktop"></i> 分类</a></li>
+
+	
+	
+	
+	
+	<li class="col-lg-12 col-md-12 col-sm-4 col-xs-12  spring-restful-swagger.html"><a href="/about/"><i class="fa fa-comments"></i> 关于</a></li>
+
+</ul>
+    </div>
+    </nav>
+
+				
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- size_300x250 -->
+<ins class="adsbygoogle"
+     style="display:inline-block;width:280px;height:250px"
+     data-ad-client="ca-pub-4309621458849374"
+     data-ad-slot="8169524649"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+            </div> <!-- end /.col-md-3 -->
+
+            <div class="col-md-9 col-xs-12 full">
+                <div class="post-content well">
+<article class="content">
+    <div class="post" style="font-size: 12px;"><h2 id="spring4-mvcrestful-webserviceswagger">Spring4 mvc构建restful webservice应用使用swagger生成在线文档</h2>
+
+<p>本文接<a href="/java/spring/webservice/2016/04/17/spring-restful.html">上一篇已实现spring构建restful webservice应用</a>，本篇代码在上一篇的基础上完成，最后同样给出demo代码。</p>
+
+<p>1、下载上文中的demo代码，或点此下载<a href="/rar/spring-restful.rar"><b>Demo代码下载</b></a></p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="err">为了测试方便将</span><span class="n">demo</span><span class="err">代码中</span><span class="n">pom</span><span class="p">.</span><span class="nf">xml</span><span class="err">配置文件中的标签</span> <span class="o">&lt;</span><span class="n">scope</span><span class="o">&gt;</span><span class="n">provided</span><span class="o">&lt;</span><span class="sr">/scope&gt; 去掉，直接执行以下命令运行服务端，可查看demo代码是否正常运行。
+mvn clean compile exec:java -Dexec.mainClass="com.hode.JettyServer"</span></code></pre></figure>
+
+<p>2、在pom.xml中添加swagger及相关依赖，如下</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby">		<span class="o">&lt;</span><span class="n">dependency</span><span class="o">&gt;</span>
+			<span class="o">&lt;</span><span class="n">groupId</span><span class="o">&gt;</span><span class="n">com</span><span class="p">.</span><span class="nf">mangofactory</span><span class="o">&lt;</span><span class="sr">/groupId&gt;
+			&lt;artifactId&gt;swagger-springmvc&lt;/</span><span class="n">artifactId</span><span class="o">&gt;</span>
+			<span class="o">&lt;</span><span class="n">version</span><span class="o">&gt;</span><span class="mi">0</span><span class="o">.</span><span class="mi">9</span><span class="o">.</span><span class="mi">4</span><span class="o">&lt;</span><span class="sr">/version&gt;
+		&lt;/</span><span class="n">dependency</span><span class="o">&gt;</span>
+		
+		<span class="o">&lt;</span><span class="n">dependency</span><span class="o">&gt;</span>
+			<span class="o">&lt;</span><span class="n">groupId</span><span class="o">&gt;</span><span class="n">org</span><span class="p">.</span><span class="nf">codehaus</span><span class="p">.</span><span class="nf">jackson</span><span class="o">&lt;</span><span class="sr">/groupId&gt;
+			&lt;artifactId&gt;jackson-mapper-asl&lt;/</span><span class="n">artifactId</span><span class="o">&gt;</span>
+			<span class="o">&lt;</span><span class="n">version</span><span class="o">&gt;</span><span class="err">$</span><span class="p">{</span><span class="n">jackson</span><span class="p">.</span><span class="nf">version</span><span class="p">}</span><span class="o">&lt;</span><span class="sr">/version&gt;
+		&lt;/</span><span class="n">dependency</span><span class="o">&gt;</span>
+
+		<span class="o">&lt;</span><span class="n">dependency</span><span class="o">&gt;</span>
+			<span class="o">&lt;</span><span class="n">groupId</span><span class="o">&gt;</span><span class="n">com</span><span class="p">.</span><span class="nf">fasterxml</span><span class="p">.</span><span class="nf">jackson</span><span class="p">.</span><span class="nf">core</span><span class="o">&lt;</span><span class="sr">/groupId&gt;
+			&lt;artifactId&gt;jackson-core&lt;/</span><span class="n">artifactId</span><span class="o">&gt;</span>
+			<span class="o">&lt;</span><span class="n">version</span><span class="o">&gt;</span><span class="mi">2</span><span class="o">.</span><span class="mi">6</span><span class="o">.</span><span class="mi">5</span><span class="o">&lt;</span><span class="sr">/version&gt;
+		&lt;/</span><span class="n">dependency</span><span class="o">&gt;</span>
+		
+		<span class="o">&lt;</span><span class="n">dependency</span><span class="o">&gt;</span>
+			<span class="o">&lt;</span><span class="n">groupId</span><span class="o">&gt;</span><span class="n">com</span><span class="p">.</span><span class="nf">fasterxml</span><span class="p">.</span><span class="nf">jackson</span><span class="p">.</span><span class="nf">core</span><span class="o">&lt;</span><span class="sr">/groupId&gt;
+			&lt;artifactId&gt;jackson-databind&lt;/</span><span class="n">artifactId</span><span class="o">&gt;</span>
+			<span class="o">&lt;</span><span class="n">version</span><span class="o">&gt;</span><span class="mi">2</span><span class="o">.</span><span class="mi">6</span><span class="o">.</span><span class="mi">5</span><span class="o">&lt;</span><span class="sr">/version&gt;
+		&lt;/</span><span class="n">dependency</span><span class="o">&gt;</span></code></pre></figure>
+
+<p>3、编写一个swagger配置类，SwaggerConfig.java内容如下(注意目录结构src/main/java/com/hode/swagger/SwaggerConfig.java)</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">package</span> <span class="n">com</span><span class="p">.</span><span class="nf">hode</span><span class="p">.</span><span class="nf">swagger</span><span class="p">;</span>
+
+<span class="n">import</span> <span class="n">org</span><span class="p">.</span><span class="nf">springframework</span><span class="p">.</span><span class="nf">beans</span><span class="p">.</span><span class="nf">factory</span><span class="p">.</span><span class="nf">annotation</span><span class="o">.</span><span class="no">Autowired</span><span class="p">;</span>
+<span class="n">import</span> <span class="n">org</span><span class="p">.</span><span class="nf">springframework</span><span class="p">.</span><span class="nf">context</span><span class="p">.</span><span class="nf">annotation</span><span class="o">.</span><span class="no">Configuration</span><span class="p">;</span>
+
+<span class="n">import</span> <span class="n">com</span><span class="p">.</span><span class="nf">mangofactory</span><span class="p">.</span><span class="nf">swagger</span><span class="p">.</span><span class="nf">configuration</span><span class="o">.</span><span class="no">SpringSwaggerConfig</span><span class="p">;</span>
+<span class="n">import</span> <span class="n">com</span><span class="p">.</span><span class="nf">mangofactory</span><span class="p">.</span><span class="nf">swagger</span><span class="p">.</span><span class="nf">models</span><span class="p">.</span><span class="nf">dto</span><span class="o">.</span><span class="no">ApiInfo</span><span class="p">;</span>
+<span class="n">import</span> <span class="n">com</span><span class="p">.</span><span class="nf">mangofactory</span><span class="p">.</span><span class="nf">swagger</span><span class="p">.</span><span class="nf">plugin</span><span class="o">.</span><span class="no">EnableSwagger</span><span class="p">;</span>
+<span class="n">import</span> <span class="n">com</span><span class="p">.</span><span class="nf">mangofactory</span><span class="p">.</span><span class="nf">swagger</span><span class="p">.</span><span class="nf">plugin</span><span class="o">.</span><span class="no">SwaggerSpringMvcPlugin</span><span class="p">;</span>
+
+<span class="vi">@Configuration</span>
+<span class="vi">@EnableSwagger</span>
+<span class="kp">public</span> <span class="k">class</span> <span class="nc">SwaggerConfig</span> <span class="p">{</span>
+
+	<span class="vi">@Autowired</span>
+	<span class="kp">private</span> <span class="no">SpringSwaggerConfig</span> <span class="n">springSwaggerConfig</span><span class="p">;</span>
+	
+	<span class="kp">public</span> <span class="no">SwaggerSpringMvcPlugin</span> <span class="n">customImplementation</span><span class="p">(){</span>
+		<span class="k">return</span> <span class="kp">new</span> <span class="no">SwaggerSpringMvcPlugin</span><span class="p">(</span><span class="n">this</span><span class="p">.</span><span class="nf">springSwaggerConfig</span><span class="p">)</span>
+				<span class="p">.</span><span class="nf">apiInfo</span><span class="p">(</span><span class="n">apiInfo</span><span class="p">()).</span><span class="nf">includePatterns</span><span class="p">(</span><span class="s2">".*?"</span><span class="p">);</span>
+	<span class="p">}</span>
+	
+	<span class="kp">private</span> <span class="no">ApiInfo</span> <span class="n">apiInfo</span><span class="p">(){</span>
+		<span class="no">ApiInfo</span> <span class="n">apiInfo</span> <span class="o">=</span> <span class="kp">new</span> <span class="no">ApiInfo</span><span class="p">(</span><span class="s2">"Title"</span><span class="p">,</span><span class="s2">"Description"</span><span class="p">,</span><span class="s2">"Service"</span><span class="p">,</span><span class="s2">"Email"</span><span class="p">,</span><span class="s2">"Licence Type"</span><span class="p">,</span><span class="s2">"Licence URL"</span><span class="p">);</span>
+		<span class="k">return</span> <span class="n">apiInfo</span><span class="p">;</span>
+	<span class="p">}</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>4、UserRestController修改如下，增加@ApiOperation及@ApiParam注解</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">package</span> <span class="n">com</span><span class="p">.</span><span class="nf">hode</span><span class="p">.</span><span class="nf">rest</span><span class="p">;</span>
+
+<span class="n">import</span> <span class="n">org</span><span class="p">.</span><span class="nf">springframework</span><span class="p">.</span><span class="nf">web</span><span class="p">.</span><span class="nf">bind</span><span class="p">.</span><span class="nf">annotation</span><span class="o">.</span><span class="no">RequestBody</span><span class="p">;</span>
+<span class="n">import</span> <span class="n">org</span><span class="p">.</span><span class="nf">springframework</span><span class="p">.</span><span class="nf">web</span><span class="p">.</span><span class="nf">bind</span><span class="p">.</span><span class="nf">annotation</span><span class="o">.</span><span class="no">RequestMapping</span><span class="p">;</span>
+<span class="n">import</span> <span class="n">org</span><span class="p">.</span><span class="nf">springframework</span><span class="p">.</span><span class="nf">web</span><span class="p">.</span><span class="nf">bind</span><span class="p">.</span><span class="nf">annotation</span><span class="o">.</span><span class="no">RestController</span><span class="p">;</span>
+
+<span class="n">import</span> <span class="n">com</span><span class="p">.</span><span class="nf">wordnik</span><span class="p">.</span><span class="nf">swagger</span><span class="p">.</span><span class="nf">annotations</span><span class="o">.</span><span class="no">ApiOperation</span><span class="p">;</span>
+<span class="n">import</span> <span class="n">com</span><span class="p">.</span><span class="nf">wordnik</span><span class="p">.</span><span class="nf">swagger</span><span class="p">.</span><span class="nf">annotations</span><span class="o">.</span><span class="no">ApiParam</span><span class="p">;</span>
+
+<span class="vi">@RestController</span>
+<span class="vi">@RequestMapping</span><span class="p">(</span><span class="s2">"user"</span><span class="p">)</span>
+<span class="kp">public</span> <span class="k">class</span> <span class="nc">UserRestController</span> <span class="n">extends</span> <span class="no">BaseController</span> <span class="p">{</span>
+
+	<span class="vi">@RequestMapping</span><span class="p">(</span><span class="s2">"getUser"</span><span class="p">)</span>
+	<span class="vi">@ApiOperation</span><span class="p">(</span><span class="n">value</span> <span class="o">=</span> <span class="s2">"根据用户名获取用户"</span><span class="p">,</span><span class="n">httpMethod</span><span class="o">=</span><span class="s2">"POST"</span><span class="p">)</span>
+	<span class="kp">public</span> <span class="no">String</span> <span class="n">getUser</span><span class="p">(</span><span class="vi">@ApiParam</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="s2">"用户名"</span><span class="p">)</span> <span class="vi">@RequestBody</span> <span class="no">String</span> <span class="n">username</span><span class="p">){</span>
+		<span class="k">return</span> <span class="no">String</span><span class="p">.</span><span class="nf">format</span><span class="p">(</span><span class="s2">"success[%s]"</span><span class="p">,</span><span class="n">username</span><span class="p">);</span>
+	<span class="p">}</span>
+
+<span class="p">}</span></code></pre></figure>
+
+<p>5、在applicationContext-mvc.xml文件中添加如下配置</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby">	<span class="o">&lt;</span><span class="n">bean</span> <span class="k">class</span><span class="o">=</span><span class="s2">"com.mangofactory.swagger.configuration.SpringSwaggerConfig"</span> <span class="o">/&gt;</span>
+	
+	<span class="o">&lt;</span><span class="n">bean</span> <span class="k">class</span><span class="o">=</span><span class="s2">"com.hode.swagger.SwaggerConfig"</span> <span class="o">/&gt;</span>
+	
+	<span class="o">&lt;</span><span class="n">mvc</span><span class="ss">:resources</span> <span class="n">location</span><span class="o">=</span><span class="s2">"/"</span> <span class="n">mapping</span><span class="o">=</span><span class="s2">"/**"</span><span class="o">/&gt;</span></code></pre></figure>
+
+<p>6、由于swagger的限制，需先将web.xml中配置的<em>.rest改为/</em>，结果如下（注：由于本人参与的项目restful接口后缀为.rest，如果全部去掉.rest涉及比较多所以考虑修改swagger源码，文章尾部介绍）</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby">	<span class="o">&lt;</span><span class="n">servlet</span><span class="o">-</span><span class="n">mapping</span><span class="o">&gt;</span>
+		<span class="o">&lt;</span><span class="n">servlet</span><span class="o">-</span><span class="nb">name</span><span class="o">&gt;</span><span class="no">DispatcherServlet</span><span class="o">&lt;</span><span class="sr">/servlet-name&gt;
+		&lt;url-pattern&gt;/</span><span class="o">*&lt;</span><span class="sr">/url-pattern&gt;
+	&lt;/se</span><span class="n">rvlet</span><span class="o">-</span><span class="n">mapping</span><span class="o">&gt;</span></code></pre></figure>
+
+<p>7、下载swagger ui，下载地址https://github.com/swagger-api/swagger-ui，下载后将dist改为swagger并拷贝到webapp目录下，修改webapp/swagger/index.html</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">url</span> <span class="o">=</span> <span class="s2">"http://petstore.swagger.io/v2/swagger.json"</span><span class="p">;</span>
+<span class="err">改为</span>
+<span class="n">url</span> <span class="o">=</span> <span class="s2">"http://localhost/api-docs"</span><span class="p">;</span></code></pre></figure>
+
+<p>8、运行命令</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">mvn</span> <span class="n">clean</span> <span class="n">compile</span> <span class="nb">exec</span><span class="ss">:java</span> <span class="o">-</span><span class="no">Dexec</span><span class="p">.</span><span class="nf">mainClass</span><span class="o">=</span><span class="s2">"com.hode.JettyServer"</span></code></pre></figure>
+
+<p>使用http://localhost/swagger/index.html即可以看到结果，可以Parameters中的value输入”hode”查看结果。截图如下
+<img src="/assets/20170124114945.png" alt="tomcat配置ssl单向认证" />，点击try it out可模拟请求。</p>
+
+<p>到此简单使用结束，<a href="/rar/spring-restful-swagger.rar"><b>Demo代码下载</b></a></p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="o">---------------</span><span class="err">分割线</span><span class="o">---------------</span></code></pre></figure>
+
+<p>9、由于本人参与的项目restful接口均为.rest后缀，不能直接使用swagger，官网也未找到对应的修改参数，所以动手调整下源码，以便不修改原项目代码。</p>
+
+<p>将web.xml中改回.rest，表示.rest后缀的请求才由mvc拦截，如下</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby">	<span class="o">&lt;</span><span class="n">servlet</span><span class="o">-</span><span class="n">mapping</span><span class="o">&gt;</span>
+		<span class="o">&lt;</span><span class="n">servlet</span><span class="o">-</span><span class="nb">name</span><span class="o">&gt;</span><span class="no">DispatcherServlet</span><span class="o">&lt;</span><span class="sr">/servlet-name&gt;
+		&lt;url-pattern&gt;*.rest&lt;/u</span><span class="n">rl</span><span class="o">-</span><span class="n">pattern</span><span class="o">&gt;</span>
+	<span class="o">&lt;</span><span class="sr">/servlet-mapping&gt;</span></code></pre></figure>
+
+<p>删除applicationContext-mvc.xml配置文件中添加的行</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby">	<span class="o">&lt;</span><span class="n">mvc</span><span class="ss">:resources</span> <span class="n">location</span><span class="o">=</span><span class="s2">"/"</span> <span class="n">mapping</span><span class="o">=</span><span class="s2">"/**"</span><span class="o">/&gt;</span></code></pre></figure>
+
+<p>修改webapp/swagger/index.html</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">url</span> <span class="o">=</span> <span class="s2">"http://localhost/api-docs"</span><span class="p">;</span>
+<span class="err">改为</span>
+<span class="n">url</span> <span class="o">=</span> <span class="s2">"http://localhost/api-docs.rest"</span><span class="p">;</span></code></pre></figure>
+
+<p>基本内容已修改完，再修改webapp/swagger/swagger-ui.js
+查找 SwaggerSpecConverter.prototype.getAbsolutePath，修改此方法，在var location = docLocation;定义行前添加判断逻辑，</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby">  <span class="k">if</span><span class="p">(</span><span class="n">docLocation</span><span class="p">.</span><span class="nf">endsWith</span><span class="p">(</span><span class="s1">'.rest'</span><span class="p">))</span> <span class="p">{</span>
+      <span class="sr">//</span> <span class="n">remove</span> <span class="p">.</span><span class="nf">rest</span>
+	  <span class="n">docLocation</span> <span class="o">=</span> <span class="n">docLocation</span><span class="p">.</span><span class="nf">replace</span><span class="p">(</span><span class="s1">'.rest'</span><span class="p">,</span><span class="s1">''</span><span class="p">);</span>
+	  <span class="n">path</span> <span class="o">+=</span> <span class="s1">'.rest'</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="n">var</span> <span class="n">location</span> <span class="o">=</span> <span class="n">docLocation</span><span class="p">;</span></code></pre></figure>
+
+<p>查找Operation.prototype.urlify，在此方法的 return url + requestUrl + querystring; 前添加如下</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">requestUrl</span> <span class="o">+=</span> <span class="s1">'.rest'</span><span class="p">;</span>
+<span class="k">return</span> <span class="n">url</span> <span class="o">+</span> <span class="n">requestUrl</span> <span class="o">+</span> <span class="n">querystring</span><span class="p">;</span></code></pre></figure>
+
+<h4><a href="/rar/spring-restful-swagger-.rest.rar"><b>支持.rest后Demo代码下载</b></a></h4>
+
+<p>结束。</p>
+</div>
+	
+	<!--
+    <hr />
+    { % include share-page.html % }
+	-->
+</article>
+<hr />
+
+
+    
+    
+        
+            
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+                
+                <div class="panel-body">
+                <h5>相关博客</h5>
+                <ul>
+                
+                <li class="relatedPost" style="font-size: 12px;">
+                    <a href="http://www.mixfate.com/spring/2016/05/23/mongodb.html">Mongodb安装与spring中基本使用</a>
+                    
+                        <small>(所属分类: <a href="/category/spring">spring</a>)</small>
+                    
+                </li>
+                
+                
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+                
+                <li class="relatedPost" style="font-size: 12px;">
+                    <a href="http://www.mixfate.com/spring/2016/05/22/spring-rocketmq.html">Spring + RocketMQ使用介绍</a>
+                    
+                        <small>(所属分类: <a href="/category/spring">spring</a>)</small>
+                    
+                </li>
+                
+                
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+                
+                <li class="relatedPost" style="font-size: 12px;">
+                    <a href="http://www.mixfate.com/spring/2016/05/21/cas-4.2.x-sso.html">CAS 4.2.x 单点登录(SSO)</a>
+                    
+                        <small>(所属分类: <a href="/category/spring">spring</a>)</small>
+                    
+                </li>
+                
+                
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+                
+                <li class="relatedPost" style="font-size: 12px;">
+                    <a href="http://www.mixfate.com/spring/2016/05/20/spring-cas-4.2.x.html">CAS 4.2.x webapp使用介绍</a>
+                    
+                        <small>(所属分类: <a href="/category/spring">spring</a>)</small>
+                    
+                </li>
+                
+                
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+        
+            
+        
+    
+        
+            
+        
+            
+                
+                <li class="relatedPost" style="font-size: 12px;">
+                    <a href="http://www.mixfate.com/tools/spring/2016/05/19/gradle-spring-project.html">Gradle构建spring项目</a>
+                    
+                        <small>(所属分类: <a href="/category/tools">tools</a>, <a href="/category/spring">spring</a>)</small>
+                    
+                </li>
+                
+                
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+                
+                <li class="relatedPost" style="font-size: 12px;">
+                    <a href="http://www.mixfate.com/spring/java/2016/05/17/spring-security-4.html">Spring Security配置使用介绍（四）增加验证码</a>
+                    
+                        <small>(所属分类: <a href="/category/spring">spring</a>, <a href="/category/java">java</a>)</small>
+                    
+                </li>
+                
+                
+            
+        
+            
+        
+    
+        
+            
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+        
+            
+        
+    
+        
+            
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+        
+            
+        
+    
+        
+            
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+        
+            
+        
+    
+        
+            
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+        
+            
+        
+    
+        
+            
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+        
+            
+        
+    
+        
+            
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+        
+            
+        
+    
+        
+            
+        
+            
+        
+            
+        
+    
+        
+            
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+        
+            
+        
+    
+        
+            
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+        
+            
+        
+    
+        
+            
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+        
+            
+        
+    
+        
+            
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+        
+            
+        
+    
+        
+            
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+        
+            
+        
+    
+        
+            
+        
+            
+        
+            
+        
+    
+        
+            
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+        
+            
+        
+    
+        
+            
+        
+            
+        
+            
+        
+    
+        
+            
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+        
+            
+        
+    
+        
+            
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+        
+            
+        
+    
+        
+            
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+        
+            
+        
+    
+        
+            
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+        
+            
+        
+    
+        
+            
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+        
+            
+        
+    
+        
+            
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+        
+            
+        
+    
+        
+            
+        
+            
+        
+            
+        
+    
+        
+            
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+        
+            
+        
+    
+        
+            
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+        
+            
+        
+    
+        
+            
+        
+            
+        
+            
+        
+    
+        
+            
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+        
+            
+        
+    
+        
+            
+        
+            
+        
+            
+        
+    
+        
+            
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+        
+            
+        
+    
+        
+            
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+        
+            
+        
+    
+        
+            
+        
+            
+        
+            
+        
+    
+        
+            
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+        
+            
+        
+    
+        
+            
+        
+            
+        
+            
+        
+    
+        
+            
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+        
+            
+        
+    
+        
+            
+        
+            
+        
+            
+        
+    
+        
+            
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+        
+            
+        
+    
+        
+            
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+        
+            
+        
+    
+        
+            
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+        
+            
+        
+    
+        
+            
+        
+            
+        
+            
+        
+    
+        
+            
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+        
+            
+        
+    
+        
+            
+        
+            
+        
+            
+        
+    
+        
+            
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+        
+            
+        
+    
+        
+            
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+        
+            
+        
+    
+        
+            
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+        
+            
+        
+    
+        
+            
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+        
+            
+        
+    
+        
+            
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+        
+            
+        
+    
+        
+            
+        
+            
+        
+            
+        
+    
+        
+            
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+        
+            
+        
+    
+        
+            
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+        
+            
+        
+    
+        
+            
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+        
+            
+        
+    
+
+    
+    
+        
+            
+        
+            
+        
+            
+        
+    
+
+
+    </ul>
+    </div>
+
+
+<div class="PageNavigation" style="font-size: 12px;">
+  
+    <a class="prev pull-left" href="/java/spring/webservice/2016/04/18/spring-restful.html">&laquo; Springmvc构建restful webservice应用</a>
+  
+  
+    <a class="next pull-right" href="/others/2016/04/18/others.html">幽默故事，欢笑中的人生领悟 &raquo;</a>
+  
+</div>
+<div>&nbsp;</div>
+<!--
+<div class="disqus-comments">
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        /* <![CDATA[ */
+
+        /*
+		var disqus_shortname = "mixfate";
+        var disqus_identifier = "http://www.mixfate.com_Springmvc restful使用swagger生成在线文档";
+        var disqus_title = "Springmvc restful使用swagger生成在线文档";
+		*/
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+		/*
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+		*/
+    /* ]]> */
+    </script>
+</div>
+-->
+</div>
+				
+				<!-- google adsense begin -->
+				
+				<!-- size_728x90 -->
+				<ins class="adsbygoogle"
+					 style="display:inline-block;width:728px;height:90px"
+					 data-ad-client="ca-pub-4309621458849374"
+					 data-ad-slot="8507601840"></ins>
+				<script>
+				(adsbygoogle = window.adsbygoogle || []).push({});
+				</script>
+				<!-- google adsense end -->
+				
+                <div class="row">
+                  <div class="col-md-12 col-xs-12 footer">
+                <footer>
+                    © Copyright
+                     
+                    - Powered by Mixfate.
+					<script language="javascript" type="text/javascript" src="http://js.users.51.la/18893327.js"></script>
+					<noscript><a href="http://www.51.la/?18893327" target="_blank"><img alt="&#x6211;&#x8981;&#x5566;&#x514D;&#x8D39;&#x7EDF;&#x8BA1;" src="http://img.users.51.la/18893327.asp" style="border:none" /></a></noscript>
+                    
+                </footer>
+            </div>
+                </div>
+            </div> <!-- end /.col-md-9 -->
+        </div> <!-- end /.row -->
+
+    </div> <!-- end /.container -->
+
+        <!-- Bootstrap core JavaScript
+        ================================================== -->
+        <!-- Placed at the end of the document so the pages load faster -->
+        <!--
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+		<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+		-->
+		<script src="http://www.mixfate.com/static/js/jquery.min.js"></script>
+		<script src="http://www.mixfate.com/static/js/bootstrap.min.js"></script>
+		
+        <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+        
+
+        <script src="http://www.mixfate.com/static/js/thickbox-compressed.js"></script>
+        <script src="http://www.mixfate.com/static/js/material.min.js"></script>
+        <script src="http://www.mixfate.com/static/js/main.js"></script>
+        <script src="http://www.mixfate.com/static/js/projects.js"></script>
+    </body>
+</html>

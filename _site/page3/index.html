@@ -223,6 +223,19 @@
           <i class="fa fa-sticky-note"></i>
         </div>
         <div class="row-content">
+          <div class="least-content">2016-04-18 07:23</div>
+          <h4 class="list-group-item-heading" style="font-size: 14px;"><a href="/java/spring/webservice/2016/04/18/spring-restful-swagger.html">Springmvc restful使用swagger生成在线文档</a></h4>
+
+          <p class="list-group-item-text" style="font-size: 12px;">Spring4 mvc构建restful webservice应用使用swagger生成在线文档 本文接上一篇已实现spring构建restful webservice应用，本篇代码在上一篇的基础上完成，最后同样给出demo代码。 1、下载上文中的demo代码，或点此下载Demo代码下载 为了测试方便将demo代码中pom.xml配置文件中的标签 &lt;scope&gt;provided&lt;/scope&gt; 去掉，直接执行以下命令运行服务端，可查看demo代码是否正常运行。 mvn clean compile exec:java -Dexec.mainClass="com.hode.JettyServer" 2、在pom.xml中添加swagger及相关依赖，如下 &lt;dependency&gt; &lt;groupId&gt;com.mangofactory&lt;/groupId&gt; &lt;artifactId&gt;swagger-springmvc&lt;/artifactId&gt; &lt;version&gt;0.9.4&lt;/version&gt; &lt;/dependency&gt;...</p>
+        </div>
+      </div>
+      <div class="list-group-separator"></div>
+      
+      <div class="list-group-item">
+        <div class="row-action-primary">
+          <i class="fa fa-sticky-note"></i>
+        </div>
+        <div class="row-content">
           <div class="least-content">2016-04-18 07:13</div>
           <h4 class="list-group-item-heading" style="font-size: 14px;"><a href="/java/spring/webservice/2016/04/18/spring-restful.html">Springmvc构建restful webservice应用</a></h4>
 
@@ -467,19 +480,6 @@
           <h4 class="list-group-item-heading" style="font-size: 14px;"><a href="/tomcat/tools/2016/04/01/tomcat-ssl-1.html">tomcat配置ssl单向认证</a></h4>
 
           <p class="list-group-item-text" style="font-size: 12px;">tomcat配置ssl单向认证 单向认证：客户端向服务器发送消息，服务器接到消息后，用服务器端的密钥库中的私钥对数据进行加密，然后把加密后的数据和服务器端的公钥一起发送到 客户端，客户端用服务器发送来的公钥对数据解密，然后在用传到客户端的服务器公钥对数据加密传给服务器端，服务器用私钥对数据进行解密，这就完成了客户端 和服务器之间通信的安全问题，但是单向认证没有验证客户端的合法性。 1、使用jdk（本例使用1.7.0_67）工具生成证书库文件； keytool -genkey -alias tomcat -keyalg RSA -keysize 1024 -validity 365 -keystore "F:\cert\tomcat.keystore" 密码为123456，www.newbie.com为随意取的，仅用作测试，使用本地host将此域名转发。 执行完成后将看到f:\cert\目录中生成了证书库文件tomcat.keystore。 2、打开tomcat（本例使用apache-tomcat-7.0.55）中的配置文件/conf/server.xml，为避免录入端口修改默认值，修改如下：...</p>
-        </div>
-      </div>
-      <div class="list-group-separator"></div>
-      
-      <div class="list-group-item">
-        <div class="row-action-primary">
-          <i class="fa fa-sticky-note"></i>
-        </div>
-        <div class="row-content">
-          <div class="least-content">2015-11-15 21:00</div>
-          <h4 class="list-group-item-heading" style="font-size: 14px;"><a href="/java/2015/11/15/twitter-rpc-finagle.html">Twitter的RPC框架Finagle简单使用介绍</a></h4>
-
-          <p class="list-group-item-text" style="font-size: 12px;">Twitter的RPC框架Finagle简单使用介绍 本文接上篇Apache Thrift使用介绍，部分代码与上篇一样。 本例演示使用maven构建一个finagle简单例子，同样使用与上文相同的例子 1、编写pom.xml文件 &lt;project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"&gt; &lt;modelVersion&gt;4.0.0&lt;/modelVersion&gt; &lt;groupId&gt;com.hode&lt;/groupId&gt; &lt;artifactId&gt;finagle&lt;/artifactId&gt; &lt;version&gt;0.0.1-SNAPSHOT&lt;/version&gt; &lt;properties&gt; &lt;finagle.version&gt;6.30.0&lt;/finagle.version&gt; &lt;scrooge.version&gt;4.2.0&lt;/scrooge.version&gt; &lt;/properties&gt; &lt;dependencies&gt; &lt;dependency&gt;...</p>
         </div>
       </div>
       <div class="list-group-separator"></div>
