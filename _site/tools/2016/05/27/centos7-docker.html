@@ -6,15 +6,15 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <link rel="shortcut icon" href="/static/img/favicon.ico" />
-        <title>jenkins安装与使用 - Java及相关开源技术博客</title>
+        <title>Centos7安装使用docker部署tomcat应用笔记 - Java及相关开源技术博客</title>
         <meta name="author" content="Mixfate博客" />
         <meta name="description" content="Mixfate博客,开源技术博客,IT 博客,java技术,spring开源技术,dubbo分布式架构,maven工具" />
-        <meta name="keywords" content="jenkins安装与使用, Java及相关开源技术博客, tools" />
+        <meta name="keywords" content="Centos7安装使用docker部署tomcat应用笔记, Java及相关开源技术博客, tools" />
 
         <meta content="0" property="fb:app_id">
         <meta content="Java及相关开源技术博客" property="og:site_name">
         
-          <meta content="jenkins安装与使用" property="og:title">
+          <meta content="Centos7安装使用docker部署tomcat应用笔记" property="og:title">
         
         
           <meta content="article" property="og:type">
@@ -23,10 +23,10 @@
           <meta content="Mixfate博客,开源技术博客,IT 博客,java技术,spring开源技术,dubbo分布式架构,maven工具" property="og:description">
         
         
-          <meta content="http://www.mixfate.com/tools/2016/05/06/jenkins.html" property="og:url">
+          <meta content="http://www.mixfate.com/tools/2016/05/27/centos7-docker.html" property="og:url">
         
         
-          <meta content="2016-05-06T21:23:48+08:00" property="article:published_time">
+          <meta content="2016-05-27T21:59:58+08:00" property="article:published_time">
           <meta content="http://www.mixfate.com/about/" property="article:author">
         
         
@@ -44,10 +44,10 @@
         <meta name="twitter:site" content="@\#">
         <meta name="twitter:creator" content="@\#">
         
-          <meta name="twitter:title" content="jenkins安装与使用">
+          <meta name="twitter:title" content="Centos7安装使用docker部署tomcat应用笔记">
         
         
-          <meta name="twitter:url" content="http://www.mixfate.com/tools/2016/05/06/jenkins.html">
+          <meta name="twitter:url" content="http://www.mixfate.com/tools/2016/05/27/centos7-docker.html">
         
         
           <meta name="twitter:description" content="Mixfate博客,开源技术博客,IT 博客,java技术,spring开源技术,dubbo分布式架构,maven工具">
@@ -122,10 +122,10 @@
         </div>
       </div>
       <div class="col-md-9 col-sm-8 col-xs-12">
-      <h2 class="blog-title-pro">jenkins安装与使用</h2>
+      <h2 class="blog-title-pro">Centos7安装使用docker部署tomcat应用笔记</h2>
       <p class="info">
       
-      <span class="time">2016/05/06</span>
+      <span class="time">2016/05/27</span>
       
       
     <span class="categories">
@@ -148,19 +148,19 @@
 	
 	
 	
-	<li class="col-lg-12 col-md-12 col-sm-4 col-xs-12 current-menu-item jenkins.html"><a href="/"><i class="fa fa-home"></i> 首页</a></li>
+	<li class="col-lg-12 col-md-12 col-sm-4 col-xs-12 current-menu-item centos7-docker.html"><a href="/"><i class="fa fa-home"></i> 首页</a></li>
 
 	
 	
 	
 	
-	<li class="col-lg-12 col-md-12 col-sm-4 col-xs-12  jenkins.html"><a href="/category/java"><i class="fa fa-desktop"></i> 分类</a></li>
+	<li class="col-lg-12 col-md-12 col-sm-4 col-xs-12  centos7-docker.html"><a href="/category/java"><i class="fa fa-desktop"></i> 分类</a></li>
 
 	
 	
 	
 	
-	<li class="col-lg-12 col-md-12 col-sm-4 col-xs-12  jenkins.html"><a href="/about/"><i class="fa fa-comments"></i> 关于</a></li>
+	<li class="col-lg-12 col-md-12 col-sm-4 col-xs-12  centos7-docker.html"><a href="/about/"><i class="fa fa-comments"></i> 关于</a></li>
 
 </ul>
     </div>
@@ -181,65 +181,114 @@
             <div class="col-md-9 col-xs-12 full">
                 <div class="post-content well">
 <article class="content">
-    <div class="post" style="font-size: 12px;"><h2 id="jenkins">jenkins安装与使用</h2>
+    <div class="post" style="font-size: 12px;"><h2 id="centos7dockertomcat">Centos7安装使用docker部署tomcat应用笔记</h2>
 
-<p>本例演示使用jenkins.war包直接部署，版本为2.7.2，可以网址https://jenkins.io/index.html查看。</p>
+<p>本文环境为vmware中安装centos7，然后在此centos中安装docker完成测试。</p>
 
-<p>步骤一、</p>
+<p>1、安装centos7(版本为CentOS-7-x86_64-Minimal-1611.iso)，先在vmware创建空白机器，再指定iso位置完成安装，安装步骤在些不再详述。</p>
 
-<p>下载jenkins包(jenkins.war包)</p>
+<p>2、配置网络，修改文件/etc/sysconfig/network-scripts/ifcfg-enxxxx(xxxx各机器不一样，以实际为准)，将此文件的配置项ONBOOT修改为yes。
+使用命令 service network restart 重启网络，再使用ip addr命令查看ip配置情况。</p>
 
-<p>重新配置下jenkins工作目录 /project/jenkins_space</p>
+<p>3、此版本的centos中Docker 软件包已经包括在默认的 CentOS-Extras 软件源里。因此想要安装 docker，只需要运行下面的 yum 命令  yum install docker -y 慢长等待下载完成安装即可，安装成功后可使用docker version查看版本。</p>
 
-<div class="language-markdown highlighter-rouge"><pre class="highlight"><code>vi /etc/profile
-文件尾部添加 
-export JENKINS_HOME=/project/jenkins_space
+<div class="language-markdown highlighter-rouge"><pre class="highlight"><code><span class="p">[</span><span class="nv">root@localhost ~</span><span class="p">]</span># docker version
+Client:
+ Version:         1.12.5
+ API version:     1.24
+ Package version: docker-common-1.12.5-14.el7.centos.x86_64
+ Go version:      go1.7.4
+ Git commit:      047e51b/1.12.5
+ Built:           
+ OS/Arch:         linux/amd64
 
-source /etc/profile
-使配置立即生效
+Server:
+ Version:         1.12.5
+ API version:     1.24
+ Package version: docker-common-1.12.5-14.el7.centos.x86_64
+ Go version:      go1.7.4
+ Git commit:      047e51b/1.12.5
+ Built:           
+ OS/Arch:         linux/amd64
+<span class="p">[</span><span class="nv">root@localhost ~</span><span class="p">]</span># 
 </code></pre>
 </div>
 
-<p>步骤二、</p>
+<p>4、使用 systemctl start  docker.service 启动docker服务，使用systemctl stop  docker.service停止docker服务。
+同时可使用命令systemctl enable docker.service将docker服务设置为开机启动，使用systemctl disable docker.service取消开机启动。ps -ef|grep docker可查看docker进程。</p>
 
-<p>安装好tomcat，将jenkins.war放到tomcat的webapps中，启动tomcat即可，若出现类似以下警告，
-则直接修改hosts文件(vi /etc/hosts)，将原127.0.0.1替换成127.0.0.1   localhost centos-a即可</p>
-
-<div class="language-markdown highlighter-rouge"><pre class="highlight"><code>警告: Could not intialize the host network interface on nullbecause of an error: centos-a: centos-a: 未知的名称或服务
-java.net.UnknownHostException: centos-a: centos-a: 未知的名称或服务
+<div class="language-markdown highlighter-rouge"><pre class="highlight"><code><span class="p">[</span><span class="nv">root@localhost ~</span><span class="p">]</span># ps -ef|grep docker
+root     10580     1  0  ?        00:00:28 /usr/bin/dockerd-current --add-runtime docker-runc=/usr/libexec/docker/docker-runc-current --default-runtime=docker-runc --exec-opt native.cgroupdriver=systemd --userland-proxy-path=/usr/libexec/docker/docker-proxy-current --selinux-enabled --log-driver=journald --signature-verification=false
+root     10585 10580  0  ?        00:00:03 /usr/bin/docker-containerd-current -l unix:///var/run/docker/libcontainerd/docker-containerd.sock --shim docker-containerd-shim --metrics-interval=0 --start-timeout 2m --state-dir /var/run/docker/libcontainerd/containerd --runtime docker-runc --runtime-args --systemd-cgroup=true
+root     16587 15687  0  pts/0    00:00:00 grep --color=auto docker
+<span class="p">[</span><span class="nv">root@localhost ~</span><span class="p">]</span># 
 </code></pre>
 </div>
 
-<p>正常启动时提示密码；当然也可直接 cat /project/jenkins_space/secrets/initialAdminPassword 查看密码</p>
+<p>5、现在docker已经安装好，启动docker服务，直接在线pull一个tomcat镜像完成测试，使用命令docker pull tomcat，又是漫长的等待后完成镜像下载。
+下载完成后，可使用命令docker images查看本地已经存在的镜像。</p>
 
-<div class="language-markdown highlighter-rouge"><pre class="highlight"><code><span class="p">*************************************************************
-*************************************************************
-*************************************************************
-</span>
-Jenkins initial setup is required. An admin user has been created and a password generated.
-Please use the following password to proceed to installation:
+<div class="language-markdown highlighter-rouge"><pre class="highlight"><code><span class="p">[</span><span class="nv">root@localhost ~</span><span class="p">]</span># docker images
+REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
+docker.io/tomcat    latest              d9094b6afb20        1 days ago          355.3 MB
+<span class="p">[</span><span class="nv">root@localhost ~</span><span class="p">]</span># 
 
-836c01ba144248d2a7a855adf936587b
-
-This may also be found at: /project/jenkins_space/secrets/initialAdminPassword
-<span class="p">
-*************************************************************
-*************************************************************
-*************************************************************
-</span></code></pre>
-</div>
-
-<p>步骤三、</p>
-
-<p>使用提示的密码登入(默认用户名admin)，初次打开会提示安装插件，关闭提示小窗口即可，打开Jenkins-&gt;系统管理，若有以下提示，需要配置tomcat支持utf-8，在Connector标签中添加属性URIEncoding=”UTF-8”重启即可</p>
-
-<div class="language-markdown highlighter-rouge"><pre class="highlight"><code>Your container doesn't use UTF-8 to decode URLs. If you use non-ASCII characters as a job name etc, this will cause problems. See Containers and Tomcat i18n for more details.
 </code></pre>
 </div>
 
-<p>步骤四、</p>
+<p>6、基于已下载的tomcat镜像，创建一个容器，命令如下</p>
 
-<p>正常启动tomcat后，使用浏览器访问jenkins，会要求输入用户名(admin)及密码(后台启动提示的密码)，按提示操作。</p>
+<div class="language-markdown highlighter-rouge"><pre class="highlight"><code>docker create --name container-tomcat -p 8080:8080 tomcat
+// --name 给这个容器起一个名字
+// -p host到container的端口映射
+打一个比方说，一个image就相当于一个系统光盘，容器，就是一部安装了这个系统电脑。
+</code></pre>
+</div>
+
+<p>使用命令docker start container-tomcat启动容器中的tomcat，然后使用docker ps可以查看到容器中的tomcat进程，使用docker stop container-tomcat关闭，或docker kill container-tomcat</p>
+
+<div class="language-markdown highlighter-rouge"><pre class="highlight"><code><span class="p">[</span><span class="nv">root@localhost ~</span><span class="p">]</span># docker ps
+CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS                    NAMES
+74d19870e22c        tomcat              "catalina.sh run"   23 hours ago        Up 11 seconds       0.0.0.0:8080-&gt;8080/tcp   container-tomcat
+<span class="p">[</span><span class="nv">root@localhost ~</span><span class="p">]</span># 
+</code></pre>
+</div>
+
+<p>容器启动后可以用docker logs -f container-tomcat 查看跟踪日志
+若需要重启容器使用docker restart container-tomcat即可。</p>
+
+<p>7、启动容器后即可访问tomcat(container的端口8080已映射到host的8080)。 可以直接url http://localhost:8080进行访问，查看结果。外部直接使用宿主host的ip进行访问即可。</p>
+
+<p>8、前面已经看到docker容器里的tomcat已经启动了，那么，我们要怎么查看管理到容器里的tomcat呢？</p>
+
+<div class="language-markdown highlighter-rouge"><pre class="highlight"><code>使用以下命令进入容器
+sudo docker exec -it 74d19870e22c /bin/bash 
+或
+sudo docker exec -it container-tomcat /bin/bash
+</code></pre>
+</div>
+
+<p>如下，进入到容器后pwd路径为容器内的目录路径，使用exit退出。</p>
+
+<div class="language-markdown highlighter-rouge"><pre class="highlight"><code><span class="p">[</span><span class="nv">root@localhost ~</span><span class="p">]</span># docker exec -it container-tomcat /bin/bash
+root@74d19870e22c:/usr/local/tomcat# pwd
+/usr/local/tomcat
+root@74d19870e22c:/usr/local/tomcat# 
+</code></pre>
+</div>
+
+<p>比如要使用vi修改/usr/local/tomcat/conf/tomcat-users.xml配置文件，使tomcat的manager生效，先使用命令
+apt-get update，这个命令的作用是：同步 /etc/apt/sources.list 和 /etc/apt/sources.list.d 中列出的源的索引，这样才能获取到最新的软件包。
+再安装vim，使用命令apt-get install vim 然后就可以使用vi命令操作了。将tomcat-users.xml原用户配置部分取消注释并设置好密码，同时必须添加一个用户角色<role rolename="manager-gui"></role>，并将此角色添加到对应的用户上即可。</p>
+
+<p>9、如何将自己的war包上传到容器中的tomcat webapp下呢？
+从container到主机的复制如下
+docker cp container-tomcat:/usr/local/tomcat/conf/tomcat-users.xml /war/tomcat-users.xml
+从主机到container的复制如下
+docker cp /war/simpleweb.war container-tomcat:/usr/local/tomcat
+上传war包后就可以完成部署到docker中tomcat了。</p>
+
+<p>docker restart container-tomcat 重启tomcat即可生效。</p>
 
 <p>结束。</p>
 </div>
@@ -256,20 +305,6 @@ This may also be found at: /project/jenkins_space/secrets/initialAdminPassword
     
         
             
-                
-                <div class="panel-body">
-                <h5>相关博客</h5>
-                <ul>
-                
-                <li class="relatedPost" style="font-size: 12px;">
-                    <a href="http://www.mixfate.com/tools/2016/05/27/centos7-docker.html">Centos7安装使用docker部署tomcat应用笔记</a>
-                    
-                        <small>(所属分类: <a href="/category/tools">tools</a>)</small>
-                    
-                </li>
-                
-                
-            
         
     
 
@@ -277,6 +312,10 @@ This may also be found at: /project/jenkins_space/secrets/initialAdminPassword
     
         
             
+                
+                <div class="panel-body">
+                <h5>相关博客</h5>
+                <ul>
                 
                 <li class="relatedPost" style="font-size: 12px;">
                     <a href="http://www.mixfate.com/tools/2016/05/26/sonarqube.html">SonarQube 6.2代码质量管理平台win7安装与使用</a>
@@ -499,6 +538,16 @@ This may also be found at: /project/jenkins_space/secrets/initialAdminPassword
         
     
         
+            
+                
+                <li class="relatedPost" style="font-size: 12px;">
+                    <a href="http://www.mixfate.com/maven/tools/2016/05/09/maven-deploy-release.html">Maven命令:deploy和release命令</a>
+                    
+                        <small>(所属分类: <a href="/category/maven">maven</a>, <a href="/category/tools">tools</a>)</small>
+                    
+                </li>
+                
+                
             
         
     
@@ -971,10 +1020,8 @@ This may also be found at: /project/jenkins_space/secrets/initialAdminPassword
 
 <div class="PageNavigation" style="font-size: 12px;">
   
-    <a class="prev pull-left" href="/linux/tools/2016/05/05/linux-centos-scp.html">&laquo; centos minimal使用ssh/scp命令不录入密码</a>
+    <a class="prev pull-left" href="/tools/2016/05/26/sonarqube.html">&laquo; SonarQube 6.2代码质量管理平台win7安装与使用</a>
   
-  
-    <a class="next pull-right" href="/tools/tomcat/2016/05/07/jenkins-tomcat-deploy.html">jenkins远程发布应用到tomcat中，使用shell脚本或jenkins deploy插件 &raquo;</a>
   
 </div>
 <div>&nbsp;</div>
@@ -986,8 +1033,8 @@ This may also be found at: /project/jenkins_space/secrets/initialAdminPassword
 
         /*
 		var disqus_shortname = "mixfate";
-        var disqus_identifier = "http://www.mixfate.com_jenkins安装与使用";
-        var disqus_title = "jenkins安装与使用";
+        var disqus_identifier = "http://www.mixfate.com_Centos7安装使用docker部署tomcat应用笔记";
+        var disqus_title = "Centos7安装使用docker部署tomcat应用笔记";
 		*/
 
         /* * * DON'T EDIT BELOW THIS LINE * * */

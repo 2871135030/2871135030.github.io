@@ -287,6 +287,27 @@
             
             
             
+            <div class="least-content">2016-05-27 21:59</div>
+            <h4 class="list-group-item-heading" style="font-size: 14px;"><a href="/tools/2016/05/27/centos7-docker.html">Centos7安装使用docker部署tomcat应用笔记</a></h4>
+            <p class="list-group-item-text">Centos7安装使用docker部署tomcat应用笔记 本文环境为vmware中安装centos7，然后在此centos中安装docker完成测试。 1、安装centos7(版本为CentOS-7-x86_64-Minimal-1611.iso)，先在vmware创建空白机器，再指定iso位置完成安装，安装步骤在些不再详述。 2、配置网络，修改文件/etc/sysconfig/network-scripts/ifcfg-enxxxx(xxxx各机器不一样，以实际为准)，将此文件的配置项ONBOOT修改为yes。 使用命令 service network restart 重启网络，再使用ip addr命令查看ip配置情况。 3、此版本的centos中Docker 软件包已经包括在默认的 CentOS-Extras 软件源里。因此想要安装 docker，只需要运行下面的 yum 命令 yum install docker...</p>
+            
+            </div>
+        </div>
+        <div class="list-group-separator"></div>
+        
+        <div class="list-group-item">
+            <div class="row-action-primary">
+              <i class="fa fa-sticky-note"></i>
+            </div>
+            <div class="row-content" style="font-size: 12px;">
+            
+            
+            
+            
+                
+                
+                
+            
             <div class="least-content">2016-05-26 20:59</div>
             <h4 class="list-group-item-heading" style="font-size: 14px;"><a href="/tools/2016/05/26/sonarqube.html">SonarQube 6.2代码质量管理平台win7安装与使用</a></h4>
             <p class="list-group-item-text">SonarQube 6.2代码质量管理平台win7安装与使用 1、官网下载sonarqube-6.2.zip、sonar-scanner-2.8.zip(请忽略文章发布日期)，并分别解压， 如解压后目录为F:\newtool\sonar\sonarqube-6.2、F:\newtool\sonar\sonar-scanner-2.8。 2、安装好mysql，并创建一个数据库sonar，修改配置文件F:\newtool\sonar\sonarqube-6.2\conf\sonar.properties，增加或修改以下配置 sonar.jdbc.username=root sonar.jdbc.password=root sonar.jdbc.url=jdbc:mysql://localhost:3306/sonar?useUnicode=true&amp;characterEncoding=utf8&amp;rewriteBatchedStatements=true&amp;useConfigs=maxPerformance&amp;useSSL=false 3、进入目录F:\newtool\sonar\sonarqube-6.2\bin\windows-x86-64，运行StartSonar.bat启动sonarqube，若需要关闭请键一次Ctrl+C，等待jvm进程关闭后，然后输入Y停止。 注意不要直接叉掉窗口退出，会造成jvm未正常关闭，需手工清除java进程。 4、启动成功后，打开http://localhost:9000/，右上角点击Login，默认用户名及密码均为admin。 5、登录成功后，点击顶部Administration，然后选择System-&gt;Update Center，再选择Available标签，查找SonarQube Chinese Pack并install安装中文插件。 安装完成后重启sonar，即可看到中文插件已生效，同时可以看到F:\newtool\sonar\sonarqube-6.2\extensions\plugins新增了sonar-l10n-zh-plugin-1.13.jar插件包。 6、打开sonar scanner配置文件F:\newtool\sonar\sonar-scanner-2.8\conf\sonar-scanner.properties，增加或修改以下配置项即可 sonar.host.url=http://localhost:9000 sonar.sourceEncoding=UTF-8...</p>

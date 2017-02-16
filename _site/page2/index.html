@@ -172,6 +172,19 @@
           <i class="fa fa-sticky-note"></i>
         </div>
         <div class="row-content">
+          <div class="least-content">2016-05-09 20:08</div>
+          <h4 class="list-group-item-heading" style="font-size: 14px;"><a href="/maven/tools/2016/05/09/maven-deploy-release.html">Maven命令:deploy和release命令</a></h4>
+
+          <p class="list-group-item-text" style="font-size: 12px;">Maven命令:deploy和release命令 本文介绍deploy及release命令，首先需在maven配置文件conf/settings.xml配置好私服 示例settings.xml &lt;?xml version="1.0" encoding="UTF-8"?&gt; &lt;settings xmlns="http://maven.apache.org/SETTINGS/1.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0 http://maven.apache.org/xsd/settings-1.0.0.xsd"&gt; &lt;pluginGroups&gt; &lt;/pluginGroups&gt; &lt;proxies&gt; &lt;/proxies&gt; &lt;servers&gt; &lt;!-- 配置发布私服用户名密码 --&gt; &lt;server&gt;...</p>
+        </div>
+      </div>
+      <div class="list-group-separator"></div>
+      
+      <div class="list-group-item">
+        <div class="row-action-primary">
+          <i class="fa fa-sticky-note"></i>
+        </div>
+        <div class="row-content">
           <div class="least-content">2016-05-08 19:22</div>
           <h4 class="list-group-item-heading" style="font-size: 14px;"><a href="/maven/tools/2016/05/08/maven-nexus2.9.0.html">Nexus2.9.0 私服 linux安装使用</a></h4>
 
@@ -441,19 +454,6 @@
           <h4 class="list-group-item-heading" style="font-size: 14px;"><a href="/tools/zookeeper/2016/04/20/zookeeper-cluster.html">Zookeeper集群环境安装</a></h4>
 
           <p class="list-group-item-text" style="font-size: 12px;">Zookeeper集群环境安装 ZooKeeper是一个分布式开源框架，提供了协调分布式应用的基本服务，它向外部应用暴露一组通用服务——分布式同步（Distributed Synchronization）、命名服务（Naming Service）、集群维护（Group Maintenance）等，简化分布式应用协调及其管理的难度，提供高性能的分布式服务。ZooKeeper本身可以以Standalone模式安装运行，不过它的长处在于通过分布式ZooKeeper集群（一个Leader，多个Follower），基于一定的策略来保证ZooKeeper集群的稳定性和可用性，从而实现分布式应用的可靠性。 单机安装Zookeeper已在文中ZooKeeper安装使用介绍过，在实际应用中我们将zookeeper集群部署，构建高可用的服务，避免单点故障。 1、在目录/software/zookeeper-cluster/中解压三份zookeeper安装包（zookeeper-3.4.8.tar.gz包），分别为zookeeper-3.4.8-node1、zookeeper-3.4.8-node2、zookeeper-3.4.8-node3， 集群中所有的结点作为一个整体对分布式应用提供服务，本文中在同一台机器上安装3个 分别编辑note1、note2、note3节点的配置文件，文件目录conf/zoo.cfg tickTime=2000 initLimit=10 syncLimit=5 dataDir=/software/zookeeper-cluster/zookeeper-3.4.8-node1/data clientPort=2181 server.1=localhost:2887:3887 server.2=localhost:2888:3888 server.3=localhost:2889:3889 注意：dataDir、clientPort两个参数三个节点不同 dataDir顾名思义就是Zookeeper保存数据的目录,默认情况下Zookeeper将写数据的日志文件也保存在这个目录里，三个节点各自保存在节点的data目录内； clientPort这个端口就是客户端连接Zookeeper服务器的端口,Zookeeper会监听这个端口接受客户端的访问请求；...</p>
-        </div>
-      </div>
-      <div class="list-group-separator"></div>
-      
-      <div class="list-group-item">
-        <div class="row-action-primary">
-          <i class="fa fa-sticky-note"></i>
-        </div>
-        <div class="row-content">
-          <div class="least-content">2016-04-19 21:03</div>
-          <h4 class="list-group-item-heading" style="font-size: 14px;"><a href="/java/dubbo/spring/2016/04/19/spring-dubbo.html">Dubbo全Spring配置方式</a></h4>
-
-          <p class="list-group-item-text" style="font-size: 12px;">Dubbo的Spring配置方式 DUBBO是一个分布式服务框架，致力于提供高性能和透明化的RPC远程服务调用方案，是阿里巴巴SOA服务化治理方案的核心框架。 1、编写pom.xml，其中包括spring、dubbo基础包，pom.xml内容如下 &lt;project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"&gt; &lt;modelVersion&gt;4.0.0&lt;/modelVersion&gt; &lt;groupId&gt;com.hode&lt;/groupId&gt; &lt;artifactId&gt;dubbo&lt;/artifactId&gt; &lt;version&gt;0.0.1-SNAPSHOT&lt;/version&gt; &lt;properties&gt; &lt;spring.version&gt;4.0.2.RELEASE&lt;/spring.version&gt; &lt;log4j.version&gt;1.2.17&lt;/log4j.version&gt; &lt;/properties&gt; &lt;dependencies&gt; &lt;dependency&gt; &lt;groupId&gt;org.springframework&lt;/groupId&gt; &lt;artifactId&gt;spring-core&lt;/artifactId&gt;...</p>
         </div>
       </div>
       <div class="list-group-separator"></div>
