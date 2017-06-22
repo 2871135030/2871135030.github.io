@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Spring Solr客户端应用
-date:   2016-05-28 14:32:58
+date:   2016-05-29 14:32:58
 categories: [spring,tools]
 ---
 
