@@ -21,7 +21,7 @@ cp objs/nginx /usr/local/nginx-1.14.2/sbin/
 ./nginx -V
 {% endhighlight %}
 
-2、配置nginx.conf，在server中增加如下配置
+2、配置nginx.conf，在server中增加如下配置完成图片缩放处理
 {% highlight ruby %}
     location ~* /(.*)_(\d+)x(\d+)\.(jpg|gif|png)$ {
         root html;
