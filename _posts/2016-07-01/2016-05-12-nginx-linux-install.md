@@ -8,13 +8,13 @@ categories: [linux,tools]
 ## Linux环境下安装nginx
 
 
-从nginx官网(http://nginx.org/en/download.html)下载nginx-1.11.3.tar.gz安装包
+从nginx官网(http://nginx.org/en/download.html)下载nginx-1.14.2.tar.gz安装包
 
 解压到目录
 
 ```markdown
 cd /software
-tar -xzvf nginx-1.11.3.tar.gz
+tar -xzvf nginx-1.14.2.tar.gz
 
 ```
 
@@ -30,16 +30,16 @@ yum -y install openssl*
 进入nginx目录安装
 
 ```markdown
-cd /software/nginx-1.11.3
+cd /software/nginx-1.14.2
 
-./configure --prefix=/user/local/nginx-1.11.3 --conf-path=/user/local/nginx-1.11.3/nginx.conf --with-http_ssl_module --with-http_stub_status_module --with-pcre
+./configure --prefix=/usr/local/nginx-1.14.2 --conf-path=/usr/local/nginx-1.14.2/nginx.conf --with-http_ssl_module --with-http_stub_status_module --with-pcre
 
 make & make install
 
-注:nginx包解压目录为/software/nginx-1.11.3，安装目录为/user/local/nginx-1.11.3，nginx生成的配置文件为nginx.conf
+注:nginx包解压目录为/software/nginx-1.14.2，安装目录为/usr/local/nginx-1.14.2，nginx生成的配置文件为nginx.conf
 
 
-cd /user/local/nginx-1.11.3
+cd /usr/local/nginx-1.14.2
 ./sbin/nginx 即可启动nginx
 
 重新加载配置及停止
