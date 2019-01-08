@@ -28,7 +28,7 @@ cp objs/nginx /usr/local/nginx-1.14.2/sbin/
         set $name $1;
         set $w $2;
         set $h $3;
-		set $type $4;
+        set $type $4;
         image_filter resize $w $h;
         image_filter_buffer 10M;
         try_files /$name.$type /404.jpg;
