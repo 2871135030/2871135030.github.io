@@ -5,12 +5,12 @@ date:   2021-11-12 14:15:00
 categories: [java]
 ---
 
-## Rabbitmq实现延时消息的两种方式
+### Rabbitmq实现延时消息的两种方式
 
-## 1、使用队列的ttl特性【延时队列】
+### 1、使用队列的ttl特性【延时队列】
 使用队列的`ttl`特性，即配置死信队列的消息重新路由到消费队列中，同一个队列的消息过期时间将相同，即使消息本身可能带上了`ttl`，同样会因队头的消息未过期而无法消费；
 
-### 关键配置说明
+#### 关键配置说明
 ```
 spring:
   cloud:
@@ -40,10 +40,10 @@ spring:
 deadLetterExchange及deadLetterQueueName表示若消息过期将转发至此交换机。
 
 
-## 2、使用延时插件实现【延时交换机】
+### 2、使用延时插件实现【延时交换机】
 使用延时交换机实现延时消息更加灵活，可以针对每个消息设置任意的过期时间，交换机中的消息如果过期将路由到绑定的队列中进行消费；
 
-### 关键配置说明
+#### 关键配置说明
 ```
 spring:
   cloud:
@@ -74,16 +74,16 @@ spring:
     }
 ```
 
-## 3、两种实现方式比较
+### 3、两种实现方式比较
 
-### 延时队列
+#### 延时队列
 ```
 mvn clean compile exec:exec -Dexec.executable="java" -Dexec.args="-cp %classpath com.hugesoft.Application  --spring.rabbitmq.host=192.168.88.100 --spring.profiles.active=queue
 ```
 ![delay-queue](/assets/img/delay-queue.png)
 
 
-### 延时交换机
+#### 延时交换机
 ```
 mvn clean compile exec:exec -Dexec.executable="java" -Dexec.args="-cp %classpath com.hugesoft.Application  --spring.rabbitmq.host=192.168.88.100 --spring.profiles.active=exchange"
 ```
@@ -95,10 +95,10 @@ mvn clean compile exec:exec -Dexec.executable="java" -Dexec.args="-cp %classpath
 
 github地址`https://github.com/viturefree/rabbitmq-delay`
 
-### 赞赏(Donation)
+#### 赞赏(Donation)
 
 
-#### 微信(Wechat Pay)
+##### 微信(Wechat Pay)
 
-![donation-wechatpay](donate-wechatpay.png)
+![donation-wechatpay](/assets/img/donate-wechatpay.png)
 
