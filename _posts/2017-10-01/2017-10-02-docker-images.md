@@ -23,7 +23,7 @@ cd /docker
 在docker目录中编写一个文件Dockerfile，内容如下
 {% highlight ruby %}
 FROM centos
-MAINTAINER jke
+MAINTAINER mixfate
 ADD jdk-8u65-linux-x64.tar.gz /
 ENV JAVA_HOME=/jdk1.8.0_65
 ENV PATH=$JAVA_HOME/bin:$PATH
@@ -39,7 +39,7 @@ ENTRYPOINT ["java","-version",""]
 Sending build context to Docker daemon  181.3MB
 Step 1/8 : FROM centos
  ---> af7c74ac94e5
-Step 2/8 : MAINTAINER jke
+Step 2/8 : MAINTAINER mixfate
  ---> Using cache
  ---> 1005831b27e6
 Step 3/8 : ADD jdk-8u65-linux-x64.tar.gz /
