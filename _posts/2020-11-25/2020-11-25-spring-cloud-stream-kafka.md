@@ -28,6 +28,7 @@ categories: [java,spring,springcloud]
 #### 2、spring-cloud中使用kafka完成消息发送与接收
 ##### 2.1、demo程序代码如下 
 * pom.xml
+
 ```
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -133,6 +134,7 @@ categories: [java,spring,springcloud]
 ```
 
 * application.yml
+
 ```
 server:
   port: 8080
@@ -162,6 +164,7 @@ logging:
 ```
 
 * Producer.java
+
 ```
 package com.hugesoft.kafka.mq;
 
@@ -189,6 +192,7 @@ public class Producer {
 
 ```
 * Consumer.java
+
 ```
 package com.hugesoft.kafka.mq;
 
@@ -213,6 +217,7 @@ public class Consumer {
 
 ```
 ##### 2.2、修改kafka分区数量以提升吞吐量
+
 ```
 进入kafka目录
 ./kafka-topics.sh --zookeeper localhost:2181 --alter --topic kafka-stream-topic-test  --partitions 10
