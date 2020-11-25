@@ -1,9 +1,9 @@
-title: Java及相关开源技术博客
-description: Mixfate博客,技术体系,开源技术博客,IT 博客,java技术,spring开源技术,dubbo分布式架构,maven工具,Kubernetes,运维
-author: Mixfate博客
+title: 专注提升技术，完善知识体系
+description: 技术体系,开源技术博客,IT 博客,java技术,spring开源技术,dubbo分布式架构,maven工具,Kubernetes,docker
+author: 专注提升技术
 logo: http://www.mixfate.com/static/img/avatar.png
 github: https://github.com/
-about: 技术体系
+about: java,spring,kubernetes
 disqus_shortname: mixfate
 google_analytics: UB-72862926-2
 urls:
