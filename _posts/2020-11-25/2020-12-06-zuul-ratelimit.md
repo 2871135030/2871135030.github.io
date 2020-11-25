@@ -223,19 +223,22 @@ zuul:
 
 * zuul ratelimit配置说明
 
-参数|值|说明
--|-|-
-zuul.ratelimit.enabled|true（默认为false）|是否开启限流功能
-zuul.ratelimit.repository|可选项`REDIS,CONSUL,JPA`等|使用的存储方式
-zuul.ratelimit.policy-list|限流参数配置列表|需与routes中配置对应
-zuul.ratelimit.default-policy-list|默认限流参数配置列表|如果有非默认配置优先匹配非默认规则
+|参数|值|说明|
+|-|-|-|
+|zuul.ratelimit.enabled|true（默认为false）|是否开启限流功能|
+|zuul.ratelimit.repository|可选项`REDIS,CONSUL,JPA`等|使用的存储方式|
+|zuul.ratelimit.policy-list|限流参数配置列表|需与routes中配置对应|
+|zuul.ratelimit.default-policy-list|默认限流参数配置列表|如果有非默认配置优先匹配非默认规则|
 
-policy-list参数|值|说明
--|-|-
-limit|请求数量限制|如指定60秒内的请求数为10
-quota|请求时间限制|如指定60秒内接口的请求时间超过5秒即禁止<br>（如上一步10个请求未达到，而接口总时间已超过5秒则限流）
-refresh-internal|刷新时间周期|如60秒一个时间计算周期
-type|可选项`ORIGIN,USER,URL`等|使用限流的类型
+
+hr
+
+|policy-list参数|值|说明|
+|-|-|-|
+|limit|请求数量限制|如指定60秒内的请求数为10|
+|quota|请求时间限制|如指定60秒内接口的请求时间超过5秒即禁止<br>（如上一步10个请求未达到，而接口总时间已超过5秒则限流）|
+|refresh-internal|刷新时间周期|如60秒一个时间计算周期|
+|type|可选项`ORIGIN,USER,URL`等|使用限流的类型|
 
 > 演示直接使用redis，可以看到请求后redis会有两个维度的请求数据，按上面的配置其中一个key为`gateway-v2:api-v1:/gateway/info`表示当前60秒内的请求总数，另外一个key为`gateway-v2:api-v1:/gateway/info-quota`表示当前60秒内请求的总耗时，计算时间的周期将随redis的失效时间删除。
 
