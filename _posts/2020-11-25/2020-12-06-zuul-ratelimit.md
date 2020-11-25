@@ -231,7 +231,7 @@ zuul:
 |zuul.ratelimit.default-policy-list|默认限流参数配置列表|如果有非默认配置优先匹配非默认规则|
 
 
-hr
+---
 
 |policy-list参数|值|说明|
 |-|-|-|

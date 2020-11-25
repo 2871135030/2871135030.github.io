@@ -9,11 +9,12 @@ categories: [java]
 
 ##### 1、基础环境准备
 ###### 1.1、机器说明，共三台机器一台master，两台node节点
-机器说明|ip|系统
--|-|-
-master|192.168.80.10|centos7.8
-node1|192.168.80.20|centos7.8
-node2|192.168.80.30|centos7.8
+
+|机器说明|ip|系统|
+|-|-|-|
+|master|192.168.80.10|centos7.8|
+|node1|192.168.80.20|centos7.8|
+|node2|192.168.80.30|centos7.8|
 
 ```
 [root@kubernetes-master ~]# cat /etc/redhat-release 
