@@ -10,11 +10,11 @@ categories: [springcloud]
 
 ##### 1、依赖版本说明
 
-依赖|版本
--|-
-spring-boot|1.5.2.RELEASE
-spring-cloud|Edgware.SR6
-spring-cloud-zuul-ratelimit|1.7.6.RELEASE
+|依赖|版本|
+|-|-|
+|spring-boot|1.5.2.RELEASE|
+|spring-cloud|Edgware.SR6|
+|spring-cloud-zuul-ratelimit|1.7.6.RELEASE|
 
 > 需注意不同版本之间的差异，参数略有不同
 
