@@ -191,8 +191,8 @@ start-all.sh
 ##### 7 运行一个简单案例
 
 * 启动成功后可使用`http://192.168.2.10:8084/dfshealth.html#tab-overview`访问查看hadoop详情
-![image.png](https://upload-images.jianshu.io/upload_images/24398792-a7781df7e43db20e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
-![image.png](https://upload-images.jianshu.io/upload_images/24398792-f46592e0823175d7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![image.png](/assets/img/24398792-a7781df7e43db20e.png)
+![image.png](/assets/img/24398792-f46592e0823175d7.png)
 
 
 * 建立两个测试目录source及target
@@ -204,7 +204,7 @@ start-all.sh
 ```
 * 目录建立成功后，可以看到目录文件系统
 
-![image.png](https://upload-images.jianshu.io/upload_images/24398792-e82363e744d9bc65.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![image.png](/assets/img/24398792-e82363e744d9bc65.png)
 
 
 * 准备一段文字，我们摘取hadoop官网介绍，保存为`hadoop.txt`
@@ -222,7 +222,7 @@ The Apache Hadoop software library is a framework that allows for the distribute
 
 * 上传文件后可通过管理后台查看文件，需访问机器需同样配置host
 
-![image.png](https://upload-images.jianshu.io/upload_images/24398792-7d348f43f91397f9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![image.png](/assets/img/24398792-7d348f43f91397f9.png)
 
 
 * 执行一个简单的mapreduce任务将`hadoop.txt`单词统计信息输出
@@ -230,7 +230,7 @@ The Apache Hadoop software library is a framework that allows for the distribute
 ```
 [root@hadoop-master ~]# hadoop jar /software/hadoop-3.3.0/share/hadoop/mapreduce/hadoop-mapreduce-examples-3.3.0.jar  wordcount /source/hadoop.txt /target/result
 ```
-![image.png](https://upload-images.jianshu.io/upload_images/24398792-b3ec1c8dc91d49ef.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![image.png](/assets/img/24398792-b3ec1c8dc91d49ef.png)
 
 
 #### 赞赏(Donation)
