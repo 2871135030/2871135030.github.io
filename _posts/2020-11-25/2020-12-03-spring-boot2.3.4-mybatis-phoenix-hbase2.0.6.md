@@ -378,11 +378,11 @@ C:\Program Files\jdk1.8.0_66\bin
 
 2）、运行dbeaver.exe，选择创建新连接，选中“Hadoop/BigData”栏的“Apache Phoenix”点击下一步，编辑驱动设置中添加驱动文件`phoenix-5.0.0-HBase-2.0-client.jar`，点选“找到类”即可搜索到对应的驱动类，如图所示；
 
-![image.png](https://upload-images.jianshu.io/upload_images/24398792-5f22f5a7163afe5d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![image.png](/assets/img/1.png)
 
-![image.png](https://upload-images.jianshu.io/upload_images/24398792-9bc3cb862a451b26.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![image.png](/assets/img/2.png)
 
-![image.png](https://upload-images.jianshu.io/upload_images/24398792-0173e955105da3b8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![image.png](/assets/img/3.png)
 
 
 
