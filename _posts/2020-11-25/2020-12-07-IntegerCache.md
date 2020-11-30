@@ -37,7 +37,7 @@ true
 ##### 2、原因分析
 等号`==`是进行对象的比较，从结果说明a与c为同一个对象，b为不同的一个对象，可以通过`debug`调试代码得到验证，定义`Integer a = 88;`与`Integer c = Integer.valueOf(88);`的对象为同一个。
 
-![image.png](https://upload-images.jianshu.io/upload_images/24398792-0167594e5e59a03b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![image.png](/assets/img/24398792-0167594e5e59a03b.png)
 
 继续调试以下代码观察
 
@@ -53,7 +53,7 @@ true
     }
 ```
 可以发现`a、b、c`的对象为同一个，而`d、e、f`的对象则不是同一个。
-![image.png](https://upload-images.jianshu.io/upload_images/24398792-507565512880009e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![image.png](/assets/img/24398792-507565512880009e.png)
 
 
 ##### 3、源码解读（jdk8）
@@ -111,7 +111,7 @@ private static class IntegerCache {
 > 源码中可以找到配置`high`的参数可以通过属性参数或`jvm`参数完成配置，即`-Djava.lang.Integer.IntegerCache.high=189`或`-XX:AutoBoxCacheMax=189`。
 ##### 4、实践总结
 在`idea`中设置属性参数或`jvm`参数调试代码，可以看到设置`high`参数后`d、e、f`也为同一个对象了
-![image.png](https://upload-images.jianshu.io/upload_images/24398792-a981699ccaf02f92.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![image.png](/assets/img/24398792-a981699ccaf02f92.png)
 
 >通过一个整型对象的大小比较引申出系列问题的探讨以及思考，其实在`IntegerCache`类中我们还可以看到为什么只允许设置上限`high`呢？下限`low`为什么不能同样设置呢？是基于什么样的考虑呢？有官方的 [issue](https://bugs.openjdk.java.net/browse/JDK-6968657?page=com.atlassian.streams.streams-jira-plugin%3Aactivity-stream-issue-tab)，简单回复`没有必要`
 
